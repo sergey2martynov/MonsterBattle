@@ -1,18 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
-public class UpdateHandler : MonoBehaviour
+namespace UpdateHandler
 {
-    // Start is called before the first frame update
-    void Start()
+    public class UpdateHandler : MonoBehaviour
     {
-        
-    }
+        public event Action UpdateTicked;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        private void Update() => UpdateTicked?.Invoke();
     }
 }
