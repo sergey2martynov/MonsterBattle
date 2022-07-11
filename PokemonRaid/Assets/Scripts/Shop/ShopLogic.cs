@@ -9,9 +9,34 @@ namespace Shop
         private ShopDataBase _shopDataBase;
         //private PokemonHolderModel _pokemonHolderModel;
 
-        private void TryPurchase()
+        public ShopLogic(PokemonSpawner pokemonSpawner, ShopView shopView, ShopDataBase shopDataBase)
+        {
+            _pokemonSpawner = pokemonSpawner;
+            _shopView = shopView;
+            _shopDataBase = shopDataBase;
+        }
+
+        private void Initialize()
+        {
+            _shopView.PurchaseMeleeButtonPressed += TryPurchaseMeleePokemon;
+            _shopView.PurchaseRangedButtonPressed += TryPurchaseRangedPokemon;
+            
+        }
+
+        private void TryPurchaseMeleePokemon()
         {
             
+        }
+        
+        private void TryPurchaseRangedPokemon()
+        {
+            
+        }
+
+        private void Dispose()
+        {
+            _shopView.PurchaseMeleeButtonPressed -= TryPurchaseMeleePokemon;
+            _shopView.PurchaseRangedButtonPressed -= TryPurchaseRangedPokemon;
         }
 
     }
