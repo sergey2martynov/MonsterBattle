@@ -1,3 +1,4 @@
+using StaticData;
 using UnityEngine;
 
 namespace Pool
@@ -6,7 +7,7 @@ namespace Pool
     {
         //private PokemonHolderModel _pokemonHolderModel;
 
-        private PokemonList _pokemonList;
+        private PokemonPrefabHolder _pokemonPrefabHolder;
         
         private void CreatePokemon()
         {
