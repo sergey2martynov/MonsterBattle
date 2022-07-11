@@ -89,6 +89,7 @@ GameObject:
   - component: {fileID: 3287560906713729766}
   - component: {fileID: 3287560906713729765}
   - component: {fileID: 3287560906713729764}
+  - component: {fileID: 5753389870703267249}
   m_Layer: 5
   m_Name: ShopCanvas
   m_TagString: Untagged
@@ -177,6 +178,19 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &5753389870703267249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3287560906713729771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 011d56c29dc02ad49af724b24ec56f3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _button: {fileID: 0}
 --- !u!1001 &2859066144841511529
 PrefabInstance:
   m_ObjectHideFlags: 0
