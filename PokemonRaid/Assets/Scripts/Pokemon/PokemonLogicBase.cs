@@ -12,7 +12,8 @@ namespace Pokemon
         protected PokemonDataBase _data;
         protected PokemonHolderModel _model;
         protected UpdateHandler.UpdateHandler _updateHandler;
-        protected Dictionary<Type, BaseState> _statesToType = new Dictionary<Type, BaseState>();
+        protected Dictionary<Type, BaseState<TView>> _statesToType;
+        protected BaseState<TView> _currentState;
 
         public virtual void Initialize(TView view, PokemonDataBase data, PokemonHolderModel model,
             UpdateHandler.UpdateHandler updateHandler)
@@ -23,24 +24,28 @@ namespace Pokemon
             _updateHandler = updateHandler;
             _updateHandler.UpdateTicked += Update;
             _view.ViewDestroyed += Dispose;
+            _statesToType = new Dictionary<Type, BaseState<TView>>
+            {
+                {typeof(IdleState<TView>), new IdleState<TView>(_view, this, _data)}
+            };
         }
 
         protected virtual void Update()
         {
-            _data.CurrentState.Update();
+            _currentState.Update();
         }
 
         public T SwitchState<T>()
-            where T : BaseState
+            where T : BaseState<TView>
         {
             var type = typeof(T);
 
             if (_statesToType.TryGetValue(type, out var state))
             {
-                _data.CurrentState.OnExit();
-                _data.CurrentState = state;
-                _data.CurrentState.OnEnter();
-                return _data.CurrentState as T;
+                _currentState.OnExit();
+                _currentState = state;
+                _currentState.OnEnter();
+                return _currentState as T;
             }
 
             throw new KeyNotFoundException("There is no state of type " + type);

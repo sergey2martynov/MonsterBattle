@@ -1,12 +1,13 @@
 ﻿namespace Pokemon.States
 {
-    public abstract class BaseState
+    public abstract class BaseState<TView>
+        where TView : PokemonViewBase
     {
-        protected PokemonViewBase _view;
-        protected PokemonLogicBase<PokemonViewBase> _logic;
+        protected TView _view;
+        protected PokemonLogicBase<TView> _logic;
         protected PokemonDataBase _data;
 
-        protected BaseState(PokemonViewBase view, PokemonLogicBase<PokemonViewBase> logic, PokemonDataBase data)
+        protected BaseState(TView view, PokemonLogicBase<TView> logic, PokemonDataBase data)
         {
             _view = view;
             _logic = logic;

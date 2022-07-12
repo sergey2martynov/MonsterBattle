@@ -1,9 +1,10 @@
 ﻿namespace Pokemon.States
 {
-    public class IdleState : BaseState
+    public class IdleState<TView> : BaseState<TView>
+        where TView : PokemonViewBase
     {
-        public IdleState(PokemonViewBase view, PokemonLogicBase<PokemonViewBase> logic, PokemonDataBase data) : base(
-            view, logic, data)
+        public IdleState(TView view, PokemonLogicBase<TView> logic, PokemonDataBase data) : 
+            base(view, logic, data)
         {
         }
 

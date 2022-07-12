@@ -13,8 +13,7 @@ namespace Pokemon
         protected int _damage;
         protected int _level;
         protected int _maxLevel;
-
-        public BaseState CurrentState { get; set; }
+        protected int _attackRange;
 
         public CancellationTokenSource Source { get; protected set; }
 
