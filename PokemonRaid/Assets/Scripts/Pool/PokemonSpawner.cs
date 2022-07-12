@@ -17,16 +17,16 @@ namespace Pool
             _parent = parent;
         }
 
-        private void CreateFirstLevelPokemon(Transform position, bool isMelee)
+        public void CreateFirstLevelPokemon(Vector3 position, PokemonType pokemonType)
         {
             PokemonViewBase pokemon;
-            if (isMelee)
+            if (pokemonType == PokemonType.Melee)
                 pokemon = Object.Instantiate(_pokemonPrefabHolder.MeleePokemons[
-                        Random.Range(0, _pokemonPrefabHolder.MeleePokemons.Count - 1)], position.position,
+                        Random.Range(0, _pokemonPrefabHolder.MeleePokemons.Count - 1)], position,
                     Quaternion.identity, _parent);
             else
                 pokemon = Object.Instantiate(_pokemonPrefabHolder.RangedPokemons[
-                        Random.Range(0, _pokemonPrefabHolder.RangedPokemons.Count - 1)], position.position,
+                        Random.Range(0, _pokemonPrefabHolder.RangedPokemons.Count - 1)], position,
                     Quaternion.identity, _parent);
         }
     }

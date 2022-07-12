@@ -17,5 +17,24 @@ namespace Pokemon.PokemonHolder
                 pokemon.MoveDirection = direction;
             }
         }
+        
+        public void SetCells(List<List<CellData>> cells)
+        {
+            _cells = cells;
+        }
+
+        public CellData GetFirstEmptyCell()
+        {
+            foreach (var row in _cells)
+            {
+                foreach (var cell in row)
+                {
+                    if (cell.EmptyState)
+                        return cell;
+                }
+            }
+
+            return null;
+        }
     }
 }

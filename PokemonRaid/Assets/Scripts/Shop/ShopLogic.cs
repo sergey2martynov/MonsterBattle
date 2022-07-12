@@ -20,7 +20,7 @@ namespace Shop
             _playerData = playerData;
         }
 
-        private void Initialize()
+        public void Initialize()
         {
             _shopView.PurchaseButtonPressed += TryPurchasePokemon;
             
@@ -28,13 +28,14 @@ namespace Shop
 
         private void TryPurchasePokemon(PokemonType pokemonType)
         {
-            if (_playerData.Coins < _shopDataBase.PokemonCost)
+            if (_playerData.Coins < _shopDataBase.PokemonCost || _pokemonHolderModel.GetFirstEmptyCell() == null)
                 return;
-            
-            
+
+            _pokemonSpawner.CreateFirstLevelPokemon(_pokemonHolderModel.GetFirstEmptyCell().Position,  pokemonType);
+
         }
         
-        private void Dispose()
+        public void Dispose()
         {
             _shopView.PurchaseButtonPressed -= TryPurchasePokemon;
         }

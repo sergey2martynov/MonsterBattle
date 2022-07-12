@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading;
-using Pokemon.States;
 using StaticData;
 
 namespace Player
