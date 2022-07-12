@@ -9,8 +9,7 @@ namespace Shop
         [SerializeField] private Button _purchaseMeleeButton;
         [SerializeField] private Button _purchaseRangedButton;
 
-        public event Action PurchaseMeleeButtonPressed;
-        public event Action PurchaseRangedButtonPressed;
+        public event Action<PokemonType> PurchaseButtonPressed;
 
         private void Start()
         {
@@ -25,11 +24,11 @@ namespace Shop
 
         protected  void  OnPurchaseMeleeButtonClicked()
         {
-            PurchaseMeleeButtonPressed?.Invoke();
+            PurchaseButtonPressed?.Invoke(PokemonType.Melee);
         }
         protected  void  OnPurchaseRangedButtonClicked()
         {
-            PurchaseRangedButtonPressed?.Invoke();
+            PurchaseButtonPressed?.Invoke(PokemonType.Melee);
         }
     }
 }

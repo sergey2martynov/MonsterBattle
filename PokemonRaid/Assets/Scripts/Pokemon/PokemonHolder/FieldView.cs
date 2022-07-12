@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Pokemon.PokemonHolder.Cell
+namespace Pokemon.PokemonHolder
 {
     public class FieldView : MonoBehaviour
     {
