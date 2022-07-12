@@ -1,13 +1,15 @@
-﻿namespace Player
+﻿using UpdateHandlerFolder;
+
+namespace Player
 {
     public class PlayerLogic
     {
         private PlayerView _view;
         private PlayerData _data;
-        private UpdateHandler.UpdateHandler _updateHandler;
+        private UpdateHandler _updateHandler;
 
         public virtual void Initialize( PlayerView playerView, PlayerData playerData,
-            UpdateHandler.UpdateHandler updateHandler)
+            UpdateHandler updateHandler)
         {
             _view = playerView;
             _data = playerData;

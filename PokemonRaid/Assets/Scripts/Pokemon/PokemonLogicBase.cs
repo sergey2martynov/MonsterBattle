@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Pokemon.PokemonHolder;
 using Pokemon.States;
+using UpdateHandlerFolder;
 
 namespace Pokemon
 {
@@ -11,12 +12,12 @@ namespace Pokemon
         protected TView _view;
         protected PokemonDataBase _data;
         protected PokemonHolderModel _model;
-        protected UpdateHandler.UpdateHandler _updateHandler;
+        protected UpdateHandler _updateHandler;
         protected Dictionary<Type, BaseState<TView>> _statesToType;
         protected BaseState<TView> _currentState;
 
         public virtual void Initialize(TView view, PokemonDataBase data, PokemonHolderModel model,
-            UpdateHandler.UpdateHandler updateHandler)
+            UpdateHandler updateHandler)
         {
             _view = view;
             _data = data;
@@ -26,8 +27,12 @@ namespace Pokemon
             _view.ViewDestroyed += Dispose;
             _statesToType = new Dictionary<Type, BaseState<TView>>
             {
-                {typeof(IdleState<TView>), new IdleState<TView>(_view, this, _data)}
+                {typeof(IdleState<TView>), new IdleState<TView>(_view, this, _data)},
+                {typeof(AttackWhileMoveState<TView>), new AttackWhileMoveState<TView>(_view, this, _data)},
+                {typeof(AttackState<TView>), new AttackState<TView>(_view, this, _data)}
+
             };
+            _currentState = _statesToType[typeof(AttackWhileMoveState<TView>)];
         }
 
         protected virtual void Update()

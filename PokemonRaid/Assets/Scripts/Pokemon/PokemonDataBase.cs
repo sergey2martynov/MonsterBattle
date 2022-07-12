@@ -1,21 +1,52 @@
 ﻿using System;
 using System.Threading;
-using Pokemon.States;
+using StaticData;
 using UnityEngine;
 
 namespace Pokemon
 {
     public abstract class PokemonDataBase
     {
-        protected ScriptableObject PokemonData;
+        private PokemonStats _pokemonStats;
+        protected float _moveSpeed;
+        protected float _attackSpeed;
         protected int _maxHealth;
         protected int _health;
         protected int _damage;
         protected int _level;
         protected int _maxLevel;
+        protected int _maxTargetsAmount;
         protected int _attackRange;
 
         public CancellationTokenSource Source { get; protected set; }
+
+        public Vector3 MoveDirection { get; set; }
+
+        public float MoveSpeed
+        {
+            get => _moveSpeed;
+            set
+            {
+                if (value <= 0)
+                {
+                    throw new ArgumentException("Move speed cannot be equal or less than zero");
+                }
+
+                _moveSpeed = value;
+            }
+        }
+
+        public float AttackSpeed
+        {
+            get => _attackSpeed;
+            set
+            {
+                if (value <= 0)
+                {
+                    throw new ArgumentException("Attack speed cannot be equal or less than zero");
+                }
+            }
+        }
 
         public int MaxHealth
         {
@@ -26,7 +57,7 @@ namespace Pokemon
                 {
                     throw new ArgumentException("Max health cannot be equal or less than zero");
                 }
-                
+
                 _maxHealth = value;
             }
         }
@@ -65,9 +96,37 @@ namespace Pokemon
             }
         }
 
-        public virtual void Initialize()
+        public int MaxTargetsAmount
         {
-            SetStats();
+            get => _maxTargetsAmount;
+            set
+            {
+                if (value <= 0)
+                {
+                    throw new ArgumentException("Max targets amount cannot be equal or less than zero");
+                }
+
+                _maxTargetsAmount = value;
+            }
+        }
+
+        public int AttackRange
+        {
+            get => _attackRange;
+            set
+            {
+                if (value <= 0)
+                {
+                    throw new ArgumentException("Attack range cannot be equal or less than zero");
+                }
+
+                _attackRange = value;
+            }
+        }
+
+        public virtual void Initialize(PokemonStats stats)
+        {
+            SetStats(stats);
         }
 
         public CancellationTokenSource CreateCancellationTokenSource()
@@ -81,9 +140,17 @@ namespace Pokemon
             Source?.Dispose();
         }
 
-        protected virtual void SetStats()
+        protected virtual void SetStats(PokemonStats stats)
         {
-            
+            _moveSpeed = stats.MoveSpeed;
+            _attackSpeed = stats.AttackSpeed;
+            _maxHealth = stats.MaxHealth;
+            _health = _maxHealth;
+            _damage = stats.Damage;
+            _level = stats.Level;
+            _maxLevel = stats.MaxLevel;
+            _maxTargetsAmount = stats.MaxTargetsAmount;
+            _attackRange = stats.AttackRange;
         }
     }
 }

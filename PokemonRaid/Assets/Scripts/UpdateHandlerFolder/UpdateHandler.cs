@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace UpdateHandler
+namespace UpdateHandlerFolder
 {
     public class UpdateHandler : MonoBehaviour
     {

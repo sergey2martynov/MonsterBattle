@@ -10,7 +10,12 @@
 
         public override void SetNextState()
         {
-            throw new System.NotImplementedException();
+            if (_data.MoveDirection.magnitude != 0)
+            {
+                return;
+            }
+
+            _logic.SwitchState<AttackWhileMoveState<TView>>();
         }
     }
 }
