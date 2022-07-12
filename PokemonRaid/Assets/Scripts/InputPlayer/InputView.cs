@@ -1,4 +1,5 @@
 using System;
+using Pokemon;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,6 +7,7 @@ namespace InputPlayer
 {
     public class InputView : MonoBehaviour
     {
+        [SerializeField] private Camera _camera;
         [SerializeField] private Canvas _canvas;
         [SerializeField] private Image _outerJoystick;
         [SerializeField] private Image _innerJoystick;
@@ -15,12 +17,10 @@ namespace InputPlayer
         private Vector3 _startPosition;
         private bool _isTouched;
         private float _scale;
-        
+        private Ray _ray;
+        private PokemonViewBase _targetPokemon;
+
         public bool isPreparingStage;
-        
-        public event Action MouseButtonPressed;
-        public event Action MouseButtonHold;
-        public event Action MouseButtonReleased;
         public event Action<Vector3> DirectionReceived;
         public event Action ViewDestroyed;
 
@@ -32,20 +32,7 @@ namespace InputPlayer
 
         private void Update()
         {
-            if (Input.GetMouseButtonDown(0))
-            {
-                MouseButtonPressed.Invoke();
-            }
-
-            if (Input.GetMouseButton(0))
-            {
-                MouseButtonHold.Invoke();
-            }
-
-            if (Input.GetMouseButtonUp(0))
-            {
-                MouseButtonReleased.Invoke();
-            }
+            HandleInput();
         }
 
         private void HandleInput()
@@ -82,24 +69,62 @@ namespace InputPlayer
                         y = Input.mousePosition.y / sizeDelta.y / _scale
                     };
                     _moveDirection = new Vector3(position.x - _startPosition.x, 0f, position.y - _startPosition.y);
-                
+
                     if (_moveDirection.magnitude > 1f)
                     {
                         _moveDirection.Normalize();
                     }
-                    
+
                     _innerJoystick.rectTransform.anchoredPosition = new Vector2(
                         _moveDirection.x * sizeDelta.x / 3,
                         _moveDirection.z * sizeDelta.y / 3);
                     DirectionReceived?.Invoke(_moveDirection);
                 }
             }
+            else
+            {
+                if (Input.GetMouseButtonDown(0))
+                {
+                    _ray = _camera.ScreenPointToRay(Input.mousePosition);
+
+                    RaycastHit hit;
+                    Physics.Raycast(_ray, out hit);
+
+                    if (hit.collider.gameObject.TryGetComponent(out PokemonViewBase pokemon))
+                    {
+                        _targetPokemon = pokemon;
+                    }
+                }
+
+                if (Input.GetMouseButton(0))
+                {
+                    if (_targetPokemon != null)
+                    {
+                        _ray = _camera.ScreenPointToRay(Input.mousePosition);
+                        RaycastHit[] hits = Physics.RaycastAll(_ray, 400f);
+
+                        for (int i = 0; i < hits.Length; i++)
+                        {
+                            if (hits[i].collider.TryGetComponent(out PlaneView plane))
+                            {
+                                _targetPokemon.transform.position = new Vector3(hits[i].point.x,
+                                    _targetPokemon.gameObject.transform.position.y, hits[i].point.z);
+                            }
+                        }
+                    }
+                }
+
+                if (Input.GetMouseButtonUp(0))
+                {
+                    _targetPokemon = null;
+                }
+            }
         }
 
         private void SetJoystickActive(bool isActive)
         {
-            _outerJoystick.gameObject.SetActive(isActive);
-            _innerJoystick.gameObject.SetActive(isActive);
+            // _outerJoystick.gameObject.SetActive(isActive);
+            // _innerJoystick.gameObject.SetActive(isActive);
         }
 
         private void OnDestroy()

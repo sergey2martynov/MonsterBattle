@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1567962777537010808}
   - component: {fileID: 6114086196387224670}
+  - component: {fileID: 8399764196032616403}
   m_Layer: 0
   m_Name: Range Pokemon 4
   m_TagString: Untagged
@@ -45,6 +46,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 0}
+--- !u!136 &8399764196032616403
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1567962777537010809}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5000001
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &4702274679173830693
 GameObject:
   m_ObjectHideFlags: 0
@@ -56,7 +71,6 @@ GameObject:
   - component: {fileID: 6113335000184875532}
   - component: {fileID: 4168661648498868672}
   - component: {fileID: 2939405545079863770}
-  - component: {fileID: 7782960826055975459}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
@@ -127,17 +141,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &7782960826055975459
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4702274679173830693}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}

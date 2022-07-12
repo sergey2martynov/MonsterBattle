@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Pokemon.PokemonHolder.Cell;
 using UnityEngine;
 
@@ -25,16 +26,7 @@ namespace Pokemon.PokemonHolder
 
         public CellData GetFirstEmptyCell()
         {
-            foreach (var row in _cells)
-            {
-                foreach (var cell in row)
-                {
-                    if (cell.EmptyState)
-                        return cell;
-                }
-            }
-
-            return null;
+            return _cells.SelectMany(row => row).FirstOrDefault(cell => cell.EmptyState);
         }
     }
 }
