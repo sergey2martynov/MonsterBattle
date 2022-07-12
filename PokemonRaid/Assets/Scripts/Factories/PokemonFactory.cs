@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Pokemon;
+﻿using Pokemon;
 using Pokemon.PokemonHolder;
 using StaticData;
 using UnityEngine;
@@ -9,30 +7,23 @@ using Object = UnityEngine.Object;
 
 namespace Factories
 {
-    public class PokemonFactory
+    public class PokemonFactory<TView, TLogic, TData> : BasePokemonFactory
+        where TView : PokemonViewBase
+        where TLogic : PokemonLogicBase<TView>, new()
+        where TData : PokemonDataBase, new()
     {
-        private Dictionary<Type, PokemonViewBase> _prefabs;
+        private TView _prefab;
         private PokemonHolderModel _model;
         private UpdateHandler _updateHandler;
 
-        public PokemonFactory(Dictionary<Type, PokemonViewBase> prefabs)
+        public PokemonFactory(TView prefab)
         {
-            _prefabs = prefabs;
+            _prefab = prefab;
         }
 
-        public TData CreateInstance<TView, TLogic, TData>(Vector3 position, PokemonStats stats)
-            where TView : PokemonViewBase
-            where TLogic : PokemonLogicBase<TView>, new()
-            where TData : PokemonDataBase, new()
+        public override PokemonDataBase CreateInstance(Vector3 position, PokemonStats stats)
         {
-            var type = typeof(TView);
-
-            if (!_prefabs.TryGetValue(type, out var prefab))
-            {
-                return default;
-            }
-            
-            var view = Object.Instantiate(prefab, position, Quaternion.identity) as TView;
+            var view = Object.Instantiate(_prefab, position, Quaternion.identity);
             var data = new TData();
             var logic = new TLogic();
             logic.Initialize(view, data, _model, _updateHandler);
