@@ -62,23 +62,26 @@ namespace Merge
 
         private void OnButtonMouseReleased()
         {
-            float distance = Vector3.Distance(_targetPokemon.transform.position, _cellViews[0].transform.position);
-            float tempDistance;
-            int index = 0;
-
-            for (int i = 1; i < _cellViews.Count; i++)
+            if (_targetPokemon != null)
             {
-                tempDistance = Vector3.Distance(_targetPokemon.transform.position, _cellViews[i].transform.position);
-                if (tempDistance < distance)
-                {
-                    index = i;
-                    distance = tempDistance;
-                }
-            }
+                float distance = Vector3.Distance(_targetPokemon.transform.position, _cellViews[0].transform.position);
+                float tempDistance;
+                int index = 0;
 
-            _targetPokemon.transform.DOMoveX(_cellViews[index].transform.position.x, 1f);
-            _targetPokemon.transform.DOMoveY(_cellViews[index].transform.position.y, 1f);
-            _targetPokemon = null;
+                for (int i = 1; i < _cellViews.Count; i++)
+                {
+                    tempDistance = Vector3.Distance(_targetPokemon.transform.position, _cellViews[i].transform.position);
+                    if (tempDistance < distance)
+                    {
+                        index = i;
+                        distance = tempDistance;
+                    }
+                }
+
+                _targetPokemon.transform.DOMoveX(_cellViews[index].transform.position.x, 0.2f);
+                _targetPokemon.transform.DOMoveZ(_cellViews[index].transform.position.z, 0.2f);
+                _targetPokemon = null;
+            }
         }
 
 

@@ -91,44 +91,44 @@ namespace InputPlayer
                 {
                     ButtonMousePressed?.Invoke();
                     
-                    _ray = _camera.ScreenPointToRay(Input.mousePosition);
-
-                    RaycastHit hit;
-                    Physics.Raycast(_ray, out hit);
-                    
-                    Debug.Log(hit.collider);
-
-                    if (hit.collider.gameObject.TryGetComponent(out PokemonViewBase pokemon))
-                    {
-                        _targetPokemon = pokemon;
-                    }
+                    // _ray = _camera.ScreenPointToRay(Input.mousePosition);
+                    //
+                    // RaycastHit hit;
+                    // Physics.Raycast(_ray, out hit);
+                    //
+                    // Debug.Log(hit.collider);
+                    //
+                    // if (hit.collider.gameObject.TryGetComponent(out PokemonViewBase pokemon))
+                    // {
+                    //     _targetPokemon = pokemon;
+                    // }
                 }
 
                 if (Input.GetMouseButton(0))
                 {
                     ButtonMouseHold?.Invoke();
                     
-                    if (_targetPokemon != null)
-                    {
-                        _ray = _camera.ScreenPointToRay(Input.mousePosition);
-                        RaycastHit[] hits = Physics.RaycastAll(_ray, 400f);
-
-                        for (int i = 0; i < hits.Length; i++)
-                        {
-                            if (hits[i].collider.TryGetComponent(out PlaneView plane))
-                            {
-                                _targetPokemon.transform.position = new Vector3(hits[i].point.x,
-                                    _targetPokemon.gameObject.transform.position.y, hits[i].point.z);
-                            }
-                        }
-                    }
+                    // if (_targetPokemon != null)
+                    // {
+                    //     _ray = _camera.ScreenPointToRay(Input.mousePosition);
+                    //     RaycastHit[] hits = Physics.RaycastAll(_ray, 400f);
+                    //
+                    //     for (int i = 0; i < hits.Length; i++)
+                    //     {
+                    //         if (hits[i].collider.TryGetComponent(out PlaneView plane))
+                    //         {
+                    //             _targetPokemon.transform.position = new Vector3(hits[i].point.x,
+                    //                 _targetPokemon.gameObject.transform.position.y, hits[i].point.z);
+                    //         }
+                    //     }
+                    // }
                 }
 
                 if (Input.GetMouseButtonUp(0))
                 {
                     ButtonMouseReleased?.Invoke();
-                    
-                    _targetPokemon = null;
+                    //
+                    // _targetPokemon = null;
                 }
             }
         }
