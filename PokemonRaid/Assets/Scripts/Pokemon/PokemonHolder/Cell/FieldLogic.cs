@@ -1,44 +1,45 @@
 using System.Collections.Generic;
-using Pokemon.PokemonHolder;
-using Pokemon.PokemonHolder.Cell;
 
-public class FieldLogic
+namespace Pokemon.PokemonHolder.Cell
 {
-    private FieldView _fieldView;
-    private PokemonHolderModel _pokemonHolderModel;
-    private List<List<CellData>> _cells = new List<List<CellData>>();
-
-    private const int NumberOfRow = 5;
-    private const int NumberOfColumn = 4;
-
-
-    public FieldLogic(FieldView fieldView, PokemonHolderModel pokemonHolderModel)
+    public class FieldLogic
     {
-        _fieldView = fieldView;
-        _pokemonHolderModel = pokemonHolderModel;
-    }
+        private FieldView _fieldView;
+        private PokemonHolderModel _pokemonHolderModel;
+        private List<List<CellData>> _cells = new List<List<CellData>>();
 
-    public void Initialize()
-    {
-        _fieldView.FieldCreated += CreateCellDates;
-    }
+        private const int NumberOfRow = 5;
+        private const int NumberOfColumn = 4;
 
-    private void CreateCellDates(List<CellView> cells)
-    {
-        int count = 0;
 
-        for (int i = 0; i < NumberOfRow; i++)
+        public FieldLogic(FieldView fieldView, PokemonHolderModel pokemonHolderModel)
         {
-            _cells.Add(new List<CellData>());
-            
-            for (int j = 0; j < NumberOfColumn; j++)
-            {
-                _cells[i].Add(new CellData(cells[count].transform.position, j, i));
-                
-                count++;
-            }
+            _fieldView = fieldView;
+            _pokemonHolderModel = pokemonHolderModel;
         }
 
-        _pokemonHolderModel.SetCells(_cells);
+        public void Initialize()
+        {
+            _fieldView.FieldCreated += CreateCellDates;
+        }
+
+        private void CreateCellDates(List<CellView> cells)
+        {
+            int count = 0;
+
+            for (int i = 0; i < NumberOfRow; i++)
+            {
+                _cells.Add(new List<CellData>());
+            
+                for (int j = 0; j < NumberOfColumn; j++)
+                {
+                    _cells[i].Add(new CellData(cells[count].transform.position, j, i));
+                
+                    count++;
+                }
+            }
+
+            _pokemonHolderModel.SetCells(_cells);
+        }
     }
 }

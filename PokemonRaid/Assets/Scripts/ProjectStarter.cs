@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Player;
 using Pokemon.PokemonHolder;
+using Pokemon.PokemonHolder.Cell;
 using Pool;
 using Shop;
 using StaticData;

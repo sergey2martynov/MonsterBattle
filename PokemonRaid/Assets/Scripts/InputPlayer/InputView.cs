@@ -135,8 +135,8 @@ namespace InputPlayer
 
         private void SetJoystickActive(bool isActive)
         {
-            // _outerJoystick.gameObject.SetActive(isActive);
-            // _innerJoystick.gameObject.SetActive(isActive);
+            _outerJoystick.gameObject.SetActive(isActive);
+            _innerJoystick.gameObject.SetActive(isActive);
         }
 
         private void OnDestroy()
