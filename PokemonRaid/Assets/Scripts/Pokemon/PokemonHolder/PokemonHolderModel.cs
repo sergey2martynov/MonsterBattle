@@ -18,7 +18,7 @@ namespace Pokemon.PokemonHolder
                 pokemon.MoveDirection = direction;
             }
         }
-        
+
         public void SetCells(List<List<CellData>> cells)
         {
             _cells = cells;
@@ -26,11 +26,12 @@ namespace Pokemon.PokemonHolder
 
         public CellData GetFirstEmptyCell()
         {
-            var cell =  _cells.SelectMany(row => row).FirstOrDefault(cell => cell.EmptyState);
+            var cell = _cells.SelectMany(row => row).FirstOrDefault(cell => cell.EmptyState);
             if (cell != null)
             {
                 cell.EmptyState = false;
             }
+
             return cell;
         }
 
@@ -49,7 +50,7 @@ namespace Pokemon.PokemonHolder
                 _pokemons.Remove(pokemonData);
             }
         }
-        
+
         public CellData GetCellData(int index)
         {
             var count = 0;
@@ -62,6 +63,22 @@ namespace Pokemon.PokemonHolder
             }
 
             return null;
+        }
+
+        public void SetValueCellData(int index, bool isEmpty)
+        {
+            var count = 0;
+
+            foreach (var cell in _cells.SelectMany(rowCells => rowCells))
+            {
+                if (count == index)
+                {
+                    cell.EmptyState = isEmpty;
+                    return;
+                }
+
+                count++;
+            }
         }
     }
 }

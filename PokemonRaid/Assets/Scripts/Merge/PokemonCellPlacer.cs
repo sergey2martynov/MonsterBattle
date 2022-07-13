@@ -16,6 +16,7 @@ namespace Merge
         private FieldView _fieldView;
         private List<CellView> _cellViews;
         private PokemonHolderModel _pokemonHolderModel;
+        private CellView _fixedCell;
 
         public PokemonCellPlacer(InputView inputView, FieldView fieldView, PokemonHolderModel pokemonHolderModel)
         {
@@ -41,6 +42,7 @@ namespace Merge
             if (hit.collider.gameObject.TryGetComponent(out PokemonViewBase pokemon))
             {
                 _targetPokemon = pokemon;
+                _fixedCell = GetCurrentCell(_targetPokemon.transform.position);
             }
         }
 
@@ -69,28 +71,64 @@ namespace Merge
         {
             if (_targetPokemon != null)
             {
-                float distance = Vector3.Distance(_targetPokemon.transform.position, _cellViews[0].transform.position);
-                float tempDistance;
-                int index = 0;
+                var nearestCell = GetNearestEmptyCell(_targetPokemon.transform.position);
 
-                for (int i = 1; i < _cellViews.Count; i++)
-                {
-                    tempDistance = Vector3.Distance(_targetPokemon.transform.position,
-                        _cellViews[i].transform.position);
-                    if (tempDistance < distance)
-                    {
-                        index = i;
-                        distance = tempDistance;
-                    }
-                }
-
-                _targetPokemon.transform.DOMoveX(_cellViews[index].transform.position.x, 0.2f);
-                _targetPokemon.transform.DOMoveZ(_cellViews[index].transform.position.z, 0.2f);
+                _targetPokemon.transform.DOMoveX(nearestCell.transform.position.x, 0.2f);
+                _targetPokemon.transform.DOMoveZ(nearestCell.transform.position.z, 0.2f);
+                
                 _targetPokemon = null;
             }
         }
+
+        private CellView GetNearestEmptyCell(Vector3 pokemonPosition)
+        {
+            float distance = Vector3.Distance(pokemonPosition, _pokemonHolderModel.GetCellData(0).Position);
+            float tempDistance;
+            int index = 0;
+            CellData cellData;
+
+            for (int i = 1; i < _cellViews.Count; i++)
+            {
+                cellData = _pokemonHolderModel.GetCellData(i);
+                
+                tempDistance = Vector3.Distance(pokemonPosition,
+                    cellData.Position);
+                
+                if (cellData.EmptyState && tempDistance < distance)
+                {
+                    index = i;
+                    distance = tempDistance;
+                }
+            }
+            
+            _pokemonHolderModel.SetValueCellData(index, false);
+            return _cellViews[index];
+        }
         
-        
+        private CellView GetCurrentCell(Vector3 pokemonPosition)
+        {
+            float distance = Vector3.Distance(pokemonPosition, _pokemonHolderModel.GetCellData(0).Position);
+            float tempDistance;
+            int index = 0;
+            CellData cellData;
+
+            for (int i = 1; i < _cellViews.Count; i++)
+            {
+                cellData = _pokemonHolderModel.GetCellData(i);
+                
+                tempDistance = Vector3.Distance(pokemonPosition,
+                    cellData.Position);
+                
+                if (tempDistance < distance)
+                {
+                    index = i;
+                    distance = tempDistance;
+                }
+            }
+            
+            _pokemonHolderModel.SetValueCellData(index, true);
+            return _cellViews[index];
+        }
 
 
         private void Swap()
