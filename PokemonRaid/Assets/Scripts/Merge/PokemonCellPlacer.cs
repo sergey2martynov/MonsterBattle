@@ -82,12 +82,12 @@ namespace Merge
 
         private CellView GetNearestEmptyCell(Vector3 pokemonPosition)
         {
-            float distance = Vector3.Distance(pokemonPosition, _pokemonHolderModel.GetCellData(0).Position);
+            float distance = 200f;
             float tempDistance;
             int index = 0;
             CellData cellData;
 
-            for (int i = 1; i < _cellViews.Count; i++)
+            for (int i = 0; i < _cellViews.Count; i++)
             {
                 cellData = _pokemonHolderModel.GetCellData(i);
                 
@@ -107,12 +107,12 @@ namespace Merge
         
         private CellView GetCurrentCell(Vector3 pokemonPosition)
         {
-            float distance = Vector3.Distance(pokemonPosition, _pokemonHolderModel.GetCellData(0).Position);
+            float distance = 200f;
             float tempDistance;
             int index = 0;
             CellData cellData;
 
-            for (int i = 1; i < _cellViews.Count; i++)
+            for (int i = 0; i < _cellViews.Count; i++)
             {
                 cellData = _pokemonHolderModel.GetCellData(i);
                 
