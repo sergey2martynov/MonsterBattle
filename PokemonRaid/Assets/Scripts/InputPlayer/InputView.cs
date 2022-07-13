@@ -95,6 +95,8 @@ namespace InputPlayer
 
                     RaycastHit hit;
                     Physics.Raycast(_ray, out hit);
+                    
+                    Debug.Log(hit.collider);
 
                     if (hit.collider.gameObject.TryGetComponent(out PokemonViewBase pokemon))
                     {
