@@ -15,10 +15,12 @@ namespace Merge
         private InputView _inputView;
         private FieldView _fieldView;
         private List<CellView> _cellViews;
+        private PokemonHolderModel _pokemonHolderModel;
 
-        public PokemonCellPlacer(InputView inputView, FieldView fieldView)
+        public PokemonCellPlacer(InputView inputView, FieldView fieldView, PokemonHolderModel pokemonHolderModel)
         {
             _fieldView = fieldView;
+            _pokemonHolderModel = pokemonHolderModel;
             _inputView = inputView;
         }
 
@@ -49,12 +51,15 @@ namespace Merge
                 _ray = _inputView.Camera.ScreenPointToRay(Input.mousePosition);
                 RaycastHit[] hits = Physics.RaycastAll(_ray, 400f);
 
+
                 for (int i = 0; i < hits.Length; i++)
                 {
                     if (hits[i].collider.TryGetComponent(out PlaneView plane))
                     {
-                        _targetPokemon.transform.position = new Vector3(hits[i].point.x,
-                            _targetPokemon.gameObject.transform.position.y, hits[i].point.z);
+                        _targetPokemon.transform.position = new Vector3(
+                            Mathf.Clamp(hits[i].point.x, _inputView.LeftBorderForMerge, _inputView.RightBorderForMerge),
+                            _targetPokemon.gameObject.transform.position.y,
+                            Mathf.Clamp(hits[i].point.z, _inputView.DownBorderForMerge, _inputView.UpBorderForMerge));
                     }
                 }
             }
@@ -70,7 +75,8 @@ namespace Merge
 
                 for (int i = 1; i < _cellViews.Count; i++)
                 {
-                    tempDistance = Vector3.Distance(_targetPokemon.transform.position, _cellViews[i].transform.position);
+                    tempDistance = Vector3.Distance(_targetPokemon.transform.position,
+                        _cellViews[i].transform.position);
                     if (tempDistance < distance)
                     {
                         index = i;
@@ -83,6 +89,8 @@ namespace Merge
                 _targetPokemon = null;
             }
         }
+        
+        
 
 
         private void Swap()

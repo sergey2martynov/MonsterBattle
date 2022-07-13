@@ -191,7 +191,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3772271423292667752, guid: 935158d05bd9a8947980cd7f8eb8b08d, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3772271423292667753, guid: 935158d05bd9a8947980cd7f8eb8b08d, type: 3}
       propertyPath: m_RootOrder
@@ -279,7 +279,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7570300822190265072, guid: f766764cd5ea99f41b9a964ace79f385, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7570300822190265079, guid: f766764cd5ea99f41b9a964ace79f385, type: 3}
       propertyPath: m_RootOrder
@@ -439,7 +439,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6134699695049477927, guid: bd2c096a3c84e6f49b646c2bdc497559, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd2c096a3c84e6f49b646c2bdc497559, type: 3}
@@ -599,7 +599,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4521599763912715885, guid: 23143f931dd95c44aa59a2198406bee7, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23143f931dd95c44aa59a2198406bee7, type: 3}
@@ -672,7 +672,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7230088152638197254, guid: 96996a3b2b7182343b4c31a7c889e67e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.11
       objectReference: {fileID: 0}
     - target: {fileID: 7230088152638197254, guid: 96996a3b2b7182343b4c31a7c889e67e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -680,7 +680,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7230088152638197254, guid: 96996a3b2b7182343b4c31a7c889e67e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 14.1
+      value: 14.41
       objectReference: {fileID: 0}
     - target: {fileID: 7230088152638197254, guid: 96996a3b2b7182343b4c31a7c889e67e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -864,7 +864,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1567962777537010809, guid: d87f85f8882096a4ca34589d9bcf6729, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d87f85f8882096a4ca34589d9bcf6729, type: 3}
@@ -881,7 +881,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4900685232155548736, guid: fb8cb52bf1b7b484fb794867c425a118, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4900685232155548737, guid: fb8cb52bf1b7b484fb794867c425a118, type: 3}
       propertyPath: m_RootOrder
@@ -1640,6 +1640,22 @@ PrefabInstance:
       propertyPath: _camera
       value: 
       objectReference: {fileID: 1687258584}
+    - target: {fileID: 5737000752108167648, guid: d8a31490db470cd4f83d6ecb7a6068e3, type: 3}
+      propertyPath: _upBorderForMerge
+      value: 18.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5737000752108167648, guid: d8a31490db470cd4f83d6ecb7a6068e3, type: 3}
+      propertyPath: _downBorderForMerge
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5737000752108167648, guid: d8a31490db470cd4f83d6ecb7a6068e3, type: 3}
+      propertyPath: _leftBorderForMerge
+      value: -4.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5737000752108167648, guid: d8a31490db470cd4f83d6ecb7a6068e3, type: 3}
+      propertyPath: _rightBorderForMerge
+      value: 4.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6529632923023266806, guid: d8a31490db470cd4f83d6ecb7a6068e3, type: 3}
       propertyPath: m_Name
       value: InputCanvas

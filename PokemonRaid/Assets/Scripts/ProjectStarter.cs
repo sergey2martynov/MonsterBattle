@@ -42,7 +42,7 @@ public class ProjectStarter : MonoBehaviour
         var shopLogic = new ShopLogic(_pokemonSpawner, _shopView, shopData, playerData,pokemonHolderModel);
         shopLogic.Initialize();
 
-        var pokemonCellPlacer = new PokemonCellPlacer(_inputView, _fieldView);
+        var pokemonCellPlacer = new PokemonCellPlacer(_inputView, _fieldView,pokemonHolderModel);
         pokemonCellPlacer.Initialize();
     }
 }

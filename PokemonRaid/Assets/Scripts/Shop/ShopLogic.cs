@@ -33,6 +33,7 @@ namespace Shop
             // if (_playerData.Coins < _shopDataBase.PokemonCost || _pokemonHolderModel.GetFirstEmptyCell() == null)
             //     return;
 
+            
             _pokemonSpawner.CreateFirstLevelPokemon(_pokemonHolderModel.GetFirstEmptyCell().Position,  pokemonType);
 
         }

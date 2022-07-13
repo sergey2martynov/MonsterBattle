@@ -11,6 +11,10 @@ namespace InputPlayer
         [SerializeField] private Canvas _canvas;
         [SerializeField] private Image _outerJoystick;
         [SerializeField] private Image _innerJoystick;
+        [SerializeField] private float _leftBorderForMerge;
+        [SerializeField] private float _rightBorderForMerge;
+        [SerializeField] private float _upBorderForMerge;
+        [SerializeField] private float _downBorderForMerge;
 
         private Touch _touch;
         private Vector3 _moveDirection;
@@ -22,6 +26,11 @@ namespace InputPlayer
 
         public bool isPreparingStage;
         public Camera Camera => _camera;
+        public float LeftBorderForMerge => _leftBorderForMerge;
+        public float RightBorderForMerge => _rightBorderForMerge;
+        public float UpBorderForMerge => _upBorderForMerge;
+        public float DownBorderForMerge => _downBorderForMerge;
+        
         public event Action<Vector3> DirectionReceived;
         public event Action ViewDestroyed;
         public event Action ButtonMousePressed;
@@ -90,45 +99,16 @@ namespace InputPlayer
                 if (Input.GetMouseButtonDown(0))
                 {
                     ButtonMousePressed?.Invoke();
-                    
-                    // _ray = _camera.ScreenPointToRay(Input.mousePosition);
-                    //
-                    // RaycastHit hit;
-                    // Physics.Raycast(_ray, out hit);
-                    //
-                    // Debug.Log(hit.collider);
-                    //
-                    // if (hit.collider.gameObject.TryGetComponent(out PokemonViewBase pokemon))
-                    // {
-                    //     _targetPokemon = pokemon;
-                    // }
                 }
 
                 if (Input.GetMouseButton(0))
                 {
                     ButtonMouseHold?.Invoke();
-                    
-                    // if (_targetPokemon != null)
-                    // {
-                    //     _ray = _camera.ScreenPointToRay(Input.mousePosition);
-                    //     RaycastHit[] hits = Physics.RaycastAll(_ray, 400f);
-                    //
-                    //     for (int i = 0; i < hits.Length; i++)
-                    //     {
-                    //         if (hits[i].collider.TryGetComponent(out PlaneView plane))
-                    //         {
-                    //             _targetPokemon.transform.position = new Vector3(hits[i].point.x,
-                    //                 _targetPokemon.gameObject.transform.position.y, hits[i].point.z);
-                    //         }
-                    //     }
-                    // }
                 }
 
                 if (Input.GetMouseButtonUp(0))
                 {
                     ButtonMouseReleased?.Invoke();
-                    //
-                    // _targetPokemon = null;
                 }
             }
         }

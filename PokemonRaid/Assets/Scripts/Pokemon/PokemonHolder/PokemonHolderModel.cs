@@ -26,7 +26,12 @@ namespace Pokemon.PokemonHolder
 
         public CellData GetFirstEmptyCell()
         {
-            return _cells.SelectMany(row => row).FirstOrDefault(cell => cell.EmptyState);
+            var cell =  _cells.SelectMany(row => row).FirstOrDefault(cell => cell.EmptyState);
+            if (cell != null)
+            {
+                cell.EmptyState = false;
+            }
+            return cell;
         }
 
         public void AddPokemonToList(PokemonDataBase pokemonData)
@@ -43,6 +48,20 @@ namespace Pokemon.PokemonHolder
             {
                 _pokemons.Remove(pokemonData);
             }
+        }
+        
+        public CellData GetCellData(int index)
+        {
+            var count = 0;
+
+            foreach (var cell in _cells.SelectMany(rowCells => rowCells))
+            {
+                if (count == index)
+                    return cell;
+                count++;
+            }
+
+            return null;
         }
     }
 }
