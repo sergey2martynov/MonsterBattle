@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Factories;
+using Pokemon;
 using Pokemon.MeleePokemon.FifthTypePokemon;
 using Pokemon.MeleePokemon.FirstTypePokemon;
 using Pokemon.MeleePokemon.FourthTypePokemon;
@@ -23,24 +24,26 @@ namespace Pool
     public class PokemonSpawner
     {
         //private PokemonHolderModel _pokemonHolderModel;
-        private readonly UpdateHandler _updateHandler; 
+        private readonly UpdateHandler _updateHandler;
         private readonly PokemonPrefabHolder _pokemonPrefabHolder;
         private readonly PokemonHolderModel _model;
         private readonly PokemonStats _testStats;
         private readonly List<BasePokemonFactory> _meleeFactories = new List<BasePokemonFactory>();
         private readonly List<BasePokemonFactory> _rangedFactories = new List<BasePokemonFactory>();
         private readonly Transform _parent;
+        private FieldView _fieldView;
         private Dictionary<Type, Func<BasePokemonFactory>> _meleeFactoriesToType;
         private Dictionary<Type, Func<BasePokemonFactory>> _rangedFactoriesToType;
 
         public PokemonSpawner(PokemonPrefabHolder pokemonPrefabHolder, Transform parent, PokemonStats testStats,
-            UpdateHandler updateHandler, PokemonHolderModel model)
+            UpdateHandler updateHandler, PokemonHolderModel model, FieldView fieldView)
         {
             _pokemonPrefabHolder = pokemonPrefabHolder;
             _parent = parent;
             _testStats = testStats;
             _updateHandler = updateHandler;
             _model = model;
+            _fieldView = fieldView;
         }
 
         public void Initialize()
@@ -141,14 +144,20 @@ namespace Pool
             {
                 var randomNumber = Random.Range(0, _meleeFactories.Count);
                 var pokemonData = _meleeFactories[randomNumber]
-                    .CreateInstance(new Vector3(position.x,position.y +0.5f,position.z), _testStats, _parent);
+                    .CreateInstance(new Vector3(position.x, position.y + 0.5f, position.z), _testStats, _parent,
+                        out PokemonViewBase view);
+                
+                _fieldView.AddPokemonView(view);
                 _model.AddPokemonToList(pokemonData);
             }
             else
             {
                 var randomNumber = Random.Range(0, _rangedFactories.Count);
                 var pokemonData = _rangedFactories[randomNumber]
-                    .CreateInstance(new Vector3(position.x,position.y +0.5f,position.z), _testStats, _parent);
+                    .CreateInstance(new Vector3(position.x, position.y + 0.5f, position.z), _testStats, _parent,
+                        out PokemonViewBase view);
+                
+                _fieldView.AddPokemonView(view);
                 _model.AddPokemonToList(pokemonData);
             }
         }

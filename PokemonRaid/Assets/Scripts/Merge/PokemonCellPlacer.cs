@@ -130,7 +130,6 @@ namespace Merge
             return _cellViews[index];
         }
 
-
         private void Swap()
         {
             

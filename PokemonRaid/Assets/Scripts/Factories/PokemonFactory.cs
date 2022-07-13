@@ -22,9 +22,10 @@ namespace Factories
             _updateHandler = updateHandler;
         }
 
-        public override PokemonDataBase CreateInstance(Vector3 position, PokemonStats stats, Transform parent)
+        public override PokemonDataBase CreateInstance(Vector3 position, PokemonStats stats, Transform parent, out PokemonViewBase baseView)
         {
             var view = Object.Instantiate(_prefab, position, Quaternion.identity, parent);
+            baseView = view;
             var data = new TData();
             var logic = new TLogic();
             logic.Initialize(view, data, _model, _updateHandler);

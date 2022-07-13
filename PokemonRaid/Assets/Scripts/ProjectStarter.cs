@@ -24,6 +24,7 @@ public class ProjectStarter : MonoBehaviour
 
     private void Awake()
     {
+<<<<<<< Updated upstream
         var pokemonHolderModel = new PokemonHolderModel();
         var directionTranslator = new DirectionTranslator(_inputView, pokemonHolderModel);
         directionTranslator.Initialize();
@@ -32,6 +33,9 @@ public class ProjectStarter : MonoBehaviour
 
         _pokemonSpawner = new PokemonSpawner(_pokemonPrefabHolder, _pokemonParentObject, _testStats, _updateHandler,
             pokemonHolderModel);
+=======
+        _pokemonSpawner = new PokemonSpawner(_pokemonPrefabHolder, _pokemonParentObject, _testStats, _updateHandler,pok);
+>>>>>>> Stashed changes
         _pokemonSpawner.Initialize();
 
         var playerData = new PlayerData();
