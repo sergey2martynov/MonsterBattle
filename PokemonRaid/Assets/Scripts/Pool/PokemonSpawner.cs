@@ -138,13 +138,13 @@ namespace Pool
             {
                 var randomNumber = Random.Range(0, _meleeFactories.Count);
                 var pokemonData = _meleeFactories[randomNumber]
-                    .CreateInstance(new Vector3(0f, 0f, 0f), _testStats, _parent);
+                    .CreateInstance(position, _testStats, _parent);
             }
             else
             {
                 var randomNumber = Random.Range(0, _rangedFactories.Count);
                 var pokemonData = _rangedFactories[randomNumber]
-                    .CreateInstance(new Vector3(0f, 0f, 0f), _testStats, _parent);
+                    .CreateInstance(position, _testStats, _parent);
             }
         }
     }

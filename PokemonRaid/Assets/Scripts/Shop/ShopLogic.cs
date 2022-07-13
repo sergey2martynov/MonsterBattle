@@ -13,12 +13,13 @@ namespace Shop
         private PokemonHolderModel _pokemonHolderModel;
         private PlayerData _playerData;
 
-        public ShopLogic(PokemonSpawner pokemonSpawner, ShopView shopView, ShopDataBase shopDataBase, PlayerData playerData)
+        public ShopLogic(PokemonSpawner pokemonSpawner, ShopView shopView, ShopDataBase shopDataBase, PlayerData playerData, PokemonHolderModel pokemonHolderModel)
         {
             _pokemonSpawner = pokemonSpawner;
             _shopView = shopView;
             _shopDataBase = shopDataBase;
             _playerData = playerData;
+            _pokemonHolderModel = pokemonHolderModel;
         }
 
         public void Initialize()
@@ -29,11 +30,10 @@ namespace Shop
 
         private void TryPurchasePokemon(PokemonType pokemonType)
         {
-            //if (_playerData.Coins < _shopDataBase.PokemonCost || _pokemonHolderModel.GetFirstEmptyCell() == null)
-                //return;
+            // if (_playerData.Coins < _shopDataBase.PokemonCost || _pokemonHolderModel.GetFirstEmptyCell() == null)
+            //     return;
 
-            //_pokemonSpawner.CreateFirstLevelPokemon(_pokemonHolderModel.GetFirstEmptyCell().Position,  pokemonType);
-            _pokemonSpawner.CreateFirstLevelPokemon(Vector3.zero, pokemonType);
+            _pokemonSpawner.CreateFirstLevelPokemon(_pokemonHolderModel.GetFirstEmptyCell().Position,  pokemonType);
 
         }
         

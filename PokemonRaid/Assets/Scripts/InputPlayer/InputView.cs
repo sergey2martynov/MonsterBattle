@@ -21,8 +21,12 @@ namespace InputPlayer
         private PokemonViewBase _targetPokemon;
 
         public bool isPreparingStage;
+        public Camera Camera => _camera;
         public event Action<Vector3> DirectionReceived;
         public event Action ViewDestroyed;
+        public event Action ButtonMousePressed;
+        public event Action ButtonMouseHold;
+        public event Action ButtonMouseReleased;
 
         private void Awake()
         {
@@ -85,6 +89,8 @@ namespace InputPlayer
             {
                 if (Input.GetMouseButtonDown(0))
                 {
+                    ButtonMousePressed?.Invoke();
+                    
                     _ray = _camera.ScreenPointToRay(Input.mousePosition);
 
                     RaycastHit hit;
@@ -98,6 +104,8 @@ namespace InputPlayer
 
                 if (Input.GetMouseButton(0))
                 {
+                    ButtonMouseHold?.Invoke();
+                    
                     if (_targetPokemon != null)
                     {
                         _ray = _camera.ScreenPointToRay(Input.mousePosition);
@@ -116,6 +124,8 @@ namespace InputPlayer
 
                 if (Input.GetMouseButtonUp(0))
                 {
+                    ButtonMouseReleased?.Invoke();
+                    
                     _targetPokemon = null;
                 }
             }

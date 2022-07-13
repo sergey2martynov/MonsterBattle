@@ -13,6 +13,7 @@ namespace Pokemon.PokemonHolder.Cell
 
         public CellData(Vector3 position, int row, int column)
         {
+            EmptyState = true;
             Position = position;
             Row = row;
             Column = column;
