@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using InputPlayer;
 using Player;
 using Pokemon.PokemonHolder;
 using Pokemon.PokemonHolder.Cell;
@@ -18,21 +19,25 @@ public class ProjectStarter : MonoBehaviour
     [SerializeField] private Transform _pokemonParentObject;
     [SerializeField] private PlayerView _playerView;
     [SerializeField] private FieldView _fieldView;
+    [SerializeField] private InputView _inputView;
     
     private PokemonSpawner _pokemonSpawner;
 
     private void Awake()
     {
-        _pokemonSpawner = new PokemonSpawner(_pokemonPrefabHolder, _pokemonParentObject, _testStats, _updateHandler);
+        var pokemonHolderModel = new PokemonHolderModel();
+        var directionTranslator = new DirectionTranslator(_inputView, pokemonHolderModel);
+        directionTranslator.Initialize();
+        var fieldLogic = new FieldLogic(_fieldView, pokemonHolderModel);
+        fieldLogic.Initialize();
+
+        _pokemonSpawner = new PokemonSpawner(_pokemonPrefabHolder, _pokemonParentObject, _testStats, _updateHandler,
+            pokemonHolderModel);
         _pokemonSpawner.Initialize();
 
         var playerData = new PlayerData();
         var playerLogic = new PlayerLogic();
         playerLogic.Initialize(_playerView, playerData, _updateHandler);
-
-        var pokemonHolderModel = new PokemonHolderModel();
-        var fieldLogic = new FieldLogic(_fieldView, pokemonHolderModel);
-        fieldLogic.Initialize();
 
         var shopData = new ShopDataBase();
         var shopLogic = new ShopLogic(_pokemonSpawner, _shopView, shopData, playerData,pokemonHolderModel);

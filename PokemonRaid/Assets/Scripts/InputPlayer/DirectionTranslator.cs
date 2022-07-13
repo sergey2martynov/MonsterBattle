@@ -5,8 +5,8 @@ namespace InputPlayer
 {
     public class DirectionTranslator
     {
-        private InputView _view;
-        private PokemonHolderModel _model;
+        private readonly InputView _view;
+        private readonly PokemonHolderModel _model;
 
         public DirectionTranslator(InputView view, PokemonHolderModel model)
         {

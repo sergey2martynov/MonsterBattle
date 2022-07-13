@@ -7,6 +7,7 @@ using Pokemon.MeleePokemon.FirstTypePokemon;
 using Pokemon.MeleePokemon.FourthTypePokemon;
 using Pokemon.MeleePokemon.SecondTypePokemon;
 using Pokemon.MeleePokemon.ThirdTypePokemon;
+using Pokemon.PokemonHolder;
 using Pokemon.RangedPokemon.FifthTypePokemon;
 using Pokemon.RangedPokemon.FirstTypePokemon;
 using Pokemon.RangedPokemon.FourthTypePokemon;
@@ -24,6 +25,7 @@ namespace Pool
         //private PokemonHolderModel _pokemonHolderModel;
         private readonly UpdateHandler _updateHandler; 
         private readonly PokemonPrefabHolder _pokemonPrefabHolder;
+        private readonly PokemonHolderModel _model;
         private readonly PokemonStats _testStats;
         private readonly List<BasePokemonFactory> _meleeFactories = new List<BasePokemonFactory>();
         private readonly List<BasePokemonFactory> _rangedFactories = new List<BasePokemonFactory>();
@@ -32,12 +34,13 @@ namespace Pool
         private Dictionary<Type, Func<BasePokemonFactory>> _rangedFactoriesToType;
 
         public PokemonSpawner(PokemonPrefabHolder pokemonPrefabHolder, Transform parent, PokemonStats testStats,
-            UpdateHandler updateHandler)
+            UpdateHandler updateHandler, PokemonHolderModel model)
         {
             _pokemonPrefabHolder = pokemonPrefabHolder;
             _parent = parent;
             _testStats = testStats;
             _updateHandler = updateHandler;
+            _model = model;
         }
 
         public void Initialize()
@@ -139,12 +142,14 @@ namespace Pool
                 var randomNumber = Random.Range(0, _meleeFactories.Count);
                 var pokemonData = _meleeFactories[randomNumber]
                     .CreateInstance(new Vector3(position.x,position.y +0.5f,position.z), _testStats, _parent);
+                _model.AddPokemonToList(pokemonData);
             }
             else
             {
                 var randomNumber = Random.Range(0, _rangedFactories.Count);
                 var pokemonData = _rangedFactories[randomNumber]
                     .CreateInstance(new Vector3(position.x,position.y +0.5f,position.z), _testStats, _parent);
+                _model.AddPokemonToList(pokemonData);
             }
         }
     }
