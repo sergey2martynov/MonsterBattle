@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using InputPlayer;
+using Merge;
 using Player;
 using Pokemon.PokemonHolder;
 using Pokemon.PokemonHolder.Cell;
@@ -18,6 +20,7 @@ public class ProjectStarter : MonoBehaviour
     [SerializeField] private Transform _pokemonParentObject;
     [SerializeField] private PlayerView _playerView;
     [SerializeField] private FieldView _fieldView;
+    [SerializeField] private InputView _inputView;
     
     private PokemonSpawner _pokemonSpawner;
 
@@ -37,5 +40,8 @@ public class ProjectStarter : MonoBehaviour
         var shopData = new ShopDataBase();
         var shopLogic = new ShopLogic(_pokemonSpawner, _shopView, shopData, playerData,pokemonHolderModel);
         shopLogic.Initialize();
+
+        var pokemonCellPlacer = new PokemonCellPlacer(_inputView, _fieldView);
+        pokemonCellPlacer.Initialize();
     }
 }
