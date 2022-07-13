@@ -6,6 +6,6 @@ namespace Factories
 {
     public abstract class BasePokemonFactory
     {
-        public abstract PokemonDataBase CreateInstance(Vector3 position, PokemonStats stats);
+        public abstract PokemonDataBase CreateInstance(Vector3 position, PokemonStats stats, Transform parent);
     }
 }

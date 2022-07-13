@@ -22,13 +22,14 @@ namespace Shop
             _purchaseRangedButton.onClick.RemoveListener(OnPurchaseRangedButtonClicked);
         }
 
-        protected  void  OnPurchaseMeleeButtonClicked()
+        private void  OnPurchaseMeleeButtonClicked()
         {
             PurchaseButtonPressed?.Invoke(PokemonType.Melee);
         }
-        protected  void  OnPurchaseRangedButtonClicked()
+
+        private void  OnPurchaseRangedButtonClicked()
         {
-            PurchaseButtonPressed?.Invoke(PokemonType.Melee);
+            PurchaseButtonPressed?.Invoke(PokemonType.Ranged);
         }
     }
 }

@@ -16,14 +16,15 @@ namespace Factories
         private PokemonHolderModel _model;
         private UpdateHandler _updateHandler;
 
-        public PokemonFactory(TView prefab)
+        public PokemonFactory(TView prefab, UpdateHandler updateHandler)
         {
             _prefab = prefab;
+            _updateHandler = updateHandler;
         }
 
-        public override PokemonDataBase CreateInstance(Vector3 position, PokemonStats stats)
+        public override PokemonDataBase CreateInstance(Vector3 position, PokemonStats stats, Transform parent)
         {
-            var view = Object.Instantiate(_prefab, position, Quaternion.identity);
+            var view = Object.Instantiate(_prefab, position, Quaternion.identity, parent);
             var data = new TData();
             var logic = new TLogic();
             logic.Initialize(view, data, _model, _updateHandler);

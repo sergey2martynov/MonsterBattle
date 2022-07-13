@@ -1,6 +1,7 @@
 using Player;
 using Pokemon.PokemonHolder;
 using Pool;
+using UnityEngine;
 
 namespace Shop
 {
@@ -28,10 +29,11 @@ namespace Shop
 
         private void TryPurchasePokemon(PokemonType pokemonType)
         {
-            if (_playerData.Coins < _shopDataBase.PokemonCost || _pokemonHolderModel.GetFirstEmptyCell() == null)
-                return;
+            //if (_playerData.Coins < _shopDataBase.PokemonCost || _pokemonHolderModel.GetFirstEmptyCell() == null)
+                //return;
 
-            _pokemonSpawner.CreateFirstLevelPokemon(_pokemonHolderModel.GetFirstEmptyCell().Position,  pokemonType);
+            //_pokemonSpawner.CreateFirstLevelPokemon(_pokemonHolderModel.GetFirstEmptyCell().Position,  pokemonType);
+            _pokemonSpawner.CreateFirstLevelPokemon(Vector3.zero, pokemonType);
 
         }
         
