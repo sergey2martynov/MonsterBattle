@@ -31,7 +31,7 @@ namespace Factories
             var data = new TData();
             var logic = new TLogic();
             logic.Initialize(view, data, _model, _updateHandler);
-            data.Initialize(stats);
+            //data.Initialize(stats);
             return data;
         }
     }

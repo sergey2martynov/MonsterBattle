@@ -1,21 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Enemy;
-using Enemy.GroundEnemy;
 using Factories;
 using Pokemon;
-using Pokemon.MeleePokemon.FifthTypePokemon;
-using Pokemon.MeleePokemon.FirstTypePokemon;
-using Pokemon.MeleePokemon.FourthTypePokemon;
-using Pokemon.MeleePokemon.SecondTypePokemon;
-using Pokemon.MeleePokemon.ThirdTypePokemon;
 using Pokemon.PokemonHolder;
-using Pokemon.RangedPokemon.FifthTypePokemon;
-using Pokemon.RangedPokemon.FirstTypePokemon;
-using Pokemon.RangedPokemon.FourthTypePokemon;
-using Pokemon.RangedPokemon.SecondTypePokemon;
-using Pokemon.RangedPokemon.ThirdTypePokemon;
 using StaticData;
 using UnityEngine;
 using UpdateHandlerFolder;
@@ -25,18 +10,14 @@ namespace Pool
 {
     public class PokemonSpawner
     {
-        //private PokemonHolderModel _pokemonHolderModel;
         private readonly UpdateHandler _updateHandler;
         private readonly PokemonPrefabHolder _pokemonPrefabHolder;
         private readonly PokemonHolderModel _model;
         private readonly PokemonStats _testStats;
-        private readonly List<BasePokemonFactory> _meleeFactories = new List<BasePokemonFactory>();
-        private readonly List<BasePokemonFactory> _rangedFactories = new List<BasePokemonFactory>();
         private readonly Transform _parent;
-        private FieldView _fieldView;
-        private Dictionary<Type, Func<BasePokemonFactory>> _meleeFactoriesToType;
-        private Dictionary<Type, Func<BasePokemonFactory>> _rangedFactoriesToType;
-
+        private PokemonTypeFactory _factory;
+        private readonly FieldView _fieldView;
+        
         public PokemonSpawner(PokemonPrefabHolder pokemonPrefabHolder, Transform parent, PokemonStats testStats,
             UpdateHandler updateHandler, PokemonHolderModel model, FieldView fieldView)
         {
@@ -50,129 +31,39 @@ namespace Pool
 
         public void Initialize()
         {
-            _meleeFactoriesToType = new Dictionary<Type, Func<BasePokemonFactory>>
-            {
-                {
-                    typeof(FirstMeleeTypePokemonView),
-                    () =>
-                        new PokemonFactory<FirstMeleeTypePokemonView, GroundEnemyView, FirstMeleeTypePokemonLogic,
-                            FirstMeleeTypePokemonData>(
-                            _pokemonPrefabHolder.MeleePokemons[0] as FirstMeleeTypePokemonView, _updateHandler)
-                },
-                {
-                    typeof(SecondMeleeTypePokemonView),
-                    () =>
-                        new PokemonFactory<SecondMeleeTypePokemonView, GroundEnemyView, SecondMeleeTypePokemonLogic,
-                            SecondMeleeTypePokemonData>(
-                            _pokemonPrefabHolder.MeleePokemons[1] as SecondMeleeTypePokemonView, _updateHandler)
-                },
-                {
-                    typeof(ThirdMeleeTypePokemonView),
-                    () =>
-                        new PokemonFactory<ThirdMeleeTypePokemonView, GroundEnemyView, ThirdMeleeTypePokemonLogic,
-                            ThirdMeleeTypePokemonData>(
-                            _pokemonPrefabHolder.MeleePokemons[2] as ThirdMeleeTypePokemonView, _updateHandler)
-                },
-                {
-                    typeof(FourthMeleeTypePokemonView),
-                    () =>
-                        new PokemonFactory<FourthMeleeTypePokemonView, GroundEnemyView, FourthMeleeTypePokemonLogic,
-                            FourthMeleeTypePokemonData>(
-                            _pokemonPrefabHolder.MeleePokemons[3] as FourthMeleeTypePokemonView, _updateHandler)
-                },
-                {
-                    typeof(FifthMeleeTypePokemonView),
-                    () =>
-                        new PokemonFactory<FifthMeleeTypePokemonView, GroundEnemyView, FifthMeleeTypePokemonLogic,
-                            FifthMeleeTypePokemonData>(
-                            _pokemonPrefabHolder.MeleePokemons[4] as FifthMeleeTypePokemonView, _updateHandler)
-                }
-            };
-            _rangedFactoriesToType = new Dictionary<Type, Func<BasePokemonFactory>>
-            {
-                {
-                    typeof(FirstRangedTypePokemonView),
-                    () =>
-                        new PokemonFactory<FirstRangedTypePokemonView, BaseEnemyView, FirstRangedTypePokemonLogic,
-                            FirstRangedTypePokemonData>(
-                            _pokemonPrefabHolder.RangedPokemons[0] as FirstRangedTypePokemonView, _updateHandler)
-                },
-                {
-                    typeof(SecondRangedTypePokemonView),
-                    () =>
-                        new PokemonFactory<SecondRangedTypePokemonView, BaseEnemyView, SecondRangedTypePokemonLogic,
-                            SecondRangedTypePokemonData>(
-                            _pokemonPrefabHolder.RangedPokemons[1] as SecondRangedTypePokemonView, _updateHandler)
-                },
-                {
-                    typeof(ThirdRangedTypePokemonView),
-                    () =>
-                        new PokemonFactory<ThirdRangedTypePokemonView, BaseEnemyView, ThirdRangedTypePokemonLogic,
-                            ThirdRangedTypePokemonData>(
-                            _pokemonPrefabHolder.RangedPokemons[2] as ThirdRangedTypePokemonView, _updateHandler)
-                },
-                {
-                    typeof(FourthRangedTypePokemonView),
-                    () =>
-                        new PokemonFactory<FourthRangedTypePokemonView, BaseEnemyView, FourthRangedTypePokemonLogic,
-                            FourthRangedTypePokemonData>(
-                            _pokemonPrefabHolder.RangedPokemons[3] as FourthRangedTypePokemonView, _updateHandler)
-                },
-                {
-                    typeof(FifthRangedTypePokemonView),
-                    () =>
-                        new PokemonFactory<FifthRangedTypePokemonView, BaseEnemyView, FifthRangedTypePokemonLogic,
-                            FifthRangedTypePokemonData>(
-                            _pokemonPrefabHolder.RangedPokemons[4] as FifthRangedTypePokemonView, _updateHandler)
-                }
-            };
-
-            foreach (var factory in _pokemonPrefabHolder.MeleePokemons.Select(pokemonView => pokemonView.GetType())
-                         .Select(type => _meleeFactoriesToType[type]()))
-            {
-                _meleeFactories.Add(factory);
-            }
-
-            foreach (var factory in _pokemonPrefabHolder.RangedPokemons.Select(pokemonView => pokemonView.GetType())
-                         .Select(type => _rangedFactoriesToType[type]()))
-            {
-                _rangedFactories.Add(factory);
-            }
+            _factory = new PokemonTypeFactory(_updateHandler, _model);
         }
 
         public void CreateFirstLevelRandomPokemon(Vector3 position, PokemonType pokemonType)
         {
             if (pokemonType == PokemonType.Melee)
             {
-                var randomNumber = Random.Range(0, _meleeFactories.Count);
-                var pokemonData = _meleeFactories[randomNumber]
-                    .CreateInstance(new Vector3(position.x, position.y + 0.5f, position.z), _testStats, _parent,
-                        out PokemonViewBase view);
-                
+                var randomNumber = Random.Range(0, _pokemonPrefabHolder.MeleePokemons.Count);
+                var concreteView = _pokemonPrefabHolder.MeleePokemons[randomNumber];
+                var data = _factory.CreateInstance(concreteView, new Vector3(position.x, position.y + 0.5f, position.z),
+                    _testStats, _parent, 1, out var view);
                 _fieldView.AddPokemonView(view);
-                _model.AddPokemonToList(pokemonData);
+                _model.AddPokemonToList(data);
+                Debug.Log(data);
             }
             else
             {
-                var randomNumber = Random.Range(0, _rangedFactories.Count);
-                var pokemonData = _rangedFactories[randomNumber]
-                    .CreateInstance(new Vector3(position.x, position.y + 0.5f, position.z), _testStats, _parent,
-                        out PokemonViewBase view);
-                
+                var randomNumber = Random.Range(0, _pokemonPrefabHolder.RangedPokemons.Count);
+                var concreteView = _pokemonPrefabHolder.RangedPokemons[randomNumber];
+                var data = _factory.CreateInstance(concreteView, new Vector3(position.x, position.y + 0.5f, position.z),
+                    _testStats, _parent, 1, out var view);
                 _fieldView.AddPokemonView(view);
-                _model.AddPokemonToList(pokemonData);
+                _model.AddPokemonToList(data);
+                Debug.Log(data);
             }
         }
         
         public void CreateFirstLevelPokemon(Vector3 position, PokemonViewBase pokemonViewBase, int level)
         {
-                var randomNumber = Random.Range(0, _meleeFactories.Count);
-                var pokemonData = _meleeFactories[randomNumber]
-                    .CreateInstance(new Vector3(position.x, position.y + 0.5f, position.z), _testStats, _parent,
-                        out PokemonViewBase view);
-                
-                _fieldView.AddPokemonView(view);
-                _model.AddPokemonToList(pokemonData);
+            var data = _factory.CreateInstance(pokemonViewBase, position + new Vector3(0f, 0.5f, 0f), _testStats,
+                _parent, level, out var view);
+            _fieldView.AddPokemonView(view);
+            _model.AddPokemonToList(data);
         }
     }
 }

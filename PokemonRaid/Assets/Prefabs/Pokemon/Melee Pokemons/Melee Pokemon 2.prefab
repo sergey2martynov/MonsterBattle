@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 727784647632858499}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.49781147, y: 0, z: 1.0610183}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 271334354837512158}
@@ -46,6 +46,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 0}
+  _enemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!65 &6011794515999729441
 BoxCollider:
   m_ObjectHideFlags: 0

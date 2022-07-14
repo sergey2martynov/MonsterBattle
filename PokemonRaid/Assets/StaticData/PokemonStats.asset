@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7697475968d4859951039bdf9987fad, type: 3}
+  m_Name: PokemonStats
+  m_EditorClassIdentifier: 
+  _stats:
+  - _moveSpeed: 1
+    _attackSpeed: 1
+    _maxHealth: 1
+    _health: 1
+    _damage: 1
+    _level: 1
+    _maxLevel: 5
+    _maxTargetsAmount: 1
+    _attackRange: 1
+  - _moveSpeed: 1
+    _attackSpeed: 1
+    _maxHealth: 1
+    _health: 1
+    _damage: 1
+    _level: 2
+    _maxLevel: 5
+    _maxTargetsAmount: 1
+    _attackRange: 1
+  - _moveSpeed: 1
+    _attackSpeed: 1
+    _maxHealth: 1
+    _health: 1
+    _damage: 1
+    _level: 3
+    _maxLevel: 5
+    _maxTargetsAmount: 1
+    _attackRange: 1
+  - _moveSpeed: 1
+    _attackSpeed: 1
+    _maxHealth: 1
+    _health: 1
+    _damage: 1
+    _level: 4
+    _maxLevel: 5
+    _maxTargetsAmount: 1
+    _attackRange: 1
+  - _moveSpeed: 1
+    _attackSpeed: 1
+    _maxHealth: 1
+    _health: 1
+    _damage: 1
+    _level: 5
+    _maxLevel: 5
+    _maxTargetsAmount: 1
+    _attackRange: 1

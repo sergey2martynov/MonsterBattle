@@ -2,13 +2,14 @@
 using System.Data;
 using System.Threading;
 using StaticData;
+using Stats.PokemonStatsLvl;
 using UnityEngine;
 
 namespace Pokemon
 {
     public abstract class PokemonDataBase
     {
-        private PokemonStats _pokemonStats;
+        private PokemonStatsByLevel _pokemonStats;
         private float _moveSpeed;
         private float _attackSpeed;
         private float _attackTime;
@@ -158,7 +159,7 @@ namespace Pokemon
         
         public event Action<int, int> DamageTaken;
 
-        public virtual void Initialize(PokemonStats stats)
+        public virtual void Initialize(PokemonStatsByLevel stats)
         {
             SetStats(stats);
         }
@@ -185,7 +186,7 @@ namespace Pokemon
             Source?.Dispose();
         }
 
-        protected virtual void SetStats(PokemonStats stats)
+        protected virtual void SetStats(PokemonStatsByLevel stats)
         {
             MoveSpeed = stats.MoveSpeed;
             AttackSpeed = stats.AttackSpeed;
