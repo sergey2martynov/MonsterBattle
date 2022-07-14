@@ -26,7 +26,7 @@ public class ProjectStarter : MonoBehaviour
     private void Awake()
     {
         var pokemonHolderModel = new PokemonHolderModel();
-        var directionTranslator = new DirectionTranslator(_inputView, pokemonHolderModel);
+        var directionTranslator = new InputLogic(_inputView, pokemonHolderModel);
         directionTranslator.Initialize();
         var fieldLogic = new FieldLogic(_fieldView, pokemonHolderModel);
         fieldLogic.Initialize();
@@ -44,6 +44,7 @@ public class ProjectStarter : MonoBehaviour
         var shopData = new ShopDataBase();
         var shopLogic = new ShopLogic(_pokemonSpawner, _shopView, shopData, playerData,pokemonHolderModel);
         shopLogic.Initialize();
+        directionTranslator.SetShopLogic(shopLogic);
 
         var pokemonMerger = new PokemonMerger(_fieldView);
 

@@ -1,14 +1,16 @@
 ﻿using Pokemon.PokemonHolder;
+using Shop;
 using UnityEngine;
 
 namespace InputPlayer
 {
-    public class DirectionTranslator
+    public class InputLogic
     {
         private readonly InputView _view;
         private readonly PokemonHolderModel _model;
+        private  ShopLogic _shopLogic;
 
-        public DirectionTranslator(InputView view, PokemonHolderModel model)
+        public InputLogic(InputView view, PokemonHolderModel model)
         {
             _view = view;
             _model = model;
@@ -20,9 +22,20 @@ namespace InputPlayer
             _view.DirectionReceived += OnDirectionReceived;
         }
 
+        public void SetShopLogic(ShopLogic shopLogic)
+        {
+            _shopLogic = shopLogic;
+            _shopLogic.StartButtonPressed += OnStart;
+        }
+
         private void OnDirectionReceived(Vector3 direction)
         {
             _model.SetMoveDirection(direction);
+        }
+
+        public void OnStart()
+        {
+            _view.ChangePreparingStage();
         }
 
         private void Dispose()

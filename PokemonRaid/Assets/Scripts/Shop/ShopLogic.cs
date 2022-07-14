@@ -1,3 +1,4 @@
+using System;
 using Player;
 using Pokemon.PokemonHolder;
 using Pool;
@@ -12,6 +13,8 @@ namespace Shop
         private ShopDataBase _shopDataBase;
         private PokemonHolderModel _pokemonHolderModel;
         private PlayerData _playerData;
+        
+        public event Action StartButtonPressed;
 
         public ShopLogic(PokemonSpawner pokemonSpawner, ShopView shopView, ShopDataBase shopDataBase, PlayerData playerData, PokemonHolderModel pokemonHolderModel)
         {
@@ -25,7 +28,7 @@ namespace Shop
         public void Initialize()
         {
             _shopView.PurchaseButtonPressed += TryPurchasePokemon;
-            
+            _shopView.StartButtonPressed += OnStartButtonPressed;
         }
 
         private void TryPurchasePokemon(PokemonType pokemonType)
@@ -36,6 +39,11 @@ namespace Shop
             
             _pokemonSpawner.CreateFirstLevelRandomPokemon(_pokemonHolderModel.GetFirstEmptyCell().Position,  pokemonType);
 
+        }
+
+        private void OnStartButtonPressed()
+        {
+            StartButtonPressed?.Invoke();
         }
         
         public void Dispose()

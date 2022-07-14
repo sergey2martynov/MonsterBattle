@@ -48,6 +48,11 @@ namespace InputPlayer
             HandleInput();
         }
 
+        public void ChangePreparingStage()
+        {
+            isPreparingStage = !isPreparingStage;
+        }
+
         private void HandleInput()
         {
             if (!isPreparingStage)

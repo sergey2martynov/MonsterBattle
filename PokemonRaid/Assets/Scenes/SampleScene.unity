@@ -167,6 +167,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee5e6b73b903449a94c0d2e90c4e68e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &142338883 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1849070906062491002, guid: caa1987dff741994084ff95cd943dfde, type: 3}
+  m_PrefabInstance: {fileID: 3287560905400075836}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &159348359 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6831022566419218946, guid: 96996a3b2b7182343b4c31a7c889e67e, type: 3}
@@ -1006,13 +1017,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1687258581}
-  m_LocalRotation: {x: 0.32581562, y: 0, z: 0, w: 0.9454333}
-  m_LocalPosition: {x: 0, y: 13.6, z: 0}
+  m_LocalRotation: {x: 0.4044234, y: 0, z: 0, w: 0.91457194}
+  m_LocalPosition: {x: 0, y: 18, z: 2.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 38.03, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 47.71, y: 0, z: 0}
 --- !u!114 &1687258586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1450,6 +1461,42 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1849070905124399096, guid: caa1987dff741994084ff95cd943dfde, type: 3}
+      propertyPath: m_text
+      value: Start
+      objectReference: {fileID: 0}
+    - target: {fileID: 1849070906062491004, guid: caa1987dff741994084ff95cd943dfde, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1849070906062491004, guid: caa1987dff741994084ff95cd943dfde, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1849070906062491004, guid: caa1987dff741994084ff95cd943dfde, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1849070906062491004, guid: caa1987dff741994084ff95cd943dfde, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1849070906062491004, guid: caa1987dff741994084ff95cd943dfde, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1849070906062491004, guid: caa1987dff741994084ff95cd943dfde, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -208
+      objectReference: {fileID: 0}
+    - target: {fileID: 1849070906062491007, guid: caa1987dff741994084ff95cd943dfde, type: 3}
+      propertyPath: m_Name
+      value: StartButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 1849070906062491007, guid: caa1987dff741994084ff95cd943dfde, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2859066143878145204, guid: caa1987dff741994084ff95cd943dfde, type: 3}
       propertyPath: m_Name
       value: RangedPurchaseButton
@@ -1457,6 +1504,18 @@ PrefabInstance:
     - target: {fileID: 3287560905328540989, guid: caa1987dff741994084ff95cd943dfde, type: 3}
       propertyPath: m_Name
       value: MeleePurchaseButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 3287560905345732281, guid: caa1987dff741994084ff95cd943dfde, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 971.797
+      objectReference: {fileID: 0}
+    - target: {fileID: 3287560905345732281, guid: caa1987dff741994084ff95cd943dfde, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 1492.649
+      objectReference: {fileID: 0}
+    - target: {fileID: 3287560905345732281, guid: caa1987dff741994084ff95cd943dfde, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 787.3592
       objectReference: {fileID: 0}
     - target: {fileID: 3287560906713729766, guid: caa1987dff741994084ff95cd943dfde, type: 3}
       propertyPath: m_Camera
@@ -1554,6 +1613,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5753389870703267249, guid: caa1987dff741994084ff95cd943dfde, type: 3}
+      propertyPath: _startButton
+      value: 
+      objectReference: {fileID: 142338883}
     - target: {fileID: 5753389870703267249, guid: caa1987dff741994084ff95cd943dfde, type: 3}
       propertyPath: _purchaseMeleeButton
       value: 
