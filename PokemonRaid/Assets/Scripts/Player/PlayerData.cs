@@ -12,7 +12,7 @@ namespace Player
         private int _maxHealth;
         private int _health;
         private int _level;
-        private int _maxLevel;
+        private int _maxLevel = 100;
         private int _coins;
         public CancellationTokenSource Source { get; protected set; }
         
@@ -72,9 +72,9 @@ namespace Player
             set => _coins = value < 0 ? 0 : value;
         }
 
-        public virtual void Initialize()
+        public virtual void Initialize(PlayerStats stats)
         {
-            SetStats();
+            SetStats(stats);
         }
 
         public CancellationTokenSource CreateCancellationTokenSource()
@@ -88,9 +88,12 @@ namespace Player
             Source?.Dispose();
         }
 
-        protected virtual void SetStats()
+        protected virtual void SetStats(PlayerStats stats)
         {
-            
+            MoveSpeed = stats.MoveSpeed;
+            MaxHealth = stats.MaxHealth;
+            Health = _maxHealth;
+            Level = stats.Level;
         }
     }
 }

@@ -1382,6 +1382,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5882980373408904197}
     - target: {fileID: 1339164300679375854, guid: 5b76d7af153ba994f990647493604eb2, type: 3}
+      propertyPath: _playerStats
+      value: 
+      objectReference: {fileID: 11400000, guid: 03f091b023efeb148baa1baaf9b63f89, type: 2}
+    - target: {fileID: 1339164300679375854, guid: 5b76d7af153ba994f990647493604eb2, type: 3}
       propertyPath: _updateHandler
       value: 
       objectReference: {fileID: 6828651723741793736}

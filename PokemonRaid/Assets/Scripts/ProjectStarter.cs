@@ -19,6 +19,7 @@ public class ProjectStarter : MonoBehaviour
     [SerializeField] private PlayerView _playerView;
     [SerializeField] private FieldView _fieldView;
     [SerializeField] private InputView _inputView;
+    [SerializeField] private PlayerStats _playerStats;
     
     private PokemonSpawner _pokemonSpawner;
 
@@ -36,6 +37,7 @@ public class ProjectStarter : MonoBehaviour
 
         var playerData = new PlayerData();
         var playerLogic = new PlayerLogic();
+        playerData.Initialize(_playerStats);
         playerLogic.Initialize(_playerView, playerData, _updateHandler);
         pokemonHolderModel.SetPlayerData(playerData);
 

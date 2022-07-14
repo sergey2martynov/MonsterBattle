@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace StaticData
 {
-    [CreateAssetMenu(fileName = "EnemyStats", menuName = "StaticData/EnemyStats", order = 53)]
+    [CreateAssetMenu(fileName = "PlayerStats", menuName = "StaticData/PlayerStats", order = 53)]
     public class PlayerStats : ScriptableObject
     {
         [SerializeField] private float _moveSpeed;
