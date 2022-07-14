@@ -4,6 +4,7 @@ using InputPlayer;
 using Pokemon;
 using Pokemon.PokemonHolder;
 using Pokemon.PokemonHolder.Cell;
+using Pool;
 using UnityEngine;
 
 namespace Merge
@@ -16,17 +17,21 @@ namespace Merge
         private FieldView _fieldView;
         private List<CellView> _cellViews;
         private PokemonHolderModel _pokemonHolderModel;
+        private PokemonSpawner _pokemonSpawner;
         private CellView _fixedCell;
         private int _fixedIndex;
         private PokemonMerger _pokemonMerger;
         private PokemonViewBase _pokemonForSwap;
         private readonly float _moveDuration = 0.2f;
+        private readonly float _distanceForMerge = 0.8f;
 
-        public PokemonCellPlacer(InputView inputView, FieldView fieldView, PokemonHolderModel pokemonHolderModel, PokemonMerger pokemonMerger)
+        public PokemonCellPlacer(InputView inputView, FieldView fieldView, PokemonHolderModel pokemonHolderModel,
+            PokemonMerger pokemonMerger, PokemonSpawner pokemonSpawner)
         {
             _fieldView = fieldView;
             _pokemonHolderModel = pokemonHolderModel;
             _pokemonMerger = pokemonMerger;
+            _pokemonSpawner = pokemonSpawner;
             _inputView = inputView;
         }
 
@@ -76,14 +81,26 @@ namespace Merge
         {
             if (_targetPokemon != null)
             {
-                if (IsSwap())
+                if (IsMerge())
+                {
+                    var currentCell = GetCurrentCell(_pokemonForSwap.transform.position);
+
+                    _fieldView.PokemonViews.Remove(_targetPokemon);
+
+                    Object.Destroy(_targetPokemon.gameObject);
+                    _pokemonSpawner.CreateFirstLevelPokemon(currentCell.transform.position, _targetPokemon,
+                        _pokemonForSwap.GetPokemonLevel() + 1);
+                    _fieldView.PokemonViews.Remove(_pokemonForSwap);
+                    Object.Destroy(_pokemonForSwap.gameObject);
+                }
+                else if (IsSwap())
                 {
                     _targetPokemon.transform.DOMoveX(_pokemonForSwap.transform.position.x, _moveDuration);
                     _targetPokemon.transform.DOMoveZ(_pokemonForSwap.transform.position.z, _moveDuration);
-                    
+
                     _pokemonForSwap.transform.DOMoveX(_fixedCell.gameObject.transform.position.x, _moveDuration);
                     _pokemonForSwap.transform.DOMoveZ(_fixedCell.gameObject.transform.position.z, _moveDuration);
-                    
+
                     _pokemonHolderModel.SetValueCellData(_fixedIndex, false);
                 }
                 else
@@ -93,7 +110,7 @@ namespace Merge
                     _targetPokemon.transform.DOMoveX(nearestCell.transform.position.x, _moveDuration);
                     _targetPokemon.transform.DOMoveZ(nearestCell.transform.position.z, _moveDuration);
                 }
-                
+
                 _targetPokemon = null;
             }
         }
@@ -108,21 +125,21 @@ namespace Merge
             for (int i = 0; i < _cellViews.Count; i++)
             {
                 cellData = _pokemonHolderModel.GetCellData(i);
-                
+
                 tempDistance = Vector3.Distance(pokemonPosition,
                     cellData.Position);
-                
+
                 if (cellData.EmptyState && tempDistance < distance)
                 {
                     index = i;
                     distance = tempDistance;
                 }
             }
-            
+
             _pokemonHolderModel.SetValueCellData(index, false);
             return _cellViews[index];
         }
-        
+
         private CellView GetCurrentCell(Vector3 pokemonPosition)
         {
             float distance = 200f;
@@ -133,10 +150,10 @@ namespace Merge
             for (int i = 0; i < _cellViews.Count; i++)
             {
                 cellData = _pokemonHolderModel.GetCellData(i);
-                
+
                 tempDistance = Vector3.Distance(pokemonPosition,
                     cellData.Position);
-                
+
                 if (tempDistance < distance)
                 {
                     index = i;
@@ -149,12 +166,9 @@ namespace Merge
             return _cellViews[index];
         }
 
-        private bool IsSwap()
+        private bool IsMerge()
         {
-            float distance = 200f;
             float tempDistance;
-            int index = 0;
-            
 
             for (int i = 0; i < _fieldView.PokemonViews.Count; i++)
             {
@@ -165,18 +179,39 @@ namespace Merge
                 {
                     continue;
                 }
-                
-                if (tempDistance < distance)
+
+                if (tempDistance < _distanceForMerge)
                 {
-                    index = i;
-                    distance = tempDistance;
+                    _pokemonForSwap = _fieldView.PokemonViews[i];
+
+                    if (_pokemonMerger.TryMerge(_targetPokemon, _pokemonForSwap))
+                    {
+                        return true;
+                    }
                 }
             }
-            
-            if (distance < 0.8f)
+
+            return false;
+        }
+
+        private bool IsSwap()
+        {
+            float tempDistance;
+
+            for (int i = 0; i < _fieldView.PokemonViews.Count; i++)
             {
-                _pokemonForSwap = _fieldView.PokemonViews[index];
-                return true;
+                tempDistance = Vector3.Distance(_targetPokemon.transform.position,
+                    _fieldView.PokemonViews[i].transform.position);
+
+                if (_targetPokemon == _fieldView.PokemonViews[i])
+                {
+                    continue;
+                }
+
+                if (tempDistance < _distanceForMerge)
+                {
+                    return true;
+                }
             }
 
             return false;

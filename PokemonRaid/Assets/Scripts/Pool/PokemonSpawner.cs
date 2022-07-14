@@ -138,7 +138,7 @@ namespace Pool
             }
         }
 
-        public void CreateFirstLevelPokemon(Vector3 position, PokemonType pokemonType)
+        public void CreateFirstLevelRandomPokemon(Vector3 position, PokemonType pokemonType)
         {
             if (pokemonType == PokemonType.Melee)
             {
@@ -160,6 +160,17 @@ namespace Pool
                 _fieldView.AddPokemonView(view);
                 _model.AddPokemonToList(pokemonData);
             }
+        }
+        
+        public void CreateFirstLevelPokemon(Vector3 position, PokemonViewBase pokemonViewBase, int level)
+        {
+                var randomNumber = Random.Range(0, _meleeFactories.Count);
+                var pokemonData = _meleeFactories[randomNumber]
+                    .CreateInstance(new Vector3(position.x, position.y + 0.5f, position.z), _testStats, _parent,
+                        out PokemonViewBase view);
+                
+                _fieldView.AddPokemonView(view);
+                _model.AddPokemonToList(pokemonData);
         }
     }
 }

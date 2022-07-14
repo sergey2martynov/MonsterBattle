@@ -44,7 +44,7 @@ public class ProjectStarter : MonoBehaviour
 
         var pokemonMerger = new PokemonMerger(_fieldView);
 
-        var pokemonCellPlacer = new PokemonCellPlacer(_inputView, _fieldView,pokemonHolderModel, pokemonMerger);
+        var pokemonCellPlacer = new PokemonCellPlacer(_inputView, _fieldView,pokemonHolderModel, pokemonMerger, _pokemonSpawner);
         pokemonCellPlacer.Initialize();
     }
 }

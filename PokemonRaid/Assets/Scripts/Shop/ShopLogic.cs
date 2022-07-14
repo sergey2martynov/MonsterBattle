@@ -34,7 +34,7 @@ namespace Shop
             //     return;
 
             
-            _pokemonSpawner.CreateFirstLevelPokemon(_pokemonHolderModel.GetFirstEmptyCell().Position,  pokemonType);
+            _pokemonSpawner.CreateFirstLevelRandomPokemon(_pokemonHolderModel.GetFirstEmptyCell().Position,  pokemonType);
 
         }
         

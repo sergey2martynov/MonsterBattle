@@ -1,6 +1,5 @@
 ﻿using Pokemon;
 using Pokemon.PokemonHolder;
-using UnityEngine;
 
 namespace Merge
 {
@@ -13,29 +12,15 @@ namespace Merge
             _fieldView = fieldView;
         }
 
-        private void TryMerge(PokemonViewBase pokemonViewBase)
+        public bool TryMerge(PokemonViewBase targetViewBase, PokemonViewBase nearestViewBase)
         {
-            float distance = 200f;
-            float tempDistance;
-            int index = 0;
-            
-
-            for (int i = 0; i < _fieldView.PokemonViews.Count; i++)
+            if (targetViewBase.GetType() == nearestViewBase.GetType() &&
+                targetViewBase.GetPokemonLevel() == nearestViewBase.GetPokemonLevel())
             {
-                tempDistance = Vector3.Distance(pokemonViewBase.transform.position,
-                    _fieldView.PokemonViews[i].transform.position);
-                
-                if (tempDistance < distance)
-                {
-                    index = i;
-                    distance = tempDistance;
-                }
-
-                if (distance < 0.8f)
-                {
-                    
-                }
+                return true;
             }
+
+            return false;
         }
     }
 }
