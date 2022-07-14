@@ -3,24 +3,23 @@ using System.Threading;
 using StaticData;
 using UnityEngine;
 
-namespace Pokemon
+namespace Enemy
 {
-    public abstract class PokemonDataBase
+    public abstract class BaseEnemyData
     {
-        private PokemonStats _pokemonStats;
+        protected EnemyStats _stats;
         protected float _moveSpeed;
         protected float _attackSpeed;
         protected int _maxHealth;
         protected int _health;
         protected int _damage;
         protected int _level;
-        protected int _maxLevel;
         protected int _maxTargetsAmount;
         protected int _attackRange;
 
         public CancellationTokenSource Source { get; protected set; }
-
         public Vector3 MoveDirection { get; set; }
+        public float AttackTime { get; set; }
 
         public float MoveSpeed
         {
@@ -35,7 +34,7 @@ namespace Pokemon
                 _moveSpeed = value;
             }
         }
-
+        
         public float AttackSpeed
         {
             get => _attackSpeed;
@@ -47,7 +46,7 @@ namespace Pokemon
                 }
             }
         }
-
+        
         public int MaxHealth
         {
             get => _maxHealth;
@@ -67,7 +66,7 @@ namespace Pokemon
             get => _health;
             set => _health = value < 0 ? 0 : value;
         }
-
+        
         public int Damage
         {
             get => _damage;
@@ -87,15 +86,15 @@ namespace Pokemon
             get => _level;
             set
             {
-                if (value <= 0 || value > _maxLevel)
+                if (value <= 0)
                 {
-                    throw new ArgumentException("Level cannot be equal or less than zero or more than " + _maxLevel);
+                    throw new ArgumentException("Level cannot be equal or less than zero");
                 }
 
                 _level = value;
             }
         }
-
+        
         public int MaxTargetsAmount
         {
             get => _maxTargetsAmount;
@@ -123,11 +122,12 @@ namespace Pokemon
                 _attackRange = value;
             }
         }
-        
+
         public event Action<int, int> DamageTaken;
 
-        public virtual void Initialize(PokemonStats stats)
+        public void Initialize(EnemyStats stats)
         {
+            _stats = stats;
             SetStats(stats);
         }
 
@@ -135,7 +135,7 @@ namespace Pokemon
         {
             return Source = new CancellationTokenSource();
         }
-
+        
         public void TakeDamage(int damage)
         {
             if (damage < 0)
@@ -146,14 +146,8 @@ namespace Pokemon
             Health -= Damage;
             DamageTaken?.Invoke(_health, _maxHealth);
         }
-
-        public void DisposeSource()
-        {
-            Source?.Cancel();
-            Source?.Dispose();
-        }
-
-        protected virtual void SetStats(PokemonStats stats)
+        
+        protected virtual void SetStats(EnemyStats stats)
         {
             _moveSpeed = stats.MoveSpeed;
             _attackSpeed = stats.AttackSpeed;
@@ -161,9 +155,14 @@ namespace Pokemon
             _health = _maxHealth;
             _damage = stats.Damage;
             _level = stats.Level;
-            _maxLevel = stats.MaxLevel;
             _maxTargetsAmount = stats.MaxTargetsAmount;
             _attackRange = stats.AttackRange;
+        }
+
+        public void DisposeSource()
+        {
+            Source?.Cancel();
+            Source?.Dispose();
         }
     }
 }
