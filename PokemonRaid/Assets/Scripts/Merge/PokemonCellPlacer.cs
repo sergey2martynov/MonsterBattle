@@ -17,11 +17,16 @@ namespace Merge
         private List<CellView> _cellViews;
         private PokemonHolderModel _pokemonHolderModel;
         private CellView _fixedCell;
+        private int _fixedIndex;
+        private PokemonMerger _pokemonMerger;
+        private PokemonViewBase _pokemonForSwap;
+        private readonly float _moveDuration = 0.2f;
 
-        public PokemonCellPlacer(InputView inputView, FieldView fieldView, PokemonHolderModel pokemonHolderModel)
+        public PokemonCellPlacer(InputView inputView, FieldView fieldView, PokemonHolderModel pokemonHolderModel, PokemonMerger pokemonMerger)
         {
             _fieldView = fieldView;
             _pokemonHolderModel = pokemonHolderModel;
+            _pokemonMerger = pokemonMerger;
             _inputView = inputView;
         }
 
@@ -71,10 +76,23 @@ namespace Merge
         {
             if (_targetPokemon != null)
             {
-                var nearestCell = GetNearestEmptyCell(_targetPokemon.transform.position);
+                if (IsSwap())
+                {
+                    _targetPokemon.transform.DOMoveX(_pokemonForSwap.transform.position.x, _moveDuration);
+                    _targetPokemon.transform.DOMoveZ(_pokemonForSwap.transform.position.z, _moveDuration);
+                    
+                    _pokemonForSwap.transform.DOMoveX(_fixedCell.gameObject.transform.position.x, _moveDuration);
+                    _pokemonForSwap.transform.DOMoveZ(_fixedCell.gameObject.transform.position.z, _moveDuration);
+                    
+                    _pokemonHolderModel.SetValueCellData(_fixedIndex, false);
+                }
+                else
+                {
+                    var nearestCell = GetNearestEmptyCell(_targetPokemon.transform.position);
 
-                _targetPokemon.transform.DOMoveX(nearestCell.transform.position.x, 0.2f);
-                _targetPokemon.transform.DOMoveZ(nearestCell.transform.position.z, 0.2f);
+                    _targetPokemon.transform.DOMoveX(nearestCell.transform.position.x, _moveDuration);
+                    _targetPokemon.transform.DOMoveZ(nearestCell.transform.position.z, _moveDuration);
+                }
                 
                 _targetPokemon = null;
             }
@@ -125,14 +143,43 @@ namespace Merge
                     distance = tempDistance;
                 }
             }
-            
+
+            _fixedIndex = index;
             _pokemonHolderModel.SetValueCellData(index, true);
             return _cellViews[index];
         }
 
-        private void Swap()
+        private bool IsSwap()
         {
+            float distance = 200f;
+            float tempDistance;
+            int index = 0;
             
+
+            for (int i = 0; i < _fieldView.PokemonViews.Count; i++)
+            {
+                tempDistance = Vector3.Distance(_targetPokemon.transform.position,
+                    _fieldView.PokemonViews[i].transform.position);
+
+                if (_targetPokemon == _fieldView.PokemonViews[i])
+                {
+                    continue;
+                }
+                
+                if (tempDistance < distance)
+                {
+                    index = i;
+                    distance = tempDistance;
+                }
+            }
+            
+            if (distance < 0.8f)
+            {
+                _pokemonForSwap = _fieldView.PokemonViews[index];
+                return true;
+            }
+
+            return false;
         }
     }
 }

@@ -30,6 +30,11 @@ namespace Merge
                     index = i;
                     distance = tempDistance;
                 }
+
+                if (distance < 0.8f)
+                {
+                    
+                }
             }
         }
     }

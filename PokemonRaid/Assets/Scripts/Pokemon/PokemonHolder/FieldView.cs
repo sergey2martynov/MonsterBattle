@@ -9,7 +9,7 @@ namespace Pokemon.PokemonHolder
     {
         [SerializeField] private List<CellView> _cells;
         
-        private List<PokemonViewBase> _pokemonViews;
+        private List<PokemonViewBase> _pokemonViews = new List<PokemonViewBase>();
         
         public List<PokemonViewBase> PokemonViews => _pokemonViews;
 
