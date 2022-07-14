@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Player;
 using Pokemon.PokemonHolder.Cell;
 using UnityEngine;
 
@@ -10,12 +11,14 @@ namespace Pokemon.PokemonHolder
         private List<List<CellData>> _cells = new List<List<CellData>>();
         private List<PokemonDataBase> _pokemons = new List<PokemonDataBase>();
         private Queue<CellData> _emptyCells;
+        private PlayerData _playerData;
 
         public void SetMoveDirection(Vector3 direction)
         {
             foreach (var pokemon in _pokemons)
             {
                 pokemon.MoveDirection = direction;
+                _playerData.MoveDirection = direction;
             }
         }
 
@@ -80,5 +83,7 @@ namespace Pokemon.PokemonHolder
                 count++;
             }
         }
+
+        public void SetPlayerData(PlayerData playerData) => _playerData = playerData;
     }
 }

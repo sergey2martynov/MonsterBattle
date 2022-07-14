@@ -37,6 +37,7 @@ public class ProjectStarter : MonoBehaviour
         var playerData = new PlayerData();
         var playerLogic = new PlayerLogic();
         playerLogic.Initialize(_playerView, playerData, _updateHandler);
+        pokemonHolderModel.SetPlayerData(playerData);
 
         var shopData = new ShopDataBase();
         var shopLogic = new ShopLogic(_pokemonSpawner, _shopView, shopData, playerData,pokemonHolderModel);

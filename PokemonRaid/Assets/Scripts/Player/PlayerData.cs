@@ -1,18 +1,36 @@
 ﻿using System;
 using System.Threading;
 using StaticData;
+using UnityEngine;
 
 namespace Player
 {
     public class PlayerData
     {
         private PokemonPrefabHolder _pokemonPrefabHolder;
+        private float _moveSpeed;
         private int _maxHealth;
         private int _health;
         private int _level;
         private int _maxLevel;
         private int _coins;
         public CancellationTokenSource Source { get; protected set; }
+        
+        public Vector3 MoveDirection { get; set; }
+        
+        public float MoveSpeed
+        {
+            get => _moveSpeed;
+            set
+            {
+                if (value <= 0)
+                {
+                    throw new ArgumentException("Move speed cannot be equal or less than zero");
+                }
+
+                _moveSpeed = value;
+            }
+        }
 
         public int MaxHealth
         {

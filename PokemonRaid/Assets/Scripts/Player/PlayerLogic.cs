@@ -1,4 +1,5 @@
-﻿using UpdateHandlerFolder;
+﻿using UnityEngine;
+using UpdateHandlerFolder;
 
 namespace Player
 {
@@ -20,7 +21,7 @@ namespace Player
 
         private void Update()
         {
-           
+            _view.Transform.position += _data.MoveDirection * _data.MoveSpeed * Time.deltaTime;
         }
 
         private void Dispose()
