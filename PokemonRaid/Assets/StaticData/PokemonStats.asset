@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PokemonStats
   m_EditorClassIdentifier: 
   _stats:
-  - _moveSpeed: 1
+  - _moveSpeed: 5
     _attackSpeed: 1
     _maxHealth: 1
     _health: 1
@@ -22,7 +22,7 @@ MonoBehaviour:
     _maxLevel: 5
     _maxTargetsAmount: 1
     _attackRange: 1
-  - _moveSpeed: 1
+  - _moveSpeed: 5
     _attackSpeed: 1
     _maxHealth: 1
     _health: 1
@@ -31,7 +31,7 @@ MonoBehaviour:
     _maxLevel: 5
     _maxTargetsAmount: 1
     _attackRange: 1
-  - _moveSpeed: 1
+  - _moveSpeed: 5
     _attackSpeed: 1
     _maxHealth: 1
     _health: 1
@@ -40,7 +40,7 @@ MonoBehaviour:
     _maxLevel: 5
     _maxTargetsAmount: 1
     _attackRange: 1
-  - _moveSpeed: 1
+  - _moveSpeed: 5
     _attackSpeed: 1
     _maxHealth: 1
     _health: 1
@@ -49,7 +49,7 @@ MonoBehaviour:
     _maxLevel: 5
     _maxTargetsAmount: 1
     _attackRange: 1
-  - _moveSpeed: 1
+  - _moveSpeed: 5
     _attackSpeed: 1
     _maxHealth: 1
     _health: 1
