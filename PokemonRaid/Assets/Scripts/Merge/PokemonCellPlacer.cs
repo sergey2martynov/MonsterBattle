@@ -52,7 +52,7 @@ namespace Merge
             if (hit.collider.gameObject.TryGetComponent(out PokemonViewBase pokemon))
             {
                 _targetPokemon = pokemon;
-                _fixedCell = GetCurrentCell(_targetPokemon.transform.position);
+                _fixedCell = GetCurrentCell(_targetPokemon.transform.position,true);
             }
         }
 
@@ -83,8 +83,7 @@ namespace Merge
             {
                 if (IsMerge())
                 {
-                    var currentCell = GetCurrentCell(_pokemonForSwap.transform.position);
-
+                    var currentCell = GetCurrentCell(_pokemonForSwap.transform.position, false);
                     _fieldView.PokemonViews.Remove(_targetPokemon);
 
                     Object.Destroy(_targetPokemon.gameObject);
@@ -140,7 +139,7 @@ namespace Merge
             return _cellViews[index];
         }
 
-        private CellView GetCurrentCell(Vector3 pokemonPosition)
+        private CellView GetCurrentCell(Vector3 pokemonPosition, bool isEmpty)
         {
             float distance = 200f;
             float tempDistance;
@@ -162,7 +161,7 @@ namespace Merge
             }
 
             _fixedIndex = index;
-            _pokemonHolderModel.SetValueCellData(index, true);
+            _pokemonHolderModel.SetValueCellData(index, isEmpty);
             return _cellViews[index];
         }
 
