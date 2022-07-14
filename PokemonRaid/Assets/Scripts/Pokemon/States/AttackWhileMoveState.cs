@@ -1,11 +1,13 @@
-﻿using UnityEngine;
+﻿using Enemy;
+using UnityEngine;
 
 namespace Pokemon.States
 {
-    public class AttackWhileMoveState<TView> : BaseState<TView>
+    public class AttackWhileMoveState<TView, TEnemyView> : BaseState<TView, TEnemyView>
         where TView : PokemonViewBase
+        where TEnemyView : BaseEnemyView
     {
-        public AttackWhileMoveState(TView view, PokemonLogicBase<TView> logic, PokemonDataBase data) : base(view, logic,
+        public AttackWhileMoveState(TView view, PokemonLogicBase<TView, TEnemyView> logic, PokemonDataBase data) : base(view, logic,
             data)
         {
         }
@@ -22,7 +24,7 @@ namespace Pokemon.States
                 return;
             }
             
-            _logic.SwitchState<IdleState<TView>>();
+            _logic.SwitchState<IdleState<TView, TEnemyView>>();
         }
     }
 }

@@ -1,6 +1,8 @@
-﻿namespace Pokemon.MeleePokemon.FifthTypePokemon
+﻿using Enemy.GroundEnemy;
+
+namespace Pokemon.MeleePokemon.FifthTypePokemon
 {
-    public class FifthMeleeTypePokemonLogic : PokemonLogicBase<FifthMeleeTypePokemonView>
+    public class FifthMeleeTypePokemonLogic : PokemonLogicBase<FifthMeleeTypePokemonView, GroundEnemyView>
     {
         
     }

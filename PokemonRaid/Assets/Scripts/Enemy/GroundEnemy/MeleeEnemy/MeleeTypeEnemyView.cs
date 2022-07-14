@@ -1,6 +1,6 @@
 ﻿namespace Enemy.GroundEnemy.MeleeEnemy
 {
-    public class MeleeTypeEnemyView : BaseEnemyView
+    public class MeleeTypeEnemyView : GroundEnemyView
     {
         
     }

@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 7570300822190265079}
   - component: {fileID: 5825225041619624878}
   - component: {fileID: 6738927145612314192}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Melee Pokemon 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

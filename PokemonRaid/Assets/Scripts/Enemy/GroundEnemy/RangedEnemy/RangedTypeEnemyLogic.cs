@@ -1,6 +1,6 @@
 ﻿namespace Enemy.GroundEnemy.RangedEnemy
 {
-    public class RangedTypeEnemyLogic : BaseEnemyLogic<RangedTypeEnemyView>
+    public class RangedTypeEnemyLogic : GroundEnemyLogic<RangedTypeEnemyView>
     {
         
     }

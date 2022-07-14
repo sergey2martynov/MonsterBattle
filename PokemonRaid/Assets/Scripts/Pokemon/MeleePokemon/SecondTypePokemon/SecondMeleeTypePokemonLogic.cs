@@ -1,6 +1,8 @@
-﻿namespace Pokemon.MeleePokemon.SecondTypePokemon
+﻿using Enemy.GroundEnemy;
+
+namespace Pokemon.MeleePokemon.SecondTypePokemon
 {
-    public class SecondMeleeTypePokemonLogic : PokemonLogicBase<SecondMeleeTypePokemonView>
+    public class SecondMeleeTypePokemonLogic : PokemonLogicBase<SecondMeleeTypePokemonView, GroundEnemyView>
     {
         
     }

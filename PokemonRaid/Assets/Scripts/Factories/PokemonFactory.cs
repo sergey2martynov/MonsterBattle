@@ -1,4 +1,5 @@
-﻿using Pokemon;
+﻿using Enemy;
+using Pokemon;
 using Pokemon.PokemonHolder;
 using StaticData;
 using UnityEngine;
@@ -7,9 +8,10 @@ using Object = UnityEngine.Object;
 
 namespace Factories
 {
-    public class PokemonFactory<TView, TLogic, TData> : BasePokemonFactory
+    public class PokemonFactory<TView, TEnemyView, TLogic, TData> : BasePokemonFactory
         where TView : PokemonViewBase
-        where TLogic : PokemonLogicBase<TView>, new()
+        where TEnemyView : BaseEnemyView
+        where TLogic : PokemonLogicBase<TView, TEnemyView>, new()
         where TData : PokemonDataBase, new()
     {
         private readonly TView _prefab;

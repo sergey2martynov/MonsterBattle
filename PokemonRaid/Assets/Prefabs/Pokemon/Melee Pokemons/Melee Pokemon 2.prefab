@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 727784647632858496}
   - component: {fileID: 891051601361968121}
   - component: {fileID: 6011794515999729441}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Melee Pokemon 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Threading;
 using StaticData;
 using UnityEngine;
@@ -8,15 +9,16 @@ namespace Pokemon
     public abstract class PokemonDataBase
     {
         private PokemonStats _pokemonStats;
-        protected float _moveSpeed;
-        protected float _attackSpeed;
-        protected int _maxHealth;
-        protected int _health;
-        protected int _damage;
-        protected int _level;
-        protected int _maxLevel;
-        protected int _maxTargetsAmount;
-        protected int _attackRange;
+        private float _moveSpeed;
+        private float _attackSpeed;
+        private float _attackTime;
+        private int _maxHealth;
+        private int _health;
+        private int _damage;
+        private int _level;
+        private int _maxLevel;
+        private int _maxTargetsAmount;
+        private int _attackRange;
 
         public CancellationTokenSource Source { get; protected set; }
 
@@ -45,6 +47,22 @@ namespace Pokemon
                 {
                     throw new ArgumentException("Attack speed cannot be equal or less than zero");
                 }
+
+                _attackSpeed = value;
+            }
+        }
+
+        public float AttackTime
+        {
+            get => _attackTime;
+            set
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentException("Attack time cannot be less than zero");
+                }
+
+                _attackTime = value;
             }
         }
 
@@ -93,6 +111,20 @@ namespace Pokemon
                 }
 
                 _level = value;
+            }
+        }
+
+        public int MaxLevel
+        {
+            get => _maxLevel;
+            set
+            {
+                if (value <= 0)
+                {
+                    throw new ArgumentException("Max level cannot be equal or less than zero");
+                }
+
+                _maxLevel = value;
             }
         }
 
@@ -155,15 +187,15 @@ namespace Pokemon
 
         protected virtual void SetStats(PokemonStats stats)
         {
-            _moveSpeed = stats.MoveSpeed;
-            _attackSpeed = stats.AttackSpeed;
-            _maxHealth = stats.MaxHealth;
-            _health = _maxHealth;
-            _damage = stats.Damage;
-            _level = stats.Level;
-            _maxLevel = stats.MaxLevel;
-            _maxTargetsAmount = stats.MaxTargetsAmount;
-            _attackRange = stats.AttackRange;
+            MoveSpeed = stats.MoveSpeed;
+            AttackSpeed = stats.AttackSpeed;
+            MaxHealth = stats.MaxHealth;
+            Health = _maxHealth;
+            Damage = stats.Damage;
+            MaxLevel = stats.MaxLevel;
+            Level = stats.Level;
+            MaxTargetsAmount = stats.MaxTargetsAmount;
+            AttackRange = stats.AttackRange;
         }
     }
 }

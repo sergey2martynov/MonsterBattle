@@ -6,9 +6,11 @@ namespace Pokemon
     public class PokemonViewBase : MonoBehaviour
     {
         [SerializeField] protected Animator _animator;
+        [SerializeField] protected LayerMask _enemyLayer;
 
         public Transform Transform => transform;
         public Animator Animator => _animator;
+        public LayerMask EnemyLayer => _enemyLayer;
         
         public event Action ViewDestroyed;
         public event Func<int> LevelRequested;

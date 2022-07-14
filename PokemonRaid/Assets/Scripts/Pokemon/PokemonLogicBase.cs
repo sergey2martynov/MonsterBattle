@@ -1,20 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using Enemy;
 using Pokemon.PokemonHolder;
 using Pokemon.States;
+using UnityEngine;
 using UpdateHandlerFolder;
 
 namespace Pokemon
 {
-    public abstract class PokemonLogicBase<TView>
+    public abstract class PokemonLogicBase<TView, TEnemyView>
         where TView : PokemonViewBase
+        where TEnemyView : BaseEnemyView
     {
         protected TView _view;
         protected PokemonDataBase _data;
         protected PokemonHolderModel _model;
         protected UpdateHandler _updateHandler;
-        protected Dictionary<Type, BaseState<TView>> _statesToType;
-        protected BaseState<TView> _currentState;
+        protected Dictionary<Type, BaseState<TView, TEnemyView>> _statesToType;
+        protected BaseState<TView, TEnemyView> _currentState;
+        protected Collider[] _collidersInRange;
 
         public virtual void Initialize(TView view, PokemonDataBase data, PokemonHolderModel model,
             UpdateHandler updateHandler)
@@ -26,14 +30,18 @@ namespace Pokemon
             _updateHandler.UpdateTicked += Update;
             _view.ViewDestroyed += Dispose;
             _view.LevelRequested += GetPokemonLevel;
-            _statesToType = new Dictionary<Type, BaseState<TView>>
+            _statesToType = new Dictionary<Type, BaseState<TView, TEnemyView>>
             {
-                {typeof(IdleState<TView>), new IdleState<TView>(_view, this, _data)},
-                {typeof(AttackWhileMoveState<TView>), new AttackWhileMoveState<TView>(_view, this, _data)},
-                {typeof(AttackState<TView>), new AttackState<TView>(_view, this, _data)}
+                {typeof(IdleState<TView, TEnemyView>), new IdleState<TView, TEnemyView>(_view, this, _data)},
+                {
+                    typeof(AttackWhileMoveState<TView, TEnemyView>),
+                    new AttackWhileMoveState<TView, TEnemyView>(_view, this, _data)
+                },
+                {typeof(AttackState<TView, TEnemyView>), new AttackState<TView, TEnemyView>(_view, this, _data)}
 
             };
-            _currentState = _statesToType[typeof(AttackWhileMoveState<TView>)];
+            _currentState = _statesToType[typeof(AttackWhileMoveState<TView, TEnemyView>)];
+            _collidersInRange = new Collider[_data.MaxTargetsAmount];
         }
 
         protected virtual void Update()
@@ -42,7 +50,7 @@ namespace Pokemon
         }
 
         public T SwitchState<T>()
-            where T : BaseState<TView>
+            where T : BaseState<TView, TEnemyView>
         {
             var type = typeof(T);
 
@@ -60,6 +68,31 @@ namespace Pokemon
         private int GetPokemonLevel()
         {
             return _data.Level;
+        }
+
+        private void Attack()
+        {
+            Physics.OverlapSphereNonAlloc(_view.Transform.position, _data.AttackRange, _collidersInRange, _view.EnemyLayer);
+
+            if (Time.time < _data.AttackTime || _collidersInRange[0] == null)
+            {
+                return;
+            }
+            
+            foreach (var collider in _collidersInRange)
+            {
+                if (collider == null)
+                {
+                    continue;
+                }
+                
+                if (collider.TryGetComponent<TEnemyView>(out var enemy))
+                {
+                    enemy.TakeDamage(_data.Damage);
+                }
+            }
+
+            _data.AttackTime = Time.time;
         }
 
         protected virtual void Dispose()

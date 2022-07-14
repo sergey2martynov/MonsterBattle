@@ -1,9 +1,12 @@
-﻿namespace Pokemon.States
+﻿using Enemy;
+
+namespace Pokemon.States
 {
-    public class IdleState<TView> : BaseState<TView>
+    public class IdleState<TView, TEnemyView> : BaseState<TView, TEnemyView>
         where TView : PokemonViewBase
+        where TEnemyView : BaseEnemyView
     {
-        public IdleState(TView view, PokemonLogicBase<TView> logic, PokemonDataBase data) : 
+        public IdleState(TView view, PokemonLogicBase<TView, TEnemyView> logic, PokemonDataBase data) : 
             base(view, logic, data)
         {
         }
@@ -15,7 +18,7 @@
                 return;
             }
 
-            _logic.SwitchState<AttackWhileMoveState<TView>>();
+            _logic.SwitchState<AttackWhileMoveState<TView, TEnemyView>>();
         }
     }
 }

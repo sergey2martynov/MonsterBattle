@@ -44,6 +44,8 @@ namespace Enemy
                 {
                     throw new ArgumentException("Attack speed cannot be equal or less than zero");
                 }
+
+                _attackSpeed = value;
             }
         }
         
@@ -149,14 +151,14 @@ namespace Enemy
         
         protected virtual void SetStats(EnemyStats stats)
         {
-            _moveSpeed = stats.MoveSpeed;
-            _attackSpeed = stats.AttackSpeed;
-            _maxHealth = stats.MaxHealth;
-            _health = _maxHealth;
-            _damage = stats.Damage;
-            _level = stats.Level;
-            _maxTargetsAmount = stats.MaxTargetsAmount;
-            _attackRange = stats.AttackRange;
+            MoveSpeed = stats.MoveSpeed;
+            AttackSpeed = stats.AttackSpeed;
+            MaxHealth = stats.MaxHealth;
+            Health = _maxHealth;
+            Damage = stats.Damage;
+            Level = stats.Level;
+            MaxTargetsAmount = stats.MaxTargetsAmount;
+            AttackRange = stats.AttackRange;
         }
 
         public void DisposeSource()

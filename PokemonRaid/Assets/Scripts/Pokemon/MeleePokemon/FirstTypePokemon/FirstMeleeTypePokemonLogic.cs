@@ -1,6 +1,8 @@
-﻿namespace Pokemon.MeleePokemon.FirstTypePokemon
+﻿using Enemy.GroundEnemy;
+
+namespace Pokemon.MeleePokemon.FirstTypePokemon
 {
-    public class FirstMeleeTypePokemonLogic : PokemonLogicBase<FirstMeleeTypePokemonView>
+    public class FirstMeleeTypePokemonLogic : PokemonLogicBase<FirstMeleeTypePokemonView, GroundEnemyView>
     {
         
     }

@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Enemy;
+using Enemy.GroundEnemy;
 using Factories;
 using Pokemon;
 using Pokemon.MeleePokemon.FifthTypePokemon;
@@ -53,35 +55,35 @@ namespace Pool
                 {
                     typeof(FirstMeleeTypePokemonView),
                     () =>
-                        new PokemonFactory<FirstMeleeTypePokemonView, FirstMeleeTypePokemonLogic,
+                        new PokemonFactory<FirstMeleeTypePokemonView, GroundEnemyView, FirstMeleeTypePokemonLogic,
                             FirstMeleeTypePokemonData>(
                             _pokemonPrefabHolder.MeleePokemons[0] as FirstMeleeTypePokemonView, _updateHandler)
                 },
                 {
                     typeof(SecondMeleeTypePokemonView),
                     () =>
-                        new PokemonFactory<SecondMeleeTypePokemonView, SecondMeleeTypePokemonLogic,
+                        new PokemonFactory<SecondMeleeTypePokemonView, GroundEnemyView, SecondMeleeTypePokemonLogic,
                             SecondMeleeTypePokemonData>(
                             _pokemonPrefabHolder.MeleePokemons[1] as SecondMeleeTypePokemonView, _updateHandler)
                 },
                 {
                     typeof(ThirdMeleeTypePokemonView),
                     () =>
-                        new PokemonFactory<ThirdMeleeTypePokemonView, ThirdMeleeTypePokemonLogic,
+                        new PokemonFactory<ThirdMeleeTypePokemonView, GroundEnemyView, ThirdMeleeTypePokemonLogic,
                             ThirdMeleeTypePokemonData>(
                             _pokemonPrefabHolder.MeleePokemons[2] as ThirdMeleeTypePokemonView, _updateHandler)
                 },
                 {
                     typeof(FourthMeleeTypePokemonView),
                     () =>
-                        new PokemonFactory<FourthMeleeTypePokemonView, FourthMeleeTypePokemonLogic,
+                        new PokemonFactory<FourthMeleeTypePokemonView, GroundEnemyView, FourthMeleeTypePokemonLogic,
                             FourthMeleeTypePokemonData>(
                             _pokemonPrefabHolder.MeleePokemons[3] as FourthMeleeTypePokemonView, _updateHandler)
                 },
                 {
                     typeof(FifthMeleeTypePokemonView),
                     () =>
-                        new PokemonFactory<FifthMeleeTypePokemonView, FifthMeleeTypePokemonLogic,
+                        new PokemonFactory<FifthMeleeTypePokemonView, GroundEnemyView, FifthMeleeTypePokemonLogic,
                             FifthMeleeTypePokemonData>(
                             _pokemonPrefabHolder.MeleePokemons[4] as FifthMeleeTypePokemonView, _updateHandler)
                 }
@@ -91,35 +93,35 @@ namespace Pool
                 {
                     typeof(FirstRangedTypePokemonView),
                     () =>
-                        new PokemonFactory<FirstRangedTypePokemonView, FirstRangedTypePokemonLogic,
+                        new PokemonFactory<FirstRangedTypePokemonView, BaseEnemyView, FirstRangedTypePokemonLogic,
                             FirstRangedTypePokemonData>(
                             _pokemonPrefabHolder.RangedPokemons[0] as FirstRangedTypePokemonView, _updateHandler)
                 },
                 {
                     typeof(SecondRangedTypePokemonView),
                     () =>
-                        new PokemonFactory<SecondRangedTypePokemonView, SecondRangedTypePokemonLogic,
+                        new PokemonFactory<SecondRangedTypePokemonView, BaseEnemyView, SecondRangedTypePokemonLogic,
                             SecondRangedTypePokemonData>(
                             _pokemonPrefabHolder.RangedPokemons[1] as SecondRangedTypePokemonView, _updateHandler)
                 },
                 {
                     typeof(ThirdRangedTypePokemonView),
                     () =>
-                        new PokemonFactory<ThirdRangedTypePokemonView, ThirdRangedTypePokemonLogic,
+                        new PokemonFactory<ThirdRangedTypePokemonView, BaseEnemyView, ThirdRangedTypePokemonLogic,
                             ThirdRangedTypePokemonData>(
                             _pokemonPrefabHolder.RangedPokemons[2] as ThirdRangedTypePokemonView, _updateHandler)
                 },
                 {
                     typeof(FourthRangedTypePokemonView),
                     () =>
-                        new PokemonFactory<FourthRangedTypePokemonView, FourthRangedTypePokemonLogic,
+                        new PokemonFactory<FourthRangedTypePokemonView, BaseEnemyView, FourthRangedTypePokemonLogic,
                             FourthRangedTypePokemonData>(
                             _pokemonPrefabHolder.RangedPokemons[3] as FourthRangedTypePokemonView, _updateHandler)
                 },
                 {
                     typeof(FifthRangedTypePokemonView),
                     () =>
-                        new PokemonFactory<FifthRangedTypePokemonView, FifthRangedTypePokemonLogic,
+                        new PokemonFactory<FifthRangedTypePokemonView, BaseEnemyView, FifthRangedTypePokemonLogic,
                             FifthRangedTypePokemonData>(
                             _pokemonPrefabHolder.RangedPokemons[4] as FifthRangedTypePokemonView, _updateHandler)
                 }

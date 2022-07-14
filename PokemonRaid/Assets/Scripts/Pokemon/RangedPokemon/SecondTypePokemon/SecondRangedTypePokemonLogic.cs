@@ -1,6 +1,8 @@
-﻿namespace Pokemon.RangedPokemon.SecondTypePokemon
+﻿using Enemy;
+
+namespace Pokemon.RangedPokemon.SecondTypePokemon
 {
-    public class SecondRangedTypePokemonLogic : PokemonLogicBase<SecondRangedTypePokemonView>
+    public class SecondRangedTypePokemonLogic : PokemonLogicBase<SecondRangedTypePokemonView, BaseEnemyView>
     {
         
     }
