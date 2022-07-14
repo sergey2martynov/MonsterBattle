@@ -9,8 +9,9 @@ namespace Pokemon
 
         public Transform Transform => transform;
         public Animator Animator => _animator;
-
+        
         public event Action ViewDestroyed;
+        public event Func<int> LevelRequested;
 
         public void SetViewActive(bool isActive)
         {
@@ -20,6 +21,18 @@ namespace Pokemon
         private void OnDestroy()
         {
             ViewDestroyed?.Invoke();
+        }
+
+        public int GetPokemonLevel()
+        {
+            if (LevelRequested == null)
+            {
+                return default;
+            }
+            
+            var level = LevelRequested.Invoke();
+            return level;
+
         }
     }
 }

@@ -25,6 +25,7 @@ namespace Pokemon
             _updateHandler = updateHandler;
             _updateHandler.UpdateTicked += Update;
             _view.ViewDestroyed += Dispose;
+            _view.LevelRequested += GetPokemonLevel;
             _statesToType = new Dictionary<Type, BaseState<TView>>
             {
                 {typeof(IdleState<TView>), new IdleState<TView>(_view, this, _data)},
@@ -56,11 +57,17 @@ namespace Pokemon
             throw new KeyNotFoundException("There is no state of type " + type);
         }
 
+        private int GetPokemonLevel()
+        {
+            return _data.Level;
+        }
+
         protected virtual void Dispose()
         {
             _updateHandler.UpdateTicked -= Update;
             _data.DisposeSource();
             _view.ViewDestroyed -= Dispose;
+            _view.LevelRequested -= GetPokemonLevel;
         }
     }
 }

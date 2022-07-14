@@ -12,9 +12,9 @@ namespace Factories
         where TLogic : PokemonLogicBase<TView>, new()
         where TData : PokemonDataBase, new()
     {
-        private TView _prefab;
+        private readonly TView _prefab;
         private PokemonHolderModel _model;
-        private UpdateHandler _updateHandler;
+        private readonly UpdateHandler _updateHandler;
 
         public PokemonFactory(TView prefab, UpdateHandler updateHandler)
         {
