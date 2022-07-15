@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Data;
 using System.Threading;
-using StaticData;
 using Stats;
 using UnityEngine;
 
@@ -87,7 +85,7 @@ namespace Pokemon
             get => _health;
             set
             {
-                if (value < 0)
+                if (value <= 0)
                 {
                     _health = 0;
                     PokemonDied?.Invoke();
@@ -193,6 +191,7 @@ namespace Pokemon
 
         protected virtual void SetStats(PokemonStatsByLevel stats)
         {
+            AttackTime = 0;
             MoveSpeed = stats.MoveSpeed;
             AttackSpeed = stats.AttackSpeed;
             MaxHealth = stats.MaxHealth;

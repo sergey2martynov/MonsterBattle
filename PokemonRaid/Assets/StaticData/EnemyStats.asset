@@ -21,7 +21,7 @@ MonoBehaviour:
     _level: 1
     _maxLevel: 5
     _maxTargetsAmount: 1
-    _attackRange: 8
+    _attackRange: 5
   - _moveSpeed: 1
     _attackSpeed: 1
     _maxHealth: 1
@@ -30,7 +30,7 @@ MonoBehaviour:
     _level: 1
     _maxLevel: 5
     _maxTargetsAmount: 1
-    _attackRange: 8
+    _attackRange: 5
   - _moveSpeed: 1
     _attackSpeed: 1
     _maxHealth: 1
@@ -39,4 +39,4 @@ MonoBehaviour:
     _level: 1
     _maxLevel: 5
     _maxTargetsAmount: 1
-    _attackRange: 8
+    _attackRange: 5

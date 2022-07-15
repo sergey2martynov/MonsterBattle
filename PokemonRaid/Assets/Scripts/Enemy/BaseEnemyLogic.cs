@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Enemy.States;
+using Merge;
 using Pokemon;
 using UnityEngine;
 using UpdateHandlerFolder;
@@ -16,6 +17,7 @@ namespace Enemy
         protected Dictionary<Type, BaseEnemyState<TView>> _statesToType;
         protected BaseEnemyState<TView> _currentState;
         protected Collider[] _collidersInRange;
+        protected int _attackCount;
 
         public virtual void Initialize(TView view, BaseEnemyData data, UpdateHandler updateHandler)
         {
@@ -63,31 +65,31 @@ namespace Enemy
 
         private void Attack()
         {
-            Physics.OverlapSphereNonAlloc(_view.Transform.position, _data.AttackRange, _collidersInRange, _view.PokemonLayer);
+            _attackCount = 0;
+            var collidersAmount = Physics.OverlapSphereNonAlloc(_view.Transform.position, _data.AttackRange, _collidersInRange, _view.PokemonLayer);
 
             if (Time.time < _data.AttackTime || _collidersInRange[0] == null)
             {
                 return;
             }
-            
-            Debug.Log(_collidersInRange[0]);
-            
-            foreach (var collider in _collidersInRange)
+
+            for (var i = 0; i < collidersAmount; i++)
             {
-                if (collider == null)
-                {
-                    continue;
-                }
-                
-                if (collider.TryGetComponent<PokemonViewBase>(out var pokemon))
+                if (_collidersInRange[i].TryGetComponent<PokemonViewBase>(out var pokemon))
                 {
                     pokemon.TakeDamage(_data.Damage);
+                    _attackCount++;
                 }
             }
             
             for (var i = 0; i < _collidersInRange.Length; i++)
             {
                 Array.Clear(_collidersInRange, i, _collidersInRange.Length);
+            }
+            
+            if (_attackCount == 0)
+            {
+                return;
             }
 
             _data.AttackTime = Time.time + _data.AttackSpeed;

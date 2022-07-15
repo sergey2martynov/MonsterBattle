@@ -69,7 +69,7 @@ namespace Enemy
             get => _health;
             set
             {
-                if (value < 0)
+                if (value <= 0)
                 {
                     _health = 0;
                     EnemyDied?.Invoke();
@@ -155,6 +155,7 @@ namespace Enemy
         
         protected virtual void SetStats(EnemyStatsByLevel stats)
         {
+            AttackTime = 0;
             MoveSpeed = stats.MoveSpeed;
             AttackSpeed = stats.AttackSpeed;
             MaxHealth = stats.MaxHealth;

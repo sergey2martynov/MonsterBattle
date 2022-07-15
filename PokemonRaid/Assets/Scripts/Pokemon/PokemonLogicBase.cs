@@ -19,6 +19,7 @@ namespace Pokemon
         protected Dictionary<Type, BaseState<TView, TEnemyView>> _statesToType;
         protected BaseState<TView, TEnemyView> _currentState;
         protected Collider[] _collidersInRange;
+        protected int _attackCount;
 
         public virtual void Initialize(TView view, PokemonDataBase data, PokemonHolderModel model,
             UpdateHandler updateHandler)
@@ -92,29 +93,31 @@ namespace Pokemon
 
         private void Attack()
         {
-            Physics.OverlapSphereNonAlloc(_view.Transform.position, _data.AttackRange, _collidersInRange, _view.EnemyLayer);
+            _attackCount = 0;
+            var collidersAmount = Physics.OverlapSphereNonAlloc(_view.Transform.position, _data.AttackRange, _collidersInRange, _view.EnemyLayer);
 
-            if (Time.time < _data.AttackTime || _collidersInRange[0] == null)
+            if (Time.time < _data.AttackTime || collidersAmount == 0)
             {
                 return;
             }
 
-            foreach (var collider in _collidersInRange)
+            for (var i = 0; i < collidersAmount; i++)
             {
-                if (collider == null)
-                {
-                    continue;
-                }
-                
-                if (collider.TryGetComponent<TEnemyView>(out var enemy))
+                if (_collidersInRange[i].TryGetComponent<TEnemyView>(out var enemy))
                 {
                     enemy.TakeDamage(_data.Damage);
+                    _attackCount++;
                 }
             }
-            
+
             for (var i = 0; i < _collidersInRange.Length; i++)
             {
                 Array.Clear(_collidersInRange, i, _collidersInRange.Length);
+            }
+            
+            if (_attackCount == 0)
+            {
+                return;
             }
 
             _data.AttackTime = Time.time + _data.AttackSpeed;

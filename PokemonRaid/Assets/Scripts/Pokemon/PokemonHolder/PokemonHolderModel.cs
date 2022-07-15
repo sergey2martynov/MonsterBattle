@@ -39,14 +39,12 @@ namespace Pokemon.PokemonHolder
 
         public void SwapPokemons(int[] firstPosition, int[] secondPosition)
         {
-            Debug.Log(firstPosition[0]+" " + firstPosition[1]);
             (_pokemonsList[firstPosition[0]][firstPosition[1]], _pokemonsList[secondPosition[0]][secondPosition[1]]) = (
                 _pokemonsList[secondPosition[0]][secondPosition[1]], _pokemonsList[firstPosition[0]][firstPosition[1]]);
         }
 
         public void DeletePokemonFromList(int[] position)
         {
-            Debug.Log(position[0]+" " + position[1]);
             _pokemonsList[position[0]][position[1]] = default;
         }
 
