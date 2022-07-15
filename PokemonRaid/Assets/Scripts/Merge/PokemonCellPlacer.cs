@@ -4,6 +4,7 @@ using InputPlayer;
 using Pokemon;
 using Pokemon.PokemonHolder;
 using Pokemon.PokemonHolder.Cell;
+using Pokemon.PokemonHolder.FieldLogic;
 using Pool;
 using UnityEngine;
 

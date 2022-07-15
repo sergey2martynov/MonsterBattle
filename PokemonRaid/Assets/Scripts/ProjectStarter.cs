@@ -3,6 +3,7 @@ using Merge;
 using Player;
 using Pokemon.PokemonHolder;
 using Pokemon.PokemonHolder.Cell;
+using Pokemon.PokemonHolder.FieldLogic;
 using Pool;
 using Shop;
 using StaticData;
@@ -29,8 +30,6 @@ public class ProjectStarter : MonoBehaviour
         var pokemonHolderModel = new PokemonHolderModel();
         var directionTranslator = new InputLogic(_inputView, pokemonHolderModel);
         directionTranslator.Initialize();
-        var fieldLogic = new FieldLogic(_fieldView, pokemonHolderModel);
-        fieldLogic.Initialize();
         pokemonHolderModel.Initialize();
 
         _pokemonSpawner = new PokemonSpawner(_pokemonPrefabHolder, _pokemonParentObject, _testStats, _updateHandler,
@@ -48,6 +47,9 @@ public class ProjectStarter : MonoBehaviour
         var shopLogic = new ShopLogic(_pokemonSpawner, _shopView, shopData, playerData,pokemonHolderModel);
         shopLogic.Initialize();
         directionTranslator.SetShopLogic(shopLogic);
+        
+        var fieldLogic = new FieldLogic(_fieldView, pokemonHolderModel, shopLogic);
+        fieldLogic.Initialize();
 
         var pokemonMerger = new PokemonMerger(_fieldView);
 

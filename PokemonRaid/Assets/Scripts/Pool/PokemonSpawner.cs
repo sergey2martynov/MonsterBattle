@@ -1,6 +1,7 @@
 using Factories;
 using Pokemon;
 using Pokemon.PokemonHolder;
+using Pokemon.PokemonHolder.FieldLogic;
 using StaticData;
 using UnityEngine;
 using UpdateHandlerFolder;

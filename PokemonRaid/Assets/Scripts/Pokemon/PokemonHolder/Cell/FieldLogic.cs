@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using Pokemon.PokemonHolder.FieldLogic;
+using Shop;
 
 namespace Pokemon.PokemonHolder.Cell
 {
@@ -6,21 +8,24 @@ namespace Pokemon.PokemonHolder.Cell
     {
         private FieldView _fieldView;
         private PokemonHolderModel _pokemonHolderModel;
+        private ShopLogic _shopLogic;
         private List<List<CellData>> _cells = new List<List<CellData>>();
 
         private const int NumberOfRow = 4;
         private const int NumberOfColumn = 5;
 
 
-        public FieldLogic(FieldView fieldView, PokemonHolderModel pokemonHolderModel)
+        public FieldLogic(FieldView fieldView, PokemonHolderModel pokemonHolderModel, ShopLogic shopLogic)
         {
             _fieldView = fieldView;
             _pokemonHolderModel = pokemonHolderModel;
+            _shopLogic = shopLogic;
         }
 
         public void Initialize()
         {
             _fieldView.FieldCreated += CreateCellDates;
+            _shopLogic.StartButtonPressed += DisableView;
         }
 
         private void CreateCellDates(List<CellView> cells)
@@ -40,6 +45,11 @@ namespace Pokemon.PokemonHolder.Cell
             }
 
             _pokemonHolderModel.SetCells(_cells);
+        }
+        
+        private void DisableView()
+        {
+            _fieldView.gameObject.SetActive(false);
         }
     }
 }

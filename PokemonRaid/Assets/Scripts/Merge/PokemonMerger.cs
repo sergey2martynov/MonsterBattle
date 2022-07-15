@@ -1,5 +1,6 @@
 ﻿using Pokemon;
 using Pokemon.PokemonHolder;
+using Pokemon.PokemonHolder.FieldLogic;
 
 namespace Merge
 {
