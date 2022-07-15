@@ -44,7 +44,6 @@ namespace Pool
                     _testStats, _parent, 1, out var view);
                 _fieldView.AddPokemonView(view);
                 _model.AddPokemonToList(data);
-                Debug.Log(data);
             }
             else
             {

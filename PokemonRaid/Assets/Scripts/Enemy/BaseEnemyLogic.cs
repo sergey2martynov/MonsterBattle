@@ -70,6 +70,8 @@ namespace Enemy
                 return;
             }
             
+            Debug.Log(_collidersInRange[0]);
+            
             foreach (var collider in _collidersInRange)
             {
                 if (collider == null)
@@ -77,10 +79,15 @@ namespace Enemy
                     continue;
                 }
                 
-                if (collider.TryGetComponent<PokemonViewBase>(out var enemy))
+                if (collider.TryGetComponent<PokemonViewBase>(out var pokemon))
                 {
-                    enemy.TakeDamage(_data.Damage);
+                    pokemon.TakeDamage(_data.Damage);
                 }
+            }
+            
+            for (var i = 0; i < _collidersInRange.Length; i++)
+            {
+                Array.Clear(_collidersInRange, i, _collidersInRange.Length);
             }
 
             _data.AttackTime = Time.time + _data.AttackSpeed;

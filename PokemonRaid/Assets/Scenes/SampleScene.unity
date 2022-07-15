@@ -2294,6 +2294,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 400661891}
     - target: {fileID: 1339164300679375854, guid: 5b76d7af153ba994f990647493604eb2, type: 3}
+      propertyPath: _shopStats
+      value: 
+      objectReference: {fileID: 11400000, guid: e90fe33eaae69a741bae8a4d26792494, type: 2}
+    - target: {fileID: 1339164300679375854, guid: 5b76d7af153ba994f990647493604eb2, type: 3}
       propertyPath: _testStats
       value: 
       objectReference: {fileID: 11400000, guid: b9b3f6e804c26d3469bba7f6d37fa721, type: 2}

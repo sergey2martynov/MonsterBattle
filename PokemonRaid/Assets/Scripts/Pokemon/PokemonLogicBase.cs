@@ -86,7 +86,7 @@ namespace Pokemon
             {
                 return;
             }
-            
+
             foreach (var collider in _collidersInRange)
             {
                 if (collider == null)
@@ -98,6 +98,11 @@ namespace Pokemon
                 {
                     enemy.TakeDamage(_data.Damage);
                 }
+            }
+            
+            for (var i = 0; i < _collidersInRange.Length; i++)
+            {
+                Array.Clear(_collidersInRange, i, _collidersInRange.Length);
             }
 
             _data.AttackTime = Time.time + _data.AttackSpeed;
