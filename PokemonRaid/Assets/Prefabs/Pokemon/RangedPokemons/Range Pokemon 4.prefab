@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1567962777537010808}
   - component: {fileID: 6114086196387224670}
   - component: {fileID: 8399764196032616403}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Range Pokemon 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,6 +46,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 0}
+  _enemyLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!136 &8399764196032616403
 CapsuleCollider:
   m_ObjectHideFlags: 0

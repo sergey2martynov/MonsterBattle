@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Stats.PokemonStatsLvl
+namespace Stats
 {
     [Serializable]
-    public class PokemonStatsByLevel
+    public class EnemyStatsByLevel
     {
         [SerializeField] protected float _moveSpeed;
         [SerializeField] protected float _attackSpeed;

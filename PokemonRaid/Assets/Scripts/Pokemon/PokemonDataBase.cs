@@ -2,7 +2,7 @@
 using System.Data;
 using System.Threading;
 using StaticData;
-using Stats.PokemonStatsLvl;
+using Stats;
 using UnityEngine;
 
 namespace Pokemon
@@ -84,7 +84,20 @@ namespace Pokemon
         public int Health
         {
             get => _health;
-            set => _health = value < 0 ? 0 : value;
+            set
+            {
+                if (value < 0)
+                {
+                    _health = 0;
+                    PokemonDied?.Invoke();
+                }
+                else
+                {
+                    _health = value;
+                }
+                
+                HealthChanged?.Invoke(_health, _maxHealth);
+            }
         }
 
         public int Damage
@@ -157,7 +170,8 @@ namespace Pokemon
             }
         }
         
-        public event Action<int, int> DamageTaken;
+        public event Action<int, int> HealthChanged; 
+        public event Action PokemonDied;
 
         public virtual void Initialize(PokemonStatsByLevel stats)
         {
@@ -167,17 +181,6 @@ namespace Pokemon
         public CancellationTokenSource CreateCancellationTokenSource()
         {
             return Source = new CancellationTokenSource();
-        }
-
-        public void TakeDamage(int damage)
-        {
-            if (damage < 0)
-            {
-                return;
-            }
-
-            Health -= Damage;
-            DamageTaken?.Invoke(_health, _maxHealth);
         }
 
         public void DisposeSource()

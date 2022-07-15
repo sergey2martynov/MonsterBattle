@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3772271423292667753}
   - component: {fileID: 9071255890789025983}
   - component: {fileID: 530267544805779292}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Melee Pokemon 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,7 +48,7 @@ MonoBehaviour:
   _animator: {fileID: 0}
   _enemyLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
 --- !u!65 &530267544805779292
 BoxCollider:
   m_ObjectHideFlags: 0

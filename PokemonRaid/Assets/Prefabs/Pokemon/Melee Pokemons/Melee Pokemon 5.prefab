@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 6134699695049477926}
   - component: {fileID: 951714559188708565}
   - component: {fileID: 3403469025736256748}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Melee Pokemon 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,7 +129,7 @@ MonoBehaviour:
   _animator: {fileID: 0}
   _enemyLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
 --- !u!65 &3403469025736256748
 BoxCollider:
   m_ObjectHideFlags: 0

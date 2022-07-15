@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3989543866183808007}
   - component: {fileID: 3012499359546561603}
   - component: {fileID: 4953030362049525823}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Melee Pokemon 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,6 +46,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 0}
+  _enemyLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!65 &4953030362049525823
 BoxCollider:
   m_ObjectHideFlags: 0

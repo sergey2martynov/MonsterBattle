@@ -11,13 +11,19 @@ namespace Pokemon
         public Transform Transform => transform;
         public Animator Animator => _animator;
         public LayerMask EnemyLayer => _enemyLayer;
-        
+
+        public event Action<int> DamageTaken;
         public event Action ViewDestroyed;
         public event Func<int> LevelRequested;
 
         public void SetViewActive(bool isActive)
         {
             gameObject.SetActive(isActive);
+        }
+        
+        public void TakeDamage(int damage)
+        {
+            DamageTaken?.Invoke(damage);
         }
 
         private void OnDestroy()

@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 3469662680864196125}
   - component: {fileID: 5486772169272369730}
   - component: {fileID: 3988753428746700657}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Range Pokemon 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,7 +129,7 @@ MonoBehaviour:
   _animator: {fileID: 0}
   _enemyLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
 --- !u!136 &3988753428746700657
 CapsuleCollider:
   m_ObjectHideFlags: 0

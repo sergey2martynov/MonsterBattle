@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Stats.PokemonStatsLvl;
+using Stats;
 using UnityEngine;
 
 namespace StaticData

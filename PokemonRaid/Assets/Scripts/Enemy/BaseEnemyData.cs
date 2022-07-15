@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Threading;
 using StaticData;
+using Stats;
 using UnityEngine;
 
 namespace Enemy
 {
     public abstract class BaseEnemyData
     {
-        protected EnemyStats _stats;
+        protected EnemyStatsByLevel _stats;
         protected float _moveSpeed;
         protected float _attackSpeed;
         protected int _maxHealth;
@@ -66,7 +67,20 @@ namespace Enemy
         public int Health
         {
             get => _health;
-            set => _health = value < 0 ? 0 : value;
+            set
+            {
+                if (value < 0)
+                {
+                    _health = 0;
+                    EnemyDied?.Invoke();
+                }
+                else
+                {
+                    _health = value;
+                }
+                
+                HealthChanged?.Invoke(_health, _maxHealth);
+            }
         }
         
         public int Damage
@@ -125,9 +139,10 @@ namespace Enemy
             }
         }
 
-        public event Action<int, int> DamageTaken;
+        public event Action<int, int> HealthChanged; 
+        public event Action EnemyDied;
 
-        public void Initialize(EnemyStats stats)
+        public void Initialize(EnemyStatsByLevel stats)
         {
             _stats = stats;
             SetStats(stats);
@@ -138,18 +153,7 @@ namespace Enemy
             return Source = new CancellationTokenSource();
         }
         
-        public void TakeDamage(int damage)
-        {
-            if (damage < 0)
-            {
-                return;
-            }
-
-            Health -= Damage;
-            DamageTaken?.Invoke(_health, _maxHealth);
-        }
-        
-        protected virtual void SetStats(EnemyStats stats)
+        protected virtual void SetStats(EnemyStatsByLevel stats)
         {
             MoveSpeed = stats.MoveSpeed;
             AttackSpeed = stats.AttackSpeed;

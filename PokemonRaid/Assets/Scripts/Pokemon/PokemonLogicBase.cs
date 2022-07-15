@@ -30,6 +30,8 @@ namespace Pokemon
             _updateHandler.UpdateTicked += Update;
             _view.ViewDestroyed += Dispose;
             _view.LevelRequested += GetPokemonLevel;
+            _view.DamageTaken += OnDamageTaken;
+            _data.PokemonDied += OnPokemonDied;
             _statesToType = new Dictionary<Type, BaseState<TView, TEnemyView>>
             {
                 {typeof(IdleState<TView, TEnemyView>), new IdleState<TView, TEnemyView>(_view, this, _data)},
@@ -41,12 +43,18 @@ namespace Pokemon
 
             };
             _currentState = _statesToType[typeof(AttackWhileMoveState<TView, TEnemyView>)];
-            _collidersInRange = new Collider[_data.MaxTargetsAmount];
+            //_collidersInRange = new Collider[_data.MaxTargetsAmount];
+        }
+
+        public void SetMaxTargetsAmount(int amount)
+        {
+            _collidersInRange = new Collider[amount];
         }
 
         protected virtual void Update()
         {
             _currentState.Update();
+            Attack();
         }
 
         public T SwitchState<T>()
@@ -92,7 +100,23 @@ namespace Pokemon
                 }
             }
 
-            _data.AttackTime = Time.time;
+            _data.AttackTime = Time.time + _data.AttackSpeed;
+        }
+        
+        protected void OnDamageTaken(int damage)
+        {
+            if (damage < 0)
+            {
+                return;
+            }
+            
+            _data.Health -= damage;
+        }
+        
+        protected void OnPokemonDied()
+        {
+            _view.SetViewActive(false);
+            Dispose();
         }
 
         protected virtual void Dispose()
@@ -101,6 +125,8 @@ namespace Pokemon
             _data.DisposeSource();
             _view.ViewDestroyed -= Dispose;
             _view.LevelRequested -= GetPokemonLevel;
+            _view.DamageTaken -= OnDamageTaken;
+            _data.PokemonDied -= OnPokemonDied;
         }
     }
 }

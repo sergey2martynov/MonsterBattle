@@ -14,7 +14,7 @@ using Pokemon.RangedPokemon.FourthTypePokemon;
 using Pokemon.RangedPokemon.SecondTypePokemon;
 using Pokemon.RangedPokemon.ThirdTypePokemon;
 using StaticData;
-using Stats.PokemonStatsLvl;
+using Stats;
 using UnityEngine;
 using UpdateHandlerFolder;
 using Object = UnityEngine.Object;
@@ -83,8 +83,8 @@ namespace Factories
             };
         }
 
-        private TData CreateConcreteInstance<TView, TEnemyView, TLogic, TData>(TView view, Vector3 position, PokemonStatsByLevel stats,
-            Transform parent, out PokemonViewBase concreteView)
+        private TData CreateConcreteInstance<TView, TEnemyView, TLogic, TData>(TView view, Vector3 position,
+            PokemonStatsByLevel stats, Transform parent, out PokemonViewBase concreteView)
             where TView : PokemonViewBase
             where TEnemyView : BaseEnemyView
             where TLogic : PokemonLogicBase<TView, TEnemyView>, new()
@@ -94,9 +94,9 @@ namespace Factories
             concreteView = instantiatedView;
             var data = new TData();
             var logic = new TLogic();
-            Debug.Log(logic);
             logic.Initialize(instantiatedView, data, _model, _updateHandler);
             data.Initialize(stats);
+            logic.SetMaxTargetsAmount(data.MaxTargetsAmount);
             return data;
         }
     }
