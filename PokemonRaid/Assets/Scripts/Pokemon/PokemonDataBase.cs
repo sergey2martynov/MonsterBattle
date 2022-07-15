@@ -24,6 +24,7 @@ namespace Pokemon
         public CancellationTokenSource Source { get; protected set; }
 
         public Vector3 MoveDirection { get; set; }
+        public int[] Indexes { get; set; }
 
         public float MoveSpeed
         {
@@ -173,8 +174,9 @@ namespace Pokemon
         public event Action<int, int> HealthChanged; 
         public event Action PokemonDied;
 
-        public virtual void Initialize(PokemonStatsByLevel stats)
+        public virtual void Initialize(PokemonStatsByLevel stats, int[] indexes)
         {
+            Indexes = indexes;
             SetStats(stats);
         }
 

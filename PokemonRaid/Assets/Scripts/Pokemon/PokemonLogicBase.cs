@@ -31,6 +31,8 @@ namespace Pokemon
             _view.ViewDestroyed += Dispose;
             _view.LevelRequested += GetPokemonLevel;
             _view.DamageTaken += OnDamageTaken;
+            _view.IndexesSet += ChangeIndexes;
+            _view.IndexesRequested += GetIndexes;
             _data.PokemonDied += OnPokemonDied;
             _statesToType = new Dictionary<Type, BaseState<TView, TEnemyView>>
             {
@@ -71,6 +73,16 @@ namespace Pokemon
             }
 
             throw new KeyNotFoundException("There is no state of type " + type);
+        }
+
+        private int[] GetIndexes()
+        {
+            return _data.Indexes;
+        }
+
+        private void ChangeIndexes(int[] newIndexes)
+        {
+            _data.Indexes = newIndexes;
         }
 
         private int GetPokemonLevel()
@@ -131,6 +143,8 @@ namespace Pokemon
             _view.ViewDestroyed -= Dispose;
             _view.LevelRequested -= GetPokemonLevel;
             _view.DamageTaken -= OnDamageTaken;
+            _view.IndexesSet -= ChangeIndexes;
+            _view.IndexesRequested -= GetIndexes;
             _data.PokemonDied -= OnPokemonDied;
         }
     }

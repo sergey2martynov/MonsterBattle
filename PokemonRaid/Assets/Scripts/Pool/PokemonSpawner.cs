@@ -34,14 +34,14 @@ namespace Pool
             _factory = new PokemonTypeFactory(_updateHandler, _model);
         }
 
-        public void CreateFirstLevelRandomPokemon(Vector3 position, PokemonType pokemonType)
+        public void CreateFirstLevelRandomPokemon(Vector3 position, PokemonType pokemonType, int[] indexes)
         {
             if (pokemonType == PokemonType.Melee)
             {
                 var randomNumber = Random.Range(0, _pokemonPrefabHolder.MeleePokemons.Count);
                 var concreteView = _pokemonPrefabHolder.MeleePokemons[randomNumber];
                 var data = _factory.CreateInstance(concreteView, new Vector3(position.x, position.y + 0.5f, position.z),
-                    _testStats, _parent, 1, out var view);
+                    _testStats, _parent, 1, indexes, out var view);
                 _fieldView.AddPokemonView(view);
                 _model.AddPokemonToList(data);
             }
@@ -50,16 +50,16 @@ namespace Pool
                 var randomNumber = Random.Range(0, _pokemonPrefabHolder.RangedPokemons.Count);
                 var concreteView = _pokemonPrefabHolder.RangedPokemons[randomNumber];
                 var data = _factory.CreateInstance(concreteView, new Vector3(position.x, position.y + 0.5f, position.z),
-                    _testStats, _parent, 1, out var view);
+                    _testStats, _parent, 1, indexes, out var view);
                 _fieldView.AddPokemonView(view);
                 _model.AddPokemonToList(data);
             }
         }
         
-        public void CreateFirstLevelPokemon(Vector3 position, PokemonViewBase pokemonViewBase, int level)
+        public void CreateFirstLevelPokemon(Vector3 position, PokemonViewBase pokemonViewBase, int level, int[] indexes)
         {
             var data = _factory.CreateInstance(pokemonViewBase, position + new Vector3(0f, 0.5f, 0f), _testStats,
-                _parent, level, out var view);
+                _parent, level, indexes, out var view);
             _fieldView.AddPokemonView(view);
             _model.AddPokemonToList(data);
         }

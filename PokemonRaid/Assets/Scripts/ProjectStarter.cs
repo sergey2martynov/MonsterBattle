@@ -31,6 +31,7 @@ public class ProjectStarter : MonoBehaviour
         directionTranslator.Initialize();
         var fieldLogic = new FieldLogic(_fieldView, pokemonHolderModel);
         fieldLogic.Initialize();
+        pokemonHolderModel.Initialize();
 
         _pokemonSpawner = new PokemonSpawner(_pokemonPrefabHolder, _pokemonParentObject, _testStats, _updateHandler,
             pokemonHolderModel, _fieldView);

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading;
-using StaticData;
 using Stats;
 using UnityEngine;
 
@@ -21,6 +20,7 @@ namespace Enemy
         public CancellationTokenSource Source { get; protected set; }
         public Vector3 MoveDirection { get; set; }
         public float AttackTime { get; set; }
+        public Vector3 InitialPosition { get; set; }
 
         public float MoveSpeed
         {
