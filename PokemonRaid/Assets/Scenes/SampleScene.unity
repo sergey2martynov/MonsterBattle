@@ -658,6 +658,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee5e6b73b903449a94c0d2e90c4e68e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1473560646 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 664744959684237490, guid: caa1987dff741994084ff95cd943dfde, type: 3}
+  m_PrefabInstance: {fileID: 3287560905400075836}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1479670388
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1158,7 +1169,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -1475,6 +1486,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 664744959684237490, guid: caa1987dff741994084ff95cd943dfde, type: 3}
+      propertyPath: m_margin.z
+      value: 129.64883
+      objectReference: {fileID: 0}
+    - target: {fileID: 664744959684237490, guid: caa1987dff741994084ff95cd943dfde, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 1849070905124399096, guid: caa1987dff741994084ff95cd943dfde, type: 3}
       propertyPath: m_text
       value: Start
@@ -1632,6 +1651,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5753389870703267249, guid: caa1987dff741994084ff95cd943dfde, type: 3}
+      propertyPath: _text
+      value: 
+      objectReference: {fileID: 1473560646}
+    - target: {fileID: 5753389870703267249, guid: caa1987dff741994084ff95cd943dfde, type: 3}
       propertyPath: _startButton
       value: 
       objectReference: {fileID: 142338883}
@@ -1645,6 +1668,7 @@ PrefabInstance:
       objectReference: {fileID: 1983055265}
     m_RemovedComponents:
     - {fileID: 2859066143878145206, guid: caa1987dff741994084ff95cd943dfde, type: 3}
+    - {fileID: 1918412502417795540, guid: caa1987dff741994084ff95cd943dfde, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: caa1987dff741994084ff95cd943dfde, type: 3}
 --- !u!1001 &5882980373408904196
 PrefabInstance:

@@ -15,5 +15,6 @@ namespace StaticData
         public int MaxHealth => _maxHealth;
         public int Health => _health;
         public int Level => _level;
+        public int Coins => _coins;
     }
 }

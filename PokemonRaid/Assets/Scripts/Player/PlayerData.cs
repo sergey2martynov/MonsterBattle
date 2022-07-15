@@ -94,6 +94,7 @@ namespace Player
             MaxHealth = stats.MaxHealth;
             Health = _maxHealth;
             Level = stats.Level;
+            _coins = stats.Coins;
         }
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using Menu;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,7 +11,8 @@ namespace Shop
         [SerializeField] private Button _purchaseMeleeButton;
         [SerializeField] private Button _purchaseRangedButton;
         [SerializeField] private Button _startButton;
-
+        [SerializeField] private TextMeshProUGUI _text;
+        
         public event Action<PokemonType> PurchaseButtonPressed;
         public event Action StartButtonPressed;
 
@@ -25,6 +27,11 @@ namespace Shop
             _purchaseMeleeButton.onClick.RemoveListener(OnPurchaseMeleeButtonClicked);
             _purchaseRangedButton.onClick.RemoveListener(OnPurchaseRangedButtonClicked);
             _startButton.onClick.RemoveListener(OnStartButtonClicked);
+        }
+
+        public void SetTextCoins(int coinsAmount)
+        {
+            _text.text = coinsAmount.ToString();
         }
 
         private void  OnPurchaseMeleeButtonClicked()

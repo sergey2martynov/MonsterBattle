@@ -29,6 +29,7 @@ namespace Shop
         {
             _shopView.PurchaseButtonPressed += TryPurchasePokemon;
             _shopView.StartButtonPressed += OnStartButtonPressed;
+            _shopView.SetTextCoins(_playerData.Coins);
         }
 
         private void TryPurchasePokemon(PokemonType pokemonType)
@@ -38,12 +39,18 @@ namespace Shop
 
             
             _pokemonSpawner.CreateFirstLevelRandomPokemon(_pokemonHolderModel.GetFirstEmptyCell().Position,  pokemonType);
-
+            SetCoins(-_shopDataBase.PokemonCost);
+            _shopView.SetTextCoins(_playerData.Coins);
         }
 
         private void OnStartButtonPressed()
         {
             StartButtonPressed?.Invoke();
+        }
+        
+        private void SetCoins(int coinsAmount)
+        {
+            _playerData.Coins += coinsAmount;
         }
         
         public void Dispose()
