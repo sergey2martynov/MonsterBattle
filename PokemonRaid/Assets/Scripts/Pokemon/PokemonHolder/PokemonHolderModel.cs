@@ -15,13 +15,17 @@ namespace Pokemon.PokemonHolder
 
         public void Initialize()
         {
-            _pokemonsList = new List<List<PokemonDataBase>>
+            _pokemonsList = new List<List<PokemonDataBase>>();
+
+            for (int i = 0; i < 4; i++)
             {
-                new List<PokemonDataBase>(5),
-                new List<PokemonDataBase>(5),
-                new List<PokemonDataBase>(5),
-                new List<PokemonDataBase>(5),
-            };
+                _pokemonsList.Add(new List<PokemonDataBase>());
+                
+                for (int j = 0; j < 5; j++)
+                {
+                    _pokemonsList[i].Add(default);
+                }
+            }
         }
         
         public void SetMoveDirection(Vector3 direction)
@@ -35,13 +39,15 @@ namespace Pokemon.PokemonHolder
 
         public void SwapPokemons(int[] firstPosition, int[] secondPosition)
         {
+            Debug.Log(firstPosition[0]+" " + firstPosition[1]);
             (_pokemonsList[firstPosition[0]][firstPosition[1]], _pokemonsList[secondPosition[0]][secondPosition[1]]) = (
                 _pokemonsList[secondPosition[0]][secondPosition[1]], _pokemonsList[firstPosition[0]][firstPosition[1]]);
         }
 
         public void DeletePokemonFromList(int[] position)
         {
-            _pokemonsList[position[0]].RemoveAt(position[1]);
+            Debug.Log(position[0]+" " + position[1]);
+            _pokemonsList[position[0]][position[1]] = default;
         }
 
         public void SetCells(List<List<CellData>> cells)

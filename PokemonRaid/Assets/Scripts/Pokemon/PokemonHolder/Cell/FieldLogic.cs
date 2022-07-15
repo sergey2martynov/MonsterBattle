@@ -8,8 +8,8 @@ namespace Pokemon.PokemonHolder.Cell
         private PokemonHolderModel _pokemonHolderModel;
         private List<List<CellData>> _cells = new List<List<CellData>>();
 
-        private const int NumberOfRow = 5;
-        private const int NumberOfColumn = 4;
+        private const int NumberOfRow = 4;
+        private const int NumberOfColumn = 5;
 
 
         public FieldLogic(FieldView fieldView, PokemonHolderModel pokemonHolderModel)
@@ -33,7 +33,7 @@ namespace Pokemon.PokemonHolder.Cell
             
                 for (int j = 0; j < NumberOfColumn; j++)
                 {
-                    _cells[i].Add(new CellData(cells[count].transform.position, j, i));
+                    _cells[i].Add(new CellData(cells[count].transform.position, i, j));
                 
                     count++;
                 }

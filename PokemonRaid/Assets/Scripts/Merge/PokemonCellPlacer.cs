@@ -88,18 +88,32 @@ namespace Merge
 
                     Object.Destroy(_targetPokemon.gameObject);
                     _pokemonSpawner.CreateFirstLevelPokemon(currentCell.transform.position, _targetPokemon,
-                        _pokemonForSwap.GetPokemonLevel() + 1);
+                        _pokemonForSwap.GetPokemonLevel() + 1, _pokemonForSwap.GetIndexes());
                     _fieldView.PokemonViews.Remove(_pokemonForSwap);
+
+                    _pokemonHolderModel.DeletePokemonFromList(_pokemonForSwap.GetIndexes());
+                    _pokemonHolderModel.DeletePokemonFromList(_targetPokemon.GetIndexes());
+                    
                     Object.Destroy(_pokemonForSwap.gameObject);
                 }
                 else if (IsSwap())
                 {
+                    int[] tempIndexes = new int[2];
+                    _targetPokemon.GetIndexes().CopyTo(tempIndexes, 0);
+                    
+                    int[] tempIndexes2 = new int[2];
+                    _pokemonForSwap.GetIndexes().CopyTo(tempIndexes, 0);
+                    
+                    _pokemonHolderModel.SwapPokemons(_targetPokemon.GetIndexes(),_pokemonForSwap.GetIndexes());
+                    _targetPokemon.SetIndexes(tempIndexes2);
+                    _pokemonForSwap.SetIndexes(tempIndexes);
+
                     _targetPokemon.transform.DOMoveX(_pokemonForSwap.transform.position.x, _moveDuration);
                     _targetPokemon.transform.DOMoveZ(_pokemonForSwap.transform.position.z, _moveDuration);
 
                     _pokemonForSwap.transform.DOMoveX(_fixedCell.gameObject.transform.position.x, _moveDuration);
                     _pokemonForSwap.transform.DOMoveZ(_fixedCell.gameObject.transform.position.z, _moveDuration);
-
+                    
                     _pokemonHolderModel.SetValueCellData(_fixedIndex, false);
                 }
                 else

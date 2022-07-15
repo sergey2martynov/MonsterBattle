@@ -16,4 +16,4 @@ MonoBehaviour:
   _maxHealth: 5
   _health: 5
   _level: 2
-  _coins: 100
+  _coins: 300

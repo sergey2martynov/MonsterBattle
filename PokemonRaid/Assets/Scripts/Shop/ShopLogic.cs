@@ -39,8 +39,9 @@ namespace Shop
                return;
 
             var cell = _pokemonHolderModel.GetFirstEmptyCell();
+            int[] indexes = {cell.Row, cell.Column};
             _pokemonSpawner.CreateFirstLevelRandomPokemon(cell.Position,
-                pokemonType);
+                pokemonType,indexes);
             
             SetCoins(-_shopData.PokemonCost);
             _shopView.SetTextCoins(_playerData.Coins);
