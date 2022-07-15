@@ -20,6 +20,7 @@ public class ProjectStarter : MonoBehaviour
     [SerializeField] private FieldView _fieldView;
     [SerializeField] private InputView _inputView;
     [SerializeField] private PlayerStats _playerStats;
+    [SerializeField] private ShopStats _shopStats;
     
     private PokemonSpawner _pokemonSpawner;
 
@@ -41,7 +42,8 @@ public class ProjectStarter : MonoBehaviour
         playerLogic.Initialize(_playerView, playerData, _updateHandler);
         pokemonHolderModel.SetPlayerData(playerData);
 
-        var shopData = new ShopDataBase();
+        var shopData = new ShopData();
+        shopData.Initialize(_shopStats);
         var shopLogic = new ShopLogic(_pokemonSpawner, _shopView, shopData, playerData,pokemonHolderModel);
         shopLogic.Initialize();
         directionTranslator.SetShopLogic(shopLogic);

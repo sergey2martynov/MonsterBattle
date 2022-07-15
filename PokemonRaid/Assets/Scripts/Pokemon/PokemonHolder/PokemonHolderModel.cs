@@ -38,6 +38,17 @@ namespace Pokemon.PokemonHolder
             return cell;
         }
 
+        public bool CheckEmptyCells()
+        {
+            foreach (var cell in _cells.SelectMany(rowCells => rowCells))
+            {
+                if (cell.EmptyState)
+                    return true;
+            }
+
+            return false;
+        }
+
         public void AddPokemonToList(PokemonDataBase pokemonData)
         {
             if (!_pokemons.Contains(pokemonData))

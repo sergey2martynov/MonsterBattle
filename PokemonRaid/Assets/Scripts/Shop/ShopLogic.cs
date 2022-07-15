@@ -10,17 +10,18 @@ namespace Shop
     {
         private PokemonSpawner _pokemonSpawner;
         private ShopView _shopView;
-        private ShopDataBase _shopDataBase;
+        private ShopData _shopData;
         private PokemonHolderModel _pokemonHolderModel;
         private PlayerData _playerData;
-        
+
         public event Action StartButtonPressed;
 
-        public ShopLogic(PokemonSpawner pokemonSpawner, ShopView shopView, ShopDataBase shopDataBase, PlayerData playerData, PokemonHolderModel pokemonHolderModel)
+        public ShopLogic(PokemonSpawner pokemonSpawner, ShopView shopView, ShopData shopData, PlayerData playerData,
+            PokemonHolderModel pokemonHolderModel)
         {
             _pokemonSpawner = pokemonSpawner;
             _shopView = shopView;
-            _shopDataBase = shopDataBase;
+            _shopData = shopData;
             _playerData = playerData;
             _pokemonHolderModel = pokemonHolderModel;
         }
@@ -34,12 +35,14 @@ namespace Shop
 
         private void TryPurchasePokemon(PokemonType pokemonType)
         {
-            // if (_playerData.Coins < _shopDataBase.PokemonCost || _pokemonHolderModel.GetFirstEmptyCell() == null)
-            //     return;
+            if (_playerData.Coins < _shopData.PokemonCost || !_pokemonHolderModel.CheckEmptyCells())
+               return;
 
+            var cell = _pokemonHolderModel.GetFirstEmptyCell();
+            _pokemonSpawner.CreateFirstLevelRandomPokemon(cell.Position,
+                pokemonType);
             
-            _pokemonSpawner.CreateFirstLevelRandomPokemon(_pokemonHolderModel.GetFirstEmptyCell().Position,  pokemonType);
-            SetCoins(-_shopDataBase.PokemonCost);
+            SetCoins(-_shopData.PokemonCost);
             _shopView.SetTextCoins(_playerData.Coins);
         }
 
@@ -47,16 +50,15 @@ namespace Shop
         {
             StartButtonPressed?.Invoke();
         }
-        
+
         private void SetCoins(int coinsAmount)
         {
             _playerData.Coins += coinsAmount;
         }
-        
+
         public void Dispose()
         {
             _shopView.PurchaseButtonPressed -= TryPurchasePokemon;
         }
-
     }
 }

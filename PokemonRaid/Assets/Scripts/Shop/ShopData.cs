@@ -1,8 +1,9 @@
 using System;
+using StaticData;
 
 namespace Shop
 {
-    public class ShopDataBase
+    public class ShopData
     {
         private int _pokemonCost;
 
@@ -19,6 +20,11 @@ namespace Shop
 
                 _pokemonCost = value;
             }
+        }
+
+        public void Initialize(ShopStats shopStats)
+        {
+            PokemonCost = shopStats.PokemonCost;
         }
     }
 }
