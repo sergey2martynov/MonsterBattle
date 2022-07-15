@@ -91,7 +91,7 @@ namespace Pokemon
             return _data.Level;
         }
 
-        private void Attack()
+        protected virtual void Attack()
         {
             _attackCount = 0;
             var collidersAmount = Physics.OverlapSphereNonAlloc(_view.Transform.position, _data.AttackRange, _collidersInRange, _view.EnemyLayer);
