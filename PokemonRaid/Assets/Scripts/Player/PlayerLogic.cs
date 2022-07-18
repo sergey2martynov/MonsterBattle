@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Pokemon.PokemonHolder;
+using UnityEngine;
 using UpdateHandlerFolder;
 
 namespace Player
@@ -8,6 +9,7 @@ namespace Player
         private PlayerView _view;
         private PlayerData _data;
         private UpdateHandler _updateHandler;
+        private PokemonHolderModel _pokemonHolderModel;
 
         public virtual void Initialize( PlayerView playerView, PlayerData playerData,
             UpdateHandler updateHandler)

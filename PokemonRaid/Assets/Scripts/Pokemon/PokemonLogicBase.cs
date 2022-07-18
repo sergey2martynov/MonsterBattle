@@ -46,7 +46,6 @@ namespace Pokemon
 
             };
             _currentState = _statesToType[typeof(AttackWhileMoveState<TView, TEnemyView>)];
-            //_collidersInRange = new Collider[_data.MaxTargetsAmount];
         }
 
         public void SetMaxTargetsAmount(int amount)
@@ -149,6 +148,13 @@ namespace Pokemon
             _view.IndexesSet -= ChangeIndexes;
             _view.IndexesRequested -= GetIndexes;
             _data.PokemonDied -= OnPokemonDied;
+        }
+
+        public void RotateAt(Vector3 point)
+        {
+            var destinationRotation = Quaternion.LookRotation(point, Vector3.up);
+            _view.Transform.rotation =
+                Quaternion.RotateTowards(_view.Transform.rotation, destinationRotation, 720 * Time.deltaTime);
         }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using Enemy;
 using Stats;
 using UnityEngine;
 
@@ -8,16 +10,16 @@ namespace StaticData
     [CreateAssetMenu(fileName = "EnemyStats", menuName = "StaticData/EnemyStats", order = 53)]
     public class EnemyStats : ScriptableObject
     {
-        [SerializeField] private List<EnemyStatsByLevel> _stats;
+        [SerializeField] private List<EnemyStatsByType> _statsByType;
 
-        public EnemyStatsByLevel GetStats(int level)
+        public EnemyStatsByType GetTypeStats(BaseEnemyView enemyView)
         {
-            if (level > _stats.Count)
+            foreach (var stats in _statsByType.Where(stats => stats.ViewPrefab.GetType() == enemyView.GetType()))
             {
-                throw new ArgumentException("Wrong level parameter" + level);
+                return stats;
             }
-
-            return _stats[level - 1];
+            
+            throw new ArgumentException("There is no stats of type " + enemyView.GetType());
         }
     }
 }

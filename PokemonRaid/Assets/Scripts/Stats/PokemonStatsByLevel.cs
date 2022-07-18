@@ -1,4 +1,6 @@
 ﻿using System;
+using Menu;
+using Pokemon;
 using UnityEngine;
 
 namespace Stats
@@ -14,7 +16,7 @@ namespace Stats
         [SerializeField] protected int _maxLevel;
         [SerializeField] protected int _maxTargetsAmount;
         [SerializeField] protected int _attackRange;
-        
+
         public float MoveSpeed => _moveSpeed;
         public float AttackSpeed => _attackSpeed;
         public int MaxHealth => _maxHealth;

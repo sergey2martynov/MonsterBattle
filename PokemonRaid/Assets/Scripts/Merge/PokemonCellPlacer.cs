@@ -88,7 +88,7 @@ namespace Merge
                     _fieldView.PokemonViews.Remove(_targetPokemon);
 
                     Object.Destroy(_targetPokemon.gameObject);
-                    _pokemonSpawner.CreateFirstLevelPokemon(currentCell.transform.position, _targetPokemon,
+                    _pokemonSpawner.CreatePokemon(currentCell.transform.position, _targetPokemon,
                         _pokemonForSwap.GetPokemonLevel() + 1, _pokemonForSwap.GetIndexes());
                     _fieldView.PokemonViews.Remove(_pokemonForSwap);
 

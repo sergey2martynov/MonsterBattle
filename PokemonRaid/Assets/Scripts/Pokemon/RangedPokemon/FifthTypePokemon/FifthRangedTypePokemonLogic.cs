@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-using DG.Tweening;
 using Enemy;
 using Factories;
 using Projectile;
@@ -53,8 +52,6 @@ namespace Pokemon.RangedPokemon.FifthTypePokemon
         {
             var token = _data.Source?.Token ?? _data.CreateCancellationTokenSource().Token;
             await MoveProjectile(token, projectileView, enemyView);
-
-           
         }
 
         private async Task MoveProjectile(CancellationToken token, ProjectileViewBase projectileView,
@@ -62,18 +59,43 @@ namespace Pokemon.RangedPokemon.FifthTypePokemon
         {
             var startTime = Time.time;
             var initialPosition = projectileView.transform.position;
+            RotateAt(enemyView.Transform, projectileView.transform, 2);
 
-            while (Time.time <= startTime + 1)
+            while (Time.time <= startTime + 0.5f)
             {
+                RotateAt(enemyView.transform, projectileView.transform, 2 / Time.deltaTime);
                 projectileView.transform.position = Vector3.Lerp(initialPosition, enemyView.transform.position,
-                    (Time.time - startTime) / 1);
+                    (Time.time - startTime) / 0.5f);
 
                 await Task.Yield();
             }
             
-            Object.Destroy(projectileView);
+            Object.Destroy(projectileView.gameObject);
 
             enemyView.TakeDamage(_data.Damage);
+        }
+
+        private void RotateAt(Transform point, Transform obj, float divider)
+        {
+            var angle = CalculateAngle(point, obj) * Mathf.PI / 180;
+
+            if (Mathf.Abs(angle) < 0.01f)
+            {
+                return;
+            }
+            
+            var rotation = new Quaternion(0f, Mathf.Sin(angle / divider), 0f, Mathf.Cos(angle / divider));
+            obj.rotation *= rotation;
+        }
+
+        private float CalculateAngle(Transform point, Transform obj)
+        {
+            if ((point.position - obj.position).magnitude >= 0.1f)
+            {
+                return Vector3.Angle(obj.forward, point.position - obj.position);
+            }
+
+            return 0;
         }
     }
 }

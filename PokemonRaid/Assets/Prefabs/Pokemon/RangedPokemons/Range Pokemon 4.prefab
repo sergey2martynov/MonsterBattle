@@ -49,6 +49,7 @@ MonoBehaviour:
   _enemyLayer:
     serializedVersion: 2
     m_Bits: 64
+  _projectilePrefab: {fileID: 3376967517250490170, guid: 6136d3c7cd1e7a64fa1478f8855c5d0e, type: 3}
 --- !u!136 &8399764196032616403
 CapsuleCollider:
   m_ObjectHideFlags: 0

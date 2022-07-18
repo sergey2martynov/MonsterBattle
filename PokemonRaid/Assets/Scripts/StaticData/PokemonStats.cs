@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using Pokemon;
 using Stats;
 using UnityEngine;
 
@@ -8,16 +10,16 @@ namespace StaticData
     [CreateAssetMenu(fileName = "PokemonStats", menuName = "StaticData/PokemonStats", order = 52)]
     public class PokemonStats : ScriptableObject
     {
-        [SerializeField] private List<PokemonStatsByLevel> _stats;
-
-        public PokemonStatsByLevel GetStats(int level)
+        [SerializeField] private List<PokemonStatsByType> _statsByTypes;
+        
+        public PokemonStatsByType GetTypeStats(PokemonViewBase pokemonView)
         {
-            if (level > _stats.Count)
+            foreach (var stats in _statsByTypes.Where(stats => stats.ViewPrefab.GetType() == pokemonView.GetType()))
             {
-                throw new ArgumentException("Wrong level parameter" + level);
+                return stats;
             }
 
-            return _stats[level - 1];
+            throw new ArgumentException("There is no stats of type " + pokemonView.GetType());
         }
     }
 }

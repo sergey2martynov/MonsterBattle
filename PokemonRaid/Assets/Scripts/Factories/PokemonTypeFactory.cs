@@ -35,7 +35,7 @@ namespace Factories
         public PokemonDataBase CreateInstance(PokemonViewBase view, Vector3 position, PokemonStats stats, Transform parent,
             int level, int[] indexes, out PokemonViewBase baseView)
         {
-            var statsByLevel = stats.GetStats(level);
+            var statsByLevel = stats.GetTypeStats(view).GetLevelStats(level);
 
             return view switch
             {

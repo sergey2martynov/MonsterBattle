@@ -8,10 +8,9 @@ Shader "Unlit/Cell Shader"
     }
     SubShader
     {
-        Tags { "RenderType"="Transparent" "RenderPipeline" = "UniversalRenderPipeline"}
+        Tags { "RenderType"="TransparencyCutout" "RenderPipeline" = "UniversalRenderPipeline"}
         LOD 100
-
-        //Transparent
+        Cull off
         
         Pass
         {
@@ -54,13 +53,18 @@ Shader "Unlit/Cell Shader"
             fixed4 frag (v2f i) : SV_Target
             {
                 // sample the texture
-                //fixed4 col = tex2D(_MainTex, i.uv);
-                fixed4 col = _Color;
-                col.a *= i.uv.x;
+                fixed4 col = tex2D(_MainTex, i.uv) * _Color;
+                //col.a *= i.uv.x;
                 // apply fog
                 UNITY_APPLY_FOG(i.fogCoord, col);
 
-                if (i.uv.y > _UVTransparency)
+                if (i.uv.x > _UVTransparency && 1 - i.uv.x > _UVTransparency
+                    && i.uv.y > _UVTransparency && 1 - i.uv.y > _UVTransparency)
+                {
+                    discard;
+                }
+
+                if (col.a < 0.9)
                 {
                     discard;
                 }

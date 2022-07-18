@@ -8,11 +8,11 @@ namespace Shop
 {
     public class ShopLogic
     {
-        private PokemonSpawner _pokemonSpawner;
-        private ShopView _shopView;
-        private ShopData _shopData;
-        private PokemonHolderModel _pokemonHolderModel;
-        private PlayerData _playerData;
+        private readonly PokemonSpawner _pokemonSpawner;
+        private readonly ShopView _shopView;
+        private readonly ShopData _shopData;
+        private readonly PokemonHolderModel _pokemonHolderModel;
+        private readonly PlayerData _playerData;
 
         public event Action StartButtonPressed;
 
@@ -60,6 +60,7 @@ namespace Shop
         public void Dispose()
         {
             _shopView.PurchaseButtonPressed -= TryPurchasePokemon;
+            _shopView.StartButtonPressed -= OnStartButtonPressed;
         }
     }
 }

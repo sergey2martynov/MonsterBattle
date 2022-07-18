@@ -12,31 +12,82 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db49ab0194414717947e554e1521b2f1, type: 3}
   m_Name: EnemyStats
   m_EditorClassIdentifier: 
-  _stats:
-  - _moveSpeed: 1
-    _attackSpeed: 1
-    _maxHealth: 1
-    _health: 1
-    _damage: 1
-    _level: 1
-    _maxLevel: 5
-    _maxTargetsAmount: 1
-    _attackRange: 5
-  - _moveSpeed: 1
-    _attackSpeed: 1
-    _maxHealth: 1
-    _health: 1
-    _damage: 1
-    _level: 1
-    _maxLevel: 5
-    _maxTargetsAmount: 1
-    _attackRange: 5
-  - _moveSpeed: 1
-    _attackSpeed: 1
-    _maxHealth: 1
-    _health: 1
-    _damage: 1
-    _level: 1
-    _maxLevel: 5
-    _maxTargetsAmount: 1
-    _attackRange: 5
+  _statsByType:
+  - _viewPrefab: {fileID: 9183078253694199673, guid: 1e7dbad283bace0409cf0b65541694e8, type: 3}
+    _statsByLevel:
+    - _moveSpeed: 1
+      _attackSpeed: 1
+      _maxHealth: 2
+      _damage: 1
+      _level: 1
+      _maxLevel: 3
+      _maxTargetsAmount: 1
+      _attackRange: 3
+    - _moveSpeed: 1
+      _attackSpeed: 1
+      _maxHealth: 2
+      _damage: 1
+      _level: 2
+      _maxLevel: 3
+      _maxTargetsAmount: 1
+      _attackRange: 3
+    - _moveSpeed: 1
+      _attackSpeed: 1
+      _maxHealth: 2
+      _damage: 1
+      _level: 3
+      _maxLevel: 3
+      _maxTargetsAmount: 1
+      _attackRange: 3
+  - _viewPrefab: {fileID: 8820750684431199177, guid: 0fd64ebec5770e943b1272cc258a1a2b, type: 3}
+    _statsByLevel:
+    - _moveSpeed: 1
+      _attackSpeed: 1
+      _maxHealth: 2
+      _damage: 1
+      _level: 1
+      _maxLevel: 3
+      _maxTargetsAmount: 1
+      _attackRange: 6
+    - _moveSpeed: 1
+      _attackSpeed: 1
+      _maxHealth: 2
+      _damage: 1
+      _level: 2
+      _maxLevel: 3
+      _maxTargetsAmount: 1
+      _attackRange: 6
+    - _moveSpeed: 1
+      _attackSpeed: 1
+      _maxHealth: 2
+      _damage: 1
+      _level: 3
+      _maxLevel: 3
+      _maxTargetsAmount: 1
+      _attackRange: 6
+  - _viewPrefab: {fileID: 8932770440331272360, guid: 490631de8a401b842873a15150a348ee, type: 3}
+    _statsByLevel:
+    - _moveSpeed: 1
+      _attackSpeed: 1
+      _maxHealth: 2
+      _damage: 1
+      _level: 1
+      _maxLevel: 3
+      _maxTargetsAmount: 1
+      _attackRange: 6
+    - _moveSpeed: 1
+      _attackSpeed: 1
+      _maxHealth: 2
+      _damage: 1
+      _level: 2
+      _maxLevel: 3
+      _maxTargetsAmount: 1
+      _attackRange: 6
+    - _moveSpeed: 1
+      _attackSpeed: 1
+      _maxHealth: 2
+      _damage: 1
+      _level: 3
+      _maxLevel: 3
+      _maxTargetsAmount: 1
+      _attackRange: 6

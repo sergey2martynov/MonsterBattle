@@ -35,6 +35,13 @@ namespace Pokemon.PokemonHolder
                 pokemon.MoveDirection = direction;
                 _playerData.MoveDirection = direction;
             }
+
+            // foreach (var pokemon in _pokemonsList.SelectMany(pokemonList => pokemonList))
+            // {
+            //     pokemon.MoveDirection = direction;
+            // }
+            //
+            // _playerData.MoveDirection = direction;
         }
 
         public void SwapPokemons(int[] firstPosition, int[] secondPosition)
@@ -66,13 +73,7 @@ namespace Pokemon.PokemonHolder
 
         public bool CheckEmptyCells()
         {
-            foreach (var cell in _cells.SelectMany(rowCells => rowCells))
-            {
-                if (cell.EmptyState)
-                    return true;
-            }
-
-            return false;
+            return _cells.SelectMany(rowCells => rowCells).Any(cell => cell.EmptyState);
         }
 
         public void AddPokemonToList(PokemonDataBase pokemonData)
@@ -81,6 +82,9 @@ namespace Pokemon.PokemonHolder
             {
                 _pokemons.Add(pokemonData);
             }
+
+            // _pokemonsList[indexes[0]][indexes[1]] = pokemonData;
+
         }
 
         public void RemovePokemonFromList(PokemonDataBase pokemonData)
