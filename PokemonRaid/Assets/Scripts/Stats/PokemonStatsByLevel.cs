@@ -1,6 +1,4 @@
 ﻿using System;
-using Menu;
-using Pokemon;
 using UnityEngine;
 
 namespace Stats
@@ -8,14 +6,14 @@ namespace Stats
     [Serializable]
     public class PokemonStatsByLevel
     {
-        [SerializeField] protected float _moveSpeed;
-        [SerializeField] protected float _attackSpeed;
-        [SerializeField] protected int _maxHealth;
-        [SerializeField] protected int _damage;
-        [SerializeField] protected int _level;
-        [SerializeField] protected int _maxLevel;
-        [SerializeField] protected int _maxTargetsAmount;
-        [SerializeField] protected int _attackRange;
+        public float _moveSpeed;
+        public float _attackSpeed;
+        public int _maxHealth;
+        public int _damage;
+        public int _level;
+        public int _maxLevel;
+        public int _maxTargetsAmount;
+        public int _attackRange;
 
         public float MoveSpeed => _moveSpeed;
         public float AttackSpeed => _attackSpeed;

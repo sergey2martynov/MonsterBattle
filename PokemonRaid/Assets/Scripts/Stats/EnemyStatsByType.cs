@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using Attributes;
 using Enemy;
-using UnityEngine;
 
 namespace Stats
 {
     [Serializable]
     public class EnemyStatsByType
     {
-        [SerializeField] private BaseEnemyView _viewPrefab;
-        [SerializeField] private List<EnemyStatsByLevel> _statsByLevel;
+        public BaseEnemyView _viewPrefab;
+        [NamedList(new []{"Level 1", "Level 2", "Level 3"})]
+        public List<EnemyStatsByLevel> _statsByLevel;
 
         public BaseEnemyView ViewPrefab => _viewPrefab;
 
@@ -21,6 +22,16 @@ namespace Stats
             }
 
             return _statsByLevel[level - 1];
+        }
+
+        public void AddNewItem()
+        {
+            _statsByLevel.Add(new EnemyStatsByLevel());
+        }
+
+        public void RemoveItem(int index)
+        {
+            _statsByLevel.RemoveAt(index);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Attributes;
 using Enemy;
 using Stats;
 using UnityEngine;
@@ -10,7 +11,9 @@ namespace StaticData
     [CreateAssetMenu(fileName = "EnemyStats", menuName = "StaticData/EnemyStats", order = 53)]
     public class EnemyStats : ScriptableObject
     {
-        [SerializeField] private List<EnemyStatsByType> _statsByType;
+        [NamedList(new []{"Melee enemy", "Ranged enemy", "Flying enemy"})]
+        //[NamedProperty("Enemy type")]
+        public List<EnemyStatsByType> _statsByType;
 
         public EnemyStatsByType GetTypeStats(BaseEnemyView enemyView)
         {

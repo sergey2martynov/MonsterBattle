@@ -1,12 +1,11 @@
-﻿using System.Linq;
-using Attributes;
-using UnityEngine;
+﻿using Attributes;
 using UnityEditor;
+using UnityEngine;
 
 namespace Editor
 {
-    [CustomPropertyDrawer(typeof(NamedListAttribute))]
-    public class NamedListDrawer : PropertyDrawer
+    [CustomPropertyDrawer(typeof(NamedPropertyAttribute))]
+    public class NamedPropertyDrawer : PropertyDrawer
     {
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {
@@ -19,9 +18,7 @@ namespace Editor
             
             try 
             {
-                var path = property.propertyPath;
-                var pos = int.Parse(path.Split('[').LastOrDefault()?.TrimEnd(']') ?? string.Empty);
-                EditorGUI.PropertyField(rect, property, new GUIContent(((NamedListAttribute) attribute).names[pos]), true);
+                EditorGUI.PropertyField(rect, property, new GUIContent(((NamedPropertyAttribute) attribute).name ), true);
             } 
             catch 
             {
