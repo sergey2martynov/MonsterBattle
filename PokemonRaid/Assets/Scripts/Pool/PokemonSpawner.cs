@@ -1,7 +1,7 @@
 using Factories;
 using Pokemon;
 using Pokemon.PokemonHolder;
-using Pokemon.PokemonHolder.FieldLogic;
+using Pokemon.PokemonHolder.Field;
 using StaticData;
 using UnityEngine;
 using UpdateHandlerFolder;
@@ -44,7 +44,7 @@ namespace Pool
                 var data = _factory.CreateInstance(concreteView, new Vector3(position.x, position.y + 0.5f, position.z),
                     _stats, _parent, 1, indexes, out var view);
                 _fieldView.AddPokemonView(view);
-                _model.AddPokemonToList(data);
+                _model.AddPokemonToList(data, indexes);
             }
             else
             {
@@ -53,7 +53,7 @@ namespace Pool
                 var data = _factory.CreateInstance(concreteView, new Vector3(position.x, position.y + 0.5f, position.z),
                     _stats, _parent, 1, indexes, out var view);
                 _fieldView.AddPokemonView(view);
-                _model.AddPokemonToList(data);
+                _model.AddPokemonToList(data, indexes);
             }
         }
         
@@ -62,7 +62,7 @@ namespace Pool
             var data = _factory.CreateInstance(pokemonViewBase, position + new Vector3(0f, 0.5f, 0f), _stats,
                 _parent, level, indexes, out var view);
             _fieldView.AddPokemonView(view);
-            _model.AddPokemonToList(data);
+            _model.AddPokemonToList(data, indexes);
         }
     }
 }

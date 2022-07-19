@@ -4,7 +4,7 @@ using Merge;
 using Player;
 using Pokemon.PokemonHolder;
 using Pokemon.PokemonHolder.Cell;
-using Pokemon.PokemonHolder.FieldLogic;
+using Pokemon.PokemonHolder.Field;
 using Pool;
 using Shop;
 using StaticData;

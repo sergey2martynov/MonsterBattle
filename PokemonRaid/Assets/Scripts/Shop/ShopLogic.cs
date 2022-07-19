@@ -2,7 +2,6 @@ using System;
 using Player;
 using Pokemon.PokemonHolder;
 using Pool;
-using UnityEngine;
 
 namespace Shop
 {

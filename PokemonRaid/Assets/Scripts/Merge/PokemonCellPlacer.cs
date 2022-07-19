@@ -4,7 +4,7 @@ using InputPlayer;
 using Pokemon;
 using Pokemon.PokemonHolder;
 using Pokemon.PokemonHolder.Cell;
-using Pokemon.PokemonHolder.FieldLogic;
+using Pokemon.PokemonHolder.Field;
 using Pool;
 using UnityEngine;
 
@@ -85,27 +85,25 @@ namespace Merge
                 if (IsMerge())
                 {
                     var currentCell = GetCurrentCell(_pokemonForSwap.transform.position, false);
-                    _fieldView.PokemonViews.Remove(_targetPokemon);
-
-                    Object.Destroy(_targetPokemon.gameObject);
-                    _pokemonSpawner.CreatePokemon(currentCell.transform.position, _targetPokemon,
-                        _pokemonForSwap.GetPokemonLevel() + 1, _pokemonForSwap.GetIndexes());
-                    _fieldView.PokemonViews.Remove(_pokemonForSwap);
-
                     _pokemonHolderModel.DeletePokemonFromList(_pokemonForSwap.GetIndexes());
                     _pokemonHolderModel.DeletePokemonFromList(_targetPokemon.GetIndexes());
-                    
+                    _fieldView.PokemonViews.Remove(_targetPokemon);
+                    _fieldView.PokemonViews.Remove(_pokemonForSwap);
+                    _pokemonSpawner.CreatePokemon(currentCell.transform.position, _targetPokemon,
+                        _pokemonForSwap.GetPokemonLevel() + 1, _pokemonForSwap.GetIndexes());
+
                     Object.Destroy(_pokemonForSwap.gameObject);
+                    Object.Destroy(_targetPokemon.gameObject);
                 }
                 else if (IsSwap())
                 {
-                    int[] tempIndexes = new int[2];
+                    var tempIndexes = new int[2];
                     _targetPokemon.GetIndexes().CopyTo(tempIndexes, 0);
                     
-                    int[] tempIndexes2 = new int[2];
+                    var tempIndexes2 = new int[2];
                     _pokemonForSwap.GetIndexes().CopyTo(tempIndexes, 0);
                     
-                    _pokemonHolderModel.SwapPokemons(_targetPokemon.GetIndexes(),_pokemonForSwap.GetIndexes());
+                    _pokemonHolderModel.SwapPokemons(tempIndexes,tempIndexes2);
                     _targetPokemon.SetIndexes(tempIndexes2);
                     _pokemonForSwap.SetIndexes(tempIndexes);
 
@@ -119,7 +117,8 @@ namespace Merge
                 }
                 else
                 {
-                    var nearestCell = GetNearestEmptyCell(_targetPokemon.transform.position);
+                    var nearestCell = GetNearestEmptyCell(_targetPokemon.transform.position, out var cellData);
+                    _pokemonHolderModel.SwapPokemons(_targetPokemon.GetIndexes(), new []{cellData.Row, cellData.Column});
 
                     _targetPokemon.transform.DOMoveX(nearestCell.transform.position.x, _moveDuration);
                     _targetPokemon.transform.DOMoveZ(nearestCell.transform.position.z, _moveDuration);
@@ -129,12 +128,13 @@ namespace Merge
             }
         }
 
-        private CellView GetNearestEmptyCell(Vector3 pokemonPosition)
+        private CellView GetNearestEmptyCell(Vector3 pokemonPosition, out CellData outCellData)
         {
             float distance = 200f;
             float tempDistance;
             int index = 0;
             CellData cellData;
+            outCellData = default;
 
             for (int i = 0; i < _cellViews.Count; i++)
             {
@@ -147,6 +147,7 @@ namespace Merge
                 {
                     index = i;
                     distance = tempDistance;
+                    outCellData = cellData;
                 }
             }
 

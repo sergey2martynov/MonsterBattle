@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Pokemon.PokemonHolder.Cell;
 using UnityEngine;
 
-namespace Pokemon.PokemonHolder.FieldLogic
+namespace Pokemon.PokemonHolder.Field
 {
     public class FieldView : MonoBehaviour
     {

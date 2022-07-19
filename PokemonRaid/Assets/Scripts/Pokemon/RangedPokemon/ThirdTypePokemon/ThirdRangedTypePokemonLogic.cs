@@ -92,7 +92,7 @@ namespace Pokemon.RangedPokemon.ThirdTypePokemon
         {
             if ((point.position - obj.position).magnitude >= 1f)
             {
-                return Vector3.Angle(obj.forward, point.position - obj.position);
+                return Vector3.SignedAngle(obj.forward, point.position - obj.position, Vector3.up);
             }
 
             return 0;

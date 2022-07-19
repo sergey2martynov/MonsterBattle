@@ -13,56 +13,21 @@ MonoBehaviour:
   m_Name: LevelDataHolder
   m_EditorClassIdentifier: 
   _levelData:
-  - _level: 1
+  - _level: 0
     _spawnPositions:
     - _enemyPrefabs:
       - {fileID: 9183078253694199673, guid: 1e7dbad283bace0409cf0b65541694e8, type: 3}
       _positions:
-      - {x: -2.5, y: 0, z: 40}
-      - {x: -1, y: 0, z: 40}
-      - {x: 0.5, y: 0, z: 40}
-      - {x: 2, y: 0, z: 40}
-      - {x: -2.5, y: 0, z: 42}
-      - {x: -1, y: 0, z: 42}
-      - {x: 0.5, y: 0, z: 42}
-      - {x: 2, y: 0, z: 42}
+      - {x: -4, y: 0, z: 30}
+      - {x: -2, y: 0, z: 30}
+      - {x: 0, y: 0, z: 30}
+      - {x: 2, y: 0, z: 30}
+      - {x: 4, y: 0, z: 30}
     - _enemyPrefabs:
-      - {fileID: 8820750684431199177, guid: 0fd64ebec5770e943b1272cc258a1a2b, type: 3}
-      _positions:
-      - {x: -2.5, y: 0, z: 60}
-      - {x: -1, y: 0, z: 60}
-      - {x: 0.5, y: 0, z: 60}
-      - {x: 2, y: 0, z: 60}
-      - {x: -2.5, y: 0, z: 62}
-      - {x: -1, y: 0, z: 62}
-      - {x: 0.5, y: 0, z: 62}
-      - {x: 2, y: 0, z: 62}
-    - _enemyPrefabs:
-      - {fileID: 8932770440331272360, guid: 490631de8a401b842873a15150a348ee, type: 3}
-      - {fileID: 8820750684431199177, guid: 0fd64ebec5770e943b1272cc258a1a2b, type: 3}
-      _positions:
-      - {x: -2.5, y: 0, z: 80}
-      - {x: -1, y: 0, z: 80}
-      - {x: 0.5, y: 0, z: 80}
-      - {x: 2, y: 0, z: 80}
-      - {x: -2.5, y: 0, z: 82}
-      - {x: -1, y: 0, z: 82}
-      - {x: 0.5, y: 0, z: 82}
-      - {x: 2, y: 0, z: 82}
-    - _enemyPrefabs:
-      - {fileID: 8932770440331272360, guid: 490631de8a401b842873a15150a348ee, type: 3}
-      - {fileID: 8820750684431199177, guid: 0fd64ebec5770e943b1272cc258a1a2b, type: 3}
       - {fileID: 9183078253694199673, guid: 1e7dbad283bace0409cf0b65541694e8, type: 3}
       _positions:
-      - {x: -2.5, y: 0, z: 100}
-      - {x: -1, y: 0, z: 100}
-      - {x: 0.5, y: 0, z: 100}
-      - {x: 2, y: 0, z: 100}
-      - {x: -2.5, y: 0, z: 102}
-      - {x: -1, y: 0, z: 102}
-      - {x: 0.5, y: 0, z: 102}
-      - {x: 2, y: 0, z: 102}
-      - {x: -2.5, y: 0, z: 104}
-      - {x: -1, y: 0, z: 104}
-      - {x: 0.5, y: 0, z: 104}
-      - {x: 2, y: 0, z: 104}
+      - {x: -4, y: 0, z: 50}
+      - {x: -2, y: 0, z: 50}
+      - {x: 0, y: 0, z: 50}
+      - {x: 2, y: 0, z: 50}
+      - {x: 4, y: 0, z: 50}

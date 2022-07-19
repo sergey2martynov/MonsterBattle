@@ -30,18 +30,21 @@ namespace Pokemon.PokemonHolder
         
         public void SetMoveDirection(Vector3 direction)
         {
-            foreach (var pokemon in _pokemons)
-            {
-                pokemon.MoveDirection = direction;
-                _playerData.MoveDirection = direction;
-            }
-
-            // foreach (var pokemon in _pokemonsList.SelectMany(pokemonList => pokemonList))
+            // foreach (var pokemon in _pokemons)
             // {
             //     pokemon.MoveDirection = direction;
+            //     _playerData.MoveDirection = direction;
             // }
-            //
-            // _playerData.MoveDirection = direction;
+
+            foreach (var pokemon in from pokemonList in _pokemonsList
+                     from pokemon in pokemonList
+                     where pokemon != null
+                     select pokemon)
+            {
+                pokemon.MoveDirection = direction;
+            }
+
+            _playerData.MoveDirection = direction;
         }
 
         public void SwapPokemons(int[] firstPosition, int[] secondPosition)
@@ -76,23 +79,15 @@ namespace Pokemon.PokemonHolder
             return _cells.SelectMany(rowCells => rowCells).Any(cell => cell.EmptyState);
         }
 
-        public void AddPokemonToList(PokemonDataBase pokemonData)
+        public void AddPokemonToList(PokemonDataBase pokemonData, int[] indexes)
         {
-            if (!_pokemons.Contains(pokemonData))
-            {
-                _pokemons.Add(pokemonData);
-            }
+            // if (!_pokemons.Contains(pokemonData))
+            // {
+            //     _pokemons.Add(pokemonData);
+            // }
 
-            // _pokemonsList[indexes[0]][indexes[1]] = pokemonData;
+            _pokemonsList[indexes[0]][indexes[1]] = pokemonData;
 
-        }
-
-        public void RemovePokemonFromList(PokemonDataBase pokemonData)
-        {
-            if (_pokemons.Contains(pokemonData))
-            {
-                _pokemons.Remove(pokemonData);
-            }
         }
 
         public CellData GetCellData(int index)

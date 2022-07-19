@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Pokemon.PokemonHolder.FieldLogic;
+using Pokemon.PokemonHolder.Field;
 using Shop;
 
 namespace Pokemon.PokemonHolder.Cell
