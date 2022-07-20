@@ -119,6 +119,7 @@ namespace Merge
                 {
                     var nearestCell = GetNearestEmptyCell(_targetPokemon.transform.position, out var cellData);
                     _pokemonHolderModel.SwapPokemons(_targetPokemon.GetIndexes(), new []{cellData.Row, cellData.Column});
+                    _targetPokemon.SetIndexes(new []{cellData.Row, cellData.Column});
 
                     _targetPokemon.transform.DOMoveX(nearestCell.transform.position.x, _moveDuration);
                     _targetPokemon.transform.DOMoveZ(nearestCell.transform.position.z, _moveDuration);

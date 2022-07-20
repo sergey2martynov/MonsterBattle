@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Threading;
+using SerializedObjects;
 using Stats;
-using UnityEngine;
 
 namespace Pokemon
 {
+    [Serializable]
     public abstract class PokemonDataBase
     {
         private PokemonStatsByLevel _pokemonStats;
@@ -18,10 +18,12 @@ namespace Pokemon
         private int _maxLevel;
         private int _maxTargetsAmount;
         private int _attackRange;
+        //private SerializableVector3 _moveDirection;
 
-        public CancellationTokenSource Source { get; protected set; }
+        // public CancellationTokenSource Source { get; protected set; }
 
-        public Vector3 MoveDirection { get; set; }
+        public SerializableVector3 MoveDirection { get; set; }
+
         public int[] Indexes { get; set; }
 
         public float MoveSpeed
@@ -169,7 +171,9 @@ namespace Pokemon
             }
         }
         
+        [field: NonSerialized]
         public event Action<int, int> HealthChanged; 
+        [field: NonSerialized]
         public event Action PokemonDied;
 
         public virtual void Initialize(PokemonStatsByLevel stats, int[] indexes)
@@ -178,16 +182,22 @@ namespace Pokemon
             SetStats(stats);
         }
 
-        public CancellationTokenSource CreateCancellationTokenSource()
+        public virtual void Initialize()
         {
-            return Source = new CancellationTokenSource();
+            Health = MaxHealth;
+            _attackTime = 0f;
         }
 
-        public void DisposeSource()
-        {
-            Source?.Cancel();
-            Source?.Dispose();
-        }
+        // public CancellationTokenSource CreateCancellationTokenSource()
+        // {
+        //     return Source = new CancellationTokenSource();
+        // }
+
+        // public void DisposeSource()
+        // {
+        //     Source?.Cancel();
+        //     Source?.Dispose();
+        // }
 
         protected virtual void SetStats(PokemonStatsByLevel stats)
         {

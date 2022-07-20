@@ -1,5 +1,8 @@
-﻿namespace Pokemon.RangedPokemon.SecondTypePokemon
+﻿using System;
+
+namespace Pokemon.RangedPokemon.SecondTypePokemon
 {
+    [Serializable]
     public class SecondRangedTypePokemonData : PokemonDataBase
     {
         

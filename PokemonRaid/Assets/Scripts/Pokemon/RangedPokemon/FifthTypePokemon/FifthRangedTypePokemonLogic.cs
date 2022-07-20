@@ -50,7 +50,7 @@ namespace Pokemon.RangedPokemon.FifthTypePokemon
 
         private async void StartMovingProjectile(ProjectileViewBase projectileView, BaseEnemyView enemyView)
         {
-            var token = _data.Source?.Token ?? _data.CreateCancellationTokenSource().Token;
+            var token = _source?.Token ?? new CancellationTokenSource().Token;
             await MoveProjectile(token, projectileView, enemyView);
         }
 

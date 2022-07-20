@@ -6,6 +6,7 @@ using Pokemon.PokemonHolder;
 using Pokemon.PokemonHolder.Cell;
 using Pokemon.PokemonHolder.Field;
 using Pool;
+using SaveLoad;
 using Shop;
 using StaticData;
 using UnityEngine;
@@ -13,6 +14,8 @@ using UpdateHandlerFolder;
 
 public class ProjectStarter : MonoBehaviour
 {
+    [Header("For debug save/load system")]
+    [SerializeField] private bool _dataLoading;
     [SerializeField] private UpdateHandler _updateHandler;
     [SerializeField] private ShopView _shopView;
     [SerializeField] private ShopStats _shopStats;
@@ -29,18 +32,19 @@ public class ProjectStarter : MonoBehaviour
     
     
     private PokemonSpawner _pokemonSpawner;
+    private SaveLoadSystem _saveLoadSystem;
 
     private void Awake()
     {
         if (Application.platform == RuntimePlatform.IPhonePlayer)
         {
             System.Environment.SetEnvironmentVariable("MONO_REFLECTION_SERIALIZER", "yes");
-        } 
+        }
         
         var pokemonHolderModel = new PokemonHolderModel();
         var directionTranslator = new InputLogic(_inputView, pokemonHolderModel);
         directionTranslator.Initialize();
-        pokemonHolderModel.Initialize();
+        //pokemonHolderModel.Initialize();
 
         _pokemonSpawner = new PokemonSpawner(_pokemonPrefabHolder, _pokemonParentObject, _pokemonStats, _updateHandler,
             pokemonHolderModel, _fieldView);
@@ -49,7 +53,23 @@ public class ProjectStarter : MonoBehaviour
         var playerData = new PlayerData();
         var playerLogic = new PlayerLogic();
         playerLogic.Initialize(_playerView, playerData, _updateHandler);
-        playerData.Initialize(_playerStats);
+        //playerData.Initialize(_playerStats);
+        
+        _saveLoadSystem = new SaveLoadSystem(playerData, pokemonHolderModel);
+        var loadedSuccessfully = _saveLoadSystem.TryLoadData(out var data);
+        
+        if (loadedSuccessfully && _dataLoading)
+        {
+            pokemonHolderModel.Initialize(data.PokemonData);
+            playerData.Initialize(_playerStats, data.PlayerLevel, data.CoinsAmount);
+            Debug.Log("Loaded successfully");
+        }
+        else
+        {
+            pokemonHolderModel.Initialize();
+            playerData.Initialize(_playerStats);
+            Debug.Log("Load failed");
+        }
         
         pokemonHolderModel.SetPlayerData(playerData);
 
@@ -64,12 +84,18 @@ public class ProjectStarter : MonoBehaviour
         
         directionTranslator.SetShopLogic(shopLogic);
         
-        var fieldLogic = new FieldLogic(_fieldView, pokemonHolderModel, shopLogic);
-        fieldLogic.Initialize();
+        var fieldLogic = new FieldLogic(_fieldView, pokemonHolderModel, shopLogic, _pokemonSpawner);
+        var isFieldFillRequired = loadedSuccessfully && _dataLoading;
+        fieldLogic.Initialize(isFieldFillRequired);
 
         var pokemonMerger = new PokemonMerger(_fieldView);
 
         var pokemonCellPlacer = new PokemonCellPlacer(_inputView, _fieldView,pokemonHolderModel, pokemonMerger, _pokemonSpawner);
         pokemonCellPlacer.Initialize();
+    }
+
+    private void OnApplicationQuit()
+    {
+        _saveLoadSystem.SaveData();
     }
 }

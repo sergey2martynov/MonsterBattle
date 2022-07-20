@@ -1,4 +1,5 @@
 ﻿using Enemy;
+using UnityEngine;
 
 namespace Pokemon.States
 {
@@ -13,7 +14,9 @@ namespace Pokemon.States
 
         public override void SetNextState()
         {
-            if (_data.MoveDirection.magnitude != 0)
+            var moveDirection = (Vector3) _data.MoveDirection;
+            
+            if (moveDirection.magnitude != 0)
             {
                 return;
             }

@@ -77,6 +77,13 @@ namespace Player
             SetStats(stats);
         }
 
+        public void Initialize(PlayerStats stats, int level, int coinsAmount)
+        {
+            SetStats(stats);
+            Level = level;
+            Coins = coinsAmount;
+        }
+
         public CancellationTokenSource CreateCancellationTokenSource()
         {
             return Source = new CancellationTokenSource();

@@ -14,9 +14,10 @@ namespace Pokemon.States
 
         public override void Update()
         {
-            _view.Transform.position += _data.MoveDirection * _data.MoveSpeed * Time.deltaTime;
+            var moveDirection = (Vector3) _data.MoveDirection;
+            _view.Transform.position += moveDirection * _data.MoveSpeed * Time.deltaTime;
             
-            if (_data.MoveDirection.magnitude != 0)
+            if (moveDirection.magnitude != 0)
             {
                 _logic.RotateAt(_data.MoveDirection);
             }
@@ -24,7 +25,9 @@ namespace Pokemon.States
 
         public override void SetNextState()
         {
-            if (_data.MoveDirection.magnitude != 0)
+            var moveDirection = (Vector3) _data.MoveDirection;
+            
+            if (moveDirection.magnitude != 0)
             {
                 return;
             }

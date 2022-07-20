@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Enemy;
 using Enemy.GroundEnemy;
 using Pokemon;
@@ -83,6 +84,75 @@ namespace Factories
             };
         }
 
+        public PokemonViewBase CreateInstance(PokemonDataBase dataBase, PokemonPrefabHolder pokemonPrefabHolder, Vector3 position,
+            Transform parent)
+        {
+            return dataBase switch
+            {
+                FirstMeleeTypePokemonData concreteData =>
+                    CreateConcreteInstanceFromData<FirstMeleeTypePokemonView, GroundEnemyView,
+                        FirstMeleeTypePokemonLogic, FirstMeleeTypePokemonData>(concreteData,
+                        GetConcreteView<FirstMeleeTypePokemonView>(pokemonPrefabHolder.MeleePokemons), position,
+                        parent),
+                
+                SecondMeleeTypePokemonData concreteData =>
+                    CreateConcreteInstanceFromData<SecondMeleeTypePokemonView, GroundEnemyView,
+                        SecondMeleeTypePokemonLogic, SecondMeleeTypePokemonData>(concreteData,
+                        GetConcreteView<SecondMeleeTypePokemonView>(pokemonPrefabHolder.MeleePokemons), position,
+                        parent),
+                
+                ThirdMeleeTypePokemonData concreteData =>
+                    CreateConcreteInstanceFromData<ThirdMeleeTypePokemonView, GroundEnemyView,
+                        ThirdMeleeTypePokemonLogic, ThirdMeleeTypePokemonData>(concreteData,
+                        GetConcreteView<ThirdMeleeTypePokemonView>(pokemonPrefabHolder.MeleePokemons), position,
+                        parent),
+                
+                FourthMeleeTypePokemonData concreteData =>
+                    CreateConcreteInstanceFromData<FourthMeleeTypePokemonView, GroundEnemyView,
+                        FourthMeleeTypePokemonLogic, FourthMeleeTypePokemonData>(concreteData,
+                        GetConcreteView<FourthMeleeTypePokemonView>(pokemonPrefabHolder.MeleePokemons), position,
+                        parent),
+                
+                FifthMeleeTypePokemonData concreteData =>
+                    CreateConcreteInstanceFromData<FifthMeleeTypePokemonView, GroundEnemyView,
+                        FifthMeleeTypePokemonLogic, FifthMeleeTypePokemonData>(concreteData,
+                        GetConcreteView<FifthMeleeTypePokemonView>(pokemonPrefabHolder.MeleePokemons), position,
+                        parent),
+                
+                FirstRangedTypePokemonData concreteData =>
+                    CreateConcreteInstanceFromData<FirstRangedTypePokemonView, BaseEnemyView,
+                        FirstRangedTypePokemonLogic, FirstRangedTypePokemonData>(concreteData,
+                        GetConcreteView<FirstRangedTypePokemonView>(pokemonPrefabHolder.RangedPokemons), position,
+                        parent),
+                
+                SecondRangedTypePokemonData concreteData =>
+                    CreateConcreteInstanceFromData<SecondRangedTypePokemonView, BaseEnemyView,
+                        SecondRangedTypePokemonLogic, SecondRangedTypePokemonData>(concreteData,
+                        GetConcreteView<SecondRangedTypePokemonView>(pokemonPrefabHolder.RangedPokemons), position,
+                        parent),
+                
+                ThirdRangedTypePokemonData concreteData =>
+                    CreateConcreteInstanceFromData<ThirdRangedTypePokemonView, BaseEnemyView,
+                        ThirdRangedTypePokemonLogic, ThirdRangedTypePokemonData>(concreteData,
+                        GetConcreteView<ThirdRangedTypePokemonView>(pokemonPrefabHolder.RangedPokemons), position,
+                        parent),
+                
+                FourthRangedTypePokemonData concreteData =>
+                    CreateConcreteInstanceFromData<FourthRangedTypePokemonView, BaseEnemyView,
+                        FourthRangedTypePokemonLogic, FourthRangedTypePokemonData>(concreteData,
+                        GetConcreteView<FourthRangedTypePokemonView>(pokemonPrefabHolder.RangedPokemons), position,
+                        parent),
+                
+                FifthRangedTypePokemonData concreteData =>
+                    CreateConcreteInstanceFromData<FifthRangedTypePokemonView, BaseEnemyView,
+                        FifthRangedTypePokemonLogic, FifthRangedTypePokemonData>(concreteData,
+                        GetConcreteView<FifthRangedTypePokemonView>(pokemonPrefabHolder.RangedPokemons), position,
+                        parent),
+                
+                _ => throw new ArgumentException("luls")
+            };
+        }
+
         private TData CreateConcreteInstance<TView, TEnemyView, TLogic, TData>(TView view, Vector3 position,
             PokemonStatsByLevel stats, Transform parent, int[] indexes, out PokemonViewBase concreteView)
             where TView : PokemonViewBase
@@ -98,6 +168,36 @@ namespace Factories
             data.Initialize(stats, indexes);
             logic.SetMaxTargetsAmount(data.MaxTargetsAmount);
             return data;
+        }
+
+        private TView CreateConcreteInstanceFromData<TView, TEnemyView, TLogic, TData>(TData data, TView view,
+            Vector3 position, Transform parent)
+            where TView : PokemonViewBase
+            where TEnemyView : BaseEnemyView
+            where TLogic : PokemonLogicBase<TView, TEnemyView>, new()
+            where TData : PokemonDataBase, new()
+        {
+            var instantiatedView = Object.Instantiate(view, position, Quaternion.identity, parent);
+            var logic = new TLogic();
+            logic.Initialize(instantiatedView, data, _model, _updateHandler);
+            logic.SetMaxTargetsAmount(data.MaxTargetsAmount);
+            data.Initialize();
+            logic.SetMaxTargetsAmount(data.MaxTargetsAmount);
+            Debug.Log(data.MaxTargetsAmount);
+            return instantiatedView;
+        }
+
+        private TView GetConcreteView<TView>(List<PokemonViewBase> views)
+            where TView : PokemonViewBase
+        {
+            var view = views.Find(view => view.GetType() == typeof(TView)) as TView;
+
+            if (view != null)
+            {
+                return view;
+            }
+            
+            throw new ArgumentException("There is no " + typeof(TView) + " view type in " + views);
         }
     }
 }

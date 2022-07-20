@@ -12,6 +12,8 @@ namespace Pokemon.PokemonHolder
         private List<PokemonDataBase> _pokemons = new List<PokemonDataBase>();
         private List<List<PokemonDataBase>> _pokemonsList;
         private PlayerData _playerData;
+        
+        public IEnumerable<List<PokemonDataBase>> PokemonsList => _pokemonsList;
 
         public void Initialize()
         {
@@ -26,6 +28,11 @@ namespace Pokemon.PokemonHolder
                     _pokemonsList[i].Add(default);
                 }
             }
+        }
+
+        public void Initialize(IEnumerable<List<PokemonDataBase>> pokemonList)
+        {
+            _pokemonsList = pokemonList.ToList();
         }
         
         public void SetMoveDirection(Vector3 direction)

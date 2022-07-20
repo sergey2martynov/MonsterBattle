@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using Enemy;
 using Pokemon.PokemonHolder;
 using Pokemon.States;
@@ -20,6 +21,7 @@ namespace Pokemon
         protected BaseState<TView, TEnemyView> _currentState;
         protected Collider[] _collidersInRange;
         protected int _attackCount;
+        protected CancellationTokenSource _source;
 
         public virtual void Initialize(TView view, PokemonDataBase data, PokemonHolderModel model,
             UpdateHandler updateHandler)
@@ -141,7 +143,7 @@ namespace Pokemon
         protected virtual void Dispose()
         {
             _updateHandler.UpdateTicked -= Update;
-            _data.DisposeSource();
+            //_data.DisposeSource();
             _view.ViewDestroyed -= Dispose;
             _view.LevelRequested -= GetPokemonLevel;
             _view.DamageTaken -= OnDamageTaken;

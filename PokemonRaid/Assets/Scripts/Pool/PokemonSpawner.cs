@@ -64,5 +64,11 @@ namespace Pool
             _fieldView.AddPokemonView(view);
             _model.AddPokemonToList(data, indexes);
         }
+
+        public void CreatePokemonFromData(PokemonDataBase dataBase, Vector3 position)
+        {
+            var view = _factory.CreateInstance(dataBase, _pokemonPrefabHolder, position + new Vector3(0f, 0.5f, 0f), _parent);
+            _fieldView.AddPokemonView(view);
+        }
     }
 }
