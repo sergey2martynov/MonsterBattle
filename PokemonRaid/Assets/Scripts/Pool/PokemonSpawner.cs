@@ -18,9 +18,10 @@ namespace Pool
         private readonly Transform _parent;
         private PokemonTypeFactory _factory;
         private readonly FieldView _fieldView;
+        private readonly Transform _camera;
         
         public PokemonSpawner(PokemonPrefabHolder pokemonPrefabHolder, Transform parent, PokemonStats stats,
-            UpdateHandler updateHandler, PokemonHolderModel model, FieldView fieldView)
+            UpdateHandler updateHandler, PokemonHolderModel model, FieldView fieldView, Transform camera)
         {
             _pokemonPrefabHolder = pokemonPrefabHolder;
             _parent = parent;
@@ -28,11 +29,12 @@ namespace Pool
             _updateHandler = updateHandler;
             _model = model;
             _fieldView = fieldView;
+            _camera = camera;
         }
 
         public void Initialize()
         {
-            _factory = new PokemonTypeFactory(_updateHandler, _model);
+            _factory = new PokemonTypeFactory(_updateHandler, _model, _camera);
         }
 
         public void CreateFirstLevelRandomPokemon(Vector3 position, PokemonType pokemonType, int[] indexes)

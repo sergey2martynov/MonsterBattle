@@ -1,4 +1,5 @@
 ﻿using System;
+using HealthBar;
 using UnityEngine;
 
 namespace Pokemon
@@ -7,10 +8,13 @@ namespace Pokemon
     {
         [SerializeField] protected Animator _animator;
         [SerializeField] protected LayerMask _enemyLayer;
+        [SerializeField] private HealthBarView _healthBar;
 
         public Transform Transform => transform;
         public Animator Animator => _animator;
         public LayerMask EnemyLayer => _enemyLayer;
+
+        public HealthBarView HealthBarView => _healthBar;
 
         public event Action<int> DamageTaken;
         public event Action ViewDestroyed;
@@ -44,6 +48,16 @@ namespace Pokemon
             var level = LevelRequested.Invoke();
             return level;
 
+        }
+
+        public void MakeActiveHealthBar()
+        {
+            _healthBar.gameObject.SetActive(true);
+        }
+
+        public void SetHealth(float health)
+        {
+            _healthBar.SetHealth(health);
         }
 
         public int[] GetIndexes()

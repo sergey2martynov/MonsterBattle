@@ -37,6 +37,7 @@ namespace Pokemon
             _view.IndexesSet += ChangeIndexes;
             _view.IndexesRequested += GetIndexes;
             _data.PokemonDied += OnPokemonDied;
+            _data.HealthChanged += OnHealthChanged;
             _statesToType = new Dictionary<Type, BaseState<TView, TEnemyView>>
             {
                 {typeof(IdleState<TView, TEnemyView>), new IdleState<TView, TEnemyView>(_view, this, _data)},
@@ -45,7 +46,6 @@ namespace Pokemon
                     new AttackWhileMoveState<TView, TEnemyView>(_view, this, _data)
                 },
                 {typeof(AttackState<TView, TEnemyView>), new AttackState<TView, TEnemyView>(_view, this, _data)}
-
             };
             _currentState = _statesToType[typeof(AttackWhileMoveState<TView, TEnemyView>)];
         }
@@ -95,7 +95,8 @@ namespace Pokemon
         protected virtual void Attack()
         {
             _attackCount = 0;
-            var collidersAmount = Physics.OverlapSphereNonAlloc(_view.Transform.position, _data.AttackRange, _collidersInRange, _view.EnemyLayer);
+            var collidersAmount = Physics.OverlapSphereNonAlloc(_view.Transform.position, _data.AttackRange,
+                _collidersInRange, _view.EnemyLayer);
 
             if (Time.time < _data.AttackTime || collidersAmount == 0)
             {
@@ -115,7 +116,7 @@ namespace Pokemon
             {
                 Array.Clear(_collidersInRange, i, _collidersInRange.Length);
             }
-            
+
             if (_attackCount == 0)
             {
                 return;
@@ -123,21 +124,30 @@ namespace Pokemon
 
             _data.AttackTime = Time.time + _data.AttackSpeed;
         }
-        
+
         protected void OnDamageTaken(int damage)
         {
             if (damage < 0)
             {
                 return;
             }
-            
+
+
             _data.Health -= damage;
         }
-        
+
         protected void OnPokemonDied()
         {
             _view.SetViewActive(false);
             Dispose();
+        }
+
+        protected void OnHealthChanged(int health, int maxHealth)
+        {
+            if (_data.Health < _data.MaxHealth)
+                _view.HealthBarView.gameObject.SetActive(true);
+
+            _view.SetHealth(_data.Health / (float)_data.MaxHealth);
         }
 
         protected virtual void Dispose()
@@ -150,6 +160,7 @@ namespace Pokemon
             _view.IndexesSet -= ChangeIndexes;
             _view.IndexesRequested -= GetIndexes;
             _data.PokemonDied -= OnPokemonDied;
+            _data.HealthChanged -= OnHealthChanged;
         }
 
         public void RotateAt(Vector3 point)

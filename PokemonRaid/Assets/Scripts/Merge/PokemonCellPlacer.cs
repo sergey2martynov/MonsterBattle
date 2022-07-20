@@ -85,8 +85,10 @@ namespace Merge
                 if (IsMerge())
                 {
                     var currentCell = GetCurrentCell(_pokemonForSwap.transform.position, false);
+                    
                     _pokemonHolderModel.DeletePokemonFromList(_pokemonForSwap.GetIndexes());
                     _pokemonHolderModel.DeletePokemonFromList(_targetPokemon.GetIndexes());
+                    
                     _fieldView.PokemonViews.Remove(_targetPokemon);
                     _fieldView.PokemonViews.Remove(_pokemonForSwap);
                     _pokemonSpawner.CreatePokemon(currentCell.transform.position, _targetPokemon,

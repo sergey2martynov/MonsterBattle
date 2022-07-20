@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using Pokemon.PokemonHolder;
 using StaticData;
 using UnityEngine;
 
@@ -7,7 +8,7 @@ namespace Player
 {
     public class PlayerData
     {
-        private PokemonPrefabHolder _pokemonPrefabHolder;
+        private PokemonHolderModel _pokemonHolderModel;
         private float _moveSpeed;
         private int _maxHealth;
         private int _health;
@@ -72,13 +73,15 @@ namespace Player
             set => _coins = value < 0 ? 0 : value;
         }
 
-        public virtual void Initialize(PlayerStats stats)
+        public virtual void Initialize(PlayerStats stats, PokemonHolderModel pokemonHolderModel)
         {
+            _pokemonHolderModel = pokemonHolderModel;
             SetStats(stats);
         }
 
-        public void Initialize(PlayerStats stats, int level, int coinsAmount)
+        public void Initialize(PlayerStats stats, int level, int coinsAmount, PokemonHolderModel pokemonHolderModel)
         {
+            _pokemonHolderModel = pokemonHolderModel;
             SetStats(stats);
             Level = level;
             Coins = coinsAmount;
@@ -94,14 +97,18 @@ namespace Player
             Source?.Cancel();
             Source?.Dispose();
         }
+        
+        
+        
 
         protected virtual void SetStats(PlayerStats stats)
         {
             MoveSpeed = stats.MoveSpeed;
             MaxHealth = stats.MaxHealth;
-            Health = _maxHealth;
             Level = stats.Level;
+            Health = _pokemonHolderModel.GetAllHealth();
             _coins = stats.Coins;
+            
         }
     }
 }

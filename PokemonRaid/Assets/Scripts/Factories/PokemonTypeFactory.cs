@@ -16,6 +16,7 @@ using Pokemon.RangedPokemon.SecondTypePokemon;
 using Pokemon.RangedPokemon.ThirdTypePokemon;
 using StaticData;
 using Stats;
+using TMPro;
 using UnityEngine;
 using UpdateHandlerFolder;
 using Object = UnityEngine.Object;
@@ -26,11 +27,13 @@ namespace Factories
     {
         private readonly PokemonHolderModel _model;
         private readonly UpdateHandler _updateHandler;
+        private readonly Transform _camera;
 
-        public PokemonTypeFactory(UpdateHandler updateHandler, PokemonHolderModel model)
+        public PokemonTypeFactory(UpdateHandler updateHandler, PokemonHolderModel model, Transform camera)
         {
             _updateHandler = updateHandler;
             _model = model;
+            _camera = camera;
         }
 
         public PokemonDataBase CreateInstance(PokemonViewBase view, Vector3 position, PokemonStats stats, Transform parent,
@@ -164,6 +167,7 @@ namespace Factories
             concreteView = instantiatedView;
             var data = new TData();
             var logic = new TLogic();
+            instantiatedView.HealthBarView.SetCameraRef(_camera);
             logic.Initialize(instantiatedView, data, _model, _updateHandler);
             data.Initialize(stats, indexes);
             logic.SetMaxTargetsAmount(data.MaxTargetsAmount);
@@ -179,6 +183,7 @@ namespace Factories
         {
             var instantiatedView = Object.Instantiate(view, position, Quaternion.identity, parent);
             var logic = new TLogic();
+            instantiatedView.HealthBarView.SetCameraRef(_camera);
             logic.Initialize(instantiatedView, data, _model, _updateHandler);
             logic.SetMaxTargetsAmount(data.MaxTargetsAmount);
             data.Initialize();

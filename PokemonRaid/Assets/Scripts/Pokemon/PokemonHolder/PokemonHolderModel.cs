@@ -35,6 +35,11 @@ namespace Pokemon.PokemonHolder
             _pokemonsList = pokemonList.ToList();
         }
         
+        public int GetAllHealth()
+        {
+            return (from pokemonRow in _pokemonsList from pokemon in pokemonRow where pokemon != null select pokemon.Health).Sum();
+        }
+        
         public void SetMoveDirection(Vector3 direction)
         {
             // foreach (var pokemon in _pokemons)

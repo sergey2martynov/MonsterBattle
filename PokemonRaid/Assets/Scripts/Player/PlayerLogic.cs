@@ -12,19 +12,22 @@ namespace Player
         private PokemonHolderModel _pokemonHolderModel;
 
         public virtual void Initialize( PlayerView playerView, PlayerData playerData,
-            UpdateHandler updateHandler)
+            UpdateHandler updateHandler, PokemonHolderModel pokemonHolderModel)
         {
             _view = playerView;
             _data = playerData;
             _updateHandler = updateHandler;
             _updateHandler.UpdateTicked += Update;
             _view.ViewDestroyed += Dispose;
+            _pokemonHolderModel = pokemonHolderModel;
         }
 
         private void Update()
         {
             _view.Transform.position += _data.MoveDirection * _data.MoveSpeed * Time.deltaTime;
         }
+        
+        //private void 
 
         private void Dispose()
         {

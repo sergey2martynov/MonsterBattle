@@ -29,6 +29,7 @@ public class ProjectStarter : MonoBehaviour
     [SerializeField] private EnemyStats _enemyStats;
     [SerializeField] private Transform _enemyParentObject;
     [SerializeField] private LevelDataHolder _levelDataHolder;
+    [SerializeField] private Transform _camera;
     
     
     private PokemonSpawner _pokemonSpawner;
@@ -44,16 +45,14 @@ public class ProjectStarter : MonoBehaviour
         var pokemonHolderModel = new PokemonHolderModel();
         var directionTranslator = new InputLogic(_inputView, pokemonHolderModel);
         directionTranslator.Initialize();
-        //pokemonHolderModel.Initialize();
 
         _pokemonSpawner = new PokemonSpawner(_pokemonPrefabHolder, _pokemonParentObject, _pokemonStats, _updateHandler,
-            pokemonHolderModel, _fieldView);
+            pokemonHolderModel, _fieldView, _camera);
         _pokemonSpawner.Initialize();
 
         var playerData = new PlayerData();
         var playerLogic = new PlayerLogic();
-        playerLogic.Initialize(_playerView, playerData, _updateHandler);
-        //playerData.Initialize(_playerStats);
+        playerLogic.Initialize(_playerView, playerData, _updateHandler, pokemonHolderModel);
         
         _saveLoadSystem = new SaveLoadSystem(playerData, pokemonHolderModel);
         var loadedSuccessfully = _saveLoadSystem.TryLoadData(out var data);
@@ -61,13 +60,13 @@ public class ProjectStarter : MonoBehaviour
         if (loadedSuccessfully && _dataLoading)
         {
             pokemonHolderModel.Initialize(data.PokemonData);
-            playerData.Initialize(_playerStats, data.PlayerLevel, data.CoinsAmount);
+            playerData.Initialize(_playerStats, data.PlayerLevel, data.CoinsAmount, pokemonHolderModel);
             Debug.Log("Loaded successfully");
         }
         else
         {
             pokemonHolderModel.Initialize();
-            playerData.Initialize(_playerStats);
+            playerData.Initialize(_playerStats, pokemonHolderModel);
             Debug.Log("Load failed");
         }
         
