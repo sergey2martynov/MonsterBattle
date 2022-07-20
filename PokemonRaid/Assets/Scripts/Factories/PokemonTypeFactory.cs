@@ -188,7 +188,6 @@ namespace Factories
             logic.SetMaxTargetsAmount(data.MaxTargetsAmount);
             data.Initialize();
             logic.SetMaxTargetsAmount(data.MaxTargetsAmount);
-            Debug.Log(data.MaxTargetsAmount);
             return instantiatedView;
         }
 

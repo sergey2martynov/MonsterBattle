@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using DG.Tweening;
 using InputPlayer;
 using Pokemon;
@@ -7,6 +9,7 @@ using Pokemon.PokemonHolder.Cell;
 using Pokemon.PokemonHolder.Field;
 using Pool;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace Merge
 {
@@ -91,21 +94,23 @@ namespace Merge
                     
                     _fieldView.PokemonViews.Remove(_targetPokemon);
                     _fieldView.PokemonViews.Remove(_pokemonForSwap);
+                    var indexes = _pokemonForSwap.GetIndexes().ToArray();
                     _pokemonSpawner.CreatePokemon(currentCell.transform.position, _targetPokemon,
-                        _pokemonForSwap.GetPokemonLevel() + 1, _pokemonForSwap.GetIndexes());
+                        _pokemonForSwap.GetPokemonLevel() + 1, indexes/*_pokemonForSwap.GetIndexes()*/);
 
                     Object.Destroy(_pokemonForSwap.gameObject);
                     Object.Destroy(_targetPokemon.gameObject);
                 }
                 else if (IsSwap())
                 {
-                    var tempIndexes = new int[2];
-                    _targetPokemon.GetIndexes().CopyTo(tempIndexes, 0);
-                    
-                    var tempIndexes2 = new int[2];
-                    _pokemonForSwap.GetIndexes().CopyTo(tempIndexes, 0);
+                    var tempIndexes = _targetPokemon.GetIndexes().ToArray();
+                    var tempIndexes2 = _pokemonForSwap.GetIndexes().ToArray();
                     
                     _pokemonHolderModel.SwapPokemons(tempIndexes,tempIndexes2);
+
+                    if (tempIndexes == tempIndexes2)
+                        throw new Exception();
+                        
                     _targetPokemon.SetIndexes(tempIndexes2);
                     _pokemonForSwap.SetIndexes(tempIndexes);
 
