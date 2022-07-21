@@ -1,22 +1,32 @@
 using System;
+using HealthBar;
 using UnityEngine;
 
-public class PlayerView : MonoBehaviour
+namespace Player
 {
-    [SerializeField] protected Animator _animator;
-
-    public Transform Transform => transform;
-    public Animator Animator => _animator;
-
-    public event Action ViewDestroyed;
-
-    public void SetViewActive(bool isActive)
+    public class PlayerView : MonoBehaviour
     {
-        gameObject.SetActive(isActive);
-    }
+        [SerializeField] protected Animator _animator;
+        [SerializeField] protected HealthBarView _healthBarView;
 
-    private void OnDestroy()
-    {
-        ViewDestroyed?.Invoke();
+        public Transform Transform => transform;
+        public Animator Animator => _animator;
+
+        public event Action ViewDestroyed;
+
+        public void SetViewActive(bool isActive)
+        {
+            gameObject.SetActive(isActive);
+        }
+        
+        public void SetHealth(float health)
+        {
+            _healthBarView.SetHealth(health);
+        }
+
+        private void OnDestroy()
+        {
+            ViewDestroyed?.Invoke();
+        }
     }
 }
