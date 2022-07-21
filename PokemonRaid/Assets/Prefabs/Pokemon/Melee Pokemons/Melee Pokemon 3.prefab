@@ -50,6 +50,9 @@ MonoBehaviour:
   _enemyLayer:
     serializedVersion: 2
     m_Bits: 64
+  _boundsLayer:
+    serializedVersion: 2
+    m_Bits: 128
   _healthBar: {fileID: 9191112736564105461}
 --- !u!65 &530267544805779292
 BoxCollider:

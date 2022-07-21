@@ -15,11 +15,12 @@ namespace Pokemon.States
         public override void Update()
         {
             var moveDirection = (Vector3) _data.MoveDirection;
+            var lookDirection = (Vector3) _data.LookDirection;
             _view.Transform.position += moveDirection * _data.MoveSpeed * Time.deltaTime;
             
-            if (moveDirection.magnitude != 0)
+            if (lookDirection.magnitude != 0)
             {
-                _logic.RotateAt(_data.MoveDirection);
+                _logic.RotateAt(_data.LookDirection);
             }
         }
 

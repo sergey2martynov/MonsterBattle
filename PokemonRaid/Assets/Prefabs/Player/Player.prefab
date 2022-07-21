@@ -61,6 +61,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _animator: {fileID: 0}
   _healthBarView: {fileID: 0}
+  _boundsLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1 &8579988268537150439
 GameObject:
   m_ObjectHideFlags: 0

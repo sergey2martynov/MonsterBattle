@@ -18,7 +18,8 @@ namespace Player
         public CancellationTokenSource Source { get; protected set; }
         
         public Vector3 MoveDirection { get; set; }
-        
+        public Vector3 LookDirection { get; set; }
+
         public float MoveSpeed
         {
             get => _moveSpeed;
@@ -73,6 +74,8 @@ namespace Player
             set => _coins = value < 0 ? 0 : value;
         }
 
+        public event Func<Vector3> DirectionCorrectionRequested; 
+
         public virtual void Initialize(PlayerStats stats, PokemonHolderModel pokemonHolderModel)
         {
             _pokemonHolderModel = pokemonHolderModel;
@@ -98,9 +101,11 @@ namespace Player
             Source?.Dispose();
         }
         
+        public Vector3 GetCorrectedDirection()
+        {
+            return DirectionCorrectionRequested?.Invoke() ?? new Vector3(10f, 10f, 10f);
+        }
         
-        
-
         protected virtual void SetStats(PlayerStats stats)
         {
             MoveSpeed = stats.MoveSpeed;

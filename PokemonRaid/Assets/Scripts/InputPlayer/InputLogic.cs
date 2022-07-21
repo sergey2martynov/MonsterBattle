@@ -30,7 +30,7 @@ namespace InputPlayer
 
         private void OnDirectionReceived(Vector3 direction)
         {
-            _model.SetMoveDirection(direction);
+            _model.SetLookDirection(direction);
         }
 
         public void OnStart()

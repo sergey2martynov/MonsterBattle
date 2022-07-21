@@ -8,9 +8,11 @@ namespace Player
     {
         [SerializeField] protected Animator _animator;
         [SerializeField] protected HealthBarView _healthBarView;
+        [SerializeField] private LayerMask _boundsLayer;
 
         public Transform Transform => transform;
         public Animator Animator => _animator;
+        public LayerMask BoundsLayer => _boundsLayer;
 
         public event Action ViewDestroyed;
 

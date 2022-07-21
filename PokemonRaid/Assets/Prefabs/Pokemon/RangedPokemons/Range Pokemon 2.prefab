@@ -131,6 +131,9 @@ MonoBehaviour:
   _enemyLayer:
     serializedVersion: 2
     m_Bits: 64
+  _boundsLayer:
+    serializedVersion: 2
+    m_Bits: 128
   _healthBar: {fileID: 2460204193101761205}
   _projectilePrefab: {fileID: 3376967517250490170, guid: 6136d3c7cd1e7a64fa1478f8855c5d0e, type: 3}
 --- !u!136 &6042295403039558595

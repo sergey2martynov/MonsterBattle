@@ -8,11 +8,13 @@ namespace Pokemon
     {
         [SerializeField] protected Animator _animator;
         [SerializeField] protected LayerMask _enemyLayer;
+        [SerializeField] protected LayerMask _boundsLayer;
         [SerializeField] private HealthBarView _healthBar;
 
         public Transform Transform => transform;
         public Animator Animator => _animator;
         public LayerMask EnemyLayer => _enemyLayer;
+        public LayerMask BoundsLayer => _boundsLayer;
 
         public HealthBarView HealthBarView => _healthBar;
 

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using Player;
 using Pokemon.PokemonHolder.Cell;
 using UnityEngine;
@@ -40,7 +41,7 @@ namespace Pokemon.PokemonHolder
             return (from pokemonRow in _pokemonsList from pokemon in pokemonRow where pokemon != null select pokemon.Health).Sum();
         }
         
-        public void SetMoveDirection(Vector3 direction)
+        public void SetLookDirection(Vector3 direction)
         {
             // foreach (var pokemon in _pokemons)
             // {
@@ -53,10 +54,58 @@ namespace Pokemon.PokemonHolder
                      where pokemon != null
                      select pokemon)
             {
+                pokemon.LookDirection = direction;
+            }
+
+            _playerData.LookDirection = direction;
+            SetCorrectedDirection(direction);
+        }
+
+        private void SetCorrectedDirection(Vector3 direction)
+        {
+            var correctedDirection = _playerData.GetCorrectedDirection();
+            var wrongVector = new Vector3(10f, 10f, 10f);
+            
+            if (correctedDirection != wrongVector)
+            {
+                SetMoveDirection(correctedDirection);
+            }
+            else
+            {
+                foreach (var pokemon in _pokemonsList.SelectMany(pokemonList => pokemonList))
+                {
+
+                    if (pokemon == null)
+                    {
+                        continue;
+                    }
+                    
+                    correctedDirection = pokemon.GetCorrectedDirection();
+
+                    if (correctedDirection == wrongVector)
+                    {
+                        continue;
+                    }
+
+                    SetMoveDirection(correctedDirection);
+                    return;
+                }
+
+                SetMoveDirection(direction);
+            }
+        }
+        
+        private void SetMoveDirection(Vector3 direction)
+        {
+            foreach (var pokemon in from pokemonList in _pokemonsList
+                     from pokemon in pokemonList
+                     where pokemon != null
+                     select pokemon)
+            {
                 pokemon.MoveDirection = direction;
             }
 
-            _playerData.MoveDirection = direction;
+            _playerData.MoveDirection = direction;        
         }
 
         public void SwapPokemons(int[] firstPosition, int[] secondPosition)

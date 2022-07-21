@@ -21,6 +21,8 @@ namespace Pokemon
         protected BaseState<TView, TEnemyView> _currentState;
         protected Collider[] _collidersInRange;
         protected int _attackCount;
+        protected float _rayCastDistance = 1.5f;
+        protected RaycastHit[] _hit = new RaycastHit[1];
         protected CancellationTokenSource _source;
 
         public virtual void Initialize(TView view, PokemonDataBase data, PokemonHolderModel model,
@@ -38,6 +40,7 @@ namespace Pokemon
             _view.IndexesRequested += GetIndexes;
             _data.PokemonDied += OnPokemonDied;
             _data.HealthChanged += OnHealthChanged;
+            _data.DirectionCorrectionRequested += CheckForBounds;
             _statesToType = new Dictionary<Type, BaseState<TView, TEnemyView>>
             {
                 {typeof(IdleState<TView, TEnemyView>), new IdleState<TView, TEnemyView>(_view, this, _data)},
@@ -149,11 +152,40 @@ namespace Pokemon
 
             _view.SetHealth(_data.Health / (float)_data.MaxHealth);
         }
+        
+        public void RotateAt(Vector3 point)
+        {
+            var destinationRotation = Quaternion.LookRotation(point, Vector3.up);
+            _view.Transform.rotation =
+                Quaternion.RotateTowards(_view.Transform.rotation, destinationRotation, 720 * Time.deltaTime);
+        }
+
+        public Vector3 CheckForBounds()
+        {
+            var ray = new Ray(_view.Transform.position, _view.Transform.forward);
+
+            if (Physics.RaycastNonAlloc(ray, _hit, _rayCastDistance, _view.BoundsLayer) > 0)
+            {
+                var direction = (Vector3) _data.LookDirection;
+                direction.Normalize();
+                var normal = _hit[0].normal;
+
+                if (Vector3.SignedAngle(normal, _hit[0].point, Vector3.up) < 0)
+                {
+                    return direction - new Vector3(direction.x * normal.x, direction.y * normal.y, direction.z * normal.z);
+                }
+                else
+                {
+                    return direction + new Vector3(direction.x * normal.x, direction.y * normal.y, direction.z * normal.z);
+                }
+            }
+
+            return new Vector3(10f, 10f, 10f);
+        }
 
         protected virtual void Dispose()
         {
             _updateHandler.UpdateTicked -= Update;
-            //_data.DisposeSource();
             _view.ViewDestroyed -= Dispose;
             _view.LevelRequested -= GetPokemonLevel;
             _view.DamageTaken -= OnDamageTaken;
@@ -161,13 +193,7 @@ namespace Pokemon
             _view.IndexesRequested -= GetIndexes;
             _data.PokemonDied -= OnPokemonDied;
             _data.HealthChanged -= OnHealthChanged;
-        }
-
-        public void RotateAt(Vector3 point)
-        {
-            var destinationRotation = Quaternion.LookRotation(point, Vector3.up);
-            _view.Transform.rotation =
-                Quaternion.RotateTowards(_view.Transform.rotation, destinationRotation, 720 * Time.deltaTime);
+            _data.DirectionCorrectionRequested -= CheckForBounds;
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using SerializedObjects;
 using Stats;
+using UnityEngine;
 
 namespace Pokemon
 {
@@ -23,6 +24,7 @@ namespace Pokemon
         // public CancellationTokenSource Source { get; protected set; }
 
         public SerializableVector3 MoveDirection { get; set; }
+        public SerializableVector3 LookDirection { get; set; }
 
         public int[] Indexes { get; set; }
 
@@ -175,6 +177,8 @@ namespace Pokemon
         public event Action<int, int> HealthChanged; 
         [field: NonSerialized]
         public event Action PokemonDied;
+        [field: NonSerialized] 
+        public event Func<Vector3> DirectionCorrectionRequested; 
 
         public virtual void Initialize(PokemonStatsByLevel stats, int[] indexes)
         {
@@ -198,6 +202,11 @@ namespace Pokemon
         //     Source?.Cancel();
         //     Source?.Dispose();
         // }
+
+        public Vector3 GetCorrectedDirection()
+        {
+            return DirectionCorrectionRequested?.Invoke() ?? new Vector3(10f, 10f, 10f);
+        }
 
         protected virtual void SetStats(PokemonStatsByLevel stats)
         {
