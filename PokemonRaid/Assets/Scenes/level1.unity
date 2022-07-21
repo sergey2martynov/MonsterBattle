@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2138677392}
-  m_IndirectSpecularColor: {r: 0.28138083, g: 0.36688313, b: 0.4993354, a: 1}
+  m_IndirectSpecularColor: {r: 0.28138116, g: 0.36688387, b: 0.49933624, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -502,6 +502,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee5e6b73b903449a94c0d2e90c4e68e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1361520588 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1814496408351179310, guid: c1f9906ca0940a04d8eec4a32f3cf694, type: 3}
+  m_PrefabInstance: {fileID: 5882980373408904196}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af7287d30f9db564dbd0455646e0e444, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1391462379 stripped
@@ -1228,6 +1239,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6127382444085501945}
     - target: {fileID: 1339164300679375854, guid: 5b76d7af153ba994f990647493604eb2, type: 3}
+      propertyPath: _healthPlayerBarView
+      value: 
+      objectReference: {fileID: 1361520588}
+    - target: {fileID: 1339164300679375854, guid: 5b76d7af153ba994f990647493604eb2, type: 3}
       propertyPath: _pokemonParentObject
       value: 
       objectReference: {fileID: 359293894}
@@ -1600,6 +1615,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6886880067031693422, guid: c1f9906ca0940a04d8eec4a32f3cf694, type: 3}
+      propertyPath: _healthBarView
+      value: 
+      objectReference: {fileID: 1361520588}
     - target: {fileID: 6897552145426929971, guid: c1f9906ca0940a04d8eec4a32f3cf694, type: 3}
       propertyPath: m_RootOrder
       value: 7

@@ -51,7 +51,19 @@ namespace Player
         public int Health
         {
             get => _health;
-            set => _health = value < 0 ? 0 : value;
+            set
+            {
+                _health = value;
+
+                if (_health < 0)
+                    _health = 0;
+                else
+                {
+                    _health = value;
+                }
+                
+                HealthChange ?.Invoke(_health, _maxHealth);
+            } 
         }
 
         public int Level
@@ -67,7 +79,9 @@ namespace Player
                 _level = value;
             }
         }
-        
+
+        public event Action<int, int> HealthChange;
+
         public int Coins
         {
             get => _coins;
@@ -105,15 +119,18 @@ namespace Player
         {
             return DirectionCorrectionRequested?.Invoke() ?? new Vector3(10f, 10f, 10f);
         }
+
+        public void SetMaxHealth()
+        {
+           MaxHealth = _pokemonHolderModel.GetAllHealth();
+        }
         
         protected virtual void SetStats(PlayerStats stats)
         {
             MoveSpeed = stats.MoveSpeed;
-            MaxHealth = stats.MaxHealth;
             Level = stats.Level;
             Health = _pokemonHolderModel.GetAllHealth();
             _coins = stats.Coins;
-            
         }
     }
 }

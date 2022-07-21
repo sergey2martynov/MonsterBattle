@@ -1,4 +1,5 @@
-﻿using InputPlayer;
+﻿using HealthBar;
+using InputPlayer;
 using LevelBuilder;
 using Merge;
 using Player;
@@ -30,6 +31,7 @@ public class ProjectStarter : MonoBehaviour
     [SerializeField] private Transform _enemyParentObject;
     [SerializeField] private LevelDataHolder _levelDataHolder;
     [SerializeField] private Transform _camera;
+    [SerializeField] private HealthBarView _healthPlayerBarView;
     
     
     private PokemonSpawner _pokemonSpawner;
@@ -53,6 +55,8 @@ public class ProjectStarter : MonoBehaviour
         var playerData = new PlayerData();
         var playerLogic = new PlayerLogic();
         playerLogic.Initialize(_playerView, playerData, _updateHandler, pokemonHolderModel);
+        _healthPlayerBarView.SetCameraRef(_camera);
+        pokemonHolderModel.SetInitialHealthPlayer();
         
         _saveLoadSystem = new SaveLoadSystem(playerData, pokemonHolderModel);
         var loadedSuccessfully = _saveLoadSystem.TryLoadData(out var data);
@@ -74,7 +78,7 @@ public class ProjectStarter : MonoBehaviour
 
         var shopData = new ShopData();
         shopData.Initialize(_shopStats);
-        var shopLogic = new ShopLogic(_pokemonSpawner, _shopView, shopData, playerData,pokemonHolderModel);
+        var shopLogic = new ShopLogic(_pokemonSpawner, _shopView, shopData, playerData,pokemonHolderModel, playerLogic);
         shopLogic.Initialize();
         
         var levelBuilderBehaviour = new LevelBuilderBehaviour(_levelDataHolder, playerData, _updateHandler,

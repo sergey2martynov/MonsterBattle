@@ -11,24 +11,28 @@ namespace Shop
         private readonly ShopView _shopView;
         private readonly ShopData _shopData;
         private readonly PokemonHolderModel _pokemonHolderModel;
+        private readonly PlayerLogic _playerLogic;
         private readonly PlayerData _playerData;
 
         public event Action StartButtonPressed;
 
         public ShopLogic(PokemonSpawner pokemonSpawner, ShopView shopView, ShopData shopData, PlayerData playerData,
-            PokemonHolderModel pokemonHolderModel)
+            PokemonHolderModel pokemonHolderModel, PlayerLogic playerLogic)
         {
             _pokemonSpawner = pokemonSpawner;
             _shopView = shopView;
             _shopData = shopData;
             _playerData = playerData;
             _pokemonHolderModel = pokemonHolderModel;
+            _playerLogic = playerLogic;
         }
 
         public void Initialize()
         {
             _shopView.PurchaseButtonPressed += TryPurchasePokemon;
             _shopView.StartButtonPressed += OnStartButtonPressed;
+            _shopView.StartButtonPressed += _playerData.SetMaxHealth;
+            _shopView.StartButtonPressed += _playerLogic.HealthBarDisabler;
             _shopView.SetTextCoins(_playerData.Coins);
         }
 
@@ -58,8 +62,10 @@ namespace Shop
 
         public void Dispose()
         {
+            _shopView.StartButtonPressed -= _playerLogic.HealthBarDisabler;
             _shopView.PurchaseButtonPressed -= TryPurchasePokemon;
             _shopView.StartButtonPressed -= OnStartButtonPressed;
+            _shopView.StartButtonPressed -= _playerData.SetMaxHealth;
         }
     }
 }

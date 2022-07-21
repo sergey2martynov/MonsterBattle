@@ -23,6 +23,7 @@ namespace Player
             _view.ViewDestroyed += Dispose;
             _data.DirectionCorrectionRequested += CheckForBounds;
             _pokemonHolderModel = pokemonHolderModel;
+            _data.HealthChange += OnHealthChange;
         }
 
         private void Update()
@@ -65,8 +66,19 @@ namespace Player
             return new Vector3(10f, 10f, 10f);
         }
 
+        public void HealthBarDisabler()
+        {
+            _view.HealthBarView.gameObject.SetActive(true);
+        }
+
+        private void OnHealthChange(int health, int maxHealth)
+        {
+            _view.SetHealth(_data.Health / (float)_data.MaxHealth);
+        }
+
         private void Dispose()
         {
+            _data.HealthChange -= OnHealthChange;
             _updateHandler.UpdateTicked -= Update;
             _data.DisposeSource();
             _view.ViewDestroyed -= Dispose;

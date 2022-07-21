@@ -14,6 +14,8 @@ namespace Player
         public Animator Animator => _animator;
         public LayerMask BoundsLayer => _boundsLayer;
 
+        public HealthBarView HealthBarView => _healthBarView;
+
         public event Action ViewDestroyed;
 
         public void SetViewActive(bool isActive)

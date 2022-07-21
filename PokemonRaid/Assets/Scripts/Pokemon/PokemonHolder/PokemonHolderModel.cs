@@ -34,6 +34,26 @@ namespace Pokemon.PokemonHolder
         public void Initialize(IEnumerable<List<PokemonDataBase>> pokemonList)
         {
             _pokemonsList = pokemonList.ToList();
+
+            foreach (var pokemonRow in _pokemonsList)
+            {
+                foreach (var pokemonData in pokemonRow)
+                {
+                    if (pokemonData != null)
+                        pokemonData.HealthChanged += SetHealthPlayer;
+                }
+            }
+        }
+
+        private void SetHealthPlayer(int damage, int maxHealth)
+        {
+            _playerData.Health = GetAllHealth();
+        }
+
+        public void SetInitialHealthPlayer()
+        {
+            if(_pokemonsList != null)
+                _playerData.Health = GetAllHealth();
         }
         
         public int GetAllHealth()
@@ -148,6 +168,10 @@ namespace Pokemon.PokemonHolder
             // }
 
             _pokemonsList[indexes[0]][indexes[1]] = pokemonData;
+            
+            _pokemonsList[indexes[0]][indexes[1]].HealthChanged += SetHealthPlayer;
+            
+            _playerData.Health = GetAllHealth();
 
         }
 
