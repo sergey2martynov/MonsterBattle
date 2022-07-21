@@ -1693,6 +1693,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2758491017982520701, guid: caa1987dff741994084ff95cd943dfde, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -22
+      objectReference: {fileID: 0}
+    - target: {fileID: 2758491017982520701, guid: caa1987dff741994084ff95cd943dfde, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 2859066143878145204, guid: caa1987dff741994084ff95cd943dfde, type: 3}
       propertyPath: m_Name
       value: RangedPurchaseButton
@@ -1708,6 +1716,14 @@ PrefabInstance:
     - target: {fileID: 2859066144816205363, guid: caa1987dff741994084ff95cd943dfde, type: 3}
       propertyPath: m_margin.w
       value: 121.85955
+      objectReference: {fileID: 0}
+    - target: {fileID: 3205034940451681524, guid: caa1987dff741994084ff95cd943dfde, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -22
+      objectReference: {fileID: 0}
+    - target: {fileID: 3205034940451681524, guid: caa1987dff741994084ff95cd943dfde, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3287560905197344698, guid: caa1987dff741994084ff95cd943dfde, type: 3}
       propertyPath: m_margin.w
