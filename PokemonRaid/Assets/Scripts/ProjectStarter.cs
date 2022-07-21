@@ -1,4 +1,5 @@
-﻿using HealthBar;
+﻿using Enemy.EnemyModel;
+using HealthBar;
 using InputPlayer;
 using LevelBuilder;
 using Merge;
@@ -52,9 +53,11 @@ public class ProjectStarter : MonoBehaviour
             pokemonHolderModel, _fieldView, _camera);
         _pokemonSpawner.Initialize();
 
+        var enemyDataHolder = new EnemyDataHolder();
+
         var playerData = new PlayerData();
         var playerLogic = new PlayerLogic();
-        playerLogic.Initialize(_playerView, playerData, _updateHandler, pokemonHolderModel);
+        playerLogic.Initialize(_playerView, playerData, _updateHandler, pokemonHolderModel, enemyDataHolder);
         _healthPlayerBarView.SetCameraRef(_camera);
         pokemonHolderModel.SetInitialHealthPlayer();
         
@@ -82,7 +85,7 @@ public class ProjectStarter : MonoBehaviour
         shopLogic.Initialize();
         
         var levelBuilderBehaviour = new LevelBuilderBehaviour(_levelDataHolder, playerData, _updateHandler,
-            _enemyParentObject, _enemyStats);
+            _enemyParentObject, _enemyStats, enemyDataHolder);
         levelBuilderBehaviour.Initialize(shopLogic);
         
         directionTranslator.SetShopLogic(shopLogic);

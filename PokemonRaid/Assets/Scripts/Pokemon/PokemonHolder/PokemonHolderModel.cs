@@ -83,38 +83,48 @@ namespace Pokemon.PokemonHolder
 
         private void SetCorrectedDirection(Vector3 direction)
         {
-            var correctedDirection = _playerData.GetCorrectedDirection();
+            var correctedDirection = direction;
+            var playerCorrectedDirection = _playerData.GetCorrectedDirection();
             var wrongVector = new Vector3(10f, 10f, 10f);
-            
-            if (correctedDirection != wrongVector)
+
+            // if (playerCorrectedDirection != wrongVector)
+            // {
+            //     //SetMoveDirection(correctedDirection);
+            //     correctedDirection = playerCorrectedDirection;
+            // }
+
+            foreach (var pokemon in _pokemonsList.SelectMany(pokemonList => pokemonList))
             {
-                SetMoveDirection(correctedDirection);
-            }
-            else
-            {
-                foreach (var pokemon in _pokemonsList.SelectMany(pokemonList => pokemonList))
+
+                if (pokemon == null)
                 {
+                    continue;
+                }
 
-                    if (pokemon == null)
-                    {
-                        continue;
-                    }
-                    
-                    correctedDirection = pokemon.GetCorrectedDirection();
+                correctedDirection = pokemon.GetCorrectedDirection();
 
-                    if (correctedDirection == wrongVector)
-                    {
-                        continue;
-                    }
+                if (correctedDirection == wrongVector)
+                {
+                    continue;
+                }
 
+                if (playerCorrectedDirection != wrongVector)
+                {
+                    correctedDirection = Vector3.Scale(correctedDirection, playerCorrectedDirection);
                     SetMoveDirection(correctedDirection);
                     return;
                 }
 
-                SetMoveDirection(direction);
+                if (correctedDirection != wrongVector)
+                {
+                    SetMoveDirection(correctedDirection);
+                    return;
+                }
             }
+
+            SetMoveDirection(playerCorrectedDirection != wrongVector ? playerCorrectedDirection : direction);
         }
-        
+
         private void SetMoveDirection(Vector3 direction)
         {
             foreach (var pokemon in from pokemonList in _pokemonsList

@@ -105,7 +105,7 @@ namespace Enemy
             _data.Health -= damage;
         }
 
-        protected void OnEnemyDied()
+        protected void OnEnemyDied(BaseEnemyData data)
         {
             _view.SetViewActive(false);
             Dispose();

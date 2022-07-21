@@ -72,7 +72,7 @@ namespace Enemy
                 if (value <= 0)
                 {
                     _health = 0;
-                    EnemyDied?.Invoke();
+                    EnemyDied?.Invoke(this);
                 }
                 else
                 {
@@ -140,7 +140,7 @@ namespace Enemy
         }
 
         public event Action<int, int> HealthChanged; 
-        public event Action EnemyDied;
+        public event Action<BaseEnemyData> EnemyDied;
 
         public void Initialize(EnemyStatsByLevel stats)
         {

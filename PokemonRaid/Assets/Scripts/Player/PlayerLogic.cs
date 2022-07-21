@@ -1,4 +1,6 @@
-﻿using Pokemon.PokemonHolder;
+﻿using System;
+using Enemy.EnemyModel;
+using Pokemon.PokemonHolder;
 using UnityEngine;
 using UpdateHandlerFolder;
 
@@ -9,21 +11,27 @@ namespace Player
         private PlayerView _view;
         private PlayerData _data;
         private UpdateHandler _updateHandler;
+        private EnemyDataHolder _enemyDataHolder;
         private PokemonHolderModel _pokemonHolderModel;
         private RaycastHit[] _hit = new RaycastHit[1];
         private float _rayCastDistance = 1.5f;
 
+        public event Action<int> CoinsAdded; 
+
         public virtual void Initialize( PlayerView playerView, PlayerData playerData,
-            UpdateHandler updateHandler, PokemonHolderModel pokemonHolderModel)
+            UpdateHandler updateHandler, PokemonHolderModel pokemonHolderModel, EnemyDataHolder enemyDataHolder)
         {
             _view = playerView;
             _data = playerData;
             _updateHandler = updateHandler;
+            _pokemonHolderModel = pokemonHolderModel;
+            _enemyDataHolder = enemyDataHolder;
             _updateHandler.UpdateTicked += Update;
+            _enemyDataHolder.EnemyDefeated += OnEnemyDefeated;
             _view.ViewDestroyed += Dispose;
             _data.DirectionCorrectionRequested += CheckForBounds;
-            _pokemonHolderModel = pokemonHolderModel;
             _data.HealthChange += OnHealthChange;
+            _data.CoinsAmountChanged += OnCoinsAmountChanged;
         }
 
         private void Update()
@@ -76,13 +84,31 @@ namespace Player
             _view.SetHealth(_data.Health / (float)_data.MaxHealth);
         }
 
+        private void OnEnemyDefeated(int coinsReward)
+        {
+            if (coinsReward <= 0)
+            {
+                return;
+            }
+            
+            _data.Coins += coinsReward;
+        }
+
+        private void OnCoinsAmountChanged(int coins)
+        {
+            CoinsAdded?.Invoke(coins);
+        }
+
         private void Dispose()
         {
             _data.HealthChange -= OnHealthChange;
             _updateHandler.UpdateTicked -= Update;
+            _enemyDataHolder.EnemyDefeated -= OnEnemyDefeated;
             _data.DisposeSource();
             _view.ViewDestroyed -= Dispose;
             _data.DirectionCorrectionRequested -= CheckForBounds;
+            _data.CoinsAmountChanged -= OnCoinsAmountChanged;
+
         }
     }
 }

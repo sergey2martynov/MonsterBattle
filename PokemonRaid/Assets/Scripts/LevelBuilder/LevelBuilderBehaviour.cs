@@ -1,4 +1,5 @@
-﻿using Factories;
+﻿using Enemy.EnemyModel;
+using Factories;
 using Player;
 using Shop;
 using StaticData;
@@ -9,6 +10,7 @@ namespace LevelBuilder
 {
     public class LevelBuilderBehaviour
     {
+        private readonly EnemyDataHolder _enemyDataHolder;
         private readonly UpdateHandler _updateHandler;
         private readonly LevelDataHolder _levelDataHolder;
         private readonly PlayerData _playerData;
@@ -17,13 +19,14 @@ namespace LevelBuilder
         private EnemyFactory _enemyFactory;
         
         public LevelBuilderBehaviour(LevelDataHolder levelDataHolder, PlayerData playerData,
-            UpdateHandler updateHandler, Transform enemyParentObject, EnemyStats enemyStats)
+            UpdateHandler updateHandler, Transform enemyParentObject, EnemyStats enemyStats, EnemyDataHolder enemyDataHolder)
         {
             _levelDataHolder = levelDataHolder;  
             _playerData = playerData;
             _updateHandler = updateHandler;
             _enemyParentObject = enemyParentObject;
             _enemyStats = enemyStats;
+            _enemyDataHolder = enemyDataHolder;
         }
 
         public void Initialize(ShopLogic shopLogic)
@@ -42,8 +45,9 @@ namespace LevelBuilder
                 foreach (var position in spawnPosition.Positions)
                 {
                     var randomIndex = Random.Range(0, spawnPosition.EnemyPrefabs.Count);
-                    _enemyFactory.CreateInstance(spawnPosition.EnemyPrefabs[randomIndex], position, _enemyStats,
-                        _enemyParentObject, level, out var baseView);
+                    var data = _enemyFactory.CreateInstance(spawnPosition.EnemyPrefabs[randomIndex], position,
+                        _enemyStats, _enemyParentObject, level, out var baseView);
+                    _enemyDataHolder.AddEnemyData(data);
                 }
             }
         }

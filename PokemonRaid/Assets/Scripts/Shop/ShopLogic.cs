@@ -13,6 +13,7 @@ namespace Shop
         private readonly PokemonHolderModel _pokemonHolderModel;
         private readonly PlayerLogic _playerLogic;
         private readonly PlayerData _playerData;
+        
 
         public event Action StartButtonPressed;
 
@@ -34,6 +35,7 @@ namespace Shop
             _shopView.StartButtonPressed += _playerData.SetMaxHealth;
             _shopView.StartButtonPressed += _playerLogic.HealthBarDisabler;
             _shopView.SetTextCoins(_playerData.Coins);
+            _playerLogic.CoinsAdded += _shopView.SetTextCoins;
         }
 
         private void TryPurchasePokemon(PokemonType pokemonType)
@@ -66,6 +68,7 @@ namespace Shop
             _shopView.PurchaseButtonPressed -= TryPurchasePokemon;
             _shopView.StartButtonPressed -= OnStartButtonPressed;
             _shopView.StartButtonPressed -= _playerData.SetMaxHealth;
+            _playerLogic.CoinsAdded -= _shopView.SetTextCoins;
         }
     }
 }

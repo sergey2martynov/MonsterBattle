@@ -79,14 +79,24 @@ namespace Player
                 _level = value;
             }
         }
-
-        public event Action<int, int> HealthChange;
-
+        
         public int Coins
         {
             get => _coins;
-            set => _coins = value < 0 ? 0 : value;
+            set
+            {
+                if (value <= 0)
+                {
+                    return;
+                }
+
+                _coins = value;
+                CoinsAmountChanged?.Invoke(_coins);
+            }
         }
+
+        public event Action<int, int> HealthChange;
+        public event Action<int> CoinsAmountChanged;
 
         public event Func<Vector3> DirectionCorrectionRequested; 
 
