@@ -88,9 +88,9 @@ namespace Player
             get => _coins;
             set
             {
-                if (value <= 0)
+                if (value < 0)
                 {
-                    return;
+                    _coins = 0;
                 }
 
                 _coins = value;

@@ -6,7 +6,21 @@ namespace Enemy.EnemyModel
     public class EnemyDataHolder
     {
         private List<BaseEnemyData> _enemiesData = new List<BaseEnemyData>();
-        public const int CoinsReward = 10;
+        private int _coinsRewardPerEnemy;
+
+        public int CoinsRewardPerEnemy
+        {
+            get => _coinsRewardPerEnemy;
+            set
+            {
+                if (value <= 0)
+                {
+                    throw new ArgumentException("Reward cannot be equal or less than zero");
+                }
+
+                _coinsRewardPerEnemy = value;
+            }
+        }
 
         public event Action<int> EnemyDefeated;
         
@@ -30,7 +44,7 @@ namespace Enemy.EnemyModel
 
         private void OnEnemyDied()
         {
-            EnemyDefeated?.Invoke(CoinsReward);
+            EnemyDefeated?.Invoke(_coinsRewardPerEnemy);
         }
     }
 }

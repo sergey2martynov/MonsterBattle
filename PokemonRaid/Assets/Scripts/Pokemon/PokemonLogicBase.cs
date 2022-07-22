@@ -176,6 +176,8 @@ namespace Pokemon
                     Mathf.Clamp(_hit[0].normal.z, -Mathf.Abs(direction.z), Mathf.Abs(direction.z)));
                 
                 Debug.Log("NORMAL : " + normal);
+                
+                //TODO: Change raycastnonalloc to spherecastnonalloc to be able to get collisions with two bounds at ones
 
                 // return direction - new Vector3(Mathf.Abs(normal.x) * direction.x, Mathf.Abs(normal.y) * direction.y,
                 //     Mathf.Abs(normal.z) * direction.z);

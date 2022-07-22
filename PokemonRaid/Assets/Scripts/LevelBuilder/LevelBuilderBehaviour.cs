@@ -39,6 +39,7 @@ namespace LevelBuilder
         {
             var level = _playerData.Level;
             var levelData = _levelDataHolder.GetLevelData(level);
+            var totalEnemyCount = 0;
             var totalHp = 0;
             var totalDps = 0;
 
@@ -50,11 +51,13 @@ namespace LevelBuilder
                     var data = _enemyFactory.CreateInstance(spawnPosition.EnemyPrefabs[randomIndex], position,
                         _enemyStats, _enemyParentObject, level, out var baseView);
                     _enemyDataHolder.AddEnemyData(data);
+                    totalEnemyCount++;
                     totalDps += data.Damage;
                     totalHp += data.Health;
                 }
             }
-            
+
+            _enemyDataHolder.CoinsRewardPerEnemy = levelData.TotalCoinsReward / totalEnemyCount;            
             Debug.Log("Total HP : " + totalHp + "\n" + "Total DPS : " + totalDps);
         }
     }

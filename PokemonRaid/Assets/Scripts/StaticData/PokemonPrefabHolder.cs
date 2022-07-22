@@ -1,11 +1,12 @@
+using System;
 using System.Collections.Generic;
 using Pokemon;
 using UnityEngine;
 
 namespace StaticData
 {
-    [CreateAssetMenu(fileName = "PokemonList", menuName = "StaticData/PokemonList", order = 51)]
-    public class PokemonPrefabHolder : ScriptableObject
+    [Serializable]
+    public class PokemonPrefabHolder
     {
         [SerializeField] private List<PokemonViewBase> _meleePokemons;
         [SerializeField] private List<PokemonViewBase> _rangedPokemons;

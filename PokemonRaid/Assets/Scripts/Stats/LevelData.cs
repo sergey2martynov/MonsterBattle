@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Attributes;
-using Enemy;
 using UnityEngine;
 
 namespace Stats
@@ -12,7 +11,9 @@ namespace Stats
         [SerializeField] private int _level;
         [NamedProperty("Spawn positions")]
         [SerializeField] private List<SpawnPositions> _spawnPositions;
+        [SerializeField] private int _totalCoinsReward;
 
         public List<SpawnPositions> SpawnPositions => _spawnPositions;
+        public int TotalCoinsReward => _totalCoinsReward;
     }
 }

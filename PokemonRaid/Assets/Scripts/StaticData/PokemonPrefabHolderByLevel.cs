@@ -1,12 +1,14 @@
 ﻿using System.Collections.Generic;
 using Attributes;
+using UnityEngine;
 
 namespace StaticData
 {
-    public class PokemonPrefabHolderByLevel
+    [CreateAssetMenu(fileName = "PokemonPrefabHolderByLevel", menuName = "StaticData/PokemonPrefabHolderByLevel", order = 58)]
+    public class PokemonPrefabHolderByLevel : ScriptableObject
     {
         [NamedProperty("Level")]
-        private List<PokemonPrefabHolder> _pokemonPrefabByLevel;
+        [SerializeField] private List<PokemonPrefabHolder> _pokemonPrefabByLevel;
 
         public PokemonPrefabHolder GetPokemonPrefabHolder(int level)
         {

@@ -55,6 +55,11 @@ namespace Pool
         {
             if (pokemonType == PokemonType.Melee)
             {
+                if (_pokemonPrefabHolder.MeleePokemons.Count == 0)
+                {
+                    return;
+                }
+                
                 var randomNumber = Random.Range(0, _pokemonPrefabHolder.MeleePokemons.Count);
                 var concreteView = _pokemonPrefabHolder.MeleePokemons[randomNumber];
                 var data = _factory.CreateInstance(concreteView, new Vector3(position.x, position.y + 0.5f, position.z),
@@ -64,6 +69,11 @@ namespace Pool
             }
             else
             {
+                if (_pokemonPrefabHolder.RangedPokemons.Count == 0)
+                {
+                    return;
+                }
+                
                 var randomNumber = Random.Range(0, _pokemonPrefabHolder.RangedPokemons.Count);
                 var concreteView = _pokemonPrefabHolder.RangedPokemons[randomNumber];
                 var data = _factory.CreateInstance(concreteView, new Vector3(position.x, position.y + 0.5f, position.z),

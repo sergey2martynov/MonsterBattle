@@ -25,7 +25,7 @@ public class ProjectStarter : MonoBehaviour
     [SerializeField] private PlayerView _playerView;
     [SerializeField] private PlayerStats _playerStats;
     [SerializeField] private PokemonStats _pokemonStats;
-    [SerializeField] private PokemonPrefabHolder _pokemonPrefabHolder;
+    [SerializeField] private PokemonPrefabHolderByLevel _pokemonPrefabHolderByLevel;
     [SerializeField] private Transform _pokemonParentObject;
     [SerializeField] private FieldView _fieldView;
     [SerializeField] private InputView _inputView;
@@ -76,8 +76,8 @@ public class ProjectStarter : MonoBehaviour
         }
         
         pokemonHolderModel.SetPlayerData(playerData);
-        
-        _pokemonSpawner = new PokemonSpawner(_pokemonPrefabHolder, _pokemonParentObject, _pokemonStats, _updateHandler,
+        var pokemonPrefabHolder = _pokemonPrefabHolderByLevel.GetPokemonPrefabHolder(playerData.Level);
+        _pokemonSpawner = new PokemonSpawner(pokemonPrefabHolder, _pokemonParentObject, _pokemonStats, _updateHandler,
             pokemonHolderModel, _fieldView, _camera, playerData);
         _pokemonSpawner.Initialize();
 
