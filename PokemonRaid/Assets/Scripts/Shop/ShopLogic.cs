@@ -67,6 +67,11 @@ namespace Shop
                 _shopView.DisablePurchaseButton(false);
             }
             
+            if (_playerData.Level > 1 && _playerData.Level < 3)
+            {
+                _shopView.DisableRangePurchaseButton(false);
+            }
+            
             Debug.Log(_playerData.Level);
         }
         

@@ -12,7 +12,9 @@ namespace Shop
         [SerializeField] private Button _purchaseRangedButton;
         [SerializeField] private Button _startButton;
         [SerializeField] private TextMeshProUGUI _text;
-        
+
+        private const int CenterPositionY = 489;
+
         public event Action<PokemonType> PurchaseButtonPressed;
         public event Action StartButtonPressed;
 
@@ -22,6 +24,7 @@ namespace Shop
             _purchaseRangedButton.onClick.AddListener(OnPurchaseRangedButtonClicked);
             _startButton.onClick.AddListener(OnStartButtonClicked);
         }
+
         private void OnDestroy()
         {
             _purchaseMeleeButton.onClick.RemoveListener(OnPurchaseMeleeButtonClicked);
@@ -34,23 +37,31 @@ namespace Shop
             _text.text = coinsAmount.ToString();
         }
 
-        private void  OnPurchaseMeleeButtonClicked()
+        private void OnPurchaseMeleeButtonClicked()
         {
             PurchaseButtonPressed?.Invoke(PokemonType.Melee);
         }
-        
+
         public void DisablePurchaseButton(bool isActive)
         {
             _purchaseMeleeButton.gameObject.SetActive(isActive);
             _purchaseRangedButton.gameObject.SetActive(isActive);
         }
 
-        private void  OnPurchaseRangedButtonClicked()
+        public void DisableRangePurchaseButton(bool isActive)
+        {
+            _purchaseRangedButton.gameObject.SetActive(isActive);
+
+            _purchaseMeleeButton.GetComponent<RectTransform>().anchoredPosition = new Vector2(CenterPositionY,
+                _purchaseMeleeButton.GetComponent<RectTransform>().anchoredPosition.y);
+        }
+
+        private void OnPurchaseRangedButtonClicked()
         {
             PurchaseButtonPressed?.Invoke(PokemonType.Ranged);
         }
-        
-        private void  OnStartButtonClicked()
+
+        private void OnStartButtonClicked()
         {
             StartButtonPressed?.Invoke();
             Disable();
