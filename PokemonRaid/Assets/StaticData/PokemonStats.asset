@@ -17,12 +17,12 @@ MonoBehaviour:
     _statsByLevels:
     - _moveSpeed: 5
       _attackSpeed: 1
-      _maxHealth: 3
-      _damage: 1
+      _maxHealth: 6
+      _damage: 3
       _level: 1
       _maxLevel: 5
       _maxTargetsAmount: 1
-      _attackRange: 3
+      _attackRange: 5
     - _moveSpeed: 5
       _attackSpeed: 1
       _maxHealth: 4
@@ -59,12 +59,12 @@ MonoBehaviour:
     _statsByLevels:
     - _moveSpeed: 5
       _attackSpeed: 1
-      _maxHealth: 3
-      _damage: 1
+      _maxHealth: 6
+      _damage: 3
       _level: 1
       _maxLevel: 5
       _maxTargetsAmount: 1
-      _attackRange: 3
+      _attackRange: 5
     - _moveSpeed: 5
       _attackSpeed: 1
       _maxHealth: 4
@@ -101,12 +101,12 @@ MonoBehaviour:
     _statsByLevels:
     - _moveSpeed: 5
       _attackSpeed: 1
-      _maxHealth: 3
-      _damage: 1
+      _maxHealth: 6
+      _damage: 3
       _level: 1
       _maxLevel: 5
       _maxTargetsAmount: 1
-      _attackRange: 3
+      _attackRange: 5
     - _moveSpeed: 5
       _attackSpeed: 1
       _maxHealth: 4
@@ -143,12 +143,12 @@ MonoBehaviour:
     _statsByLevels:
     - _moveSpeed: 5
       _attackSpeed: 1
-      _maxHealth: 3
-      _damage: 1
+      _maxHealth: 6
+      _damage: 3
       _level: 1
       _maxLevel: 5
       _maxTargetsAmount: 1
-      _attackRange: 3
+      _attackRange: 5
     - _moveSpeed: 5
       _attackSpeed: 1
       _maxHealth: 4
@@ -185,12 +185,12 @@ MonoBehaviour:
     _statsByLevels:
     - _moveSpeed: 5
       _attackSpeed: 1
-      _maxHealth: 3
-      _damage: 1
+      _maxHealth: 6
+      _damage: 3
       _level: 1
       _maxLevel: 5
       _maxTargetsAmount: 1
-      _attackRange: 3
+      _attackRange: 5
     - _moveSpeed: 5
       _attackSpeed: 1
       _maxHealth: 4

@@ -22,7 +22,8 @@ namespace Pokemon
         protected Collider[] _collidersInRange;
         protected int _attackCount;
         protected float _rayCastDistance = 1.5f;
-        protected RaycastHit[] _hit = new RaycastHit[1];
+        //protected RaycastHit[] _hit = new RaycastHit[1];
+        protected RaycastHit[] _hit = new RaycastHit[2];
         protected CancellationTokenSource _source;
 
         public virtual void Initialize(TView view, PokemonDataBase data, PokemonHolderModel model,
@@ -168,16 +169,23 @@ namespace Pokemon
             {
                 var direction = (Vector3) _data.LookDirection;
                 direction.Normalize();
-                var normal = _hit[0].normal;
+                //var normal = _hit[0].normal;
+                var normal = new Vector3(
+                    Mathf.Clamp(_hit[0].normal.x, -Mathf.Abs(direction.x), Mathf.Abs(direction.x)),
+                    Mathf.Clamp(_hit[0].normal.y, -Mathf.Abs(direction.y), Mathf.Abs(direction.y)),
+                    Mathf.Clamp(_hit[0].normal.z, -Mathf.Abs(direction.z), Mathf.Abs(direction.z)));
+                
+                Debug.Log("NORMAL : " + normal);
 
-                if (Vector3.SignedAngle(normal, _hit[0].point, Vector3.up) < 0)
-                {
-                    return direction - new Vector3(direction.x * normal.x, direction.y * normal.y, direction.z * normal.z);
-                }
-                else
-                {
-                    return direction + new Vector3(direction.x * normal.x, direction.y * normal.y, direction.z * normal.z);
-                }
+                // return direction - new Vector3(Mathf.Abs(normal.x) * direction.x, Mathf.Abs(normal.y) * direction.y,
+                //     Mathf.Abs(normal.z) * direction.z);
+
+                var xSign = direction.x == 0 ? 0f : Mathf.Sign(direction.x); 
+                var ySign = direction.y == 0 ? 0f : Mathf.Sign(direction.y); 
+                var zSign = direction.z == 0 ? 0f : Mathf.Sign(direction.z); 
+                
+                return direction - new Vector3(Mathf.Abs(normal.x) * xSign, Mathf.Abs(normal.y) * ySign,
+                    Mathf.Abs(normal.z) * zSign);
             }
 
             return new Vector3(10f, 10f, 10f);

@@ -83,40 +83,33 @@ namespace Pokemon.PokemonHolder
 
         private void SetCorrectedDirection(Vector3 direction)
         {
-            var correctedDirection = direction;
             var playerCorrectedDirection = _playerData.GetCorrectedDirection();
+            var scaleVector = Vector3.one;
             var wrongVector = new Vector3(10f, 10f, 10f);
 
-            // if (playerCorrectedDirection != wrongVector)
-            // {
-            //     //SetMoveDirection(correctedDirection);
-            //     correctedDirection = playerCorrectedDirection;
-            // }
+            if (playerCorrectedDirection != wrongVector)
+            {
+                scaleVector = playerCorrectedDirection;
+            }
 
             foreach (var pokemon in _pokemonsList.SelectMany(pokemonList => pokemonList))
             {
-
                 if (pokemon == null)
                 {
                     continue;
                 }
 
-                correctedDirection = pokemon.GetCorrectedDirection();
+                var correctedDirection = pokemon.GetCorrectedDirection();
 
                 if (correctedDirection == wrongVector)
                 {
                     continue;
                 }
 
-                if (playerCorrectedDirection != wrongVector)
-                {
-                    correctedDirection = Vector3.Scale(correctedDirection, playerCorrectedDirection);
-                    SetMoveDirection(correctedDirection);
-                    return;
-                }
-
                 if (correctedDirection != wrongVector)
                 {
+                    Debug.Log(correctedDirection + " " + scaleVector + "\n" + direction );
+                    correctedDirection = Vector3.Scale(correctedDirection, scaleVector);
                     SetMoveDirection(correctedDirection);
                     return;
                 }

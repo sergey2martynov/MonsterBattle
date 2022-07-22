@@ -60,16 +60,26 @@ namespace Player
             {
                 var direction = _data.LookDirection;
                 direction.Normalize();
-                var normal = _hit[0].normal;
+                //var normal = _hit[0].normal;
+                var normal = new Vector3(
+                    Mathf.Clamp(_hit[0].normal.x, -Mathf.Abs(direction.x), Mathf.Abs(direction.x)),
+                    Mathf.Clamp(_hit[0].normal.y, -Mathf.Abs(direction.y), Mathf.Abs(direction.y)),
+                    Mathf.Clamp(_hit[0].normal.z, -Mathf.Abs(direction.z), Mathf.Abs(direction.z)));
+
+                // return direction - new Vector3(Mathf.Abs(normal.x) * direction.x, Mathf.Abs(normal.y) * direction.y,
+                //     Mathf.Abs(normal.z) * direction.z);
                 
-                if (Vector3.SignedAngle(normal, _hit[0].point, Vector3.up) < 0)
-                {
-                    return direction - new Vector3(direction.x * normal.x, direction.y * normal.y, direction.z * normal.z);
-                }
-                else
-                {
-                    return direction + new Vector3(direction.x * normal.x, direction.y * normal.y, direction.z * normal.z);
-                }
+                var xSign = direction.x == 0 ? 0f : Mathf.Sign(direction.x); 
+                var ySign = direction.y == 0 ? 0f : Mathf.Sign(direction.y); 
+                var zSign = direction.z == 0 ? 0f : Mathf.Sign(direction.z); 
+                
+                return direction - new Vector3(Mathf.Abs(normal.x) * xSign, Mathf.Abs(normal.y) * ySign,
+                    Mathf.Abs(normal.z) * zSign);
+
+                // return direction - new Vector3(
+                //     Mathf.Abs(normal.x) * direction.x != 0 ? Mathf.Sign(direction.x) : 0f,
+                //     Mathf.Abs(normal.y) * direction.y != 0 ? Mathf.Sign(direction.y) : 0f,
+                //     Mathf.Abs(normal.z) * direction.z != 0 ? Mathf.Sign(direction.z) : 0f);
             }
 
             return new Vector3(10f, 10f, 10f);

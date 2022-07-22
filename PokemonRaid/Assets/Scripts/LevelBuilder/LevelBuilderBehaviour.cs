@@ -39,6 +39,8 @@ namespace LevelBuilder
         {
             var level = _playerData.Level;
             var levelData = _levelDataHolder.GetLevelData(level);
+            var totalHp = 0;
+            var totalDps = 0;
 
             foreach (var spawnPosition in levelData.SpawnPositions)
             {
@@ -48,8 +50,12 @@ namespace LevelBuilder
                     var data = _enemyFactory.CreateInstance(spawnPosition.EnemyPrefabs[randomIndex], position,
                         _enemyStats, _enemyParentObject, level, out var baseView);
                     _enemyDataHolder.AddEnemyData(data);
+                    totalDps += data.Damage;
+                    totalHp += data.Health;
                 }
             }
+            
+            Debug.Log("Total HP : " + totalHp + "\n" + "Total DPS : " + totalDps);
         }
     }
 }
