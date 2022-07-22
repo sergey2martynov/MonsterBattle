@@ -2,6 +2,7 @@
 using HealthBar;
 using InputPlayer;
 using LevelBuilder;
+using LevelCounter;
 using Merge;
 using Player;
 using Pokemon.PokemonHolder;
@@ -33,8 +34,9 @@ public class ProjectStarter : MonoBehaviour
     [SerializeField] private LevelDataHolder _levelDataHolder;
     [SerializeField] private Transform _camera;
     [SerializeField] private HealthBarView _healthPlayerBarView;
-    
-    
+    [SerializeField] private LevelSpritesHolder _levelSpritesHolder;
+    [SerializeField] private LevelCounterView _levelCounterView;
+
     private PokemonSpawner _pokemonSpawner;
     private SaveLoadSystem _saveLoadSystem;
 
@@ -49,10 +51,6 @@ public class ProjectStarter : MonoBehaviour
         var directionTranslator = new InputLogic(_inputView, pokemonHolderModel);
         directionTranslator.Initialize();
 
-        _pokemonSpawner = new PokemonSpawner(_pokemonPrefabHolder, _pokemonParentObject, _pokemonStats, _updateHandler,
-            pokemonHolderModel, _fieldView, _camera);
-        _pokemonSpawner.Initialize();
-
         var enemyDataHolder = new EnemyDataHolder();
 
         var playerData = new PlayerData();
@@ -60,7 +58,7 @@ public class ProjectStarter : MonoBehaviour
         playerLogic.Initialize(_playerView, playerData, _updateHandler, pokemonHolderModel, enemyDataHolder);
         _healthPlayerBarView.SetCameraRef(_camera);
         pokemonHolderModel.SetInitialHealthPlayer();
-        
+
         _saveLoadSystem = new SaveLoadSystem(playerData, pokemonHolderModel);
         var loadedSuccessfully = _saveLoadSystem.TryLoadData(out var data);
         
@@ -78,6 +76,10 @@ public class ProjectStarter : MonoBehaviour
         }
         
         pokemonHolderModel.SetPlayerData(playerData);
+        
+        _pokemonSpawner = new PokemonSpawner(_pokemonPrefabHolder, _pokemonParentObject, _pokemonStats, _updateHandler,
+            pokemonHolderModel, _fieldView, _camera, playerData);
+        _pokemonSpawner.Initialize();
 
         var shopData = new ShopData();
         shopData.Initialize(_shopStats);
@@ -98,6 +100,9 @@ public class ProjectStarter : MonoBehaviour
 
         var pokemonCellPlacer = new PokemonCellPlacer(_inputView, _fieldView,pokemonHolderModel, pokemonMerger, _pokemonSpawner);
         pokemonCellPlacer.Initialize();
+
+        var levelCounterLogic = new LevelCounterLogic();
+        levelCounterLogic.Initialize(_levelCounterView, playerData, _levelSpritesHolder);
     }
 
     private void OnApplicationQuit()

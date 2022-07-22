@@ -38,6 +38,12 @@ namespace Shop
         {
             PurchaseButtonPressed?.Invoke(PokemonType.Melee);
         }
+        
+        public void DisablePurchaseButton(bool isActive)
+        {
+            _purchaseMeleeButton.gameObject.SetActive(isActive);
+            _purchaseRangedButton.gameObject.SetActive(isActive);
+        }
 
         private void  OnPurchaseRangedButtonClicked()
         {

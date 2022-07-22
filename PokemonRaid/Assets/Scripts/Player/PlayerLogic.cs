@@ -29,6 +29,7 @@ namespace Player
             _updateHandler.UpdateTicked += Update;
             _enemyDataHolder.EnemyDefeated += OnEnemyDefeated;
             _view.ViewDestroyed += Dispose;
+            _view.LevelFinished += IncreaseLevel;
             _data.DirectionCorrectionRequested += CheckForBounds;
             _data.HealthChange += OnHealthChange;
             _data.CoinsAmountChanged += OnCoinsAmountChanged;
@@ -79,6 +80,11 @@ namespace Player
             _view.HealthBarView.gameObject.SetActive(true);
         }
 
+        private void IncreaseLevel()
+        {
+            _data.Level++;
+        }
+
         private void OnHealthChange(int health, int maxHealth)
         {
             _view.SetHealth(_data.Health / (float)_data.MaxHealth);
@@ -106,9 +112,9 @@ namespace Player
             _enemyDataHolder.EnemyDefeated -= OnEnemyDefeated;
             _data.DisposeSource();
             _view.ViewDestroyed -= Dispose;
+            _view.LevelFinished += IncreaseLevel;
             _data.DirectionCorrectionRequested -= CheckForBounds;
             _data.CoinsAmountChanged -= OnCoinsAmountChanged;
-
         }
     }
 }

@@ -39,7 +39,7 @@ namespace Player
             get => _maxHealth;
             set
             {
-                if (value <= 0)
+                if (value < 0)
                 {
                     throw new ArgumentException("Max health cannot be equal or less than zero");
                 }
@@ -75,6 +75,9 @@ namespace Player
                 {
                     throw new ArgumentException("Level cannot be equal or less than zero or more than " + _maxLevel);
                 }
+                
+                if(value == 1)
+                    FirstLevelFinished?.Invoke();
 
                 _level = value;
             }
@@ -97,8 +100,8 @@ namespace Player
 
         public event Action<int, int> HealthChange;
         public event Action<int> CoinsAmountChanged;
-
-        public event Func<Vector3> DirectionCorrectionRequested; 
+        public event Action FirstLevelFinished;
+        public event Func<Vector3> DirectionCorrectionRequested;
 
         public virtual void Initialize(PlayerStats stats, PokemonHolderModel pokemonHolderModel)
         {

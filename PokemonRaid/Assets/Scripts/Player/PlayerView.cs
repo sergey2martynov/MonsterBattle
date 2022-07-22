@@ -17,6 +17,7 @@ namespace Player
         public HealthBarView HealthBarView => _healthBarView;
 
         public event Action ViewDestroyed;
+        public event Action LevelFinished;
 
         public void SetViewActive(bool isActive)
         {
@@ -26,6 +27,11 @@ namespace Player
         public void SetHealth(float health)
         {
             _healthBarView.SetHealth(health);
+        }
+
+        public void LevelFinish()
+        {
+            LevelFinished?.Invoke();
         }
 
         private void OnDestroy()

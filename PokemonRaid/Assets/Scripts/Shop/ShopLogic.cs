@@ -2,6 +2,7 @@ using System;
 using Player;
 using Pokemon.PokemonHolder;
 using Pool;
+using UnityEngine;
 
 namespace Shop
 {
@@ -36,6 +37,8 @@ namespace Shop
             _shopView.StartButtonPressed += _playerLogic.HealthBarDisabler;
             _shopView.SetTextCoins(_playerData.Coins);
             _playerLogic.CoinsAdded += _shopView.SetTextCoins;
+            _playerData.FirstLevelFinished += ActivePurchaseButton;
+            CheckPlayerLevel();
         }
 
         private void TryPurchasePokemon(PokemonType pokemonType)
@@ -57,6 +60,21 @@ namespace Shop
             StartButtonPressed?.Invoke();
         }
 
+        private void CheckPlayerLevel()
+        {
+            if (_playerData.Level == 1)
+            {
+                _shopView.DisablePurchaseButton(false);
+            }
+            
+            Debug.Log(_playerData.Level);
+        }
+        
+        private void ActivePurchaseButton()
+        {
+            _shopView.DisablePurchaseButton(true);
+        }
+
         private void SetCoins(int coinsAmount)
         {
             _playerData.Coins += coinsAmount;
@@ -69,6 +87,7 @@ namespace Shop
             _shopView.StartButtonPressed -= OnStartButtonPressed;
             _shopView.StartButtonPressed -= _playerData.SetMaxHealth;
             _playerLogic.CoinsAdded -= _shopView.SetTextCoins;
+            _playerData.FirstLevelFinished -= ActivePurchaseButton;
         }
     }
 }

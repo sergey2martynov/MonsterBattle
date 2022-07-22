@@ -110,3 +110,93 @@ MonoBehaviour:
       - {x: 0, y: 0, z: 70}
       - {x: 2, y: 0, z: 70}
       - {x: 4, y: 0, z: 70}
+  - _level: 0
+    _spawnPositions:
+    - _enemyPrefabs:
+      - {fileID: 9183078253694199673, guid: 1e7dbad283bace0409cf0b65541694e8, type: 3}
+      _positions:
+      - {x: -4, y: 0, z: 30}
+      - {x: -2, y: 0, z: 30}
+    - _enemyPrefabs:
+      - {fileID: 9183078253694199673, guid: 1e7dbad283bace0409cf0b65541694e8, type: 3}
+      _positions:
+      - {x: -4, y: 0, z: 50}
+      - {x: -2, y: 0, z: 50}
+    - _enemyPrefabs:
+      - {fileID: 9183078253694199673, guid: 1e7dbad283bace0409cf0b65541694e8, type: 3}
+      _positions:
+      - {x: -4, y: 0, z: 50}
+      - {x: -2, y: 0, z: 50}
+      - {x: 0, y: 0, z: 50}
+  - _level: 0
+    _spawnPositions:
+    - _enemyPrefabs:
+      - {fileID: 9183078253694199673, guid: 1e7dbad283bace0409cf0b65541694e8, type: 3}
+      _positions:
+      - {x: -4, y: 0, z: 30}
+      - {x: -2, y: 0, z: 30}
+    - _enemyPrefabs:
+      - {fileID: 9183078253694199673, guid: 1e7dbad283bace0409cf0b65541694e8, type: 3}
+      _positions:
+      - {x: -4, y: 0, z: 50}
+      - {x: -2, y: 0, z: 50}
+    - _enemyPrefabs:
+      - {fileID: 9183078253694199673, guid: 1e7dbad283bace0409cf0b65541694e8, type: 3}
+      _positions:
+      - {x: -4, y: 0, z: 50}
+      - {x: -2, y: 0, z: 50}
+      - {x: 0, y: 0, z: 50}
+  - _level: 0
+    _spawnPositions:
+    - _enemyPrefabs:
+      - {fileID: 9183078253694199673, guid: 1e7dbad283bace0409cf0b65541694e8, type: 3}
+      _positions:
+      - {x: -4, y: 0, z: 30}
+      - {x: -2, y: 0, z: 30}
+    - _enemyPrefabs:
+      - {fileID: 9183078253694199673, guid: 1e7dbad283bace0409cf0b65541694e8, type: 3}
+      _positions:
+      - {x: -4, y: 0, z: 50}
+      - {x: -2, y: 0, z: 50}
+    - _enemyPrefabs:
+      - {fileID: 9183078253694199673, guid: 1e7dbad283bace0409cf0b65541694e8, type: 3}
+      _positions:
+      - {x: -4, y: 0, z: 50}
+      - {x: -2, y: 0, z: 50}
+      - {x: 0, y: 0, z: 50}
+  - _level: 0
+    _spawnPositions:
+    - _enemyPrefabs:
+      - {fileID: 9183078253694199673, guid: 1e7dbad283bace0409cf0b65541694e8, type: 3}
+      _positions:
+      - {x: -4, y: 0, z: 30}
+      - {x: -2, y: 0, z: 30}
+    - _enemyPrefabs:
+      - {fileID: 9183078253694199673, guid: 1e7dbad283bace0409cf0b65541694e8, type: 3}
+      _positions:
+      - {x: -4, y: 0, z: 50}
+      - {x: -2, y: 0, z: 50}
+    - _enemyPrefabs:
+      - {fileID: 9183078253694199673, guid: 1e7dbad283bace0409cf0b65541694e8, type: 3}
+      _positions:
+      - {x: -4, y: 0, z: 50}
+      - {x: -2, y: 0, z: 50}
+      - {x: 0, y: 0, z: 50}
+  - _level: 0
+    _spawnPositions:
+    - _enemyPrefabs:
+      - {fileID: 9183078253694199673, guid: 1e7dbad283bace0409cf0b65541694e8, type: 3}
+      _positions:
+      - {x: -4, y: 0, z: 30}
+      - {x: -2, y: 0, z: 30}
+    - _enemyPrefabs:
+      - {fileID: 9183078253694199673, guid: 1e7dbad283bace0409cf0b65541694e8, type: 3}
+      _positions:
+      - {x: -4, y: 0, z: 50}
+      - {x: -2, y: 0, z: 50}
+    - _enemyPrefabs:
+      - {fileID: 9183078253694199673, guid: 1e7dbad283bace0409cf0b65541694e8, type: 3}
+      _positions:
+      - {x: -4, y: 0, z: 50}
+      - {x: -2, y: 0, z: 50}
+      - {x: 0, y: 0, z: 50}

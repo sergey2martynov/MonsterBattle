@@ -1,5 +1,8 @@
+using Enemy.GroundEnemy.MeleeEnemy;
 using Factories;
+using Player;
 using Pokemon;
+using Pokemon.MeleePokemon.FifthTypePokemon;
 using Pokemon.PokemonHolder;
 using Pokemon.PokemonHolder.Field;
 using StaticData;
@@ -19,9 +22,10 @@ namespace Pool
         private PokemonTypeFactory _factory;
         private readonly FieldView _fieldView;
         private readonly Transform _camera;
+        private readonly PlayerData _playerData;
         
         public PokemonSpawner(PokemonPrefabHolder pokemonPrefabHolder, Transform parent, PokemonStats stats,
-            UpdateHandler updateHandler, PokemonHolderModel model, FieldView fieldView, Transform camera)
+            UpdateHandler updateHandler, PokemonHolderModel model, FieldView fieldView, Transform camera, PlayerData playerData)
         {
             _pokemonPrefabHolder = pokemonPrefabHolder;
             _parent = parent;
@@ -30,11 +34,21 @@ namespace Pool
             _model = model;
             _fieldView = fieldView;
             _camera = camera;
+            _playerData = playerData;
         }
 
         public void Initialize()
         {
             _factory = new PokemonTypeFactory(_updateHandler, _model, _camera);
+
+            int[] indexes = {1, 2};
+
+            if (_playerData.Level == 1)
+            {
+                CreatePokemon(new Vector3(0.0099f, 0.42f, 13.29f), _pokemonPrefabHolder.MeleePokemons[0], 1, indexes);
+            }
+
+            Debug.Log(_playerData.Level);
         }
 
         public void CreateFirstLevelRandomPokemon(Vector3 position, PokemonType pokemonType, int[] indexes)

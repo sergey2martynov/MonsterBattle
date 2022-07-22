@@ -17,7 +17,7 @@ namespace LevelBuilder
         private readonly EnemyStats _enemyStats;
         private readonly Transform _enemyParentObject;
         private EnemyFactory _enemyFactory;
-        
+
         public LevelBuilderBehaviour(LevelDataHolder levelDataHolder, PlayerData playerData,
             UpdateHandler updateHandler, Transform enemyParentObject, EnemyStats enemyStats, EnemyDataHolder enemyDataHolder)
         {
