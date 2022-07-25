@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
+using CardsCollection;
 using Player;
 using Pokemon.PokemonHolder;
 using UnityEngine;
@@ -11,12 +12,15 @@ namespace SaveLoad
     {
         private readonly PlayerData _playerData;
         private readonly PokemonHolderModel _pokemonHolderModel;
+        private readonly PokemonAvailabilityData _pokemonAvailabilityData;
         private FileStream _fileStream;
 
-        public SaveLoadSystem(PlayerData playerData, PokemonHolderModel pokemonHolderModel)
+        public SaveLoadSystem(PlayerData playerData, PokemonHolderModel pokemonHolderModel,
+            PokemonAvailabilityData pokemonAvailabilityData)
         {
             _playerData = playerData;
             _pokemonHolderModel = pokemonHolderModel;
+            _pokemonAvailabilityData = pokemonAvailabilityData;
         }
 
         public void SaveData()
@@ -24,7 +28,9 @@ namespace SaveLoad
             var binaryFormatter = new BinaryFormatter();
             var path = Path.Combine(Application.persistentDataPath, "data.oi");
             var fileStream = new FileStream(path, FileMode.Create);
-            var data = new Data(_pokemonHolderModel.PokemonsList, _playerData.Level, _playerData.Coins);
+            var data = new Data(_pokemonHolderModel.PokemonsList, _playerData.Level, _playerData.Coins,
+                _pokemonAvailabilityData.MeleePokemonAvailabilities,
+                _pokemonAvailabilityData.RangePokemonAvailabilities);
 
             using (fileStream)
             {
@@ -49,7 +55,7 @@ namespace SaveLoad
                 data = default;
                 return false;
             }
-            catch(SerializationException)
+            catch (SerializationException)
             {
                 data = default;
                 return false;

@@ -11,18 +11,21 @@ namespace Shop
         [SerializeField] private Button _purchaseMeleeButton;
         [SerializeField] private Button _purchaseRangedButton;
         [SerializeField] private Button _startButton;
+        [SerializeField] private Button _cardsButton;
         [SerializeField] private TextMeshProUGUI _text;
 
         private const int CenterPositionY = 489;
 
         public event Action<PokemonType> PurchaseButtonPressed;
         public event Action StartButtonPressed;
+        public event Action CardsButtonPressed;
 
         private void Start()
         {
             _purchaseMeleeButton.onClick.AddListener(OnPurchaseMeleeButtonClicked);
             _purchaseRangedButton.onClick.AddListener(OnPurchaseRangedButtonClicked);
             _startButton.onClick.AddListener(OnStartButtonClicked);
+            _cardsButton.onClick.AddListener(OnCardsButtonClicked);
         }
 
         private void OnDestroy()
@@ -30,6 +33,7 @@ namespace Shop
             _purchaseMeleeButton.onClick.RemoveListener(OnPurchaseMeleeButtonClicked);
             _purchaseRangedButton.onClick.RemoveListener(OnPurchaseRangedButtonClicked);
             _startButton.onClick.RemoveListener(OnStartButtonClicked);
+            _cardsButton.onClick.RemoveListener(OnCardsButtonClicked);
         }
 
         public void SetTextCoins(int coinsAmount)
@@ -65,6 +69,10 @@ namespace Shop
         {
             StartButtonPressed?.Invoke();
             Disable();
+        }
+        private void OnCardsButtonClicked()
+        {
+            CardsButtonPressed?.Invoke();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Enemy.EnemyModel;
+﻿using CardsCollection;
+using Enemy.EnemyModel;
 using HealthBar;
 using InputPlayer;
 using LevelBuilder;
@@ -17,8 +18,9 @@ using UpdateHandlerFolder;
 
 public class ProjectStarter : MonoBehaviour
 {
-    [Header("For debug save/load system")]
-    [SerializeField] private bool _dataLoading;
+    [Header("For debug save/load system")] [SerializeField]
+    private bool _dataLoading;
+
     [SerializeField] private UpdateHandler _updateHandler;
     [SerializeField] private ShopView _shopView;
     [SerializeField] private ShopStats _shopStats;
@@ -36,6 +38,10 @@ public class ProjectStarter : MonoBehaviour
     [SerializeField] private HealthBarView _healthPlayerBarView;
     [SerializeField] private LevelSpritesHolder _levelSpritesHolder;
     [SerializeField] private LevelCounterView _levelCounterView;
+    [SerializeField] private CardsPanelView _cardsPanelView;
+    [SerializeField] private CardSpritesHolder _cardSpritesHolder;
+    [SerializeField] private CardView _cardView;
+    [SerializeField] private Transform _cardParent;
 
     private PokemonSpawner _pokemonSpawner;
     private SaveLoadSystem _saveLoadSystem;
@@ -46,7 +52,7 @@ public class ProjectStarter : MonoBehaviour
         {
             System.Environment.SetEnvironmentVariable("MONO_REFLECTION_SERIALIZER", "yes");
         }
-        
+
         var pokemonHolderModel = new PokemonHolderModel();
         var directionTranslator = new InputLogic(_inputView, pokemonHolderModel);
         directionTranslator.Initialize();
@@ -59,22 +65,31 @@ public class ProjectStarter : MonoBehaviour
         _healthPlayerBarView.SetCameraRef(_camera);
         pokemonHolderModel.SetInitialHealthPlayer();
 
-        _saveLoadSystem = new SaveLoadSystem(playerData, pokemonHolderModel);
-        var loadedSuccessfully = _saveLoadSystem.TryLoadData(out var data);
+        var pokemonAvailabilityData = new PokemonAvailabilityData();
+        var pokemonAvailabilityLogic = new PokemonAvailabilityLogic(pokemonAvailabilityData);
+        var cardsPanelLogic = new CardsPanelLogic(_cardsPanelView, pokemonAvailabilityLogic, _cardSpritesHolder, _cardView, _cardParent);
         
+
+        _saveLoadSystem = new SaveLoadSystem(playerData, pokemonHolderModel, pokemonAvailabilityData);
+        var loadedSuccessfully = _saveLoadSystem.TryLoadData(out var data);
+
         if (loadedSuccessfully && _dataLoading)
         {
             pokemonHolderModel.Initialize(data.PokemonData);
             playerData.Initialize(_playerStats, data.PlayerLevel, data.CoinsAmount, pokemonHolderModel);
+            pokemonAvailabilityLogic.Initialize(data.MeleePokemonAvailabilities, data.RangePokemonAvailabilities);
             Debug.Log("Loaded successfully");
         }
         else
         {
             pokemonHolderModel.Initialize();
             playerData.Initialize(_playerStats, pokemonHolderModel);
+            pokemonAvailabilityLogic.Initialize();
             Debug.Log("Load failed");
         }
         
+        cardsPanelLogic.Initialize();
+
         pokemonHolderModel.SetPlayerData(playerData);
         var pokemonPrefabHolder = _pokemonPrefabHolderByLevel.GetPokemonPrefabHolder(playerData.Level);
         _pokemonSpawner = new PokemonSpawner(pokemonPrefabHolder, _pokemonParentObject, _pokemonStats, _updateHandler,
@@ -83,22 +98,24 @@ public class ProjectStarter : MonoBehaviour
 
         var shopData = new ShopData();
         shopData.Initialize(_shopStats);
-        var shopLogic = new ShopLogic(_pokemonSpawner, _shopView, shopData, playerData,pokemonHolderModel, playerLogic);
+        var shopLogic = new ShopLogic(_pokemonSpawner, _shopView, shopData, playerData, pokemonHolderModel,
+            playerLogic);
         shopLogic.Initialize();
-        
+
         var levelBuilderBehaviour = new LevelBuilderBehaviour(_levelDataHolder, playerData, _updateHandler,
             _enemyParentObject, _enemyStats, enemyDataHolder);
         levelBuilderBehaviour.Initialize(shopLogic);
-        
+
         directionTranslator.SetShopLogic(shopLogic);
-        
+
         var fieldLogic = new FieldLogic(_fieldView, pokemonHolderModel, shopLogic, _pokemonSpawner);
         var isFieldFillRequired = loadedSuccessfully && _dataLoading;
         fieldLogic.Initialize(isFieldFillRequired);
 
         var pokemonMerger = new PokemonMerger(_fieldView);
 
-        var pokemonCellPlacer = new PokemonCellPlacer(_inputView, _fieldView,pokemonHolderModel, pokemonMerger, _pokemonSpawner);
+        var pokemonCellPlacer =
+            new PokemonCellPlacer(_inputView, _fieldView, pokemonHolderModel, pokemonMerger, _pokemonSpawner);
         pokemonCellPlacer.Initialize();
 
         var levelCounterLogic = new LevelCounterLogic();
