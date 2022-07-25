@@ -1,0 +1,99 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Werewolf Level 1 Avatar Mask
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: Rig
+    m_Weight: 1
+  - m_Path: RigHeadGizmo
+    m_Weight: 1
+  - m_Path: RigJawGizmo
+    m_Weight: 1
+  - m_Path: RigLBLegPlatform
+    m_Weight: 1
+  - m_Path: RigLFLegPlatform
+    m_Weight: 1
+  - m_Path: RigPelvis
+    m_Weight: 1
+  - m_Path: RigPelvis/RigLBLeg1
+    m_Weight: 1
+  - m_Path: RigPelvis/RigLBLeg1/RigLBLeg2
+    m_Weight: 1
+  - m_Path: RigPelvis/RigLBLeg1/RigLBLeg2/RigLBLegAnkle
+    m_Weight: 1
+  - m_Path: RigPelvis/RigLBLeg1/RigLBLeg2/RigLBLegAnkle/RigLBLegToes1
+    m_Weight: 1
+  - m_Path: RigPelvis/RigRBLeg1
+    m_Weight: 1
+  - m_Path: RigPelvis/RigRBLeg1/RigRBLeg2
+    m_Weight: 1
+  - m_Path: RigPelvis/RigRBLeg1/RigRBLeg2/RigRBLegAnkle
+    m_Weight: 1
+  - m_Path: RigPelvis/RigRBLeg1/RigRBLeg2/RigRBLegAnkle/RigRBLegToes1
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSpine1
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSpine1/RigSpine2
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSpine1/RigSpine2/RigRibcage
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSpine1/RigSpine2/RigRibcage/RigLFLeg1
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSpine1/RigSpine2/RigRibcage/RigLFLeg1/RigLFLeg2
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSpine1/RigSpine2/RigRibcage/RigLFLeg1/RigLFLeg2/RigLFLegAnkle
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSpine1/RigSpine2/RigRibcage/RigLFLeg1/RigLFLeg2/RigLFLegAnkle/RigLFLegToes1
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSpine1/RigSpine2/RigRibcage/RigNeck
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSpine1/RigSpine2/RigRibcage/RigNeck/RigHead
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSpine1/RigSpine2/RigRibcage/RigNeck/RigHead/RigJaw
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSpine1/RigSpine2/RigRibcage/RigRFLeg1
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSpine1/RigSpine2/RigRibcage/RigRFLeg1/RigRFLeg2
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSpine1/RigSpine2/RigRibcage/RigRFLeg1/RigRFLeg2/RigRFLegAnkle
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSpine1/RigSpine2/RigRibcage/RigRFLeg1/RigRFLeg2/RigRFLegAnkle/RigRFLegToes1
+    m_Weight: 1
+  - m_Path: RigPelvis/RigTail1
+    m_Weight: 1
+  - m_Path: RigPelvis/RigTail1/RigTail2
+    m_Weight: 1
+  - m_Path: RigPelvis/RigTail1/RigTail2/RigTail3
+    m_Weight: 1
+  - m_Path: RigPelvis/RigTail1/RigTail2/RigTail3/RigTail4
+    m_Weight: 1
+  - m_Path: RigPelvis/RigTail1/RigTail2/RigTail3/RigTail4/RigTail5
+    m_Weight: 1
+  - m_Path: RigPelvisGizmo
+    m_Weight: 1
+  - m_Path: RigRBLegPlatform
+    m_Weight: 1
+  - m_Path: RigRFLegPlatform
+    m_Weight: 1
+  - m_Path: RigRibcageGizmo
+    m_Weight: 1
+  - m_Path: RigTail1Gizmo
+    m_Weight: 1
+  - m_Path: RigTail2Gizmo
+    m_Weight: 1
+  - m_Path: RigTail3Gizmo
+    m_Weight: 1
+  - m_Path: RigTail4Gizmo
+    m_Weight: 1
+  - m_Path: RigTail5Gizmo
+    m_Weight: 1
+  - m_Path: Wolf Pup
+    m_Weight: 1

@@ -24,7 +24,7 @@ namespace Pokemon.States
 
         public virtual void Update()
         {
-            
+            SetNextState();
         }
 
         public virtual void OnExit()
@@ -32,6 +32,6 @@ namespace Pokemon.States
             
         }
 
-        public abstract void SetNextState();
+        protected abstract void SetNextState();
     }
 }

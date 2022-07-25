@@ -1,18 +1,29 @@
 ﻿using System;
+using System.Collections.Generic;
 using HealthBar;
+using Pokemon.Animations;
 using UnityEngine;
 
 namespace Pokemon
 {
     public class PokemonViewBase : MonoBehaviour
     {
-        [SerializeField] protected Animator _animator;
         [SerializeField] protected LayerMask _enemyLayer;
         [SerializeField] protected LayerMask _boundsLayer;
         [SerializeField] private HealthBarView _healthBar;
+        [SerializeField] private List<AnimationEventTranslator> _eventTranslators;
+        [SerializeField] private List<Animator> _animators;
+
+        private int _level;
 
         public Transform Transform => transform;
-        public Animator Animator => _animator;
+
+        public Animator Animator => _animators.Count >= _level
+            ? _animators[_level]
+            : throw new ArgumentException("There is no animator for the level " + _level);
+        public AnimationEventTranslator EventTranslator => _eventTranslators.Count >= _level
+            ? _eventTranslators[_level]
+            : throw new ArgumentException("There is no event translator for the level " + _level);
         public LayerMask EnemyLayer => _enemyLayer;
         public LayerMask BoundsLayer => _boundsLayer;
 
@@ -23,6 +34,18 @@ namespace Pokemon
         public event Action<int[]> IndexesSet;
         public event Func<int> LevelRequested;
         public event Func<int[]> IndexesRequested;
+
+        public void SetLevel(int level)
+        {
+            _level = level - 1;
+            
+            foreach (var eventTranslator in _eventTranslators)
+            {
+                eventTranslator.gameObject.SetActive(false);
+            }
+            
+            _eventTranslators[_level].gameObject.SetActive(true);
+        }
 
         public void SetViewActive(bool isActive)
         {

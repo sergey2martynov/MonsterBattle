@@ -47,8 +47,6 @@ namespace Pool
             {
                 CreatePokemon(new Vector3(0.0099f, 0.42f, 13.29f), _pokemonPrefabHolder.MeleePokemons[0], 1, indexes);
             }
-
-            Debug.Log(_playerData.Level);
         }
 
         public void CreateFirstLevelRandomPokemon(Vector3 position, PokemonType pokemonType, int[] indexes)
@@ -62,8 +60,7 @@ namespace Pool
                 
                 var randomNumber = Random.Range(0, _pokemonPrefabHolder.MeleePokemons.Count);
                 var concreteView = _pokemonPrefabHolder.MeleePokemons[randomNumber];
-                var data = _factory.CreateInstance(concreteView, new Vector3(position.x, position.y + 0.5f, position.z),
-                    _stats, _parent, 1, indexes, out var view);
+                var data = _factory.CreateInstance(concreteView, position, _stats, _parent, 1, indexes, out var view);
                 _fieldView.AddPokemonView(view);
                 _model.AddPokemonToList(data, indexes);
             }
@@ -85,7 +82,7 @@ namespace Pool
         
         public void CreatePokemon(Vector3 position, PokemonViewBase pokemonViewBase, int level, int[] indexes)
         {
-            var data = _factory.CreateInstance(pokemonViewBase, position + new Vector3(0f, 0.5f, 0f), _stats,
+            var data = _factory.CreateInstance(pokemonViewBase, position, _stats,
                 _parent, level, indexes, out var view);
             _fieldView.AddPokemonView(view);
             _model.AddPokemonToList(data, indexes);
@@ -93,7 +90,7 @@ namespace Pool
 
         public void CreatePokemonFromData(PokemonDataBase dataBase, Vector3 position)
         {
-            var view = _factory.CreateInstance(dataBase, _pokemonPrefabHolder, position + new Vector3(0f, 0.5f, 0f), _parent);
+            var view = _factory.CreateInstance(dataBase, _pokemonPrefabHolder, position, _parent);
             _fieldView.AddPokemonView(view);
         }
     }

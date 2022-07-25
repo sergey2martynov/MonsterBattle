@@ -45,43 +45,43 @@ namespace Factories
             {
                 FirstMeleeTypePokemonView concreteView =>
                     CreateConcreteInstance<FirstMeleeTypePokemonView, GroundEnemyView, FirstMeleeTypePokemonLogic,
-                        FirstMeleeTypePokemonData>(concreteView, position, statsByLevel, parent, indexes, out baseView),
+                        FirstMeleeTypePokemonData>(concreteView, position, statsByLevel, parent, indexes, level, out baseView),
                 
                 SecondMeleeTypePokemonView concreteView =>
                     CreateConcreteInstance<SecondMeleeTypePokemonView, GroundEnemyView, SecondMeleeTypePokemonLogic,
-                        SecondMeleeTypePokemonData>(concreteView, position, statsByLevel, parent, indexes, out baseView),
+                        SecondMeleeTypePokemonData>(concreteView, position, statsByLevel, parent, indexes, level, out baseView),
                 
                 ThirdMeleeTypePokemonView concreteView =>
                     CreateConcreteInstance<ThirdMeleeTypePokemonView, GroundEnemyView, ThirdMeleeTypePokemonLogic,
-                        ThirdMeleeTypePokemonData>(concreteView, position, statsByLevel, parent, indexes, out baseView),
+                        ThirdMeleeTypePokemonData>(concreteView, position, statsByLevel, parent, indexes, level, out baseView),
                 
                 FourthMeleeTypePokemonView concreteView =>
                     CreateConcreteInstance<FourthMeleeTypePokemonView, GroundEnemyView, FourthMeleeTypePokemonLogic,
-                        FourthMeleeTypePokemonData>(concreteView, position, statsByLevel, parent, indexes, out baseView),
+                        FourthMeleeTypePokemonData>(concreteView, position, statsByLevel, parent, indexes, level, out baseView),
                 
                 FifthMeleeTypePokemonView concreteView =>
                     CreateConcreteInstance<FifthMeleeTypePokemonView, GroundEnemyView, FifthMeleeTypePokemonLogic,
-                        FifthMeleeTypePokemonData>(concreteView, position, statsByLevel, parent, indexes, out baseView),
+                        FifthMeleeTypePokemonData>(concreteView, position, statsByLevel, parent, indexes, level, out baseView),
                 
                 FirstRangedTypePokemonView concreteView =>
                     CreateConcreteInstance<FirstRangedTypePokemonView, BaseEnemyView, FirstRangedTypePokemonLogic,
-                        FirstRangedTypePokemonData>(concreteView, position, statsByLevel, parent, indexes, out baseView),
+                        FirstRangedTypePokemonData>(concreteView, position, statsByLevel, parent, indexes, level, out baseView),
                 
                 SecondRangedTypePokemonView concreteView =>
                     CreateConcreteInstance<SecondRangedTypePokemonView, BaseEnemyView, SecondRangedTypePokemonLogic,
-                        SecondRangedTypePokemonData>(concreteView, position, statsByLevel, parent, indexes, out baseView),
+                        SecondRangedTypePokemonData>(concreteView, position, statsByLevel, parent, indexes, level, out baseView),
                 
                 ThirdRangedTypePokemonView concreteView =>
                     CreateConcreteInstance<ThirdRangedTypePokemonView, BaseEnemyView, ThirdRangedTypePokemonLogic,
-                        ThirdRangedTypePokemonData>(concreteView, position, statsByLevel, parent, indexes, out baseView),
+                        ThirdRangedTypePokemonData>(concreteView, position, statsByLevel, parent, indexes, level, out baseView),
                 
                 FourthRangedTypePokemonView concreteView =>
                     CreateConcreteInstance<FourthRangedTypePokemonView, BaseEnemyView, FourthRangedTypePokemonLogic,
-                        FourthRangedTypePokemonData>(concreteView, position, statsByLevel, parent, indexes, out baseView),
+                        FourthRangedTypePokemonData>(concreteView, position, statsByLevel, parent, indexes, level, out baseView),
                 
                 FifthRangedTypePokemonView concreteView =>
                     CreateConcreteInstance<FifthRangedTypePokemonView, BaseEnemyView, FifthRangedTypePokemonLogic,
-                        FifthRangedTypePokemonData>(concreteView, position, statsByLevel, parent, indexes, out baseView),
+                        FifthRangedTypePokemonData>(concreteView, position, statsByLevel, parent, indexes, level, out baseView),
                 
                 _ => throw new ArgumentException("luls")
             };
@@ -157,7 +157,7 @@ namespace Factories
         }
 
         private TData CreateConcreteInstance<TView, TEnemyView, TLogic, TData>(TView view, Vector3 position,
-            PokemonStatsByLevel stats, Transform parent, int[] indexes, out PokemonViewBase concreteView)
+            PokemonStatsByLevel stats, Transform parent, int[] indexes, int level, out PokemonViewBase concreteView)
             where TView : PokemonViewBase
             where TEnemyView : BaseEnemyView
             where TLogic : PokemonLogicBase<TView, TEnemyView>, new()
@@ -168,6 +168,7 @@ namespace Factories
             var data = new TData();
             var logic = new TLogic();
             instantiatedView.HealthBarView.SetCameraRef(_camera);
+            instantiatedView.SetLevel(level);
             logic.Initialize(instantiatedView, data, _model, _updateHandler);
             data.Initialize(stats, indexes);
             logic.SetMaxTargetsAmount(data.MaxTargetsAmount);
@@ -184,6 +185,7 @@ namespace Factories
             var instantiatedView = Object.Instantiate(view, position, Quaternion.identity, parent);
             var logic = new TLogic();
             instantiatedView.HealthBarView.SetCameraRef(_camera);
+            instantiatedView.SetLevel(data.Level);
             logic.Initialize(instantiatedView, data, _model, _updateHandler);
             logic.SetMaxTargetsAmount(data.MaxTargetsAmount);
             data.Initialize();

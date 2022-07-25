@@ -188,6 +188,7 @@ namespace Pokemon
 
         public virtual void Initialize()
         {
+            MoveDirection = Vector3.zero;
             Health = MaxHealth;
             _attackTime = 0f;
         }

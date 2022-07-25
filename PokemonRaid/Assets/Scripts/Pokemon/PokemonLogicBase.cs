@@ -45,13 +45,14 @@ namespace Pokemon
             _statesToType = new Dictionary<Type, BaseState<TView, TEnemyView>>
             {
                 {typeof(IdleState<TView, TEnemyView>), new IdleState<TView, TEnemyView>(_view, this, _data)},
+                {typeof(SpawnState<TView, TEnemyView>), new SpawnState<TView, TEnemyView>(_view, this, _data)},
                 {
-                    typeof(AttackWhileMoveState<TView, TEnemyView>),
-                    new AttackWhileMoveState<TView, TEnemyView>(_view, this, _data)
+                    typeof(MoveState<TView, TEnemyView>),
+                    new MoveState<TView, TEnemyView>(_view, this, _data)
                 },
-                {typeof(AttackState<TView, TEnemyView>), new AttackState<TView, TEnemyView>(_view, this, _data)}
             };
-            _currentState = _statesToType[typeof(AttackWhileMoveState<TView, TEnemyView>)];
+            _currentState = _statesToType[typeof(SpawnState<TView, TEnemyView>)];
+            _currentState.OnEnter();
         }
 
         public void SetMaxTargetsAmount(int amount)

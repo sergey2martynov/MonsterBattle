@@ -1,0 +1,93 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Spook Avatar Mask
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: Rig
+    m_Weight: 1
+  - m_Path: RigHeadGizmo
+    m_Weight: 1
+  - m_Path: RigLArm1Gizmo
+    m_Weight: 1
+  - m_Path: RigLArm2Gizmo
+    m_Weight: 1
+  - m_Path: RigLArmPalmGizmo
+    m_Weight: 1
+  - m_Path: RigPelvis
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSpine
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSpine/RigRibcage
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSpine/RigRibcage/RigLArm1
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSpine/RigRibcage/RigLArm1/RigLArm2
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSpine/RigRibcage/RigLArm1/RigLArm2/RigLArmPalm
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSpine/RigRibcage/RigLArm1/RigLArm2/RigLArmPalm/RigLArmDigit11
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSpine/RigRibcage/RigLArm1/RigLArm2/RigLArmPalm/RigLArmDigit11/RigLArmDigit12
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSpine/RigRibcage/RigLArm1/RigLArm2/RigLArmPalm/RigLArmDigit11/RigLArmDigit12/RigLArmDigit13
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSpine/RigRibcage/RigNeck
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSpine/RigRibcage/RigNeck/RigHead
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSpine/RigRibcage/RigRArm1
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSpine/RigRibcage/RigRArm1/RigRArm2
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSpine/RigRibcage/RigRArm1/RigRArm2/RigRArmPalm
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSpine/RigRibcage/RigRArm1/RigRArm2/RigRArmPalm/RigRArmDigit11
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSpine/RigRibcage/RigRArm1/RigRArm2/RigRArmPalm/RigRArmDigit11/RigRArmDigit12
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSpine/RigRibcage/RigRArm1/RigRArm2/RigRArmPalm/RigRArmDigit11/RigRArmDigit12/RigRArmDigit13
+    m_Weight: 1
+  - m_Path: RigPelvis/RigTail1
+    m_Weight: 1
+  - m_Path: RigPelvis/RigTail1/RigTail2
+    m_Weight: 1
+  - m_Path: RigPelvis/RigTail1/RigTail2/RigTail3
+    m_Weight: 1
+  - m_Path: RigPelvis/RigTail1/RigTail2/RigTail3/RigTail4
+    m_Weight: 1
+  - m_Path: RigPelvis/RigTail1/RigTail2/RigTail3/RigTail4/RigTail5
+    m_Weight: 1
+  - m_Path: RigPelvis/RigTail1/RigTail2/RigTail3/RigTail4/RigTail5/RigTail6
+    m_Weight: 1
+  - m_Path: RigPelvisGizmo
+    m_Weight: 1
+  - m_Path: RigRArm1Gizmo
+    m_Weight: 1
+  - m_Path: RigRArm2Gizmo
+    m_Weight: 1
+  - m_Path: RigRArmPalmGizmo
+    m_Weight: 1
+  - m_Path: RigRibcageGizmo
+    m_Weight: 1
+  - m_Path: RigTail1Gizmo
+    m_Weight: 1
+  - m_Path: RigTail2Gizmo
+    m_Weight: 1
+  - m_Path: RigTail3Gizmo
+    m_Weight: 1
+  - m_Path: RigTail4Gizmo
+    m_Weight: 1
+  - m_Path: RigTail5Gizmo
+    m_Weight: 1
+  - m_Path: RigTail6Gizmo
+    m_Weight: 1
+  - m_Path: Spook
+    m_Weight: 1
