@@ -42,6 +42,8 @@ public class ProjectStarter : MonoBehaviour
     [SerializeField] private CardSpritesHolder _cardSpritesHolder;
     [SerializeField] private CardView _cardView;
     [SerializeField] private Transform _cardParent;
+    [SerializeField] private UpgradeLevels _upgradeLevels;
+    [SerializeField] private PokemonSpritesHolder _pokemonSpritesHolder;
 
     private PokemonSpawner _pokemonSpawner;
     private SaveLoadSystem _saveLoadSystem;
@@ -56,20 +58,19 @@ public class ProjectStarter : MonoBehaviour
         var pokemonHolderModel = new PokemonHolderModel();
         var directionTranslator = new InputLogic(_inputView, pokemonHolderModel);
         directionTranslator.Initialize();
+        
+        var pokemonAvailabilityData = new PokemonAvailabilityData();
+        var pokemonAvailabilityLogic = new PokemonAvailabilityLogic(pokemonAvailabilityData);
+        var cardsPanelLogic = new CardsPanelLogic(_cardsPanelView, pokemonAvailabilityLogic, _cardSpritesHolder, _cardView, _cardParent);
 
         var enemyDataHolder = new EnemyDataHolder();
 
         var playerData = new PlayerData();
         var playerLogic = new PlayerLogic();
-        playerLogic.Initialize(_playerView, playerData, _updateHandler, pokemonHolderModel, enemyDataHolder);
+        playerLogic.Initialize(_playerView, playerData, _updateHandler, pokemonHolderModel, enemyDataHolder,_upgradeLevels, pokemonAvailabilityLogic );
         _healthPlayerBarView.SetCameraRef(_camera);
         pokemonHolderModel.SetInitialHealthPlayer();
-
-        var pokemonAvailabilityData = new PokemonAvailabilityData();
-        var pokemonAvailabilityLogic = new PokemonAvailabilityLogic(pokemonAvailabilityData);
-        var cardsPanelLogic = new CardsPanelLogic(_cardsPanelView, pokemonAvailabilityLogic, _cardSpritesHolder, _cardView, _cardParent);
         
-
         _saveLoadSystem = new SaveLoadSystem(playerData, pokemonHolderModel, pokemonAvailabilityData);
         var loadedSuccessfully = _saveLoadSystem.TryLoadData(out var data);
 
@@ -77,14 +78,14 @@ public class ProjectStarter : MonoBehaviour
         {
             pokemonHolderModel.Initialize(data.PokemonData);
             playerData.Initialize(_playerStats, data.PlayerLevel, data.CoinsAmount, pokemonHolderModel);
-            pokemonAvailabilityLogic.Initialize(data.MeleePokemonAvailabilities, data.RangePokemonAvailabilities);
+            pokemonAvailabilityLogic.Initialize(data.MeleePokemonAvailabilities, data.RangePokemonAvailabilities, cardsPanelLogic);
             Debug.Log("Loaded successfully");
         }
         else
         {
             pokemonHolderModel.Initialize();
             playerData.Initialize(_playerStats, pokemonHolderModel);
-            pokemonAvailabilityLogic.Initialize();
+            pokemonAvailabilityLogic.Initialize(cardsPanelLogic);
             Debug.Log("Load failed");
         }
         
@@ -112,7 +113,7 @@ public class ProjectStarter : MonoBehaviour
         var isFieldFillRequired = loadedSuccessfully && _dataLoading;
         fieldLogic.Initialize(isFieldFillRequired);
 
-        var pokemonMerger = new PokemonMerger(_fieldView);
+        var pokemonMerger = new PokemonMerger(_fieldView, _pokemonSpritesHolder, pokemonAvailabilityLogic);
 
         var pokemonCellPlacer =
             new PokemonCellPlacer(_inputView, _fieldView, pokemonHolderModel, pokemonMerger, _pokemonSpawner);
@@ -120,6 +121,8 @@ public class ProjectStarter : MonoBehaviour
 
         var levelCounterLogic = new LevelCounterLogic();
         levelCounterLogic.Initialize(_levelCounterView, playerData, _levelSpritesHolder);
+        
+        _cardsPanelView.Initialize();
     }
 
     private void OnApplicationQuit()

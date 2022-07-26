@@ -13,40 +13,45 @@ MonoBehaviour:
   m_Name: PokemonSpritesHolder
   m_EditorClassIdentifier: 
   _meleePokemonSpritesHolder:
-    _firstTypePokemonSprites:
+  - _sprites:
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
-    _secondTypePokemonSprites:
+    _pokemonView: {fileID: 5825225041619624878, guid: f766764cd5ea99f41b9a964ace79f385, type: 3}
+  - _sprites:
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
-    _thirdTypePokemonSprites:
+    _pokemonView: {fileID: 891051601361968121, guid: 956a5ceebb5fb6945af62c65aa0e22d4, type: 3}
+  - _sprites:
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
-  _rangePokemonSpritesHolder:
-    _firstTypePokemonSprites:
+    _pokemonView: {fileID: 9071255890789025983, guid: 935158d05bd9a8947980cd7f8eb8b08d, type: 3}
+  - _sprites:
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
-    _secondTypePokemonSprites:
+    _pokemonView: {fileID: 6943248506083428063, guid: 5fed9d1635359ad4d9ce03ad55df9ae6, type: 3}
+  - _sprites:
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
-    _thirdTypePokemonSprites:
+    _pokemonView: {fileID: 2711931426556632022, guid: 23143f931dd95c44aa59a2198406bee7, type: 3}
+  - _sprites:
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
+    _pokemonView: {fileID: 5486772169272369730, guid: 2dbb11ba0f721b14290d67960e3008c8, type: 3}

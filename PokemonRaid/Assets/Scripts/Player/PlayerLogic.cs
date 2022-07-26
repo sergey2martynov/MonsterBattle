@@ -1,6 +1,8 @@
 ﻿using System;
+using CardsCollection;
 using Enemy.EnemyModel;
 using Pokemon.PokemonHolder;
+using StaticData;
 using UnityEngine;
 using UpdateHandlerFolder;
 
@@ -12,20 +14,25 @@ namespace Player
         private PlayerData _data;
         private UpdateHandler _updateHandler;
         private EnemyDataHolder _enemyDataHolder;
+        private UpgradeLevels _upgradeLevels;
+        private PokemonAvailabilityLogic _pokemonAvailabilityLogic;
         private PokemonHolderModel _pokemonHolderModel;
         private RaycastHit[] _hit = new RaycastHit[1];
         private float _rayCastDistance = 1.5f;
 
-        public event Action<int> CoinsAdded; 
+        public event Action<int> CoinsAdded;
 
-        public virtual void Initialize( PlayerView playerView, PlayerData playerData,
-            UpdateHandler updateHandler, PokemonHolderModel pokemonHolderModel, EnemyDataHolder enemyDataHolder)
+        public virtual void Initialize(PlayerView playerView, PlayerData playerData,
+            UpdateHandler updateHandler, PokemonHolderModel pokemonHolderModel, EnemyDataHolder enemyDataHolder,
+            UpgradeLevels upgradeLevels, PokemonAvailabilityLogic pokemonAvailabilityLogic)
         {
             _view = playerView;
             _data = playerData;
             _updateHandler = updateHandler;
             _pokemonHolderModel = pokemonHolderModel;
             _enemyDataHolder = enemyDataHolder;
+            _upgradeLevels = upgradeLevels;
+            _pokemonAvailabilityLogic = pokemonAvailabilityLogic;
             _updateHandler.UpdateTicked += Update;
             _enemyDataHolder.EnemyDefeated += OnEnemyDefeated;
             _view.ViewDestroyed += Dispose;
@@ -44,14 +51,14 @@ namespace Player
                 RotateAt(_data.LookDirection);
             }
         }
-        
+
         public void RotateAt(Vector3 point)
         {
             var destinationRotation = Quaternion.LookRotation(point, Vector3.up);
             _view.Transform.rotation =
                 Quaternion.RotateTowards(_view.Transform.rotation, destinationRotation, 720 * Time.deltaTime);
         }
-        
+
         public Vector3 CheckForBounds()
         {
             var ray = new Ray(_view.Transform.position, _view.Transform.forward);
@@ -68,11 +75,11 @@ namespace Player
 
                 // return direction - new Vector3(Mathf.Abs(normal.x) * direction.x, Mathf.Abs(normal.y) * direction.y,
                 //     Mathf.Abs(normal.z) * direction.z);
-                
-                var xSign = direction.x == 0 ? 0f : Mathf.Sign(direction.x); 
-                var ySign = direction.y == 0 ? 0f : Mathf.Sign(direction.y); 
-                var zSign = direction.z == 0 ? 0f : Mathf.Sign(direction.z); 
-                
+
+                var xSign = direction.x == 0 ? 0f : Mathf.Sign(direction.x);
+                var ySign = direction.y == 0 ? 0f : Mathf.Sign(direction.y);
+                var zSign = direction.z == 0 ? 0f : Mathf.Sign(direction.z);
+
                 return direction - new Vector3(Mathf.Abs(normal.x) * xSign, Mathf.Abs(normal.y) * ySign,
                     Mathf.Abs(normal.z) * zSign);
 
@@ -93,11 +100,23 @@ namespace Player
         private void IncreaseLevel()
         {
             _data.Level++;
+
+            if (_data.Level == _upgradeLevels.ListUpgradeLevels[0] ||
+                _data.Level == _upgradeLevels.ListUpgradeLevels[2] ||
+                _data.Level == _upgradeLevels.ListUpgradeLevels[4])
+            {
+                _pokemonAvailabilityLogic.UnLockNewTypeRangePokemon();
+            }
+            else if (_data.Level == _upgradeLevels.ListUpgradeLevels[1] ||
+                     _data.Level == _upgradeLevels.ListUpgradeLevels[3])
+            {
+                _pokemonAvailabilityLogic.UnLockNewTypeMeleePokemon();
+            }
         }
 
         private void OnHealthChange(int health, int maxHealth)
         {
-            _view.SetHealth(_data.Health / (float)_data.MaxHealth);
+            _view.SetHealth(_data.Health / (float) _data.MaxHealth);
         }
 
         private void OnEnemyDefeated(int coinsReward)
@@ -106,7 +125,7 @@ namespace Player
             {
                 return;
             }
-            
+
             _data.Coins += coinsReward;
         }
 

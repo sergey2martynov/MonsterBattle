@@ -1,8 +1,8 @@
-using System;
 using System.Collections.Generic;
 
 namespace CardsCollection
-{ public class PokemonAvailabilityData
+{ 
+    public class PokemonAvailabilityData
     {
         private List<List<bool>> _meleePokemonAvailabilities;
         private List<List<bool>> _rangePokemonAvailabilities;
