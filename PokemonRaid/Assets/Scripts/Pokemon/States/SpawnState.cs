@@ -35,7 +35,9 @@ namespace Pokemon.States
 
         protected override void SetNextState()
         {
-            if (Time.time < _startTime + _spawnAnimation.Duration)
+            var direction = (Vector3) _data.MoveDirection;
+            
+            if (direction.magnitude == 0 || Time.time < _startTime + _spawnAnimation.Duration)
             {
                 return;
             }

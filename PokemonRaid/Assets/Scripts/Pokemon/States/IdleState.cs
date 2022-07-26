@@ -1,4 +1,5 @@
-﻿using Enemy;
+﻿using System;
+using Enemy;
 using UnityEngine;
 
 namespace Pokemon.States
@@ -9,6 +10,7 @@ namespace Pokemon.States
     {
         private readonly int _move = Animator.StringToHash("Move");
         private readonly int _blend = Animator.StringToHash("Blend");
+        private readonly float _smooth = 0.1f;
 
         public IdleState(TView view, PokemonLogicBase<TView, TEnemyView> logic, PokemonDataBase data) : 
             base(view, logic, data)
@@ -19,14 +21,13 @@ namespace Pokemon.States
         {
             base.OnEnter();
             _view.Animator.SetBool(_move, true);
-            _view.Animator.SetFloat(_blend, 0f);
         }
 
         public override void Update()
         {
             base.Update();
             var moveDirection = (Vector3) _data.MoveDirection;
-            _view.Animator.SetFloat(_blend, moveDirection.magnitude);
+            _view.Animator.SetFloat(_blend, moveDirection.magnitude, _smooth, Time.deltaTime);
         }
 
         public override void OnExit()

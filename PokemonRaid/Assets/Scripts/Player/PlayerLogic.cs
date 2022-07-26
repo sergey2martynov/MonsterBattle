@@ -19,6 +19,8 @@ namespace Player
         private PokemonHolderModel _pokemonHolderModel;
         private RaycastHit[] _hit = new RaycastHit[1];
         private float _rayCastDistance = 1.5f;
+        private float _smooth = 0.1f;
+        private static readonly int Blend = Animator.StringToHash("Blend");
 
         public event Action<int> CoinsAdded;
 
@@ -45,6 +47,7 @@ namespace Player
         private void Update()
         {
             _view.Transform.position += _data.MoveDirection * _data.MoveSpeed * Time.deltaTime;
+            _view.Animator.SetFloat(Blend, _data.MoveDirection.magnitude, _smooth, Time.deltaTime);
 
             if (_data.LookDirection.magnitude != 0)
             {

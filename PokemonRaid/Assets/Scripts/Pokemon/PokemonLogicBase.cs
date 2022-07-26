@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using Enemy;
+using Pokemon.Animations;
 using Pokemon.PokemonHolder;
 using Pokemon.States;
 using UnityEngine;
@@ -18,13 +21,18 @@ namespace Pokemon
         protected PokemonHolderModel _model;
         protected UpdateHandler _updateHandler;
         protected Dictionary<Type, BaseState<TView, TEnemyView>> _statesToType;
+        protected List<TEnemyView> _enemies = new List<TEnemyView>();
         protected BaseState<TView, TEnemyView> _currentState;
         protected Collider[] _collidersInRange;
+        protected BaseAnimation _attackAnimation;
         protected int _attackCount;
         protected float _rayCastDistance = 1.5f;
         //protected RaycastHit[] _hit = new RaycastHit[1];
         protected RaycastHit[] _hit = new RaycastHit[2];
         protected CancellationTokenSource _source;
+        private readonly int _attack = Animator.StringToHash("Attack");
+
+        public bool ShouldAttack { get; private set; }
 
         public virtual void Initialize(TView view, PokemonDataBase data, PokemonHolderModel model,
             UpdateHandler updateHandler)
@@ -51,6 +59,7 @@ namespace Pokemon
                     new MoveState<TView, TEnemyView>(_view, this, _data)
                 },
             };
+            _attackAnimation = _view.EventTranslator.GetAnimationInfo("Attack");
             _currentState = _statesToType[typeof(SpawnState<TView, TEnemyView>)];
             _currentState.OnEnter();
         }
@@ -97,7 +106,7 @@ namespace Pokemon
             return _data.Level;
         }
 
-        protected virtual void Attack()
+        protected virtual async void Attack()
         {
             _attackCount = 0;
             var collidersAmount = Physics.OverlapSphereNonAlloc(_view.Transform.position, _data.AttackRange,
@@ -112,15 +121,23 @@ namespace Pokemon
             {
                 if (_collidersInRange[i].TryGetComponent<TEnemyView>(out var enemy))
                 {
-                    enemy.TakeDamage(_data.Damage);
+                    // enemy.TakeDamage(_data.Damage);
+                    _enemies.Add(enemy);
                     _attackCount++;
                 }
             }
 
+            if (_enemies.Count > 0)
+            {
+                await ApplyAttack(_enemies);
+            }
+            
             for (var i = 0; i < _collidersInRange.Length; i++)
             {
                 Array.Clear(_collidersInRange, i, _collidersInRange.Length);
             }
+            
+            _enemies.Clear();
 
             if (_attackCount == 0)
             {
@@ -130,14 +147,57 @@ namespace Pokemon
             _data.AttackTime = Time.time + _data.AttackSpeed;
         }
 
+        private async Task ApplyAttack(List<TEnemyView> enemies)
+        {
+            ShouldAttack = true;
+            var attackTime = Time.time + _attackAnimation.ActionTime / _attackAnimation.FrameRate;
+            _view.Animator.SetBool(_attack, true);
+
+            while (Time.time < attackTime)
+            {
+                if (_collidersInRange[0] != null)
+                {
+                    RotateAt(_collidersInRange[0].transform.position);
+                }
+                
+                await Task.Yield();
+            }
+
+            foreach (var enemy in enemies.Where(enemy => enemy != null))
+            {
+                enemy.TakeDamage(_data.Damage);
+            }
+            
+            var delay = (int) (_attackAnimation.Duration - _attackAnimation.ActionTime / _attackAnimation.FrameRate) * 1000;
+            //var delay = _attackAnimation.Duration - _attackAnimation.ActionTime / _attackAnimation.FrameRate;
+            //var endTime = Time.time + delay;
+            await Task.Delay(delay);
+
+            // while (Time.time < endTime)
+            // {
+            //     if (_collidersInRange != null)
+            //     {
+            //         RotateAt(_collidersInRange[0].transform.position);
+            //     }
+            //     else
+            //     {
+            //         ShouldAttack = false;
+            //     }
+            //     
+            //     await Task.Yield();
+            // }
+            
+            _view.Animator.SetBool(_attack, false);
+            ShouldAttack = false;
+        }
+
         protected void OnDamageTaken(int damage)
         {
             if (damage < 0)
             {
                 return;
             }
-
-
+            
             _data.Health -= damage;
         }
 

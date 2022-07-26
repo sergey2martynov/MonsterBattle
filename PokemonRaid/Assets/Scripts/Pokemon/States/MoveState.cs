@@ -9,6 +9,7 @@ namespace Pokemon.States
     {
         private readonly int _move = Animator.StringToHash("Move");
         private readonly int _blend = Animator.StringToHash("Blend");
+        private readonly float _smooth = 0.1f;
 
         public MoveState(TView view, PokemonLogicBase<TView, TEnemyView> logic, PokemonDataBase data) : base(view, logic,
             data)
@@ -27,9 +28,9 @@ namespace Pokemon.States
             var moveDirection = (Vector3) _data.MoveDirection;
             var lookDirection = (Vector3) _data.LookDirection;
             _view.Transform.position += moveDirection * _data.MoveSpeed * Time.deltaTime;
-            _view.Animator.SetFloat(_blend, moveDirection.magnitude);
+            _view.Animator.SetFloat(_blend, moveDirection.magnitude, _smooth, Time.deltaTime);
             
-            if (lookDirection.magnitude != 0)
+            if (lookDirection.magnitude != 0 && !_logic.ShouldAttack)
             {
                 _logic.RotateAt(_data.LookDirection);
             }
