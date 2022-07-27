@@ -10,6 +10,7 @@ using Pokemon.PokemonHolder;
 using Pokemon.PokemonHolder.Cell;
 using Pokemon.PokemonHolder.Field;
 using Pool;
+using RewardMenu;
 using SaveLoad;
 using Shop;
 using StaticData;
@@ -44,6 +45,8 @@ public class ProjectStarter : MonoBehaviour
     [SerializeField] private Transform _cardParent;
     [SerializeField] private UpgradeLevels _upgradeLevels;
     [SerializeField] private PokemonSpritesHolder _pokemonSpritesHolder;
+    [SerializeField] private RewardMenuView _rewardMenuView;
+    [SerializeField] private CardsPanelConfig _cardsPanelConfig;
 
     private PokemonSpawner _pokemonSpawner;
     private SaveLoadSystem _saveLoadSystem;
@@ -58,19 +61,22 @@ public class ProjectStarter : MonoBehaviour
         var pokemonHolderModel = new PokemonHolderModel();
         var directionTranslator = new InputLogic(_inputView, pokemonHolderModel);
         directionTranslator.Initialize();
-        
+
         var pokemonAvailabilityData = new PokemonAvailabilityData();
-        var pokemonAvailabilityLogic = new PokemonAvailabilityLogic(pokemonAvailabilityData);
-        var cardsPanelLogic = new CardsPanelLogic(_cardsPanelView, pokemonAvailabilityLogic, _cardSpritesHolder, _cardView, _cardParent);
+        var pokemonAvailabilityLogic = new PokemonAvailabilityLogic(pokemonAvailabilityData, _cardsPanelConfig,
+            _pokemonSpritesHolder, _pokemonStats);
+        var cardsPanelLogic = new CardsPanelLogic(_cardsPanelView, pokemonAvailabilityLogic, _cardSpritesHolder,
+            _cardView, _cardParent, _cardsPanelConfig);
 
         var enemyDataHolder = new EnemyDataHolder();
 
         var playerData = new PlayerData();
         var playerLogic = new PlayerLogic();
-        playerLogic.Initialize(_playerView, playerData, _updateHandler, pokemonHolderModel, enemyDataHolder,_upgradeLevels, pokemonAvailabilityLogic );
+        playerLogic.Initialize(_playerView, playerData, _updateHandler, pokemonHolderModel, enemyDataHolder,
+            _upgradeLevels, pokemonAvailabilityLogic);
         _healthPlayerBarView.SetCameraRef(_camera);
         pokemonHolderModel.SetInitialHealthPlayer();
-        
+
         _saveLoadSystem = new SaveLoadSystem(playerData, pokemonHolderModel, pokemonAvailabilityData);
         var loadedSuccessfully = _saveLoadSystem.TryLoadData(out var data);
 
@@ -78,7 +84,8 @@ public class ProjectStarter : MonoBehaviour
         {
             pokemonHolderModel.Initialize(data.PokemonData);
             playerData.Initialize(_playerStats, data.PlayerLevel, data.CoinsAmount, pokemonHolderModel);
-            pokemonAvailabilityLogic.Initialize(data.MeleePokemonAvailabilities, data.RangePokemonAvailabilities, cardsPanelLogic);
+            pokemonAvailabilityLogic.Initialize(data.MeleePokemonAvailabilities, data.RangePokemonAvailabilities,
+                cardsPanelLogic);
             Debug.Log("Loaded successfully");
         }
         else
@@ -88,7 +95,7 @@ public class ProjectStarter : MonoBehaviour
             pokemonAvailabilityLogic.Initialize(cardsPanelLogic);
             Debug.Log("Load failed");
         }
-        
+
         cardsPanelLogic.Initialize();
 
         pokemonHolderModel.SetPlayerData(playerData);
@@ -121,7 +128,11 @@ public class ProjectStarter : MonoBehaviour
 
         var levelCounterLogic = new LevelCounterLogic();
         levelCounterLogic.Initialize(_levelCounterView, playerData, _levelSpritesHolder);
-        
+
+        var rewardMenuLogic = new RewardMenuLogic(playerLogic, _rewardMenuView, _upgradeLevels, playerData,
+            _levelDataHolder, _saveLoadSystem, pokemonAvailabilityLogic, _cardSpritesHolder);
+        rewardMenuLogic.Initialize();
+
         _cardsPanelView.Initialize();
     }
 

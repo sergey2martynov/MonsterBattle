@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2138677392}
-  m_IndirectSpecularColor: {r: 0.28138083, g: 0.36688313, b: 0.4993354, a: 1}
+  m_IndirectSpecularColor: {r: 0.28138116, g: 0.36688387, b: 0.49933624, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1577,17 +1577,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 394839349}
   m_Mesh: {fileID: 8535780926494029583, guid: d454b39d19618744691b87ba7d402f39, type: 3}
---- !u!114 &397560008 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1542674148346461788, guid: 1a42f589c18612d43b100495bca0dee8, type: 3}
-  m_PrefabInstance: {fileID: 1542674147194376619}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &400661891 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5737000752108167648, guid: d8a31490db470cd4f83d6ecb7a6068e3, type: 3}
@@ -2219,17 +2208,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 462904326}
   m_Mesh: {fileID: 4865420575538579440, guid: 9f85f955ce660664fa8ef700192d428c, type: 3}
---- !u!114 &469920040 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1542674146694940601, guid: 1a42f589c18612d43b100495bca0dee8, type: 3}
-  m_PrefabInstance: {fileID: 1542674147194376619}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &492817462
 GameObject:
   m_ObjectHideFlags: 0
@@ -3674,27 +3652,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &977109657 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1542674146904174903, guid: 1a42f589c18612d43b100495bca0dee8, type: 3}
+--- !u!114 &977109662 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 156732938383923556, guid: 1a42f589c18612d43b100495bca0dee8, type: 3}
   m_PrefabInstance: {fileID: 1542674147194376619}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &977109662
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 977109657}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fa5c4b948492ece4dbb294f9249ea274, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _meleeCardsButton: {fileID: 469920040}
-  _rangeCardsButton: {fileID: 397560008}
-  _closeButton: {fileID: 1681124228}
-  _openCardsCollectionButton: {fileID: 1224986851}
 --- !u!1 &1021844134 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6942564740909406879, guid: c1f9906ca0940a04d8eec4a32f3cf694, type: 3}
@@ -5574,7 +5542,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6491056990588803354, guid: 96996a3b2b7182343b4c31a7c889e67e, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7230088152638197254, guid: 96996a3b2b7182343b4c31a7c889e67e, type: 3}
       propertyPath: m_RootOrder
@@ -6691,17 +6659,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1664648659}
   m_Mesh: {fileID: 6967520415092015270, guid: a74e67f21e2f610498b9481fa9cebd0a, type: 3}
---- !u!114 &1681124228 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4891617056122549261, guid: 1a42f589c18612d43b100495bca0dee8, type: 3}
-  m_PrefabInstance: {fileID: 1542674147194376619}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1687258581
 GameObject:
   m_ObjectHideFlags: 0
@@ -9194,6 +9151,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2084256347 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1178419662170442280, guid: 006ae51e1baf68442b235fc6ef7cba90, type: 3}
+  m_PrefabInstance: {fileID: 3399046710990301566}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 479482020604c2946995e66d1bcd2cc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2091309435
 GameObject:
   m_ObjectHideFlags: 0
@@ -9756,6 +9724,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 156732938383923556, guid: 1a42f589c18612d43b100495bca0dee8, type: 3}
+      propertyPath: _openCardsCollectionButton
+      value: 
+      objectReference: {fileID: 1224986851}
     - target: {fileID: 902943007380591981, guid: 1a42f589c18612d43b100495bca0dee8, type: 3}
       propertyPath: m_SizeDelta.x
       value: 470.058
@@ -10004,6 +9976,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ScrollView
       objectReference: {fileID: 0}
+    - target: {fileID: 8809886716208169185, guid: 1a42f589c18612d43b100495bca0dee8, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 743.4683
+      objectReference: {fileID: 0}
+    - target: {fileID: 8809886716208169185, guid: 1a42f589c18612d43b100495bca0dee8, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -371.7335
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1a42f589c18612d43b100495bca0dee8, type: 3}
 --- !u!1001 &3137393528036359590
@@ -10082,9 +10062,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 977109662}
     - target: {fileID: 1339164300679375854, guid: 5b76d7af153ba994f990647493604eb2, type: 3}
+      propertyPath: _rewardMenuView
+      value: 
+      objectReference: {fileID: 2084256347}
+    - target: {fileID: 1339164300679375854, guid: 5b76d7af153ba994f990647493604eb2, type: 3}
       propertyPath: _levelDataHolder
       value: 
       objectReference: {fileID: 11400000, guid: afb9975f927bc764c9d3b2aa976b1754, type: 2}
+    - target: {fileID: 1339164300679375854, guid: 5b76d7af153ba994f990647493604eb2, type: 3}
+      propertyPath: _cardsPanelConfig
+      value: 
+      objectReference: {fileID: 11400000, guid: 3bd837dc7e987aa4f9ec11d7e2556399, type: 2}
     - target: {fileID: 1339164300679375854, guid: 5b76d7af153ba994f990647493604eb2, type: 3}
       propertyPath: _levelCounterView
       value: 
@@ -10600,7 +10588,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6942564740909406879, guid: c1f9906ca0940a04d8eec4a32f3cf694, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1f9906ca0940a04d8eec4a32f3cf694, type: 3}
@@ -10698,7 +10686,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 610849890678832070, guid: 1961be4979474ba4ab625e7e41256c3e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 69.9
+      value: 19.2
       objectReference: {fileID: 0}
     - target: {fileID: 610849890678832070, guid: 1961be4979474ba4ab625e7e41256c3e, type: 3}
       propertyPath: m_LocalRotation.w

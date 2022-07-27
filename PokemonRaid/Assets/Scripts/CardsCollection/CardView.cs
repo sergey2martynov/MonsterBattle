@@ -12,36 +12,18 @@ namespace CardsCollection
         [SerializeField] private TextMeshProUGUI _nameText;
         [SerializeField] private TextMeshProUGUI _levelText;
         [SerializeField] private Image _spriteCard;
+        [SerializeField] private Image _pokemonImage;
+        [SerializeField] private Image _lockImage;
+        [SerializeField] private GameObject _statsPanel;
 
         public TextMeshProUGUI HealthText => _healthText;
         public TextMeshProUGUI DamageText => _damageText;
         public TextMeshProUGUI NameText => _nameText;
         public TextMeshProUGUI LevelText => _levelText;
         public Image SpriteCard => _spriteCard;
+        public Image PokemonImage => _pokemonImage;
+        public Image LockImage => _lockImage;
+        public GameObject StatsPanel => _statsPanel;
 
-        private void SetHealthText(int health)
-        {
-            _healthText.text = health.ToString();
-        }
-        
-        private void SetDamageText(int health)
-        {
-            _damageText.text = health.ToString();
-        }
-        
-        private void SetNameText(int health)
-        {
-            _nameText.text = health.ToString();
-        }
-        
-        private void SetLevelText(int health)
-        {
-            _levelText.text = health.ToString();
-        }
-        
-        private void SetSpriteCard(Sprite sprite)
-        {
-            _spriteCard.sprite = sprite;
-        }
     }
 }

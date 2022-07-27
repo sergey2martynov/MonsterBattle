@@ -12,46 +12,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13462b0deb3347b488ddf555c3da78ff, type: 3}
   m_Name: PokemonSpritesHolder
   m_EditorClassIdentifier: 
-  _meleePokemonSpritesHolder:
+  _listSpritesForEachPokemonType:
   - _sprites:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
+    - {fileID: 21300000, guid: 01777552d3bdb79438957b72456e1e38, type: 3}
+    - {fileID: 21300000, guid: 878d9bba98fd046428d1bed32117fe95, type: 3}
+    - {fileID: 21300000, guid: f170cf8db7835f143a46b980768939d8, type: 3}
+    - {fileID: 21300000, guid: 44578597533b45d4f8814e8286423ad4, type: 3}
+    - {fileID: 21300000, guid: fd8b26c7714ae64468fbe7534a92f292, type: 3}
     _pokemonView: {fileID: 5825225041619624878, guid: f766764cd5ea99f41b9a964ace79f385, type: 3}
   - _sprites:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
+    - {fileID: 21300000, guid: f81f1143c54e265429e683553e2ac73c, type: 3}
+    - {fileID: 21300000, guid: 188eeb05d1569fb449323033d257c35e, type: 3}
+    - {fileID: 21300000, guid: 28535fdcc617b344ab91ad2fca9e20df, type: 3}
+    - {fileID: 21300000, guid: cb34d2efa870420489e77a0fb1bc8f6c, type: 3}
+    - {fileID: 21300000, guid: 4c324f7038f89d7468ecd679de73b6b5, type: 3}
     _pokemonView: {fileID: 891051601361968121, guid: 956a5ceebb5fb6945af62c65aa0e22d4, type: 3}
   - _sprites:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    _pokemonView: {fileID: 9071255890789025983, guid: 935158d05bd9a8947980cd7f8eb8b08d, type: 3}
-  - _sprites:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
+    - {fileID: 21300000, guid: 10a506f7389af784197cd1093a4f56cc, type: 3}
+    - {fileID: 21300000, guid: 2fd7e84bd26a2374286b096331fccce5, type: 3}
+    - {fileID: 21300000, guid: 0f7172fa667da4543ae7b1bc0a2ad94e, type: 3}
+    - {fileID: 21300000, guid: 395690a3258997048aca0f97a60e2e5a, type: 3}
+    - {fileID: 21300000, guid: 2f8d12d968f68df49b3a71c3ba5af520, type: 3}
     _pokemonView: {fileID: 6943248506083428063, guid: 5fed9d1635359ad4d9ce03ad55df9ae6, type: 3}
   - _sprites:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
+    - {fileID: 21300000, guid: 75bd23fc605c0e945afcadba2d579e0d, type: 3}
+    - {fileID: 21300000, guid: e52e883ab11c44849bbffdb9f56e3ebd, type: 3}
+    - {fileID: 21300000, guid: 91245b3ac668b16468747c11d3f4cc8c, type: 3}
+    - {fileID: 21300000, guid: f1ebb971487845a42a4d8c4859e2d0f0, type: 3}
+    - {fileID: 21300000, guid: 20a9dfaa0162dc94e94c602626592d18, type: 3}
     _pokemonView: {fileID: 2711931426556632022, guid: 23143f931dd95c44aa59a2198406bee7, type: 3}
-  - _sprites:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    _pokemonView: {fileID: 5486772169272369730, guid: 2dbb11ba0f721b14290d67960e3008c8, type: 3}

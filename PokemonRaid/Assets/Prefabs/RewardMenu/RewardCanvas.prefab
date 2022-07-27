@@ -1221,6 +1221,7 @@ GameObject:
   - component: {fileID: 3399046712955977236}
   - component: {fileID: 3399046712955977239}
   - component: {fileID: 3399046712955977238}
+  - component: {fileID: 1178419662170442280}
   m_Layer: 5
   m_Name: RewardCanvas
   m_TagString: Untagged
@@ -1312,6 +1313,25 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &1178419662170442280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3399046712955977241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 479482020604c2946995e66d1bcd2cc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _nextLevelButton: {fileID: 3399046710868443291}
+  _panelWithCard: {fileID: 3399046711146539070}
+  _cardView: {fileID: 6308632372985589792}
+  _youEarnedText: {fileID: 3399046712238786328}
+  _coinsView: {fileID: 3399046711931887380}
+  _coinsAmount: {fileID: 3399046711998591479}
+  _rewardMenuConfig: {fileID: 11400000, guid: 7cb5089d627982545af2352170b5a879, type: 2}
 --- !u!1001 &3399046712265588996
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1422,3 +1442,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2851068657993764750, guid: 402818dacb7b79e4692be9be32c75c11, type: 3}
   m_PrefabInstance: {fileID: 3399046712265588996}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6308632372985589792 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -529431005739011804, guid: 402818dacb7b79e4692be9be32c75c11, type: 3}
+  m_PrefabInstance: {fileID: 3399046712265588996}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a51770029ceb8042905f3381ad38c65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

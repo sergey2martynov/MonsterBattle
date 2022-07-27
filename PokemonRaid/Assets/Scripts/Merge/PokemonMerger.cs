@@ -28,7 +28,7 @@ namespace Merge
             {
                 int count = 0;
 
-                foreach (var spritesForEachPokemonType in _pokemonSpritesHolder.MeleePokemonSpritesHolder)
+                foreach (var spritesForEachPokemonType in _pokemonSpritesHolder.ListSpritesForEachPokemonType)
                 {
                     if (targetViewBase.GetType() == spritesForEachPokemonType.PokemonView.GetType())
                     {

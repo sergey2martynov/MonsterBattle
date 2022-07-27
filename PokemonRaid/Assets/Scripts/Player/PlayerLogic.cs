@@ -23,6 +23,7 @@ namespace Player
         private static readonly int Blend = Animator.StringToHash("Blend");
 
         public event Action<int> CoinsAdded;
+        public event Action LevelUpped;
 
         public virtual void Initialize(PlayerView playerView, PlayerData playerData,
             UpdateHandler updateHandler, PokemonHolderModel pokemonHolderModel, EnemyDataHolder enemyDataHolder,
@@ -105,16 +106,16 @@ namespace Player
             _data.Level++;
 
             if (_data.Level == _upgradeLevels.ListUpgradeLevels[0] ||
-                _data.Level == _upgradeLevels.ListUpgradeLevels[2] ||
-                _data.Level == _upgradeLevels.ListUpgradeLevels[4])
+                _data.Level == _upgradeLevels.ListUpgradeLevels[2])
             {
                 _pokemonAvailabilityLogic.UnLockNewTypeRangePokemon();
             }
-            else if (_data.Level == _upgradeLevels.ListUpgradeLevels[1] ||
-                     _data.Level == _upgradeLevels.ListUpgradeLevels[3])
+            else if (_data.Level == _upgradeLevels.ListUpgradeLevels[1])
             {
                 _pokemonAvailabilityLogic.UnLockNewTypeMeleePokemon();
             }
+            
+            LevelUpped?.Invoke();
         }
 
         private void OnHealthChange(int health, int maxHealth)

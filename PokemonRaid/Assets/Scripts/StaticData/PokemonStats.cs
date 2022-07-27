@@ -11,6 +11,8 @@ namespace StaticData
     public class PokemonStats : ScriptableObject
     {
         [SerializeField] private List<PokemonStatsByType> _statsByTypes;
+
+        public List<PokemonStatsByType> StatsByTypes => _statsByTypes;
         
         public PokemonStatsByType GetTypeStats(PokemonViewBase pokemonView)
         {

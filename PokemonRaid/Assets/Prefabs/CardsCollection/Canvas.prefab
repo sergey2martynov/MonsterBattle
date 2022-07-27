@@ -208,6 +208,7 @@ GameObject:
   - component: {fileID: 1542674146904174900}
   - component: {fileID: 1542674146904174901}
   - component: {fileID: 1542674146904174902}
+  - component: {fileID: 156732938383923556}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -297,6 +298,22 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &156732938383923556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1542674146904174903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa5c4b948492ece4dbb294f9249ea274, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _meleeCardsButton: {fileID: 1542674146694940601}
+  _rangeCardsButton: {fileID: 1542674148346461788}
+  _closeButton: {fileID: 4891617056122549261}
+  _openCardsCollectionButton: {fileID: 0}
 --- !u!1 &1542674146934641832
 GameObject:
   m_ObjectHideFlags: 0
