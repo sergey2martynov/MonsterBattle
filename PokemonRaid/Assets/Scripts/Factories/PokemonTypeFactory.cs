@@ -164,6 +164,9 @@ namespace Factories
             where TData : PokemonDataBase, new()
         {
             var instantiatedView = Object.Instantiate(view, position, Quaternion.identity, parent);
+            // var instantiatedView = Object.Instantiate(view, parent, false);
+            // instantiatedView.Transform.position = position;
+           // var instantiatedView = Object.Instantiate(view, position, Quaternion.identity);
             concreteView = instantiatedView;
             var data = new TData();
             var logic = new TLogic();
@@ -183,6 +186,9 @@ namespace Factories
             where TData : PokemonDataBase, new()
         {
             var instantiatedView = Object.Instantiate(view, position, Quaternion.identity, parent);
+            // var instantiatedView = Object.Instantiate(view, parent, false);
+            // instantiatedView.Transform.position = position;
+            //var instantiatedView = Object.Instantiate(view, position, Quaternion.identity);
             var logic = new TLogic();
             instantiatedView.HealthBarView.SetCameraRef(_camera);
             instantiatedView.SetLevel(data.Level);

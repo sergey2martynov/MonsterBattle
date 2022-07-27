@@ -21,7 +21,7 @@
 
         public virtual void Update()
         {
-            
+            SetNextState();
         }
 
         public virtual void OnExit()
@@ -29,6 +29,6 @@
             
         }
 
-        public abstract void SetNextState();
+        protected abstract void SetNextState();
     }
 }

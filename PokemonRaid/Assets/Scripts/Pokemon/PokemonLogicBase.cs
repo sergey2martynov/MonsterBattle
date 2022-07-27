@@ -72,7 +72,7 @@ namespace Pokemon
         protected virtual void Update()
         {
             _currentState.Update();
-            Attack();
+            CheckForEnemies();
         }
 
         public T SwitchState<T>()
@@ -106,13 +106,13 @@ namespace Pokemon
             return _data.Level;
         }
 
-        protected virtual async void Attack()
+        protected virtual async void CheckForEnemies()
         {
             _attackCount = 0;
             var collidersAmount = Physics.OverlapSphereNonAlloc(_view.Transform.position, _data.AttackRange,
                 _collidersInRange, _view.EnemyLayer);
 
-            if (Time.time < _data.AttackTime || collidersAmount == 0)
+            if (Time.time < _data.AttackTime || collidersAmount == 0 || ShouldAttack)
             {
                 return;
             }
@@ -129,25 +129,25 @@ namespace Pokemon
 
             if (_enemies.Count > 0)
             {
-                await ApplyAttack(_enemies);
+                await Attack(_enemies);
             }
             
-            for (var i = 0; i < _collidersInRange.Length; i++)
-            {
-                Array.Clear(_collidersInRange, i, _collidersInRange.Length);
-            }
-            
-            _enemies.Clear();
-
-            if (_attackCount == 0)
-            {
-                return;
-            }
-
-            _data.AttackTime = Time.time + _data.AttackSpeed;
+            // for (var i = 0; i < _collidersInRange.Length; i++)
+            // {
+            //     Array.Clear(_collidersInRange, i, _collidersInRange.Length);
+            // }
+            //
+            // _enemies.Clear();
+            //
+            // if (_attackCount == 0)
+            // {
+            //     return;
+            // }
+            //
+            // _data.AttackTime = Time.time + _data.AttackSpeed;
         }
 
-        private async Task ApplyAttack(List<TEnemyView> enemies)
+        protected virtual async Task Attack(List<TEnemyView> enemies)
         {
             ShouldAttack = true;
             var attackTime = Time.time + _attackAnimation.ActionTime / _attackAnimation.FrameRate;
@@ -157,7 +157,7 @@ namespace Pokemon
             {
                 if (_collidersInRange[0] != null)
                 {
-                    RotateAt(_collidersInRange[0].transform.position);
+                    RotateAt((_collidersInRange[0].transform.position - _view.Transform.position).normalized);
                 }
                 
                 await Task.Yield();
@@ -189,6 +189,7 @@ namespace Pokemon
             
             _view.Animator.SetBool(_attack, false);
             ShouldAttack = false;
+            _data.AttackTime = Time.time + _data.AttackSpeed;
         }
 
         protected void OnDamageTaken(int damage)

@@ -11,7 +11,7 @@ namespace Pokemon.RangedPokemon.FourthTypePokemon
 {
     public class FourthRangedTypePokemonLogic : PokemonLogicBase<FourthRangedTypePokemonView, BaseEnemyView>
     {
-        protected override void Attack()
+        protected override void CheckForEnemies()
         {
             _attackCount = 0;
             var collidersAmount = Physics.OverlapSphereNonAlloc(_view.Transform.position, _data.AttackRange,

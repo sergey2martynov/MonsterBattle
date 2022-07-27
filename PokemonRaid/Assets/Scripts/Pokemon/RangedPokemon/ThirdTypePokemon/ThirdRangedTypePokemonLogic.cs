@@ -11,7 +11,7 @@ namespace Pokemon.RangedPokemon.ThirdTypePokemon
 {
     public class ThirdRangedTypePokemonLogic : PokemonLogicBase<ThirdRangedTypePokemonView, BaseEnemyView>
     {
-        protected override void Attack()
+        protected override void CheckForEnemies()
         {
             _attackCount = 0;
             var collidersAmount = Physics.OverlapSphereNonAlloc(_view.Transform.position, _data.AttackRange,

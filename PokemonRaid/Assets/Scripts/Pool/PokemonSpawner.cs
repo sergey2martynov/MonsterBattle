@@ -73,7 +73,7 @@ namespace Pool
                 
                 var randomNumber = Random.Range(0, _pokemonPrefabHolder.RangedPokemons.Count);
                 var concreteView = _pokemonPrefabHolder.RangedPokemons[randomNumber];
-                var data = _factory.CreateInstance(concreteView, new Vector3(position.x, position.y + 0.5f, position.z),
+                var data = _factory.CreateInstance(concreteView, new Vector3(position.x, position.y, position.z),
                     _stats, _parent, 1, indexes, out var view);
                 _fieldView.AddPokemonView(view);
                 _model.AddPokemonToList(data, indexes);

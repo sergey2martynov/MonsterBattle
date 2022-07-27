@@ -1,0 +1,133 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Flower Avatar Mask Level 5
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: Dummy001
+    m_Weight: 1
+  - m_Path: Rig
+    m_Weight: 1
+  - m_Path: RigFeelerL1Gizmo
+    m_Weight: 1
+  - m_Path: RigFeelerL2Gizmo
+    m_Weight: 1
+  - m_Path: RigFeelerL3Gizmo
+    m_Weight: 1
+  - m_Path: RigFeelerL4Gizmo
+    m_Weight: 1
+  - m_Path: RigFeelerR1Gizmo
+    m_Weight: 1
+  - m_Path: RigFeelerR2Gizmo
+    m_Weight: 1
+  - m_Path: RigFeelerR3Gizmo
+    m_Weight: 1
+  - m_Path: RigFeelerR4Gizmo
+    m_Weight: 1
+  - m_Path: RigHead
+    m_Weight: 1
+  - m_Path: RigLArm1Gizmo
+    m_Weight: 1
+  - m_Path: RigLArm2Gizmo
+    m_Weight: 1
+  - m_Path: RigLArmPalmGizmo
+    m_Weight: 1
+  - m_Path: RigLLegPlatform
+    m_Weight: 1
+  - m_Path: RigPelvis
+    m_Weight: 1
+  - m_Path: RigPelvis/RigLLeg1
+    m_Weight: 1
+  - m_Path: RigPelvis/RigLLeg1/RigLLeg2
+    m_Weight: 1
+  - m_Path: RigPelvis/RigLLeg1/RigLLeg2/RigLLegAnkle
+    m_Weight: 1
+  - m_Path: RigPelvis/RigRLeg1
+    m_Weight: 1
+  - m_Path: RigPelvis/RigRLeg1/RigRLeg2
+    m_Weight: 1
+  - m_Path: RigPelvis/RigRLeg1/RigRLeg2/RigRLegAnkle
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSkirtB
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSkirtL
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSkirtR
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSpine1
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSpine1/RigSpine2
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSpine1/RigSpine2/RigRibcage
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSpine1/RigSpine2/RigRibcage/RigLArm1
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSpine1/RigSpine2/RigRibcage/RigLArm1/RigLArm2
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSpine1/RigSpine2/RigRibcage/RigLArm1/RigLArm2/RigLArmPalm
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSpine1/RigSpine2/RigRibcage/RigLArm1/RigLArm2/RigLArmPalm/RigLArmFinger1
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSpine1/RigSpine2/RigRibcage/RigNeck
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSpine1/RigSpine2/RigRibcage/RigNeck/RigHead 1
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSpine1/RigSpine2/RigRibcage/RigNeck/RigHead 1/RigFeelerL1
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSpine1/RigSpine2/RigRibcage/RigNeck/RigHead 1/RigFeelerL1/RigFeelerL2
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSpine1/RigSpine2/RigRibcage/RigNeck/RigHead 1/RigFeelerL1/RigFeelerL2/RigFeelerL3
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSpine1/RigSpine2/RigRibcage/RigNeck/RigHead 1/RigFeelerL1/RigFeelerL2/RigFeelerL3/RigFeelerL4
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSpine1/RigSpine2/RigRibcage/RigNeck/RigHead 1/RigFeelerR1
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSpine1/RigSpine2/RigRibcage/RigNeck/RigHead 1/RigFeelerR1/RigFeelerR2
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSpine1/RigSpine2/RigRibcage/RigNeck/RigHead 1/RigFeelerR1/RigFeelerR2/RigFeelerR3
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSpine1/RigSpine2/RigRibcage/RigNeck/RigHead 1/RigFeelerR1/RigFeelerR2/RigFeelerR3/RigFeelerR4
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSpine1/RigSpine2/RigRibcage/RigRArm1
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSpine1/RigSpine2/RigRibcage/RigRArm1/RigRArm2
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSpine1/RigSpine2/RigRibcage/RigRArm1/RigRArm2/RigRArmPalm
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSpine1/RigSpine2/RigRibcage/RigRArm1/RigRArm2/RigRArmPalm/RigRArmFinger1
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSpine1/RigSpine2/RigRibcage/RigWingL
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSpine1/RigSpine2/RigRibcage/RigWingR
+    m_Weight: 1
+  - m_Path: RigPelvisGizmo
+    m_Weight: 1
+  - m_Path: RigRArm1Gizmo
+    m_Weight: 1
+  - m_Path: RigRArm2Gizmo
+    m_Weight: 1
+  - m_Path: RigRArmPalmGizmo
+    m_Weight: 1
+  - m_Path: RigRibcageGizmo
+    m_Weight: 1
+  - m_Path: RigRLegPlatform
+    m_Weight: 1
+  - m_Path: RigSkirtBGizmo
+    m_Weight: 1
+  - m_Path: RigSkirtLGizmo
+    m_Weight: 1
+  - m_Path: RigSkirtRGizmo
+    m_Weight: 1
+  - m_Path: RigWingLGizmo
+    m_Weight: 1
+  - m_Path: RigWingRGizmo
+    m_Weight: 1
+  - m_Path: Sunflora Pixie
+    m_Weight: 1

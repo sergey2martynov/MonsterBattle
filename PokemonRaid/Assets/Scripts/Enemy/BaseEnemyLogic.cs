@@ -30,9 +30,11 @@ namespace Enemy
             _data.EnemyDied += OnEnemyDied;
             _statesToType = new Dictionary<Type, BaseEnemyState<TView>>
             {
-                {typeof(EnemyMoveState<TView>), new EnemyMoveState<TView>(_view, this, _data)}
+                {typeof(EnemyMoveState<TView>), new EnemyMoveState<TView>(_view, this, _data)},
+                {typeof(EnemyIdleState<TView>), new EnemyIdleState<TView>(_view, this, _data)},
+                {typeof(EnemyAttackState<TView>), new EnemyAttackState<TView>(_view, this, _data)}
             };
-            _currentState = _statesToType[typeof(EnemyMoveState<TView>)];
+            _currentState = _statesToType[typeof(EnemyIdleState<TView>)];
             _currentState.OnEnter();
         }
         
@@ -44,7 +46,7 @@ namespace Enemy
         protected virtual void Update()
         {
             _currentState.Update();
-            Attack();
+            //Attack();
         }
         
         public T SwitchState<T>()
@@ -63,37 +65,53 @@ namespace Enemy
             throw new KeyNotFoundException("There is no state of type " + type);
         }
 
-        private void Attack()
+        public Collider[] CheckForPokemons()
         {
-            _attackCount = 0;
-            var collidersAmount = Physics.OverlapSphereNonAlloc(_view.Transform.position, _data.AttackRange, _collidersInRange, _view.PokemonLayer);
+            var collidersAmount = Physics.OverlapSphereNonAlloc(_view.Transform.position, _data.AttackRange,
+                _collidersInRange, _view.PokemonLayer);
 
-            if (Time.time < _data.AttackTime || _collidersInRange[0] == null)
-            {
-                return;
-            }
-
-            for (var i = 0; i < collidersAmount; i++)
-            {
-                if (_collidersInRange[i].TryGetComponent<PokemonViewBase>(out var pokemon))
-                {
-                    pokemon.TakeDamage(_data.Damage);
-                    _attackCount++;
-                }
-            }
-            
-            for (var i = 0; i < _collidersInRange.Length; i++)
-            {
-                Array.Clear(_collidersInRange, i, _collidersInRange.Length);
-            }
-            
-            if (_attackCount == 0)
-            {
-                return;
-            }
-
-            _data.AttackTime = Time.time + _data.AttackSpeed;
+            return collidersAmount > 0 ? _collidersInRange : null;
         }
+        
+        public void RotateAt(Vector3 point)
+        {
+            var destinationRotation = Quaternion.LookRotation(point, Vector3.up);
+            _view.Transform.rotation =
+                Quaternion.RotateTowards(_view.Transform.rotation, destinationRotation, 720 * Time.deltaTime);
+        }
+
+        // private void Attack()
+        // {
+        //     _attackCount = 0;
+        //     var collidersAmount = Physics.OverlapSphereNonAlloc(_view.Transform.position, _data.AttackRange,
+        //         _collidersInRange, _view.PokemonLayer);
+        //
+        //     if (Time.time < _data.AttackTime || _collidersInRange[0] == null)
+        //     {
+        //         return;
+        //     }
+        //
+        //     for (var i = 0; i < collidersAmount; i++)
+        //     {
+        //         if (_collidersInRange[i].TryGetComponent<PokemonViewBase>(out var pokemon))
+        //         {
+        //             pokemon.TakeDamage(_data.Damage);
+        //             _attackCount++;
+        //         }
+        //     }
+        //     
+        //     for (var i = 0; i < _collidersInRange.Length; i++)
+        //     {
+        //         Array.Clear(_collidersInRange, i, _collidersInRange.Length);
+        //     }
+        //     
+        //     if (_attackCount == 0)
+        //     {
+        //         return;
+        //     }
+        //
+        //     _data.AttackTime = Time.time + _data.AttackSpeed;
+        // }
 
         protected void OnDamageTaken(int damage)
         {
