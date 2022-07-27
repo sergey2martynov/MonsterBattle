@@ -3,8 +3,10 @@ using Factories;
 using Player;
 using Shop;
 using StaticData;
+using Unity.Mathematics;
 using UnityEngine;
 using UpdateHandlerFolder;
+using Random = UnityEngine.Random;
 
 namespace LevelBuilder
 {
@@ -33,6 +35,14 @@ namespace LevelBuilder
         {
             _enemyFactory = new EnemyFactory(_updateHandler);
             shopLogic.StartButtonPressed += FillLevelWithEnemies;
+            SpawnEnvironment();
+        }
+
+        private void SpawnEnvironment()
+        {
+            var level = _playerData.Level;
+            var levelData = _levelDataHolder.GetLevelData(level);
+            Object.Instantiate(levelData.Environment, Vector3.zero, quaternion.identity);
         }
 
         private void FillLevelWithEnemies()

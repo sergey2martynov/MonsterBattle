@@ -12,8 +12,10 @@ namespace Stats
         [NamedProperty("Spawn positions")]
         [SerializeField] private List<SpawnPositions> _spawnPositions;
         [SerializeField] private int _totalCoinsReward;
+        [SerializeField] private GameObject _environment;
 
         public List<SpawnPositions> SpawnPositions => _spawnPositions;
         public int TotalCoinsReward => _totalCoinsReward;
+        public GameObject Environment => _environment;
     }
 }
