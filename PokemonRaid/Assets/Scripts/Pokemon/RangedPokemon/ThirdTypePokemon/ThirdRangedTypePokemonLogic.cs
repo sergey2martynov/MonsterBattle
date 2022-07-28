@@ -72,7 +72,7 @@ namespace Pokemon.RangedPokemon.ThirdTypePokemon
             
             Object.Destroy(projectileView.gameObject);
 
-            enemyView.TakeDamage(_data.Damage);
+            enemyView.TakeDamage(_data.Damage, _view.PokemonType);
         }
 
         private void RotateAt(Transform point, Transform obj, float divider)

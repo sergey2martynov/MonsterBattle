@@ -11,14 +11,18 @@ namespace Enemy
         [SerializeField] private LayerMask _pokemonLayer;
         [SerializeField] private AnimationEventTranslator _eventTranslator;
         [SerializeField] private Collider _collider;
+        [SerializeField] private ParticleSystem _meleeDamageParticle;
+        [SerializeField] private ParticleSystem _rangeDamageParticle;
 
         public int Level => _level;
         public Transform Transform => transform;
         public Animator Animator => _animator;
         public LayerMask PokemonLayer => _pokemonLayer;
         public AnimationEventTranslator EventTranslator => _eventTranslator;
+        public ParticleSystem MeleeDamageParticle => _meleeDamageParticle;
+        public ParticleSystem RangeDamageParticle => _rangeDamageParticle;
 
-        public event Action<int> DamageTaken;
+        public event Action<int, PokemonType> DamageTaken;
         public event Action ViewDestroyed;
 
         public void SetViewActive(bool isActive)
@@ -27,9 +31,9 @@ namespace Enemy
             _collider.enabled = isActive;
         }
 
-        public void TakeDamage(int damage)
+        public void TakeDamage(int damage, PokemonType pokemonType)
         {
-            DamageTaken?.Invoke(damage);
+            DamageTaken?.Invoke(damage, pokemonType);
         }
 
         private void OnDestroy()

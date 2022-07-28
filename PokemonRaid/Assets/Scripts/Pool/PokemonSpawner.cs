@@ -84,6 +84,7 @@ namespace Pool
         {
             var data = _factory.CreateInstance(pokemonViewBase, position, _stats,
                 _parent, level, indexes, out var view);
+            
             _fieldView.AddPokemonView(view);
             _model.AddPokemonToList(data, indexes);
         }

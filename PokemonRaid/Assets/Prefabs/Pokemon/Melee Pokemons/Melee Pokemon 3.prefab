@@ -46,7 +46,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cbcf612daae4829bf00e9652ac7ad28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animator: {fileID: 0}
   _enemyLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -54,6 +53,12 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   _healthBar: {fileID: 9191112736564105461}
+  _eventTranslators: []
+  _animators: []
+  _collider: {fileID: 0}
+  _mergeParticle: {fileID: 0}
+  _spawnParticle: {fileID: 0}
+  _pokemonType: 1
 --- !u!65 &530267544805779292
 BoxCollider:
   m_ObjectHideFlags: 0

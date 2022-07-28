@@ -38,7 +38,7 @@ namespace Enemy
             _currentState = _statesToType[typeof(EnemyIdleState<TView>)];
             _currentState.OnEnter();
         }
-        
+
         public void SetMaxTargetsAmount(int amount)
         {
             _collidersInRange = new Collider[amount];
@@ -49,7 +49,7 @@ namespace Enemy
             _currentState.Update();
             //Attack();
         }
-        
+
         public T SwitchState<T>()
             where T : BaseEnemyState<TView>
         {
@@ -73,7 +73,7 @@ namespace Enemy
 
             return collidersAmount > 0 ? _collidersInRange : null;
         }
-        
+
         public void RotateAt(Vector3 point)
         {
             var destinationRotation = Quaternion.LookRotation(point, Vector3.up);
@@ -114,13 +114,22 @@ namespace Enemy
         //     _data.AttackTime = Time.time + _data.AttackSpeed;
         // }
 
-        protected void OnDamageTaken(int damage)
+        protected void OnDamageTaken(int damage, PokemonType damageType)
         {
             if (damage < 0)
             {
                 return;
             }
-            
+
+            if (damageType == PokemonType.Melee)
+            {
+                _view.MeleeDamageParticle.Play();
+            }
+            else if (damageType == PokemonType.Ranged)
+            {
+                _view.RangeDamageParticle.Play();
+            }
+
             _data.Health -= damage;
         }
 
@@ -130,7 +139,7 @@ namespace Enemy
             _view.SetViewActive(false);
             Dispose();
         }
-        
+
         protected virtual void Dispose()
         {
             _updateHandler.UpdateTicked -= Update;

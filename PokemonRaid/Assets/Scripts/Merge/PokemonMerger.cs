@@ -33,7 +33,6 @@ namespace Merge
                     if (targetViewBase.GetType() == spritesForEachPokemonType.PokemonView.GetType())
                     {
                         _pokemonAvailabilityLogic.UnLockNewLevelPokemon(count, targetViewBase.GetPokemonLevel() + 1);
-                        
                     }
 
                     count++;

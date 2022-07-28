@@ -27,12 +27,14 @@ namespace NewPokemonCanvas
             _getButton.onClick.AddListener(Disable);
         }
 
-        public void SetStats(string health, string damage, Sprite spriteCard, Sprite pokemonSprite)
+        public void SetStats(string health, string damage, Sprite spriteCard, Sprite pokemonSprite, string name, int level)
         {
             _healthText.text = health;
             _damageText.text = damage;
             _spriteCard.sprite = spriteCard;
             _pokemonImage.sprite = pokemonSprite;
+            _nameText.text = name;
+            _levelText.text = "LEVEL " + (level +1);
         }
     }
 }

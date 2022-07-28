@@ -51,7 +51,9 @@ namespace RewardMenu
                     _rewardMenuView.CardView.HealthText.text = _availabilityLogic.FixedHealth.ToString();
                     _rewardMenuView.CardView.DamageText.text = _availabilityLogic.FixedDamage.ToString();
                     _rewardMenuView.CardView.NameText.text = _availabilityLogic.FixedName;
+                    _rewardMenuView.CardView.LevelText.text = "LEVEL 1";
                     _rewardMenuView.CardView.LockImage.gameObject.SetActive(false);
+                    
 
                     if (_availabilityLogic.IsMelee)
                         _rewardMenuView.CardView.SpriteCard.sprite = _cardSpritesHolder.Sprites[0];

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using DG.Tweening;
 using NewPokemonCanvas;
 using StaticData;
 using UnityEngine;
@@ -72,6 +73,7 @@ namespace CardsCollection
                         meleeCard.HealthText.text =
                             _pokemonAvailabilityLogic.GetStatsPokemon(rowCount, count, out int damage, out string name).ToString();
                         meleeCard.NameText.text = name;
+                        meleeCard.LevelText.text = "LEVEL " + (count + 1);
                         meleeCard.DamageText.text = damage.ToString();
                     }
                     else
@@ -93,6 +95,7 @@ namespace CardsCollection
                                 .GetStatsPokemon(rowCount + _cardsPanelConfig.NumberOfPokemonsEachType, count,
                                     out int damage, out string name).ToString();
                         rangeCard.NameText.text = name;
+                        rangeCard.LevelText.text = "LEVEL " + (count + 1);
                         rangeCard.DamageText.text = damage.ToString();
                     }
                     else
@@ -140,11 +143,15 @@ namespace CardsCollection
                 _meleePokemonCards[count].HealthText.text =
                     _pokemonAvailabilityLogic.GetStatsPokemon(index, level, out int damage, out string name).ToString();
                 _meleePokemonCards[count].NameText.text = name;
+                _meleePokemonCards[count].LevelText.text = "LEVEL " + (level +1);
                 _meleePokemonCards[count].DamageText.text = damage.ToString();
-                
-                _newPokemonCanvasView.SetStats(_meleePokemonCards[count].HealthText.text, _meleePokemonCards[count].DamageText.text,
-                    _meleePokemonCards[count].SpriteCard.sprite, _meleePokemonCards[count].PokemonImage.sprite);
-                _newPokemonCanvasView.Show();
+
+                DOTween.Sequence().AppendInterval(1.5f).OnComplete(() =>
+                {
+                    _newPokemonCanvasView.SetStats(_meleePokemonCards[count].HealthText.text, _meleePokemonCards[count].DamageText.text,
+                        _meleePokemonCards[count].SpriteCard.sprite, _meleePokemonCards[count].PokemonImage.sprite, name, level);
+                    _newPokemonCanvasView.Show();
+                });
             }
             else
             {
@@ -157,14 +164,19 @@ namespace CardsCollection
                 _rangePokemonCards[count].LockImage.gameObject.SetActive(false);
                 _rangePokemonCards[count].HealthText.text =
                     _pokemonAvailabilityLogic
-                        .GetStatsPokemon(index + _cardsPanelConfig.NumberOfPokemonsEachType, level, out int damage, out string name)
+                        .GetStatsPokemon(index, level, out int damage, out string rangeName)
                         .ToString();
-                _rangePokemonCards[count].NameText.text = name;
+                _rangePokemonCards[count].NameText.text = rangeName;
+                _rangePokemonCards[count].LevelText.text = "LEVEL " + (level+1);
                 _rangePokemonCards[count].DamageText.text = damage.ToString();
                 
-                _newPokemonCanvasView.SetStats(_rangePokemonCards[count].HealthText.text, _rangePokemonCards[count].DamageText.text,
-                    _rangePokemonCards[count].SpriteCard.sprite, _rangePokemonCards[count].PokemonImage.sprite);
-                _newPokemonCanvasView.Show();
+                
+                DOTween.Sequence().AppendInterval(1.5f).OnComplete(() =>
+                {
+                    _newPokemonCanvasView.SetStats(_rangePokemonCards[count].HealthText.text, _rangePokemonCards[count].DamageText.text,
+                        _rangePokemonCards[count].SpriteCard.sprite, _rangePokemonCards[count].PokemonImage.sprite, rangeName, level);
+                    _newPokemonCanvasView.Show();
+                });
             }
         }
 

@@ -1,7 +1,6 @@
 using Enemy.EnemyModel;
 using Player;
 using SaveLoad;
-using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace FailedMenu

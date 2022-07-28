@@ -66,6 +66,7 @@ MonoBehaviour:
   _boundsLayer:
     serializedVersion: 2
     m_Bits: 128
+  _particle: {fileID: 0}
 --- !u!1 &8579988268537150439
 GameObject:
   m_ObjectHideFlags: 0

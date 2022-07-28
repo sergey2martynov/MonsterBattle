@@ -167,6 +167,18 @@ namespace Factories
             // var instantiatedView = Object.Instantiate(view, parent, false);
             // instantiatedView.Transform.position = position;
            // var instantiatedView = Object.Instantiate(view, position, Quaternion.identity);
+           
+           if (level > 1)
+           {
+               instantiatedView.MergeParticle.gameObject.SetActive(true);
+               instantiatedView.MergeParticle.Play();
+           }
+           else
+           {
+               instantiatedView.SpawnParticle.gameObject.SetActive(true);
+               instantiatedView.SpawnParticle.Play();
+           }
+           
             concreteView = instantiatedView;
             var data = new TData();
             var logic = new TLogic();
@@ -196,6 +208,10 @@ namespace Factories
             logic.SetMaxTargetsAmount(data.MaxTargetsAmount);
             data.Initialize();
             logic.SetMaxTargetsAmount(data.MaxTargetsAmount);
+            
+            instantiatedView.SpawnParticle.gameObject.SetActive(true);
+            instantiatedView.SpawnParticle.Play();
+            
             return instantiatedView;
         }
 

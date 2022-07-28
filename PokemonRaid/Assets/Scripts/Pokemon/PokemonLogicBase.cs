@@ -166,7 +166,7 @@ namespace Pokemon
 
             foreach (var enemy in enemies.Where(enemy => enemy != null))
             {
-                enemy.TakeDamage(_data.Damage);
+                enemy.TakeDamage(_data.Damage, _view.PokemonType);
             }
             
             var delay = (int) (_attackAnimation.Duration - _attackAnimation.ActionTime / _attackAnimation.FrameRate) * 1000;
