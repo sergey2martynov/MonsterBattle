@@ -32,7 +32,8 @@ namespace Enemy
             {
                 {typeof(EnemyMoveState<TView>), new EnemyMoveState<TView>(_view, this, _data)},
                 {typeof(EnemyIdleState<TView>), new EnemyIdleState<TView>(_view, this, _data)},
-                {typeof(EnemyAttackState<TView>), new EnemyAttackState<TView>(_view, this, _data)}
+                {typeof(EnemyAttackState<TView>), new EnemyAttackState<TView>(_view, this, _data)},
+                {typeof(EnemyDieState<TView>), new EnemyDieState<TView>(_view, this, _data)}
             };
             _currentState = _statesToType[typeof(EnemyIdleState<TView>)];
             _currentState.OnEnter();
@@ -125,6 +126,7 @@ namespace Enemy
 
         protected void OnEnemyDied(BaseEnemyData data)
         {
+            SwitchState<EnemyDieState<TView>>();
             _view.SetViewActive(false);
             Dispose();
         }

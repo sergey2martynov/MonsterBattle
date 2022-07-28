@@ -18,48 +18,48 @@ MonoBehaviour:
     - _enemyPrefabs:
       - {fileID: 8393676187952632429, guid: 374eff02736577f4fb35c38c83abf581, type: 3}
       _positions:
-      - {x: 0, y: 0, z: 30}
+      - {x: 0, y: 0.41, z: 30}
     - _enemyPrefabs:
       - {fileID: 8393676187952632429, guid: 374eff02736577f4fb35c38c83abf581, type: 3}
       _positions:
-      - {x: -1, y: 0, z: 40}
-      - {x: 1, y: 0, z: 40}
+      - {x: -1, y: 0.41, z: 40}
+      - {x: 1, y: 0.41, z: 40}
     - _enemyPrefabs:
       - {fileID: 2351805535717559970, guid: b547d372b0ca7604ea47ae552cdd85bd, type: 3}
       _positions:
-      - {x: -2, y: 0, z: 50}
-      - {x: 0, y: 0, z: 50}
-      - {x: 2, y: 0, z: 50}
+      - {x: -2, y: 0.41, z: 50}
+      - {x: 0, y: 0.41, z: 50}
+      - {x: 2, y: 0.41, z: 50}
     _totalCoinsReward: 100
-    _environment: {fileID: 1515952890826409518, guid: 92a8c057e6a206b47b595a72c55f7f9c, type: 3}
+    _environment: {fileID: 6916852746869927221, guid: e17096f698095a145b9a81a354b72b87, type: 3}
   - _level: 0
     _spawnPositions:
     - _enemyPrefabs:
       - {fileID: 8393676187952632429, guid: 374eff02736577f4fb35c38c83abf581, type: 3}
       _positions:
-      - {x: -4, y: 0, z: 30}
-      - {x: -2, y: 0, z: 30}
-      - {x: 0, y: 0, z: 30}
-      - {x: 2, y: 0, z: 30}
-      - {x: 4, y: 0, z: 30}
+      - {x: -4, y: 0.41, z: 30}
+      - {x: -2, y: 0.41, z: 30}
+      - {x: 0, y: 0.41, z: 30}
+      - {x: 2, y: 0.41, z: 30}
+      - {x: 4, y: 0.41, z: 30}
     - _enemyPrefabs:
       - {fileID: 2351805535717559970, guid: b547d372b0ca7604ea47ae552cdd85bd, type: 3}
       _positions:
-      - {x: -4, y: 0, z: 40}
-      - {x: -2, y: 0, z: 40}
-      - {x: 0, y: 0, z: 40}
-      - {x: 2, y: 0, z: 40}
-      - {x: 4, y: 0, z: 40}
+      - {x: -4, y: 0.41, z: 40}
+      - {x: -2, y: 0.41, z: 40}
+      - {x: 0, y: 0.41, z: 40}
+      - {x: 2, y: 0.41, z: 40}
+      - {x: 4, y: 0.41, z: 40}
     - _enemyPrefabs:
       - {fileID: 7450976434109585910, guid: 2d3676956c76b7840a9ca64a767ee036, type: 3}
       _positions:
-      - {x: -4, y: 0, z: 50}
-      - {x: -2, y: 0, z: 50}
-      - {x: 0, y: 0, z: 50}
-      - {x: 2, y: 0, z: 50}
-      - {x: 4, y: 0, z: 50}
+      - {x: -4, y: 0.41, z: 50}
+      - {x: -2, y: 0.41, z: 50}
+      - {x: 0, y: 0.41, z: 50}
+      - {x: 2, y: 0.41, z: 50}
+      - {x: 4, y: 0.41, z: 50}
     _totalCoinsReward: 200
-    _environment: {fileID: 2640813938487052669, guid: c88422246cbdbc14a8347c5bf4d65b16, type: 3}
+    _environment: {fileID: 1265300913099287885, guid: c21324940a7a46e4d98bb96c3d676109, type: 3}
   - _level: 2
     _spawnPositions:
     - _enemyPrefabs:

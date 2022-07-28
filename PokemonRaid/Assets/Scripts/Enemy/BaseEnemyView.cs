@@ -10,6 +10,7 @@ namespace Enemy
         [SerializeField] private Animator _animator;
         [SerializeField] private LayerMask _pokemonLayer;
         [SerializeField] private AnimationEventTranslator _eventTranslator;
+        [SerializeField] private Collider _collider;
 
         public int Level => _level;
         public Transform Transform => transform;
@@ -22,7 +23,8 @@ namespace Enemy
 
         public void SetViewActive(bool isActive)
         {
-            gameObject.SetActive(isActive);
+            //gameObject.SetActive(isActive);
+            _collider.enabled = isActive;
         }
 
         public void TakeDamage(int damage)

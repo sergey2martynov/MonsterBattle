@@ -54,6 +54,7 @@ namespace Pokemon
             {
                 {typeof(IdleState<TView, TEnemyView>), new IdleState<TView, TEnemyView>(_view, this, _data)},
                 {typeof(SpawnState<TView, TEnemyView>), new SpawnState<TView, TEnemyView>(_view, this, _data)},
+                {typeof(DieState<TView, TEnemyView>), new DieState<TView, TEnemyView>(_view, this, _data)},
                 {
                     typeof(MoveState<TView, TEnemyView>),
                     new MoveState<TView, TEnemyView>(_view, this, _data)
@@ -204,6 +205,7 @@ namespace Pokemon
 
         protected void OnPokemonDied()
         {
+            SwitchState<DieState<TView, TEnemyView>>();
             _view.SetViewActive(false);
             Dispose();
         }
@@ -212,6 +214,7 @@ namespace Pokemon
         {
             if (_data.Health < _data.MaxHealth)
                 _view.HealthBarView.gameObject.SetActive(true);
+            Debug.Log(_data.Health);
 
             _view.SetHealth(_data.Health / (float)_data.MaxHealth);
         }

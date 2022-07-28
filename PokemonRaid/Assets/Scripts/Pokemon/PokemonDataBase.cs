@@ -92,7 +92,7 @@ namespace Pokemon
                 if (value <= 0)
                 {
                     _health = 0;
-                    PokemonDied?.Invoke();
+                    //PokemonDied?.Invoke();
                 }
                 else
                 {
@@ -100,6 +100,11 @@ namespace Pokemon
                 }
                 
                 HealthChanged?.Invoke(_health, _maxHealth);
+
+                if (_health == 0)
+                {
+                    PokemonDied?.Invoke();
+                }
             }
         }
 

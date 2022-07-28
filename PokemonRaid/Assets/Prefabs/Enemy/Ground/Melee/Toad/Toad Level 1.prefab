@@ -51,6 +51,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   _eventTranslator: {fileID: 3054782767864643124}
+  _collider: {fileID: 4874064685222236098}
 --- !u!65 &4874064685222236098
 BoxCollider:
   m_ObjectHideFlags: 0

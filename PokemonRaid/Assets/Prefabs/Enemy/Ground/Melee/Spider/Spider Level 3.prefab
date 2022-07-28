@@ -64,6 +64,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   _eventTranslator: {fileID: 1454532648223698778}
+  _collider: {fileID: 2236302038692595999}
 --- !u!1001 &4837467527431331673
 PrefabInstance:
   m_ObjectHideFlags: 0

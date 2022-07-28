@@ -151,6 +151,7 @@ MonoBehaviour:
   - {fileID: 2163630550370171066}
   - {fileID: 6983260196657683221}
   - {fileID: 4182521812082965594}
+  _collider: {fileID: 6738927145612314192}
 --- !u!65 &6738927145612314192
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -70,6 +70,7 @@ MonoBehaviour:
   - {fileID: 1734384815893153059}
   - {fileID: 5639109895975121065}
   - {fileID: 5591121180624048559}
+  _collider: {fileID: 5094698463171868497}
   _projectilePrefab: {fileID: 3376967517250490170, guid: 6136d3c7cd1e7a64fa1478f8855c5d0e, type: 3}
 --- !u!65 &5094698463171868497
 BoxCollider:

@@ -13,6 +13,7 @@ namespace Pokemon
         [SerializeField] private HealthBarView _healthBar;
         [SerializeField] private List<AnimationEventTranslator> _eventTranslators;
         [SerializeField] private List<Animator> _animators;
+        [SerializeField] private Collider _collider;
 
         private int _level;
 
@@ -49,7 +50,8 @@ namespace Pokemon
 
         public void SetViewActive(bool isActive)
         {
-            gameObject.SetActive(isActive);
+            //gameObject.SetActive(isActive);
+            _collider.enabled = isActive;
         }
         
         public void TakeDamage(int damage)

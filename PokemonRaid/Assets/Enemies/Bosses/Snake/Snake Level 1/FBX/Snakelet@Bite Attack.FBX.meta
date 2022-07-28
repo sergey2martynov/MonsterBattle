@@ -1,94 +1,260 @@
 fileFormatVersion: 2
 guid: 6914c74b218b2044ea2c463ae289d898
 ModelImporter:
-  serializedVersion: 23
-  fileIDToRecycleName:
-    100000: IK Chain Neck
-    100002: Rig
-    100004: RigHead
-    100006: RigHeadGizmo
-    100008: RigJaw
-    100010: RigJawGizmo
-    100012: RigNeck1
-    100014: RigNeck1IKPt
-    100016: RigNeck2
-    100018: RigNeck2IKPt
-    100020: RigNeck3
-    100022: RigNeck3IKPt
-    100024: RigNeck4
-    100026: RigNeck4IKPt
-    100028: RigNeck5
-    100030: RigNeck5IKPt
-    100032: RigNeck5Nub
-    100034: RigPelvis
-    100036: RigPelvisGizmo
-    100038: RigTail1
-    100040: RigTail1Gizmo
-    100042: RigTail2
-    100044: RigTail2Gizmo
-    100046: RigTail3
-    100048: RigTail3Gizmo
-    100050: RigTail4
-    100052: RigTail4Gizmo
-    100054: RigTail5
-    100056: RigTail5Gizmo
-    100058: RigTail6
-    100060: RigTail6Gizmo
-    100062: RigTongue01
-    100064: RigTongue01Gizmo
-    100066: RigTongue02
-    100068: RigTongue02Gizmo
-    100070: RigTongue03
-    100072: RigTongue03Gizmo
-    100074: Snakelet
-    100076: //RootNode
-    400000: IK Chain Neck
-    400002: Rig
-    400004: RigHead
-    400006: RigHeadGizmo
-    400008: RigJaw
-    400010: RigJawGizmo
-    400012: RigNeck1
-    400014: RigNeck1IKPt
-    400016: RigNeck2
-    400018: RigNeck2IKPt
-    400020: RigNeck3
-    400022: RigNeck3IKPt
-    400024: RigNeck4
-    400026: RigNeck4IKPt
-    400028: RigNeck5
-    400030: RigNeck5IKPt
-    400032: RigNeck5Nub
-    400034: RigPelvis
-    400036: RigPelvisGizmo
-    400038: RigTail1
-    400040: RigTail1Gizmo
-    400042: RigTail2
-    400044: RigTail2Gizmo
-    400046: RigTail3
-    400048: RigTail3Gizmo
-    400050: RigTail4
-    400052: RigTail4Gizmo
-    400054: RigTail5
-    400056: RigTail5Gizmo
-    400058: RigTail6
-    400060: RigTail6Gizmo
-    400062: RigTongue01
-    400064: RigTongue01Gizmo
-    400066: RigTongue02
-    400068: RigTongue02Gizmo
-    400070: RigTongue03
-    400072: RigTongue03Gizmo
-    400074: Snakelet
-    400076: //RootNode
-    2100000: 'Material #2'
-    4300000: Snakelet
-    7400000: Take 001
-    9500000: //RootNode
-    13700000: Snakelet
+  serializedVersion: 20200
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: IK Chain Neck
+  - first:
+      1: 100002
+    second: Rig
+  - first:
+      1: 100004
+    second: RigHead
+  - first:
+      1: 100006
+    second: RigHeadGizmo
+  - first:
+      1: 100008
+    second: RigJaw
+  - first:
+      1: 100010
+    second: RigJawGizmo
+  - first:
+      1: 100012
+    second: RigNeck1
+  - first:
+      1: 100014
+    second: RigNeck1IKPt
+  - first:
+      1: 100016
+    second: RigNeck2
+  - first:
+      1: 100018
+    second: RigNeck2IKPt
+  - first:
+      1: 100020
+    second: RigNeck3
+  - first:
+      1: 100022
+    second: RigNeck3IKPt
+  - first:
+      1: 100024
+    second: RigNeck4
+  - first:
+      1: 100026
+    second: RigNeck4IKPt
+  - first:
+      1: 100028
+    second: RigNeck5
+  - first:
+      1: 100030
+    second: RigNeck5IKPt
+  - first:
+      1: 100032
+    second: RigNeck5Nub
+  - first:
+      1: 100034
+    second: RigPelvis
+  - first:
+      1: 100036
+    second: RigPelvisGizmo
+  - first:
+      1: 100038
+    second: RigTail1
+  - first:
+      1: 100040
+    second: RigTail1Gizmo
+  - first:
+      1: 100042
+    second: RigTail2
+  - first:
+      1: 100044
+    second: RigTail2Gizmo
+  - first:
+      1: 100046
+    second: RigTail3
+  - first:
+      1: 100048
+    second: RigTail3Gizmo
+  - first:
+      1: 100050
+    second: RigTail4
+  - first:
+      1: 100052
+    second: RigTail4Gizmo
+  - first:
+      1: 100054
+    second: RigTail5
+  - first:
+      1: 100056
+    second: RigTail5Gizmo
+  - first:
+      1: 100058
+    second: RigTail6
+  - first:
+      1: 100060
+    second: RigTail6Gizmo
+  - first:
+      1: 100062
+    second: RigTongue01
+  - first:
+      1: 100064
+    second: RigTongue01Gizmo
+  - first:
+      1: 100066
+    second: RigTongue02
+  - first:
+      1: 100068
+    second: RigTongue02Gizmo
+  - first:
+      1: 100070
+    second: RigTongue03
+  - first:
+      1: 100072
+    second: RigTongue03Gizmo
+  - first:
+      1: 100074
+    second: Snakelet
+  - first:
+      1: 100076
+    second: //RootNode
+  - first:
+      4: 400000
+    second: IK Chain Neck
+  - first:
+      4: 400002
+    second: Rig
+  - first:
+      4: 400004
+    second: RigHead
+  - first:
+      4: 400006
+    second: RigHeadGizmo
+  - first:
+      4: 400008
+    second: RigJaw
+  - first:
+      4: 400010
+    second: RigJawGizmo
+  - first:
+      4: 400012
+    second: RigNeck1
+  - first:
+      4: 400014
+    second: RigNeck1IKPt
+  - first:
+      4: 400016
+    second: RigNeck2
+  - first:
+      4: 400018
+    second: RigNeck2IKPt
+  - first:
+      4: 400020
+    second: RigNeck3
+  - first:
+      4: 400022
+    second: RigNeck3IKPt
+  - first:
+      4: 400024
+    second: RigNeck4
+  - first:
+      4: 400026
+    second: RigNeck4IKPt
+  - first:
+      4: 400028
+    second: RigNeck5
+  - first:
+      4: 400030
+    second: RigNeck5IKPt
+  - first:
+      4: 400032
+    second: RigNeck5Nub
+  - first:
+      4: 400034
+    second: RigPelvis
+  - first:
+      4: 400036
+    second: RigPelvisGizmo
+  - first:
+      4: 400038
+    second: RigTail1
+  - first:
+      4: 400040
+    second: RigTail1Gizmo
+  - first:
+      4: 400042
+    second: RigTail2
+  - first:
+      4: 400044
+    second: RigTail2Gizmo
+  - first:
+      4: 400046
+    second: RigTail3
+  - first:
+      4: 400048
+    second: RigTail3Gizmo
+  - first:
+      4: 400050
+    second: RigTail4
+  - first:
+      4: 400052
+    second: RigTail4Gizmo
+  - first:
+      4: 400054
+    second: RigTail5
+  - first:
+      4: 400056
+    second: RigTail5Gizmo
+  - first:
+      4: 400058
+    second: RigTail6
+  - first:
+      4: 400060
+    second: RigTail6Gizmo
+  - first:
+      4: 400062
+    second: RigTongue01
+  - first:
+      4: 400064
+    second: RigTongue01Gizmo
+  - first:
+      4: 400066
+    second: RigTongue02
+  - first:
+      4: 400068
+    second: RigTongue02Gizmo
+  - first:
+      4: 400070
+    second: RigTongue03
+  - first:
+      4: 400072
+    second: RigTongue03Gizmo
+  - first:
+      4: 400074
+    second: Snakelet
+  - first:
+      4: 400076
+    second: //RootNode
+  - first:
+      21: 2100000
+    second: Material #2
+  - first:
+      43: 4300000
+    second: Snakelet
+  - first:
+      74: 7400000
+    second: Attack
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: Snakelet
   externalObjects: {}
   materials:
-    importMaterials: 0
+    materialImportMode: 0
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -113,7 +279,36 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Attack
+      takeName: Take 001
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 25
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
@@ -121,25 +316,32 @@ ModelImporter:
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
     importLights: 1
+    fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    bakeAxisConversion: 0
     preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 0
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 0.01
-    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -148,10 +350,10 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human: []
     skeleton: []
     armTwist: 0.5
@@ -161,13 +363,17 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
   additionalBone: 0
   userData: 
   assetBundleName: 
