@@ -63,10 +63,11 @@ namespace CardsCollection
                 if (!rowAvailability[0])
                 {
                     FixedSprite = GetSprite(count + _cardsPanelConfig.NumberOfPokemonsEachType, 0);
-                    FixedHealth = GetStatsPokemon(count + _cardsPanelConfig.NumberOfPokemonsEachType, 0, out int damage);
+                    FixedHealth = GetStatsPokemon(count + _cardsPanelConfig.NumberOfPokemonsEachType, 0,
+                        out int damage);
                     FixedDamage = damage;
                     IsMelee = false;
-                    
+
                     rowAvailability[0] = true;
                     return;
                 }
@@ -78,7 +79,7 @@ namespace CardsCollection
         public void UnLockNewTypeMeleePokemon()
         {
             var count = 0;
-            
+
             foreach (var rowAvailability in _pokemonAvailabilityData.MeleePokemonAvailabilities)
             {
                 if (!rowAvailability[0])
@@ -87,7 +88,7 @@ namespace CardsCollection
                     FixedHealth = GetStatsPokemon(count, 0, out int damage);
                     FixedDamage = damage;
                     IsMelee = true;
-                    
+
                     rowAvailability[0] = true;
                     return;
                 }
@@ -98,12 +99,15 @@ namespace CardsCollection
 
         public void UnLockNewLevelPokemon(int index, int level)
         {
-            if (index < _cardsPanelConfig.NumberOfPokemonsEachType)
+            if (index < _cardsPanelConfig.NumberOfPokemonsEachType &&
+                !_pokemonAvailabilityData.MeleePokemonAvailabilities[index][level - 1])
             {
                 _pokemonAvailabilityData.MeleePokemonAvailabilities[index][level - 1] = true;
                 _cardsPanelLogic.UpdateSpawnCards(index, level - 1);
             }
-            else
+            else if (index > 1 && !_pokemonAvailabilityData.RangePokemonAvailabilities[
+                             index - _cardsPanelConfig.NumberOfPokemonsEachType]
+                         [level - 1])
             {
                 _pokemonAvailabilityData.RangePokemonAvailabilities[index - _cardsPanelConfig.NumberOfPokemonsEachType]
                     [level - 1] = true;

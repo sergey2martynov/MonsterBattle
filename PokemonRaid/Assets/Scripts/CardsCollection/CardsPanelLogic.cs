@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using NewPokemonCanvas;
 using StaticData;
 using UnityEngine;
 
@@ -6,14 +7,15 @@ namespace CardsCollection
 {
     public class CardsPanelLogic
     {
-        private CardsPanelView _cardsPanelView;
-        private PokemonAvailabilityLogic _pokemonAvailabilityLogic;
-        private CardSpritesHolder _cardSpritesHolder;
-        private CardsPanelConfig _cardsPanelConfig;
-        private CardView _cardView;
-        private Transform _cardParent;
-        private List<CardView> _meleePokemonCards = new List<CardView>();
-        private List<CardView> _rangePokemonCards = new List<CardView>();
+        private readonly CardsPanelView _cardsPanelView;
+        private readonly PokemonAvailabilityLogic _pokemonAvailabilityLogic;
+        private readonly CardSpritesHolder _cardSpritesHolder;
+        private readonly CardsPanelConfig _cardsPanelConfig;
+        private NewPokemonCanvasView _newPokemonCanvasView;
+        private readonly CardView _cardView;
+        private readonly Transform _cardParent;
+        private readonly List<CardView> _meleePokemonCards = new List<CardView>();
+        private readonly List<CardView> _rangePokemonCards = new List<CardView>();
 
         private bool _isCanScroll;
         private Vector3 _startPosition;
@@ -21,7 +23,7 @@ namespace CardsCollection
 
         public CardsPanelLogic(CardsPanelView cardsPanelView, PokemonAvailabilityLogic pokemonAvailabilityLogic,
             CardSpritesHolder cardSpritesHolder, CardView cardView, Transform cardParent,
-            CardsPanelConfig cardsPanelConfig)
+            CardsPanelConfig cardsPanelConfig, NewPokemonCanvasView newPokemonCanvasView)
         {
             _cardsPanelView = cardsPanelView;
             _pokemonAvailabilityLogic = pokemonAvailabilityLogic;
@@ -29,6 +31,7 @@ namespace CardsCollection
             _cardView = cardView;
             _cardParent = cardParent;
             _cardsPanelConfig = cardsPanelConfig;
+            _newPokemonCanvasView = newPokemonCanvasView;
 
             _startPos = new Vector2(85, -123);
         }
@@ -67,7 +70,7 @@ namespace CardsCollection
                         meleeCard.PokemonImage.sprite = _pokemonAvailabilityLogic.GetSprite(rowCount, count);
                         meleeCard.LockImage.gameObject.SetActive(false);
                         meleeCard.HealthText.text =
-                            _pokemonAvailabilityLogic.GetStatsPokemon(rowCount, count , out int damage).ToString();
+                            _pokemonAvailabilityLogic.GetStatsPokemon(rowCount, count, out int damage).ToString();
                         meleeCard.DamageText.text = damage.ToString();
                     }
                     else
@@ -75,7 +78,6 @@ namespace CardsCollection
                         meleeCard.SpriteCard.sprite = _cardSpritesHolder.Sprites[2];
                         meleeCard.PokemonImage.gameObject.SetActive(false);
                         meleeCard.StatsPanel.gameObject.SetActive(false);
-
                     }
 
                     if (rangeAvailabilityValue)
@@ -86,9 +88,10 @@ namespace CardsCollection
                                 count);
                         rangeCard.LockImage.gameObject.SetActive(false);
                         rangeCard.HealthText.text =
-                            _pokemonAvailabilityLogic.GetStatsPokemon(rowCount + _cardsPanelConfig.NumberOfPokemonsEachType, count, out int damage).ToString();
+                            _pokemonAvailabilityLogic
+                                .GetStatsPokemon(rowCount + _cardsPanelConfig.NumberOfPokemonsEachType, count,
+                                    out int damage).ToString();
                         rangeCard.DamageText.text = damage.ToString();
-                        
                     }
                     else
                     {
@@ -129,11 +132,16 @@ namespace CardsCollection
 
                 _meleePokemonCards[count].SpriteCard.sprite = _cardSpritesHolder.Sprites[0];
                 _meleePokemonCards[count].PokemonImage.gameObject.SetActive(true);
+                _meleePokemonCards[count].StatsPanel.SetActive(true);
                 _meleePokemonCards[count].PokemonImage.sprite = _pokemonAvailabilityLogic.GetSprite(index, level);
                 _meleePokemonCards[count].LockImage.gameObject.SetActive(false);
                 _meleePokemonCards[count].HealthText.text =
                     _pokemonAvailabilityLogic.GetStatsPokemon(index, level, out int damage).ToString();
                 _meleePokemonCards[count].DamageText.text = damage.ToString();
+                
+                _newPokemonCanvasView.SetStats(_meleePokemonCards[count].HealthText.text, _meleePokemonCards[count].DamageText.text,
+                    _meleePokemonCards[count].SpriteCard.sprite, _meleePokemonCards[count].PokemonImage.sprite);
+                _newPokemonCanvasView.Show();
             }
             else
             {
@@ -141,11 +149,18 @@ namespace CardsCollection
 
                 _rangePokemonCards[count].SpriteCard.sprite = _cardSpritesHolder.Sprites[1];
                 _rangePokemonCards[count].PokemonImage.gameObject.SetActive(true);
+                _rangePokemonCards[count].StatsPanel.SetActive(true);
                 _rangePokemonCards[count].PokemonImage.sprite = _pokemonAvailabilityLogic.GetSprite(index, level);
                 _rangePokemonCards[count].LockImage.gameObject.SetActive(false);
                 _rangePokemonCards[count].HealthText.text =
-                    _pokemonAvailabilityLogic.GetStatsPokemon(index + _cardsPanelConfig.NumberOfPokemonsEachType, level, out int damage).ToString();
+                    _pokemonAvailabilityLogic
+                        .GetStatsPokemon(index + _cardsPanelConfig.NumberOfPokemonsEachType, level, out int damage)
+                        .ToString();
                 _rangePokemonCards[count].DamageText.text = damage.ToString();
+                
+                _newPokemonCanvasView.SetStats(_rangePokemonCards[count].HealthText.text, _rangePokemonCards[count].DamageText.text,
+                    _rangePokemonCards[count].SpriteCard.sprite, _rangePokemonCards[count].PokemonImage.sprite);
+                _newPokemonCanvasView.Show();
             }
         }
 

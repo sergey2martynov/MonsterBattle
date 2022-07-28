@@ -5,6 +5,7 @@ using InputPlayer;
 using LevelBuilder;
 using LevelCounter;
 using Merge;
+using NewPokemonCanvas;
 using Player;
 using Pokemon.PokemonHolder;
 using Pokemon.PokemonHolder.Cell;
@@ -47,6 +48,7 @@ public class ProjectStarter : MonoBehaviour
     [SerializeField] private PokemonSpritesHolder _pokemonSpritesHolder;
     [SerializeField] private RewardMenuView _rewardMenuView;
     [SerializeField] private CardsPanelConfig _cardsPanelConfig;
+    [SerializeField] private NewPokemonCanvasView _newPokemonCanvasView;
 
     private PokemonSpawner _pokemonSpawner;
     private SaveLoadSystem _saveLoadSystem;
@@ -66,7 +68,7 @@ public class ProjectStarter : MonoBehaviour
         var pokemonAvailabilityLogic = new PokemonAvailabilityLogic(pokemonAvailabilityData, _cardsPanelConfig,
             _pokemonSpritesHolder, _pokemonStats);
         var cardsPanelLogic = new CardsPanelLogic(_cardsPanelView, pokemonAvailabilityLogic, _cardSpritesHolder,
-            _cardView, _cardParent, _cardsPanelConfig);
+            _cardView, _cardParent, _cardsPanelConfig, _newPokemonCanvasView);
 
         var enemyDataHolder = new EnemyDataHolder();
 
@@ -132,6 +134,7 @@ public class ProjectStarter : MonoBehaviour
         var rewardMenuLogic = new RewardMenuLogic(playerLogic, _rewardMenuView, _upgradeLevels, playerData,
             _levelDataHolder, _saveLoadSystem, pokemonAvailabilityLogic, _cardSpritesHolder);
         rewardMenuLogic.Initialize();
+        _newPokemonCanvasView.Initialize();
 
         _cardsPanelView.Initialize();
     }
