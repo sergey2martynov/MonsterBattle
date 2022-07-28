@@ -113,7 +113,7 @@ namespace Pokemon
             var collidersAmount = Physics.OverlapSphereNonAlloc(_view.Transform.position, _data.AttackRange,
                 _collidersInRange, _view.EnemyLayer);
 
-            if (Time.time < _data.AttackTime || collidersAmount == 0 || ShouldAttack)
+            if (Time.time < _data.AttackTime || collidersAmount == 0 /*|| ShouldAttack*/)
             {
                 return;
             }
@@ -126,6 +126,11 @@ namespace Pokemon
                     _enemies.Add(enemy);
                     _attackCount++;
                 }
+            }
+
+            if (ShouldAttack)
+            {
+                return;
             }
 
             if (_enemies.Count > 0)

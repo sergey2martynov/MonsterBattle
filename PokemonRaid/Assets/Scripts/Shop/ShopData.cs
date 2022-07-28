@@ -22,9 +22,9 @@ namespace Shop
             }
         }
 
-        public void Initialize(ShopStats shopStats)
+        public void Initialize(ShopStats shopStats, int level)
         {
-            PokemonCost = shopStats.PokemonCost;
+            PokemonCost = (int) (shopStats.PokemonCost + shopStats.PokemonCost * 1.15f * (level - 1));
         }
     }
 }

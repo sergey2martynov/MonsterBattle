@@ -1,4 +1,5 @@
 using CardsCollection;
+using Enemy.EnemyModel;
 using Player;
 using SaveLoad;
 using StaticData;
@@ -8,18 +9,19 @@ namespace RewardMenu
 {
     public class RewardMenuLogic
     {
-        private RewardMenuView _rewardMenuView;
-        private PlayerLogic _playerLogic;
-        private UpgradeLevels _upgradeLevels;
-        private PlayerData _playerData;
-        private LevelDataHolder _levelDataHolder;
-        private SaveLoadSystem _saveLoadSystem;
-        private PokemonAvailabilityLogic _availabilityLogic;
-        private CardSpritesHolder _cardSpritesHolder;
+        private readonly RewardMenuView _rewardMenuView;
+        private readonly PlayerLogic _playerLogic;
+        private readonly UpgradeLevels _upgradeLevels;
+        private readonly PlayerData _playerData;
+        private readonly LevelDataHolder _levelDataHolder;
+        private EnemyDataHolder _enemyDataHolder;
+        private readonly SaveLoadSystem _saveLoadSystem;
+        private readonly PokemonAvailabilityLogic _availabilityLogic;
+        private readonly CardSpritesHolder _cardSpritesHolder;
 
         public RewardMenuLogic(PlayerLogic playerLogic, RewardMenuView rewardMenuView, UpgradeLevels upgradeLevels,
             PlayerData playerData, LevelDataHolder levelDataHolder, SaveLoadSystem saveLoadSystem,
-            PokemonAvailabilityLogic availabilityLogic, CardSpritesHolder cardSpritesHolder)
+            PokemonAvailabilityLogic availabilityLogic, CardSpritesHolder cardSpritesHolder, EnemyDataHolder enemyDataHolder)
         {
             _playerLogic = playerLogic;
             _rewardMenuView = rewardMenuView;
@@ -29,6 +31,7 @@ namespace RewardMenu
             _saveLoadSystem = saveLoadSystem;
             _availabilityLogic = availabilityLogic;
             _cardSpritesHolder = cardSpritesHolder;
+            _enemyDataHolder = enemyDataHolder;
         }
 
         public void Initialize()
@@ -41,6 +44,8 @@ namespace RewardMenu
         {
             _rewardMenuView.Show();
             _rewardMenuView.SetCoinsAmount(_levelDataHolder.GetLevelData(_playerData.Level - 1).TotalCoinsReward);
+            _playerData.Coins += _levelDataHolder.GetLevelData(_playerData.Level - 1).TotalCoinsReward -
+                                 _enemyDataHolder.CoinsRewardPerEnemy * _enemyDataHolder.CountKilledEnemy;
 
             foreach (var levelUpgrade in _upgradeLevels.ListUpgradeLevels)
             {

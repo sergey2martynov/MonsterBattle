@@ -537,6 +537,8 @@ SkinnedMeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 3
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -548,6 +550,7 @@ SkinnedMeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -1239,6 +1242,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4707392404464396506}
   - component: {fileID: 4707392404472071998}
+  - component: {fileID: 3526852071459262687}
   m_Layer: 0
   m_Name: Snakelet
   m_TagString: Untagged
@@ -1286,7 +1290,7 @@ Animator:
   m_GameObject: {fileID: 4707392404464825594}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 0b080fb945711ae47abb40495a599b9b, type: 3}
-  m_Controller: {fileID: 9100000, guid: be15068affc04af41b54896da4d4feb7, type: 2}
+  m_Controller: {fileID: 9100000, guid: d404099b4c309164694ae624dbe68a47, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1295,3 +1299,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &3526852071459262687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4707392404464825594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a7f15a739940469a55864c03a8f293, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animations:
+  - _animationClip: {fileID: 7400000, guid: 6914c74b218b2044ea2c463ae289d898, type: 3}
+    _actionTime: 10

@@ -1,4 +1,5 @@
-﻿using Enemy.EnemyModel;
+﻿using System;
+using Enemy.EnemyModel;
 using Factories;
 using Player;
 using Shop;
@@ -6,6 +7,7 @@ using StaticData;
 using Unity.Mathematics;
 using UnityEngine;
 using UpdateHandlerFolder;
+using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
 
 namespace LevelBuilder
@@ -68,7 +70,8 @@ namespace LevelBuilder
                 }
             }
 
-            _enemyDataHolder.CoinsRewardPerEnemy = levelData.TotalCoinsReward / totalEnemyCount;            
+            _enemyDataHolder.CoinsRewardPerEnemy = levelData.TotalCoinsReward / totalEnemyCount;
+            _enemyDataHolder.TotalCoinsReward = levelData.TotalCoinsReward;
             Debug.Log("Total HP : " + totalHp + "\n" + "Total DPS : " + totalDps);
         }
     }

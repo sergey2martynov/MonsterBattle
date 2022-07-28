@@ -109,7 +109,7 @@ public class ProjectStarter : MonoBehaviour
         _pokemonSpawner.Initialize();
 
         var shopData = new ShopData();
-        shopData.Initialize(_shopStats);
+        shopData.Initialize(_shopStats, playerData.Level);
         var shopLogic = new ShopLogic(_pokemonSpawner, _shopView, shopData, playerData, pokemonHolderModel,
             playerLogic);
         shopLogic.Initialize();
@@ -134,7 +134,7 @@ public class ProjectStarter : MonoBehaviour
         levelCounterLogic.Initialize(_levelCounterView, playerData, _levelSpritesHolder);
 
         var rewardMenuLogic = new RewardMenuLogic(playerLogic, _rewardMenuView, _upgradeLevels, playerData,
-            _levelDataHolder, _saveLoadSystem, pokemonAvailabilityLogic, _cardSpritesHolder);
+            _levelDataHolder, _saveLoadSystem, pokemonAvailabilityLogic, _cardSpritesHolder, enemyDataHolder);
         rewardMenuLogic.Initialize();
         _newPokemonCanvasView.Initialize();
         _cardsPanelView.Initialize();

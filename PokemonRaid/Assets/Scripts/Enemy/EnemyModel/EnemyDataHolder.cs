@@ -7,6 +7,7 @@ namespace Enemy.EnemyModel
     {
         private List<BaseEnemyData> _enemiesData = new List<BaseEnemyData>();
         private int _coinsRewardPerEnemy;
+        private int _totalCoinsReward;
         private int _countKilledEnemy;
 
         public int CountKilledEnemy => _countKilledEnemy;
@@ -14,6 +15,20 @@ namespace Enemy.EnemyModel
         public int CoinsRewardPerEnemy
         {
             get => _coinsRewardPerEnemy;
+            set
+            {
+                if (value <= 0)
+                {
+                    throw new ArgumentException("Reward cannot be equal or less than zero");
+                }
+
+                _coinsRewardPerEnemy = value;
+            }
+        }
+
+        public int TotalCoinsReward
+        {
+            get => _totalCoinsReward;
             set
             {
                 if (value <= 0)

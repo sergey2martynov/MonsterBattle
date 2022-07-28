@@ -17,44 +17,44 @@ MonoBehaviour:
     _statsByLevels:
     - _moveSpeed: 5
       _attackSpeed: 1
-      _maxHealth: 6
+      _maxHealth: 10
       _damage: 3
       _level: 1
       _maxLevel: 5
       _maxTargetsAmount: 1
-      _attackRange: 2
+      _attackRange: 3
     - _moveSpeed: 5
       _attackSpeed: 1
-      _maxHealth: 4
-      _damage: 1
+      _maxHealth: 20
+      _damage: 7
       _level: 2
       _maxLevel: 5
       _maxTargetsAmount: 1
       _attackRange: 3
     - _moveSpeed: 5
       _attackSpeed: 1
-      _maxHealth: 5
-      _damage: 1
+      _maxHealth: 43
+      _damage: 15
       _level: 3
       _maxLevel: 5
-      _maxTargetsAmount: 1
-      _attackRange: 4
+      _maxTargetsAmount: 3
+      _attackRange: 5
     - _moveSpeed: 5
       _attackSpeed: 1
-      _maxHealth: 6
-      _damage: 1
+      _maxHealth: 72
+      _damage: 33
       _level: 4
       _maxLevel: 5
-      _maxTargetsAmount: 1
-      _attackRange: 4
+      _maxTargetsAmount: 3
+      _attackRange: 6
     - _moveSpeed: 5
       _attackSpeed: 1
-      _maxHealth: 7
-      _damage: 1
+      _maxHealth: 130
+      _damage: 56
       _level: 5
       _maxLevel: 5
-      _maxTargetsAmount: 1
-      _attackRange: 4
+      _maxTargetsAmount: 5
+      _attackRange: 6
     _name: EGG
   - _viewPrefab: {fileID: 891051601361968121, guid: 956a5ceebb5fb6945af62c65aa0e22d4, type: 3}
     _statsByLevels:
@@ -232,44 +232,44 @@ MonoBehaviour:
     _statsByLevels:
     - _moveSpeed: 5
       _attackSpeed: 1
-      _maxHealth: 2
+      _maxHealth: 7
       _damage: 1
       _level: 1
       _maxLevel: 5
       _maxTargetsAmount: 1
-      _attackRange: 6
+      _attackRange: 10
     - _moveSpeed: 5
       _attackSpeed: 1
-      _maxHealth: 3
-      _damage: 1
+      _maxHealth: 15
+      _damage: 3
       _level: 2
       _maxLevel: 5
-      _maxTargetsAmount: 1
-      _attackRange: 6
+      _maxTargetsAmount: 2
+      _attackRange: 10
     - _moveSpeed: 5
-      _attackSpeed: 1
-      _maxHealth: 4
-      _damage: 1
+      _attackSpeed: 0.5
+      _maxHealth: 30
+      _damage: 6
       _level: 3
       _maxLevel: 5
-      _maxTargetsAmount: 1
-      _attackRange: 6
+      _maxTargetsAmount: 2
+      _attackRange: 11
     - _moveSpeed: 5
-      _attackSpeed: 1
-      _maxHealth: 5
-      _damage: 1
+      _attackSpeed: 0.5
+      _maxHealth: 60
+      _damage: 7
       _level: 4
       _maxLevel: 5
-      _maxTargetsAmount: 1
-      _attackRange: 6
+      _maxTargetsAmount: 3
+      _attackRange: 12
     - _moveSpeed: 5
-      _attackSpeed: 1
-      _maxHealth: 6
-      _damage: 1
+      _attackSpeed: 0.4
+      _maxHealth: 100
+      _damage: 10
       _level: 5
       _maxLevel: 5
-      _maxTargetsAmount: 1
-      _attackRange: 6
+      _maxTargetsAmount: 3
+      _attackRange: 12
     _name: DRAGON
   - _viewPrefab: {fileID: 2711931426556632022, guid: 23143f931dd95c44aa59a2198406bee7, type: 3}
     _statsByLevels:
