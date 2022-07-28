@@ -63,17 +63,17 @@ MonoBehaviour:
   - _level: 2
     _spawnPositions:
     - _enemyPrefabs:
-      - {fileID: 8393676187952632429, guid: 374eff02736577f4fb35c38c83abf581, type: 3}
+      - {fileID: 1627224506922606195, guid: c552290d3b9bc064da407a0974d5b5c5, type: 3}
       _positions:
       - {x: -4, y: 0, z: 30}
       - {x: -2, y: 0, z: 30}
     - _enemyPrefabs:
-      - {fileID: 2351805535717559970, guid: b547d372b0ca7604ea47ae552cdd85bd, type: 3}
+      - {fileID: 1627224506922606195, guid: e44a4da4c20d105408b4eb9b49766104, type: 3}
       _positions:
       - {x: -4, y: 0, z: 40}
       - {x: -2, y: 0, z: 40}
     - _enemyPrefabs:
-      - {fileID: 7450976434109585910, guid: 2d3676956c76b7840a9ca64a767ee036, type: 3}
+      - {fileID: 1627224506922606195, guid: 856b786491b786e429ac059bfffc9d51, type: 3}
       _positions:
       - {x: -4, y: 0, z: 50}
       - {x: -2, y: 0, z: 50}

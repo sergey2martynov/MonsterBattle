@@ -322,6 +322,8 @@ SkinnedMeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 3
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -333,6 +335,7 @@ SkinnedMeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -1459,6 +1462,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8666222085425075172}
   - component: {fileID: 8666222085434964996}
+  - component: {fileID: -7543161673500547034}
   m_Layer: 0
   m_Name: Toadstool
   m_TagString: Untagged
@@ -1504,7 +1508,7 @@ Animator:
   m_GameObject: {fileID: 8666222085425565636}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 7503d366ef068c445adf0d70fd36a42b, type: 3}
-  m_Controller: {fileID: 9100000, guid: 403ad9b98584d3d41b33c5a8a0a74c62, type: 2}
+  m_Controller: {fileID: 9100000, guid: 93296065b5738074f95c1281697048b1, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1513,6 +1517,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &-7543161673500547034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8666222085425565636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a7f15a739940469a55864c03a8f293, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animations:
+  - _animationClip: {fileID: 7400000, guid: 91674f7c689899b45bd7fdc41b198705, type: 3}
+    _actionTime: 10
 --- !u!1 &8666222085425565638
 GameObject:
   m_ObjectHideFlags: 0

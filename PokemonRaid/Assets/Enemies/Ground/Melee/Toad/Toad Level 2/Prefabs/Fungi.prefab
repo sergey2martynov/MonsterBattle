@@ -70,6 +70,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4558253575626002309}
   - component: {fileID: 4558253575632937061}
+  - component: {fileID: 6176269708934434941}
   m_Layer: 0
   m_Name: Fungi
   m_TagString: Untagged
@@ -106,7 +107,7 @@ Animator:
   m_GameObject: {fileID: 4558253575625511845}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: fee5f7b5740ab0241942eb37c30ee280, type: 3}
-  m_Controller: {fileID: 9100000, guid: 66730aea82fb93c4fb04f743800070f1, type: 2}
+  m_Controller: {fileID: 9100000, guid: 3d57cf39f5180c845bab66ebc32e09fd, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -115,6 +116,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &6176269708934434941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4558253575625511845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a7f15a739940469a55864c03a8f293, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animations:
+  - _animationClip: {fileID: 7400000, guid: 3a617ed109f741340bf40180c2e66739, type: 3}
+    _actionTime: 10
 --- !u!1 &4558253575625511847
 GameObject:
   m_ObjectHideFlags: 0
@@ -160,6 +176,8 @@ SkinnedMeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 3
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -171,6 +189,7 @@ SkinnedMeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0

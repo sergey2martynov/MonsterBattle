@@ -410,6 +410,8 @@ SkinnedMeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 3
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -421,6 +423,7 @@ SkinnedMeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -467,6 +470,7 @@ GameObject:
   m_Component:
   - component: {fileID: 49664409928726939}
   - component: {fileID: 49664409920935547}
+  - component: {fileID: -2166424142497589177}
   m_Layer: 0
   m_Name: Mushroom
   m_TagString: Untagged
@@ -511,7 +515,7 @@ Animator:
   m_GameObject: {fileID: 49664409928230331}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 7a45b261c41faac44b10007875eeae00, type: 3}
-  m_Controller: {fileID: 9100000, guid: 111aee9573bfe9542970def403a88aaa, type: 2}
+  m_Controller: {fileID: 9100000, guid: d6d4d0ae3591a6a4684ec4b463bbc204, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -520,6 +524,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &-2166424142497589177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 49664409928230331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a7f15a739940469a55864c03a8f293, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animations:
+  - _animationClip: {fileID: 7400000, guid: 6861e263dc9409143ae8945692b491e5, type: 3}
+    _actionTime: 10
 --- !u!1 &49664409928230333
 GameObject:
   m_ObjectHideFlags: 0
@@ -543,8 +562,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 49664409928230333}
-  m_LocalRotation: {x: -0.0000000039410053, y: 0.00000006663132, z: 0.0152587015,
-    w: 0.9998836}
+  m_LocalRotation: {x: -0.0000000039410053, y: 0.00000006663132, z: 0.0152587015, w: 0.9998836}
   m_LocalPosition: {x: -0.06406128, y: -0.000000009536743, z: 0}
   m_LocalScale: {x: 1.0000001, y: 1.0000002, z: 1}
   m_Children: []
@@ -667,8 +685,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 49664409928230351}
-  m_LocalRotation: {x: -0.0000000018178513, y: -0.000000016484197, z: -0.008757972,
-    w: 0.9999617}
+  m_LocalRotation: {x: -0.0000000018178513, y: -0.000000016484197, z: -0.008757972, w: 0.9999617}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 0.99999994, y: 0.9999999, z: 0.99999994}
   m_Children:

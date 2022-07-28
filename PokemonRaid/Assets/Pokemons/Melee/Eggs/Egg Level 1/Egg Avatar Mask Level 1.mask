@@ -11,9 +11,29 @@ AvatarMask:
   m_Elements:
   - m_Path: 
     m_Weight: 1
-  - m_Path: Egg
+  - m_Path: Egglet
     m_Weight: 1
   - m_Path: Rig
     m_Weight: 1
-  - m_Path: RigHub
+  - m_Path: RigLLegPlatform
+    m_Weight: 1
+  - m_Path: RigPelvis
+    m_Weight: 1
+  - m_Path: RigPelvis/RigLLeg1
+    m_Weight: 1
+  - m_Path: RigPelvis/RigLLeg1/RigLLeg2
+    m_Weight: 1
+  - m_Path: RigPelvis/RigLLeg1/RigLLeg2/RigLLegAnkle
+    m_Weight: 1
+  - m_Path: RigPelvis/RigNeck
+    m_Weight: 1
+  - m_Path: RigPelvis/RigNeck/RigHead
+    m_Weight: 1
+  - m_Path: RigPelvis/RigRLeg1
+    m_Weight: 1
+  - m_Path: RigPelvis/RigRLeg1/RigRLeg2
+    m_Weight: 1
+  - m_Path: RigPelvis/RigRLeg1/RigRLeg2/RigRLegAnkle
+    m_Weight: 1
+  - m_Path: RigRLegPlatform
     m_Weight: 1

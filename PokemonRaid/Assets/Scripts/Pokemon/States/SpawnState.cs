@@ -36,13 +36,16 @@ namespace Pokemon.States
         protected override void SetNextState()
         {
             var direction = (Vector3) _data.MoveDirection;
-            
-            if (direction.magnitude == 0 || Time.time < _startTime + _spawnAnimation.Duration)
-            {
-                return;
-            }
 
-            _logic.SwitchState<IdleState<TView, TEnemyView>>();
+            if (direction.magnitude != 0)
+            {
+                _logic.SwitchState<MoveState<TView, TEnemyView>>();
+            }
+            
+            if (Time.time >= _startTime + _spawnAnimation.Duration)
+            {
+                _logic.SwitchState<IdleState<TView, TEnemyView>>();
+            }
         }
     }
 }

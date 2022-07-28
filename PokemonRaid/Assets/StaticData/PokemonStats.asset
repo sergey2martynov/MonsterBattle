@@ -22,7 +22,7 @@ MonoBehaviour:
       _level: 1
       _maxLevel: 5
       _maxTargetsAmount: 1
-      _attackRange: 5
+      _attackRange: 2
     - _moveSpeed: 5
       _attackSpeed: 1
       _maxHealth: 4
@@ -38,7 +38,7 @@ MonoBehaviour:
       _level: 3
       _maxLevel: 5
       _maxTargetsAmount: 1
-      _attackRange: 3
+      _attackRange: 4
     - _moveSpeed: 5
       _attackSpeed: 1
       _maxHealth: 6
@@ -46,7 +46,7 @@ MonoBehaviour:
       _level: 4
       _maxLevel: 5
       _maxTargetsAmount: 1
-      _attackRange: 3
+      _attackRange: 4
     - _moveSpeed: 5
       _attackSpeed: 1
       _maxHealth: 7
@@ -54,7 +54,7 @@ MonoBehaviour:
       _level: 5
       _maxLevel: 5
       _maxTargetsAmount: 1
-      _attackRange: 3
+      _attackRange: 4
   - _viewPrefab: {fileID: 891051601361968121, guid: 956a5ceebb5fb6945af62c65aa0e22d4, type: 3}
     _statsByLevels:
     - _moveSpeed: 5

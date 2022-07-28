@@ -58,8 +58,9 @@ namespace LevelBuilder
                 foreach (var position in spawnPosition.Positions)
                 {
                     var randomIndex = Random.Range(0, spawnPosition.EnemyPrefabs.Count);
+                    var enemyLevel = spawnPosition.EnemyPrefabs[randomIndex].Level;
                     var data = _enemyFactory.CreateInstance(spawnPosition.EnemyPrefabs[randomIndex], position,
-                        _enemyStats, _enemyParentObject, level, out var baseView);
+                        _enemyStats, _enemyParentObject, enemyLevel, out var baseView);
                     _enemyDataHolder.AddEnemyData(data);
                     totalEnemyCount++;
                     totalDps += data.Damage;
