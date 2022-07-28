@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 89d2d712aab7b4448abe4af2d3336b4e
+guid: 17f11206c8c16c047bf43e6d6bcb751c
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
@@ -35,7 +35,7 @@ ModelImporter:
   meshes:
     lODScreenPercentages: []
     globalScale: 1
-    meshCompression: 3
+    meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
@@ -66,7 +66,7 @@ ModelImporter:
     useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60
-    normalImportMode: 1
+    normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0

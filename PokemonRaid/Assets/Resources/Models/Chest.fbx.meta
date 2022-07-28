@@ -1,8 +1,11 @@
 fileFormatVersion: 2
-guid: 89d2d712aab7b4448abe4af2d3336b4e
+guid: ed55de41376b85346bfe82a7a8ed58f4
 ModelImporter:
   serializedVersion: 20200
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      74: -1498010087492872569
+    second: CINEMA_4D_Main
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -35,7 +38,7 @@ ModelImporter:
   meshes:
     lODScreenPercentages: []
     globalScale: 1
-    meshCompression: 3
+    meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
@@ -66,7 +69,7 @@ ModelImporter:
     useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60
-    normalImportMode: 1
+    normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
