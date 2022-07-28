@@ -1,88 +1,242 @@
 fileFormatVersion: 2
 guid: bbafdbae6006ae643865d67c1f2bbcea
 ModelImporter:
-  serializedVersion: 23
-  fileIDToRecycleName:
-    100000: Rig
-    100002: RigEarL
-    100004: RigEarLGizmo
-    100006: RigEarR
-    100008: RigEarRGizmo
-    100010: RigJaw
-    100012: RigJawGizmo
-    100014: RigLArm1
-    100016: RigLArm1Gizmo
-    100018: RigLArm2
-    100020: RigLArm2Gizmo
-    100022: RigLLeg1
-    100024: RigLLeg2
-    100026: RigLLegAnkle
-    100028: RigLLegPlatform
-    100030: RigPelvis
-    100032: RigPelvisGizmo
-    100034: RigRArm1
-    100036: RigRArm1Gizmo
-    100038: RigRArm2
-    100040: RigRArm2Gizmo
-    100042: RigRibcage
-    100044: RigRibcageGizmo
-    100046: RigRLeg1
-    100048: RigRLeg2
-    100050: RigRLegAnkle
-    100052: RigRLegPlatform
-    100054: RigSpine
-    100056: RigTail1
-    100058: RigTail1Gizmo
-    100060: RigTail2
-    100062: RigTail2Gizmo
-    100064: RigTail3
-    100066: RigTail3Gizmo
-    100068: Vampire Bat
-    100070: //RootNode
-    400000: Rig
-    400002: RigEarL
-    400004: RigEarLGizmo
-    400006: RigEarR
-    400008: RigEarRGizmo
-    400010: RigJaw
-    400012: RigJawGizmo
-    400014: RigLArm1
-    400016: RigLArm1Gizmo
-    400018: RigLArm2
-    400020: RigLArm2Gizmo
-    400022: RigLLeg1
-    400024: RigLLeg2
-    400026: RigLLegAnkle
-    400028: RigLLegPlatform
-    400030: RigPelvis
-    400032: RigPelvisGizmo
-    400034: RigRArm1
-    400036: RigRArm1Gizmo
-    400038: RigRArm2
-    400040: RigRArm2Gizmo
-    400042: RigRibcage
-    400044: RigRibcageGizmo
-    400046: RigRLeg1
-    400048: RigRLeg2
-    400050: RigRLegAnkle
-    400052: RigRLegPlatform
-    400054: RigSpine
-    400056: RigTail1
-    400058: RigTail1Gizmo
-    400060: RigTail2
-    400062: RigTail2Gizmo
-    400064: RigTail3
-    400066: RigTail3Gizmo
-    400068: Vampire Bat
-    400070: //RootNode
-    2100000: 07 - Default
-    4300000: Vampire Bat
-    7400000: Take 001
-    9500000: //RootNode
-    13700000: Vampire Bat
+  serializedVersion: 20200
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: Rig
+  - first:
+      1: 100002
+    second: RigEarL
+  - first:
+      1: 100004
+    second: RigEarLGizmo
+  - first:
+      1: 100006
+    second: RigEarR
+  - first:
+      1: 100008
+    second: RigEarRGizmo
+  - first:
+      1: 100010
+    second: RigJaw
+  - first:
+      1: 100012
+    second: RigJawGizmo
+  - first:
+      1: 100014
+    second: RigLArm1
+  - first:
+      1: 100016
+    second: RigLArm1Gizmo
+  - first:
+      1: 100018
+    second: RigLArm2
+  - first:
+      1: 100020
+    second: RigLArm2Gizmo
+  - first:
+      1: 100022
+    second: RigLLeg1
+  - first:
+      1: 100024
+    second: RigLLeg2
+  - first:
+      1: 100026
+    second: RigLLegAnkle
+  - first:
+      1: 100028
+    second: RigLLegPlatform
+  - first:
+      1: 100030
+    second: RigPelvis
+  - first:
+      1: 100032
+    second: RigPelvisGizmo
+  - first:
+      1: 100034
+    second: RigRArm1
+  - first:
+      1: 100036
+    second: RigRArm1Gizmo
+  - first:
+      1: 100038
+    second: RigRArm2
+  - first:
+      1: 100040
+    second: RigRArm2Gizmo
+  - first:
+      1: 100042
+    second: RigRibcage
+  - first:
+      1: 100044
+    second: RigRibcageGizmo
+  - first:
+      1: 100046
+    second: RigRLeg1
+  - first:
+      1: 100048
+    second: RigRLeg2
+  - first:
+      1: 100050
+    second: RigRLegAnkle
+  - first:
+      1: 100052
+    second: RigRLegPlatform
+  - first:
+      1: 100054
+    second: RigSpine
+  - first:
+      1: 100056
+    second: RigTail1
+  - first:
+      1: 100058
+    second: RigTail1Gizmo
+  - first:
+      1: 100060
+    second: RigTail2
+  - first:
+      1: 100062
+    second: RigTail2Gizmo
+  - first:
+      1: 100064
+    second: RigTail3
+  - first:
+      1: 100066
+    second: RigTail3Gizmo
+  - first:
+      1: 100068
+    second: Vampire Bat
+  - first:
+      1: 100070
+    second: //RootNode
+  - first:
+      4: 400000
+    second: Rig
+  - first:
+      4: 400002
+    second: RigEarL
+  - first:
+      4: 400004
+    second: RigEarLGizmo
+  - first:
+      4: 400006
+    second: RigEarR
+  - first:
+      4: 400008
+    second: RigEarRGizmo
+  - first:
+      4: 400010
+    second: RigJaw
+  - first:
+      4: 400012
+    second: RigJawGizmo
+  - first:
+      4: 400014
+    second: RigLArm1
+  - first:
+      4: 400016
+    second: RigLArm1Gizmo
+  - first:
+      4: 400018
+    second: RigLArm2
+  - first:
+      4: 400020
+    second: RigLArm2Gizmo
+  - first:
+      4: 400022
+    second: RigLLeg1
+  - first:
+      4: 400024
+    second: RigLLeg2
+  - first:
+      4: 400026
+    second: RigLLegAnkle
+  - first:
+      4: 400028
+    second: RigLLegPlatform
+  - first:
+      4: 400030
+    second: RigPelvis
+  - first:
+      4: 400032
+    second: RigPelvisGizmo
+  - first:
+      4: 400034
+    second: RigRArm1
+  - first:
+      4: 400036
+    second: RigRArm1Gizmo
+  - first:
+      4: 400038
+    second: RigRArm2
+  - first:
+      4: 400040
+    second: RigRArm2Gizmo
+  - first:
+      4: 400042
+    second: RigRibcage
+  - first:
+      4: 400044
+    second: RigRibcageGizmo
+  - first:
+      4: 400046
+    second: RigRLeg1
+  - first:
+      4: 400048
+    second: RigRLeg2
+  - first:
+      4: 400050
+    second: RigRLegAnkle
+  - first:
+      4: 400052
+    second: RigRLegPlatform
+  - first:
+      4: 400054
+    second: RigSpine
+  - first:
+      4: 400056
+    second: RigTail1
+  - first:
+      4: 400058
+    second: RigTail1Gizmo
+  - first:
+      4: 400060
+    second: RigTail2
+  - first:
+      4: 400062
+    second: RigTail2Gizmo
+  - first:
+      4: 400064
+    second: RigTail3
+  - first:
+      4: 400066
+    second: RigTail3Gizmo
+  - first:
+      4: 400068
+    second: Vampire Bat
+  - first:
+      4: 400070
+    second: //RootNode
+  - first:
+      21: 2100000
+    second: 07 - Default
+  - first:
+      43: 4300000
+    second: Vampire Bat
+  - first:
+      74: 7400000
+    second: Attack
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: Vampire Bat
   externalObjects: {}
   materials:
-    importMaterials: 0
+    materialImportMode: 0
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -107,7 +261,36 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Attack
+      takeName: Take 001
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 25
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
@@ -115,25 +298,32 @@ ModelImporter:
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
     importLights: 1
+    fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    bakeAxisConversion: 0
     preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 0
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 0.01
-    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -142,10 +332,10 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human: []
     skeleton: []
     armTwist: 0.5
@@ -155,13 +345,17 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
   additionalBone: 0
   userData: 
   assetBundleName: 
