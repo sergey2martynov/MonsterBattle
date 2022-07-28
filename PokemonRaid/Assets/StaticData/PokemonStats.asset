@@ -55,6 +55,7 @@ MonoBehaviour:
       _maxLevel: 5
       _maxTargetsAmount: 1
       _attackRange: 4
+    _name: EGG
   - _viewPrefab: {fileID: 891051601361968121, guid: 956a5ceebb5fb6945af62c65aa0e22d4, type: 3}
     _statsByLevels:
     - _moveSpeed: 5
@@ -97,6 +98,7 @@ MonoBehaviour:
       _maxLevel: 5
       _maxTargetsAmount: 1
       _attackRange: 3
+    _name: MR CRABS
   - _viewPrefab: {fileID: 9071255890789025983, guid: 935158d05bd9a8947980cd7f8eb8b08d, type: 3}
     _statsByLevels:
     - _moveSpeed: 5
@@ -139,6 +141,7 @@ MonoBehaviour:
       _maxLevel: 5
       _maxTargetsAmount: 1
       _attackRange: 3
+    _name: 
   - _viewPrefab: {fileID: 3012499359546561603, guid: 90b9d41c9c3d1424d92db5e0c7efe2d7, type: 3}
     _statsByLevels:
     - _moveSpeed: 5
@@ -181,6 +184,7 @@ MonoBehaviour:
       _maxLevel: 5
       _maxTargetsAmount: 1
       _attackRange: 3
+    _name: 
   - _viewPrefab: {fileID: 951714559188708565, guid: bd2c096a3c84e6f49b646c2bdc497559, type: 3}
     _statsByLevels:
     - _moveSpeed: 5
@@ -223,6 +227,7 @@ MonoBehaviour:
       _maxLevel: 5
       _maxTargetsAmount: 1
       _attackRange: 3
+    _name: 
   - _viewPrefab: {fileID: 6943248506083428063, guid: 5fed9d1635359ad4d9ce03ad55df9ae6, type: 3}
     _statsByLevels:
     - _moveSpeed: 5
@@ -265,6 +270,7 @@ MonoBehaviour:
       _maxLevel: 5
       _maxTargetsAmount: 1
       _attackRange: 6
+    _name: DRAGON
   - _viewPrefab: {fileID: 2711931426556632022, guid: 23143f931dd95c44aa59a2198406bee7, type: 3}
     _statsByLevels:
     - _moveSpeed: 5
@@ -307,6 +313,7 @@ MonoBehaviour:
       _maxLevel: 5
       _maxTargetsAmount: 1
       _attackRange: 6
+    _name: FLOWER
   - _viewPrefab: {fileID: 5486772169272369730, guid: 2dbb11ba0f721b14290d67960e3008c8, type: 3}
     _statsByLevels:
     - _moveSpeed: 5
@@ -349,6 +356,7 @@ MonoBehaviour:
       _maxLevel: 5
       _maxTargetsAmount: 1
       _attackRange: 6
+    _name: 
   - _viewPrefab: {fileID: 6114086196387224670, guid: d87f85f8882096a4ca34589d9bcf6729, type: 3}
     _statsByLevels:
     - _moveSpeed: 5
@@ -391,6 +399,7 @@ MonoBehaviour:
       _maxLevel: 5
       _maxTargetsAmount: 1
       _attackRange: 6
+    _name: 
   - _viewPrefab: {fileID: 7762224903269387594, guid: fb8cb52bf1b7b484fb794867c425a118, type: 3}
     _statsByLevels:
     - _moveSpeed: 5
@@ -433,3 +442,4 @@ MonoBehaviour:
       _maxLevel: 5
       _maxTargetsAmount: 1
       _attackRange: 6
+    _name: 

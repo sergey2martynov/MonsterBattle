@@ -1,5 +1,6 @@
 ﻿using CardsCollection;
 using Enemy.EnemyModel;
+using FailedMenu;
 using HealthBar;
 using InputPlayer;
 using LevelBuilder;
@@ -49,6 +50,7 @@ public class ProjectStarter : MonoBehaviour
     [SerializeField] private RewardMenuView _rewardMenuView;
     [SerializeField] private CardsPanelConfig _cardsPanelConfig;
     [SerializeField] private NewPokemonCanvasView _newPokemonCanvasView;
+    [SerializeField] private FailMenuView _failMenuView;
 
     private PokemonSpawner _pokemonSpawner;
     private SaveLoadSystem _saveLoadSystem;
@@ -135,8 +137,10 @@ public class ProjectStarter : MonoBehaviour
             _levelDataHolder, _saveLoadSystem, pokemonAvailabilityLogic, _cardSpritesHolder);
         rewardMenuLogic.Initialize();
         _newPokemonCanvasView.Initialize();
-
         _cardsPanelView.Initialize();
+
+        var failMenuLogic = new FailMenuLogic(playerData, enemyDataHolder, _failMenuView, _saveLoadSystem);
+        failMenuLogic.Initialize();
     }
 
     private void OnApplicationQuit()

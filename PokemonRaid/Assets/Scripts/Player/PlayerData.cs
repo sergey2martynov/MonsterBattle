@@ -55,8 +55,12 @@ namespace Player
             {
                 _health = value;
 
-                if (_health < 0)
+                if (_health <= 0)
+                {
                     _health = 0;
+                    
+                    PlayerDied?.Invoke();
+                }
                 else
                 {
                     _health = value;
@@ -101,6 +105,7 @@ namespace Player
         public event Action<int, int> HealthChange;
         public event Action<int> CoinsAmountChanged;
         public event Action FirstLevelFinished;
+        public event Action PlayerDied;
         public event Func<Vector3> DirectionCorrectionRequested;
 
         public virtual void Initialize(PlayerStats stats, PokemonHolderModel pokemonHolderModel)

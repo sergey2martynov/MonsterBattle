@@ -10,8 +10,10 @@ namespace Stats
     {
         [SerializeField] private PokemonViewBase _viewPrefab;
         [SerializeField] private List<PokemonStatsByLevel> _statsByLevels;
+        [SerializeField] private string _name;
 
         public PokemonViewBase ViewPrefab => _viewPrefab;
+        public string Name => _name;
         
         public PokemonStatsByLevel GetLevelStats(int level)
         {

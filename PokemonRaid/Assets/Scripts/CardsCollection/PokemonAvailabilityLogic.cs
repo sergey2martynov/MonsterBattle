@@ -17,6 +17,7 @@ namespace CardsCollection
         public Sprite FixedSprite { get; private set; }
         public int FixedHealth { get; private set; }
         public int FixedDamage { get; private set; }
+        public string FixedName { get; private set; }
         public bool IsMelee { get; private set; }
 
 
@@ -64,8 +65,9 @@ namespace CardsCollection
                 {
                     FixedSprite = GetSprite(count + _cardsPanelConfig.NumberOfPokemonsEachType, 0);
                     FixedHealth = GetStatsPokemon(count + _cardsPanelConfig.NumberOfPokemonsEachType, 0,
-                        out int damage);
+                        out int damage, out string name);
                     FixedDamage = damage;
+                    FixedName = name;
                     IsMelee = false;
 
                     rowAvailability[0] = true;
@@ -85,8 +87,9 @@ namespace CardsCollection
                 if (!rowAvailability[0])
                 {
                     FixedSprite = GetSprite(count, 0);
-                    FixedHealth = GetStatsPokemon(count, 0, out int damage);
+                    FixedHealth = GetStatsPokemon(count, 0, out int damage, out string name);
                     FixedDamage = damage;
+                    FixedName = name;
                     IsMelee = true;
 
                     rowAvailability[0] = true;
@@ -115,7 +118,7 @@ namespace CardsCollection
             }
         }
 
-        public int GetStatsPokemon(int index, int level, out int damage)
+        public int GetStatsPokemon(int index, int level, out int damage, out string name)
         {
             PokemonViewBase pokemonViewBase = _pokemonSpritesHolder.ListSpritesForEachPokemonType[0].PokemonView;
 
@@ -136,6 +139,8 @@ namespace CardsCollection
                     var statsByLevel = stats.GetLevelStats(level + 1);
 
                     damage = statsByLevel.Damage;
+
+                    name = stats.Name;
 
                     return statsByLevel.MaxHealth;
                 }

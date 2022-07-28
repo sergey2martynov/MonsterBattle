@@ -70,7 +70,8 @@ namespace CardsCollection
                         meleeCard.PokemonImage.sprite = _pokemonAvailabilityLogic.GetSprite(rowCount, count);
                         meleeCard.LockImage.gameObject.SetActive(false);
                         meleeCard.HealthText.text =
-                            _pokemonAvailabilityLogic.GetStatsPokemon(rowCount, count, out int damage).ToString();
+                            _pokemonAvailabilityLogic.GetStatsPokemon(rowCount, count, out int damage, out string name).ToString();
+                        meleeCard.NameText.text = name;
                         meleeCard.DamageText.text = damage.ToString();
                     }
                     else
@@ -90,7 +91,8 @@ namespace CardsCollection
                         rangeCard.HealthText.text =
                             _pokemonAvailabilityLogic
                                 .GetStatsPokemon(rowCount + _cardsPanelConfig.NumberOfPokemonsEachType, count,
-                                    out int damage).ToString();
+                                    out int damage, out string name).ToString();
+                        rangeCard.NameText.text = name;
                         rangeCard.DamageText.text = damage.ToString();
                     }
                     else
@@ -136,7 +138,8 @@ namespace CardsCollection
                 _meleePokemonCards[count].PokemonImage.sprite = _pokemonAvailabilityLogic.GetSprite(index, level);
                 _meleePokemonCards[count].LockImage.gameObject.SetActive(false);
                 _meleePokemonCards[count].HealthText.text =
-                    _pokemonAvailabilityLogic.GetStatsPokemon(index, level, out int damage).ToString();
+                    _pokemonAvailabilityLogic.GetStatsPokemon(index, level, out int damage, out string name).ToString();
+                _meleePokemonCards[count].NameText.text = name;
                 _meleePokemonCards[count].DamageText.text = damage.ToString();
                 
                 _newPokemonCanvasView.SetStats(_meleePokemonCards[count].HealthText.text, _meleePokemonCards[count].DamageText.text,
@@ -154,8 +157,9 @@ namespace CardsCollection
                 _rangePokemonCards[count].LockImage.gameObject.SetActive(false);
                 _rangePokemonCards[count].HealthText.text =
                     _pokemonAvailabilityLogic
-                        .GetStatsPokemon(index + _cardsPanelConfig.NumberOfPokemonsEachType, level, out int damage)
+                        .GetStatsPokemon(index + _cardsPanelConfig.NumberOfPokemonsEachType, level, out int damage, out string name)
                         .ToString();
+                _rangePokemonCards[count].NameText.text = name;
                 _rangePokemonCards[count].DamageText.text = damage.ToString();
                 
                 _newPokemonCanvasView.SetStats(_rangePokemonCards[count].HealthText.text, _rangePokemonCards[count].DamageText.text,

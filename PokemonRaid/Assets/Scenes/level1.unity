@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2138677392}
-  m_IndirectSpecularColor: {r: 0.2838507, g: 0.37042978, b: 0.50076157, a: 1}
+  m_IndirectSpecularColor: {r: 0.28385073, g: 0.37043008, b: 0.5007635, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -833,6 +833,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa5c4b948492ece4dbb294f9249ea274, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &990930692 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4634276906568125078, guid: e9113578a92aae943a2070d08413e406, type: 3}
+  m_PrefabInstance: {fileID: 1762784594653984708}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dacaf01d66ef66479e0c5619824ffd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1021844134 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6942564740909406879, guid: c1f9906ca0940a04d8eec4a32f3cf694, type: 3}
@@ -1240,6 +1251,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af7287d30f9db564dbd0455646e0e444, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1386947901 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1095342177439042872, guid: e9113578a92aae943a2070d08413e406, type: 3}
+  m_PrefabInstance: {fileID: 1762784594653984708}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1391462379 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8323456911530154027, guid: 96996a3b2b7182343b4c31a7c889e67e, type: 3}
@@ -1554,6 +1576,17 @@ PrefabInstance:
       objectReference: {fileID: 1071343449}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96996a3b2b7182343b4c31a7c889e67e, type: 3}
+--- !u!114 &1497798973 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8152882022490662761, guid: e9113578a92aae943a2070d08413e406, type: 3}
+  m_PrefabInstance: {fileID: 1762784594653984708}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &1525935664 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8809886716208169185, guid: 1a42f589c18612d43b100495bca0dee8, type: 3}
@@ -2775,6 +2808,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2544741345548734579, guid: e9113578a92aae943a2070d08413e406, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1c3fbdeae53cc3248879317c65cf1ff8, type: 3}
     - target: {fileID: 3167770455556906561, guid: e9113578a92aae943a2070d08413e406, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -2867,6 +2904,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4634276906568125078, guid: e9113578a92aae943a2070d08413e406, type: 3}
+      propertyPath: _coinsText
+      value: 
+      objectReference: {fileID: 1497798973}
+    - target: {fileID: 4634276906568125078, guid: e9113578a92aae943a2070d08413e406, type: 3}
+      propertyPath: _restartButton
+      value: 
+      objectReference: {fileID: 1386947901}
+    - target: {fileID: 7374006415735193886, guid: e9113578a92aae943a2070d08413e406, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 153e00c0ab24520458d96a81be95137c, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9113578a92aae943a2070d08413e406, type: 3}
 --- !u!1001 &1869392084964003033
@@ -3105,12 +3154,16 @@ PrefabInstance:
       objectReference: {fileID: 5882980373408904197}
     - target: {fileID: 1339164300679375854, guid: 5b76d7af153ba994f990647493604eb2, type: 3}
       propertyPath: _dataLoading
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1339164300679375854, guid: 5b76d7af153ba994f990647493604eb2, type: 3}
       propertyPath: _playerStats
       value: 
       objectReference: {fileID: 11400000, guid: 03f091b023efeb148baa1baaf9b63f89, type: 2}
+    - target: {fileID: 1339164300679375854, guid: 5b76d7af153ba994f990647493604eb2, type: 3}
+      propertyPath: _failMenuView
+      value: 
+      objectReference: {fileID: 990930692}
     - target: {fileID: 1339164300679375854, guid: 5b76d7af153ba994f990647493604eb2, type: 3}
       propertyPath: _pokemonStats
       value: 

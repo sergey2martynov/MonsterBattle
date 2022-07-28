@@ -7,6 +7,9 @@ namespace Enemy.EnemyModel
     {
         private List<BaseEnemyData> _enemiesData = new List<BaseEnemyData>();
         private int _coinsRewardPerEnemy;
+        private int _countKilledEnemy;
+
+        public int CountKilledEnemy => _countKilledEnemy;
 
         public int CoinsRewardPerEnemy
         {
@@ -38,6 +41,7 @@ namespace Enemy.EnemyModel
         private void RemoveEnemyData(BaseEnemyData data)
         {
             _enemiesData.Remove(data);
+            _countKilledEnemy++;
             data.EnemyDied -= RemoveEnemyData;
             OnEnemyDied();
         }
