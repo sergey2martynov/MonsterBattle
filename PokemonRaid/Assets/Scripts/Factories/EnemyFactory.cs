@@ -1,5 +1,6 @@
 ﻿using System;
 using Enemy;
+using Enemy.Bosses;
 using Enemy.FlyingEnemy;
 using Enemy.GroundEnemy.MeleeEnemy;
 using Enemy.GroundEnemy.RangedEnemy;
@@ -37,6 +38,10 @@ namespace Factories
 
                 FlyingEnemyView concreteView =>
                     CreateConcreteInstance<FlyingEnemyView, FlyingEnemyLogic, FlyingEnemyData>(concreteView, position,
+                        statsByLevel, parent, out baseView),
+                
+                BossEnemyView concreteView =>
+                    CreateConcreteInstance<BossEnemyView, BossEnemyLogic, BossEnemyData>(concreteView, position,
                         statsByLevel, parent, out baseView),
 
                 _ => throw new ArgumentException("There is no enemy of type " + view.GetType())

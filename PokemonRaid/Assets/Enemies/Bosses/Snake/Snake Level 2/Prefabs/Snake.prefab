@@ -270,8 +270,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 902391672072327696}
-  m_LocalRotation: {x: -0.0000000011302341, y: -0.00000003272541, z: -0.16553907,
-    w: 0.98620325}
+  m_LocalRotation: {x: -0.0000000011302341, y: -0.00000003272541, z: -0.16553907, w: 0.98620325}
   m_LocalPosition: {x: -0.07286858, y: 0, z: 6.8121155e-11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1081,6 +1080,7 @@ GameObject:
   m_Component:
   - component: {fileID: 902391672072293958}
   - component: {fileID: 902391672081818022}
+  - component: {fileID: 5968061034733951871}
   m_Layer: 0
   m_Name: Snake
   m_TagString: Untagged
@@ -1134,7 +1134,7 @@ Animator:
   m_GameObject: {fileID: 902391672072327782}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: a62c5c5d376520340aa80f2f3643c54e, type: 3}
-  m_Controller: {fileID: 9100000, guid: 6a77923d75644124aa123126e78f8871, type: 2}
+  m_Controller: {fileID: 9100000, guid: 3ee169f4db2e65d4fbb2c578dbc90ea1, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1143,6 +1143,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &5968061034733951871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 902391672072327782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a7f15a739940469a55864c03a8f293, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animations:
+  - _animationClip: {fileID: 7400000, guid: c743334be13cd3f4fbbaf6dc670cfe7c, type: 3}
+    _actionTime: 10
 --- !u!1 &902391672072327784
 GameObject:
   m_ObjectHideFlags: 0
@@ -1749,8 +1764,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 902391672072328142}
-  m_LocalRotation: {x: -0.000000012355309, y: -0.000000022007901, z: -0.06275702,
-    w: 0.9980289}
+  m_LocalRotation: {x: -0.000000012355309, y: -0.000000022007901, z: -0.06275702, w: 0.9980289}
   m_LocalPosition: {x: -0.068176, y: 0, z: 1.8189894e-14}
   m_LocalScale: {x: 1.0000001, y: 1.0000001, z: 1}
   m_Children:
@@ -1803,6 +1817,8 @@ SkinnedMeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 3
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1814,6 +1830,7 @@ SkinnedMeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0

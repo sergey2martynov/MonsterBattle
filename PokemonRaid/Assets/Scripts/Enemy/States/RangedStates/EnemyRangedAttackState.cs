@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace Enemy.States.RangedStates
 {
-    public class EnemyRangedAttackState : BaseEnemyState<RangedTypeEnemyView>
+    public class EnemyRangedAttackState : EnemyAttackState<RangedTypeEnemyView>
     {
         private readonly int _attack = Animator.StringToHash("Attack");
         private readonly BaseAnimation _attackAnimation;
@@ -30,8 +30,17 @@ namespace Enemy.States.RangedStates
 
         public override void OnEnter()
         {
-            base.OnEnter();
             ShouldAttack = true;
+        }
+
+        public override void Update()
+        {
+            SetNextState();
+        }
+
+        public override void OnExit()
+        {
+            
         }
 
         protected override void SetNextState()
@@ -44,7 +53,7 @@ namespace Enemy.States.RangedStates
             _logic.SwitchState<EnemyIdleState<RangedTypeEnemyView>>();
         }
         
-        public async void SetTargets(Collider[] targets)
+        public override async void SetTargets(Collider[] targets)
         {
             _targets = targets;
             await Attack();

@@ -1,11 +1,11 @@
-﻿using Pokemon;
+﻿using Enemy.States;
+using Pokemon;
 using Pokemon.Animations;
 using UnityEngine;
 
-namespace Enemy.States
+namespace Enemy.Bosses.BossStates
 {
-    public class EnemyAttackState<TView> : BaseEnemyState<TView>
-        where TView : BaseEnemyView
+    public class BossAttackState : BaseEnemyState<BossEnemyView>
     {
         private readonly int _attack = Animator.StringToHash("Attack");
         private readonly BaseAnimation _attackAnimation;
@@ -15,11 +15,12 @@ namespace Enemy.States
         private float _attackTime;
         private bool _attacked;
 
-        public EnemyAttackState(TView view, BaseEnemyLogic<TView> logic, BaseEnemyData data) : base(view, logic, data)
+        public BossAttackState(BossEnemyView view, BaseEnemyLogic<BossEnemyView> logic, BaseEnemyData data) : base(view,
+            logic, data)
         {
             _attackAnimation = _view.EventTranslator.GetAnimationInfo("Attack");
         }
-
+        
         public override void OnEnter()
         {
             base.OnEnter();
@@ -69,7 +70,7 @@ namespace Enemy.States
                 return;
             }
 
-            _logic.SwitchState<EnemyIdleState<TView>>();
+            _logic.SwitchState<BossIdleState>();
         }
 
         public virtual void SetTargets(Collider[] targets)
