@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using Analitycs;
 using Pokemon.PokemonHolder;
 using StaticData;
 using UnityEngine;
@@ -15,10 +16,23 @@ namespace Player
         private int _level;
         private int _maxLevel = 100;
         private int _coins;
+        private int _levelCount;
         public CancellationTokenSource Source { get; protected set; }
         
         public Vector3 MoveDirection { get; set; }
         public Vector3 LookDirection { get; set; }
+
+
+        public int LevelCount
+        {
+            get
+            {
+                if (_levelCount == 0)
+                    _levelCount++;
+                
+                return _levelCount;
+            }
+        }
 
         public float MoveSpeed
         {
@@ -58,6 +72,10 @@ namespace Player
                 if (_health <= 0)
                 {
                     _health = 0;
+                    
+                    EventSender.SendLevelFinish();
+
+                    IncreaseLevelCount();
                     
                     PlayerDied?.Invoke();
                 }
@@ -114,12 +132,13 @@ namespace Player
             SetStats(stats);
         }
 
-        public void Initialize(PlayerStats stats, int level, int coinsAmount, PokemonHolderModel pokemonHolderModel)
+        public void Initialize(PlayerStats stats, int level, int coinsAmount, PokemonHolderModel pokemonHolderModel, int levelCount)
         {
             _pokemonHolderModel = pokemonHolderModel;
             SetStats(stats);
             Level = level;
             Coins = coinsAmount;
+            _levelCount = levelCount;
         }
 
         public CancellationTokenSource CreateCancellationTokenSource()
@@ -149,6 +168,11 @@ namespace Player
             Level = stats.Level;
             Health = _pokemonHolderModel.GetAllHealth();
             _coins = stats.Coins;
+        }
+
+        public void IncreaseLevelCount()
+        {
+            _levelCount++;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using Analitycs;
 using CardsCollection;
 using DG.Tweening;
 using Enemy.EnemyModel;
@@ -115,6 +116,10 @@ namespace Player
             {
                 _pokemonAvailabilityLogic.UnLockNewTypeMeleePokemon();
             }
+            
+            EventSender.SendLevelFinish();
+
+            _data.IncreaseLevelCount();
 
             LevelUpped?.Invoke();
         }

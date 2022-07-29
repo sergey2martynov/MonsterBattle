@@ -1,4 +1,5 @@
 using System;
+using Analitycs;
 using Player;
 using Pokemon.PokemonHolder;
 using Pool;
@@ -58,6 +59,7 @@ namespace Shop
 
         private void OnStartButtonPressed()
         {
+            EventSender.SendLevelStart(_playerData.Level,_playerData.LevelCount);
             StartButtonPressed?.Invoke();
         }
 

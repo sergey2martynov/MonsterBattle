@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Enemy.EnemyModel;
 using Factories;
 using Player;

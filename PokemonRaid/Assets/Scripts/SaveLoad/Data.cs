@@ -14,15 +14,18 @@ namespace SaveLoad
 
         public int PlayerLevel { get; }
         public int CoinsAmount { get; }
+        public int LevelCount { get; }
 
         public Data(IEnumerable<List<PokemonDataBase>> pokemonData, int playerLevel, int coinsAmount,
-            IEnumerable<List<bool>> meleePokemonAvailabilities, IEnumerable<List<bool>> rangePokemonAvailabilities)
+            IEnumerable<List<bool>> meleePokemonAvailabilities, IEnumerable<List<bool>> rangePokemonAvailabilities, int levelCount)
         {
             PokemonData = pokemonData.ToList();
             PlayerLevel = playerLevel;
             CoinsAmount = coinsAmount;
+            LevelCount = levelCount;
             RangePokemonAvailabilities = rangePokemonAvailabilities.ToList();
             MeleePokemonAvailabilities = meleePokemonAvailabilities.ToList();
+            LevelCount = levelCount;
         }
     }
 }

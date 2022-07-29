@@ -30,7 +30,7 @@ namespace SaveLoad
             var fileStream = new FileStream(path, FileMode.Create);
             var data = new Data(_pokemonHolderModel.PokemonsList, _playerData.Level, _playerData.Coins,
                 _pokemonAvailabilityData.MeleePokemonAvailabilities,
-                _pokemonAvailabilityData.RangePokemonAvailabilities);
+                _pokemonAvailabilityData.RangePokemonAvailabilities, _playerData.LevelCount);
 
             using (fileStream)
             {

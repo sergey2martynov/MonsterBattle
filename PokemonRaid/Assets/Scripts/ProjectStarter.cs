@@ -87,7 +87,7 @@ public class ProjectStarter : MonoBehaviour
         if (loadedSuccessfully && _dataLoading)
         {
             pokemonHolderModel.Initialize(data.PokemonData);
-            playerData.Initialize(_playerStats, data.PlayerLevel, data.CoinsAmount, pokemonHolderModel);
+            playerData.Initialize(_playerStats, data.PlayerLevel, data.CoinsAmount, pokemonHolderModel, data.LevelCount);
             pokemonAvailabilityLogic.Initialize(data.MeleePokemonAvailabilities, data.RangePokemonAvailabilities,
                 cardsPanelLogic);
             Debug.Log("Loaded successfully");
