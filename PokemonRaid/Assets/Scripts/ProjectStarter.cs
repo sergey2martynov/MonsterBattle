@@ -108,10 +108,16 @@ public class ProjectStarter : MonoBehaviour
         _pokemonSpawner = new PokemonSpawner(pokemonPrefabHolder, _pokemonParentObject, _pokemonStats, _updateHandler,
             pokemonHolderModel, _fieldView, _camera, playerData);
         _pokemonSpawner.Initialize();
+        
+        var pokemonMerger = new PokemonMerger(_fieldView, _pokemonSpritesHolder, pokemonAvailabilityLogic);
+
+        var pokemonCellPlacer =
+            new PokemonCellPlacer(_inputView, _fieldView, pokemonHolderModel, pokemonMerger, _pokemonSpawner);
+        pokemonCellPlacer.Initialize();
 
         var shopData = new ShopData();
         var shopLogic = new ShopLogic(_pokemonSpawner, _shopView, shopData, playerData, pokemonHolderModel,
-            playerLogic);
+            playerLogic, pokemonCellPlacer);
         shopLogic.Initialize();
         shopData.Initialize(_shopStats, playerData.BuyCounter);
 
@@ -124,12 +130,6 @@ public class ProjectStarter : MonoBehaviour
         var fieldLogic = new FieldLogic(_fieldView, pokemonHolderModel, shopLogic, _pokemonSpawner);
         var isFieldFillRequired = loadedSuccessfully && _dataLoading;
         fieldLogic.Initialize(isFieldFillRequired);
-
-        var pokemonMerger = new PokemonMerger(_fieldView, _pokemonSpritesHolder, pokemonAvailabilityLogic);
-
-        var pokemonCellPlacer =
-            new PokemonCellPlacer(_inputView, _fieldView, pokemonHolderModel, pokemonMerger, _pokemonSpawner);
-        pokemonCellPlacer.Initialize();
 
         var levelCounterLogic = new LevelCounterLogic();
         levelCounterLogic.Initialize(_levelCounterView, playerData, _levelSpritesHolder);

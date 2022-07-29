@@ -1,5 +1,7 @@
 using System;
 using Analitycs;
+using DG.Tweening;
+using Merge;
 using Player;
 using Pokemon.PokemonHolder;
 using Pool;
@@ -15,12 +17,17 @@ namespace Shop
         private readonly PokemonHolderModel _pokemonHolderModel;
         private readonly PlayerLogic _playerLogic;
         private readonly PlayerData _playerData;
-        
+        private readonly PokemonCellPlacer _pokemonCellPlacer;
+        private bool _isMergeTutorialActivated;
+
 
         public event Action StartButtonPressed;
+        public event Action MergeTutorialCompleted;
+        public event Action PurchaseTutorialScaled;
+        public event Action StartButtonScaled;
 
         public ShopLogic(PokemonSpawner pokemonSpawner, ShopView shopView, ShopData shopData, PlayerData playerData,
-            PokemonHolderModel pokemonHolderModel, PlayerLogic playerLogic)
+            PokemonHolderModel pokemonHolderModel, PlayerLogic playerLogic, PokemonCellPlacer pokemonCellPlacer)
         {
             _pokemonSpawner = pokemonSpawner;
             _shopView = shopView;
@@ -28,31 +35,38 @@ namespace Shop
             _playerData = playerData;
             _pokemonHolderModel = pokemonHolderModel;
             _playerLogic = playerLogic;
+            _pokemonCellPlacer = pokemonCellPlacer;
         }
 
         public void Initialize()
         {
             _shopView.PurchaseButtonPressed += TryPurchasePokemon;
+            _shopView.PurchaseButtonPressed += DisableTutorials;
             _shopView.StartButtonPressed += OnStartButtonPressed;
             _shopView.StartButtonPressed += _playerData.SetMaxHealth;
-            _shopView.StartButtonPressed += _playerLogic.HealthBarDisabler;
+            _pokemonCellPlacer.ObjectSelected += DisableMergeTutorial;
             _shopView.SetTextCoins(_playerData.Coins);
             _shopData.PokemonCostChanged += OnPokemonCostChanged;
             _playerLogic.CoinsAdded += _shopView.SetTextCoins;
             _playerData.FirstLevelFinished += ActivePurchaseButton;
+            MergeTutorialCompleted += MoveMergeTutorial;
+            PurchaseTutorialScaled += ScaleTutorial;
+            StartButtonScaled += ScaleStartButton;
+            ActivatePurchaseTutorial();
+            ActivateStartButtonScale();
             CheckPlayerLevel();
         }
 
         private void TryPurchasePokemon(PokemonType pokemonType)
         {
             if (_playerData.Coins < _shopData.PokemonCost || !_pokemonHolderModel.CheckEmptyCells())
-               return;
+                return;
 
             var cell = _pokemonHolderModel.GetFirstEmptyCell();
             int[] indexes = {cell.Row, cell.Column};
             _pokemonSpawner.CreateFirstLevelRandomPokemon(cell.Position,
-                pokemonType,indexes);
-            
+                pokemonType, indexes);
+
             SetCoins(-_shopData.PokemonCost);
             _shopView.SetTextCoins(_playerData.Coins);
             _playerData.IncreaseBuyCounter();
@@ -61,8 +75,11 @@ namespace Shop
 
         private void OnStartButtonPressed()
         {
-            EventSender.SendLevelStart(_playerData.Level,_playerData.LevelCount);
-            StartButtonPressed?.Invoke();
+            DOTween.Sequence().AppendInterval(2).OnComplete(() =>
+            {
+                EventSender.SendLevelStart(_playerData.Level, _playerData.LevelCount);
+                StartButtonPressed?.Invoke();
+            });
         }
 
         private void CheckPlayerLevel()
@@ -71,13 +88,83 @@ namespace Shop
             {
                 _shopView.DisablePurchaseButton(false);
             }
-            
+
             if (_playerData.Level > 1 && _playerData.Level < 3)
             {
                 _shopView.DisableRangePurchaseButton(false);
             }
         }
-        
+
+        private void DisableTutorials(PokemonType pokemonType)
+        {
+            if (_playerData.Level == 2 && !_isMergeTutorialActivated && _playerData.LevelCount == 2)
+            {
+                _shopView.PurchaseTutorial.gameObject.SetActive(false);
+                _shopView.MergeTutorial.gameObject.SetActive(true);
+                _isMergeTutorialActivated = true;
+                MoveMergeTutorial();
+            }
+        }
+
+        private void ActivatePurchaseTutorial()
+        {
+            if (_playerData.Level == 2 && _playerData.LevelCount == 2)
+            {
+                _shopView.PurchaseTutorial.gameObject.SetActive(true);
+                ScaleTutorial();
+            }
+        }
+
+        private void DisableMergeTutorial()
+        {
+            if (_playerData.Level == 2 )
+                _shopView.MergeTutorial.gameObject.SetActive(false);
+        }
+
+        private void MoveMergeTutorial()
+        {
+            if (_playerData.Level == 2)
+            {
+                _shopView.MergeTutorial.GetComponent<RectTransform>().DOAnchorPos(new Vector2(116, -172), 3).OnComplete(
+                    () =>
+                    {
+                        _shopView.MergeTutorial.GetComponent<RectTransform>().anchoredPosition = new Vector2(-224, -27);
+                        MergeTutorialCompleted?.Invoke();
+                    });
+            }
+        }
+
+        private void ScaleTutorial()
+        {
+            if (_playerData.Level == 2)
+            {
+                _shopView.PurchaseTutorial.GetComponent<RectTransform>().DOScale(2, 1).OnComplete(() =>
+                {
+                    _shopView.PurchaseTutorial.GetComponent<RectTransform>().DOScale(1.5f, 1).OnComplete(() =>
+                    {
+                        PurchaseTutorialScaled?.Invoke();
+                    });
+                });
+            }
+        }
+
+        private void ScaleStartButton()
+        {
+            _shopView.StartButton.GetComponent<RectTransform>().DOScale(1, 1).OnComplete(() =>
+            {
+                _shopView.StartButton.GetComponent<RectTransform>().DOScale(0.8f, 1).OnComplete(() =>
+                {
+                    StartButtonScaled?.Invoke();
+                });
+            });
+        }
+
+        private void ActivateStartButtonScale()
+        {
+            if (_playerData.Level == 1)
+                ScaleStartButton();
+        }
+
         private void ActivePurchaseButton()
         {
             _shopView.DisablePurchaseButton(true);
@@ -95,7 +182,6 @@ namespace Shop
 
         public void Dispose()
         {
-            _shopView.StartButtonPressed -= _playerLogic.HealthBarDisabler;
             _shopView.PurchaseButtonPressed -= TryPurchasePokemon;
             _shopView.StartButtonPressed -= OnStartButtonPressed;
             _shopView.StartButtonPressed -= _playerData.SetMaxHealth;

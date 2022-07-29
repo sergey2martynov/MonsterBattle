@@ -53,7 +53,17 @@ namespace RewardMenu
 
         public void SetCoinsAmount(int amount)
         {
-            _coinsAmount.text = amount.ToString();
+            if (amount > 10000000)
+            {
+                _coinsAmount.text = amount / 1000000 + "M";
+            }
+            else if (amount > 10000)
+            {
+                _coinsAmount.text = amount / 1000 + "K";
+            }
+            else
+                _coinsAmount.text = amount.ToString();
+            
         }
     }
 }

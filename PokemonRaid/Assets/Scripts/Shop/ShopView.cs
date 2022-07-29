@@ -2,6 +2,7 @@ using System;
 using Menu;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Shop
@@ -15,9 +16,14 @@ namespace Shop
         [SerializeField] private TextMeshProUGUI _text;
         [SerializeField] private TextMeshProUGUI _meleeCost;
         [SerializeField] private TextMeshProUGUI _rangedCost;
+        [SerializeField] private Image _mergeTutorial;
+        [SerializeField] private Image _purchaseTutorial;
 
         private const int CenterPositionY = 489;
 
+        public Image MergeTutorial => _mergeTutorial;
+        public Image PurchaseTutorial => _purchaseTutorial;
+        public Button StartButton => _startButton;
         public event Action<PokemonType> PurchaseButtonPressed;
         public event Action StartButtonPressed;
         public event Action CardsButtonPressed;
@@ -40,7 +46,16 @@ namespace Shop
 
         public void SetTextCoins(int coinsAmount)
         {
-            _text.text = coinsAmount.ToString();
+            if (coinsAmount > 10000000)
+            {
+                _text.text = coinsAmount / 1000000 + "M";
+            }
+            else if (coinsAmount > 10000)
+            {
+                _text.text = coinsAmount / 1000 + "K";
+            }
+            else
+                _text.text = coinsAmount.ToString();
         }
 
         private void OnPurchaseMeleeButtonClicked()
@@ -50,8 +65,21 @@ namespace Shop
 
         public void SetCost(int cost)
         {
-            _meleeCost.text = cost.ToString();
-            _rangedCost.text = cost.ToString();
+            if (cost > 10000000)
+            {
+                _meleeCost.text = cost / 1000000 + "M";
+                _rangedCost.text = cost / 1000000 + "M";
+            }
+            else if (cost > 10000)
+            {
+                _meleeCost.text = cost / 1000 + "K";
+                _rangedCost.text = cost / 1000 + "K";
+            }
+            else
+            {
+                _meleeCost.text = cost.ToString();
+                _rangedCost.text = cost.ToString();
+            }
         }
 
         public void DisablePurchaseButton(bool isActive)
@@ -78,6 +106,7 @@ namespace Shop
             StartButtonPressed?.Invoke();
             Disable();
         }
+
         private void OnCardsButtonClicked()
         {
             CardsButtonPressed?.Invoke();

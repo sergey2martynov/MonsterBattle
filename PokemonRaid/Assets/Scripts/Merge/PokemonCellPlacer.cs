@@ -15,19 +15,23 @@ namespace Merge
 {
     public class PokemonCellPlacer
     {
+        
+        private readonly InputView _inputView;
+        private readonly FieldView _fieldView;
+        private readonly PokemonHolderModel _pokemonHolderModel;
+        private readonly PokemonSpawner _pokemonSpawner;
+        private readonly PokemonMerger _pokemonMerger;
+        
+        private List<CellView> _cellViews;
         private Ray _ray;
         private PokemonViewBase _targetPokemon;
-        private InputView _inputView;
-        private FieldView _fieldView;
-        private List<CellView> _cellViews;
-        private PokemonHolderModel _pokemonHolderModel;
-        private PokemonSpawner _pokemonSpawner;
         private CellView _fixedCell;
         private int _fixedIndex;
-        private PokemonMerger _pokemonMerger;
         private PokemonViewBase _pokemonForSwap;
         private readonly float _moveDuration = 0.2f;
         private readonly float _distanceForMerge = 0.8f;
+
+        public event Action ObjectSelected;
 
         public PokemonCellPlacer(InputView inputView, FieldView fieldView, PokemonHolderModel pokemonHolderModel,
             PokemonMerger pokemonMerger, PokemonSpawner pokemonSpawner)
@@ -57,6 +61,7 @@ namespace Merge
             {
                 _targetPokemon = pokemon;
                 _fixedCell = GetCurrentCell(_targetPokemon.transform.position,true);
+                ObjectSelected.Invoke();
             }
         }
 

@@ -13,7 +13,8 @@ namespace FailedMenu
         private EnemyDataHolder _enemyDataHolder;
         private SaveLoadSystem _saveLoadSystem;
 
-        public FailMenuLogic(PlayerData playerData, EnemyDataHolder enemyDataHolder, FailMenuView failMenuView, SaveLoadSystem saveLoadSystem)
+        public FailMenuLogic(PlayerData playerData, EnemyDataHolder enemyDataHolder, FailMenuView failMenuView,
+            SaveLoadSystem saveLoadSystem)
         {
             _playerData = playerData;
             _enemyDataHolder = enemyDataHolder;
@@ -30,7 +31,8 @@ namespace FailedMenu
         private void ShowMenu()
         {
             _failMenuView.Show();
-            _failMenuView.CoinsText.text = ((int) (_enemyDataHolder.CoinsRewardPerEnemy * _enemyDataHolder.CountKilledEnemy)).ToString(CultureInfo.InvariantCulture);
+            _failMenuView.CoinsText.text =
+                SetCoins((int) (_enemyDataHolder.CoinsRewardPerEnemy * _enemyDataHolder.CountKilledEnemy));
             _playerData.Coins += (int) (_enemyDataHolder.CoinsRewardPerEnemy * _enemyDataHolder.CountKilledEnemy);
         }
 
@@ -39,6 +41,21 @@ namespace FailedMenu
             Scene scene = SceneManager.GetActiveScene();
             _saveLoadSystem.SaveData();
             SceneManager.LoadScene(scene.name);
+        }
+
+        private string SetCoins(int amount)
+        {
+            if (amount > 10000000)
+            {
+                return amount / 1000000 + "M";
+            }
+
+            if (amount > 10000)
+            {
+                return amount / 1000 + "K";
+            }
+
+            return amount.ToString();
         }
     }
 }
