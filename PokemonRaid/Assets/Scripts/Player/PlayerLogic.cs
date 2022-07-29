@@ -38,7 +38,7 @@ namespace Player
             _upgradeLevels = upgradeLevels;
             _pokemonAvailabilityLogic = pokemonAvailabilityLogic;
             _updateHandler.UpdateTicked += Update;
-            _enemyDataHolder.EnemyDefeated += OnEnemyDefeated;
+            //_enemyDataHolder.EnemyDefeated += OnEnemyDefeated;
             _view.ViewDestroyed += Dispose;
             _view.LevelFinished += IncreaseLevel;
             _data.DirectionCorrectionRequested += CheckForBounds;
@@ -143,7 +143,7 @@ namespace Player
         {
             _data.HealthChange -= OnHealthChange;
             _updateHandler.UpdateTicked -= Update;
-            _enemyDataHolder.EnemyDefeated -= OnEnemyDefeated;
+            //_enemyDataHolder.EnemyDefeated -= OnEnemyDefeated;
             _data.DisposeSource();
             _view.ViewDestroyed -= Dispose;
             _view.LevelFinished += IncreaseLevel;

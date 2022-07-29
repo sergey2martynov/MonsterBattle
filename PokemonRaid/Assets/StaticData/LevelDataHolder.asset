@@ -25,7 +25,7 @@ MonoBehaviour:
       - {x: -1, y: 0.41, z: 40}
       - {x: 1, y: 0.41, z: 40}
     - _enemyPrefabs:
-      - {fileID: 2351805535717559970, guid: b547d372b0ca7604ea47ae552cdd85bd, type: 3}
+      - {fileID: 8393676187952632429, guid: 374eff02736577f4fb35c38c83abf581, type: 3}
       _positions:
       - {x: -2, y: 0.41, z: 50}
       - {x: 0, y: 0.41, z: 50}
@@ -41,23 +41,20 @@ MonoBehaviour:
       - {x: -2, y: 0.41, z: 30}
       - {x: 0, y: 0.41, z: 30}
       - {x: 2, y: 0.41, z: 30}
-      - {x: 4, y: 0.41, z: 30}
     - _enemyPrefabs:
-      - {fileID: 2351805535717559970, guid: b547d372b0ca7604ea47ae552cdd85bd, type: 3}
+      - {fileID: 8393676187952632429, guid: 374eff02736577f4fb35c38c83abf581, type: 3}
       _positions:
       - {x: -4, y: 0.41, z: 40}
       - {x: -2, y: 0.41, z: 40}
       - {x: 0, y: 0.41, z: 40}
       - {x: 2, y: 0.41, z: 40}
-      - {x: 4, y: 0.41, z: 40}
     - _enemyPrefabs:
-      - {fileID: 7450976434109585910, guid: 2d3676956c76b7840a9ca64a767ee036, type: 3}
+      - {fileID: 8393676187952632429, guid: 374eff02736577f4fb35c38c83abf581, type: 3}
       _positions:
-      - {x: -4, y: 0.41, z: 50}
-      - {x: -2, y: 0.41, z: 50}
-      - {x: 0, y: 0.41, z: 50}
-      - {x: 2, y: 0.41, z: 50}
-      - {x: 4, y: 0.41, z: 50}
+      - {x: -4, y: 0.41, z: 40}
+      - {x: -2, y: 0.41, z: 40}
+      - {x: 0, y: 0.41, z: 40}
+      - {x: 2, y: 0.41, z: 40}
     _totalCoinsReward: 12
     _environment: {fileID: 2640813938487052669, guid: c88422246cbdbc14a8347c5bf4d65b16, type: 3}
   - _level: 2

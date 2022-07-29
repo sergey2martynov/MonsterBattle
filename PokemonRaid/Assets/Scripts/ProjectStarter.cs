@@ -109,10 +109,10 @@ public class ProjectStarter : MonoBehaviour
         _pokemonSpawner.Initialize();
 
         var shopData = new ShopData();
-        shopData.Initialize(_shopStats, playerData.Level);
         var shopLogic = new ShopLogic(_pokemonSpawner, _shopView, shopData, playerData, pokemonHolderModel,
             playerLogic);
         shopLogic.Initialize();
+        shopData.Initialize(_shopStats, playerData.Level);
 
         var levelBuilderBehaviour = new LevelBuilderBehaviour(_levelDataHolder, playerData, _updateHandler,
             _enemyParentObject, _enemyStats, enemyDataHolder);

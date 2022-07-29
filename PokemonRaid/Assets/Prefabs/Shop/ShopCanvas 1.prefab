@@ -195,7 +195,10 @@ MonoBehaviour:
   _purchaseMeleeButton: {fileID: 6770284578109113764}
   _purchaseRangedButton: {fileID: 6324834326242237485}
   _startButton: {fileID: 7620683191542822374}
+  _cardsButton: {fileID: 0}
   _text: {fileID: 0}
+  _meleeCost: {fileID: 3195590378612538982}
+  _rangedCost: {fileID: 2768506780072372207}
 --- !u!1001 &6324834327225027317
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -331,6 +334,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3195590378612538982 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8907935121071076499, guid: af5f261e0dbf11c4caf86e5cb2dbed82, type: 3}
+  m_PrefabInstance: {fileID: 6324834327225027317}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &6391537114584418744
@@ -576,6 +590,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2768506780072372207 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8907935121071076499, guid: af5f261e0dbf11c4caf86e5cb2dbed82, type: 3}
+  m_PrefabInstance: {fileID: 6770284579238679420}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &7201440831134055095

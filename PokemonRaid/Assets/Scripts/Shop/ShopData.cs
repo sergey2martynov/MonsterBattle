@@ -11,7 +11,7 @@ namespace Shop
         {
             get => _pokemonCost;
 
-            set
+            private set
             {
                 if (value < 0)
                 {
@@ -19,12 +19,15 @@ namespace Shop
                 }
 
                 _pokemonCost = value;
+                PokemonCostChanged?.Invoke(_pokemonCost);
             }
         }
 
+        public event Action<int> PokemonCostChanged;
+
         public void Initialize(ShopStats shopStats, int level)
         {
-            PokemonCost = (int) (shopStats.PokemonCost + shopStats.PokemonCost * 1.15f * (level - 1));
+            PokemonCost = (int) (shopStats.PokemonCost + shopStats.PokemonCost * 0.15f * (level - 1));
         }
     }
 }

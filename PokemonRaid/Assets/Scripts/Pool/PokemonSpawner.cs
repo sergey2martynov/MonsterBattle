@@ -1,3 +1,4 @@
+using System.Linq;
 using Enemy.GroundEnemy.MeleeEnemy;
 using Factories;
 using Player;
@@ -43,7 +44,7 @@ namespace Pool
 
             int[] indexes = {1, 2};
 
-            if (_playerData.Level == 1)
+            if (_playerData.Level == 1 && _model.PokemonsList.ToList()[1][2] == null)
             {
                 CreatePokemon(new Vector3(0.0099f, 0.42f, 13.29f), _pokemonPrefabHolder.MeleePokemons[0], 1, indexes);
             }

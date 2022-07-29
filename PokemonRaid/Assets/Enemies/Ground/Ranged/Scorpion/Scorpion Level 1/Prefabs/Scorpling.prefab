@@ -46,6 +46,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -440,6 +441,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2909433286318280489}
   - component: {fileID: 6103951961285105676}
+  - component: {fileID: 5716176143899852212}
   m_Layer: 0
   m_Name: Scorpling
   m_TagString: Untagged
@@ -477,8 +479,8 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2534315495902057875}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 1c8841369b3ab454386a764edd39f4e1, type: 2}
+  m_Avatar: {fileID: 9000000, guid: dbc5a7e8331c6d644bfc6396a75cffed, type: 3}
+  m_Controller: {fileID: 9100000, guid: 6a80296471b88534d853ce6dbb51f523, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -487,6 +489,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &5716176143899852212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2534315495902057875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a7f15a739940469a55864c03a8f293, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animations:
+  - _animationClip: {fileID: 1827226128182048838, guid: 6f62024fe78213e4ea81a319144be2b7, type: 3}
+    _actionTime: 10
 --- !u!1 &2669536055487635308
 GameObject:
   m_ObjectHideFlags: 0
@@ -817,8 +834,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5630279901924822417}
-  m_LocalRotation: {x: -0.0000000046123847, y: -0.000000028494465, z: -0.33368742,
-    w: 0.94268376}
+  m_LocalRotation: {x: -0.0000000046123847, y: -0.000000028494465, z: -0.33368742, w: 0.94268376}
   m_LocalPosition: {x: -0.08991546, y: 0, z: 0}
   m_LocalScale: {x: 0.99999994, y: 1, z: 0.9999999}
   m_Children:

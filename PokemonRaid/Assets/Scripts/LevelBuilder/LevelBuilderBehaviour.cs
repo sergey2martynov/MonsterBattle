@@ -52,8 +52,6 @@ namespace LevelBuilder
             var level = _playerData.Level;
             var levelData = _levelDataHolder.GetLevelData(level);
             var totalEnemyCount = 0;
-            var totalHp = 0;
-            var totalDps = 0;
 
             foreach (var spawnPosition in levelData.SpawnPositions)
             {
@@ -65,14 +63,11 @@ namespace LevelBuilder
                         _enemyStats, _enemyParentObject, enemyLevel, out var baseView);
                     _enemyDataHolder.AddEnemyData(data);
                     totalEnemyCount++;
-                    totalDps += data.Damage;
-                    totalHp += data.Health;
                 }
             }
 
-            _enemyDataHolder.CoinsRewardPerEnemy = levelData.TotalCoinsReward / totalEnemyCount;
-            _enemyDataHolder.TotalCoinsReward = levelData.TotalCoinsReward;
-            Debug.Log("Total HP : " + totalHp + "\n" + "Total DPS : " + totalDps);
+            Debug.Log(totalEnemyCount + " " + levelData.TotalCoinsReward);
+            _enemyDataHolder.CoinsRewardPerEnemy = levelData.TotalCoinsReward / (float) totalEnemyCount;
         }
     }
 }

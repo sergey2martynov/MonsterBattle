@@ -109,51 +109,38 @@ namespace Pokemon
 
         protected virtual async void CheckForEnemies()
         {
-            _attackCount = 0;
             var collidersAmount = Physics.OverlapSphereNonAlloc(_view.Transform.position, _data.AttackRange,
                 _collidersInRange, _view.EnemyLayer);
 
-            if (Time.time < _data.AttackTime || collidersAmount == 0 /*|| ShouldAttack*/)
+            if (Time.time < _data.AttackTime || collidersAmount == 0 || ShouldAttack)
             {
                 return;
             }
 
-            for (var i = 0; i < collidersAmount; i++)
-            {
-                if (_collidersInRange[i].TryGetComponent<TEnemyView>(out var enemy))
-                {
-                    // enemy.TakeDamage(_data.Damage);
-                    _enemies.Add(enemy);
-                    _attackCount++;
-                }
-            }
+            await Attack(_collidersInRange);
 
-            if (ShouldAttack)
-            {
-                return;
-            }
-
-            if (_enemies.Count > 0)
-            {
-                await Attack(_enemies);
-            }
-            
-            // for (var i = 0; i < _collidersInRange.Length; i++)
+            // for (var i = 0; i < collidersAmount; i++)
             // {
-            //     Array.Clear(_collidersInRange, i, _collidersInRange.Length);
+            //     if (_collidersInRange[i].TryGetComponent<TEnemyView>(out var enemy))
+            //     {
+            //         _enemies.Add(enemy);
+            //     }
             // }
             //
-            // _enemies.Clear();
-            //
-            // if (_attackCount == 0)
+            // if (ShouldAttack)
             // {
             //     return;
             // }
             //
-            // _data.AttackTime = Time.time + _data.AttackSpeed;
+            // if (_enemies.Count > 0 && !ShouldAttack)
+            // {
+            //     await Attack(_enemies);
+            // }
+            //
+            // _enemies.Clear();
         }
-
-        protected virtual async Task Attack(List<TEnemyView> enemies)
+        
+        protected virtual async Task Attack(Collider[] colliders)
         {
             ShouldAttack = true;
             var attackTime = Time.time + _attackAnimation.ActionTime / _attackAnimation.FrameRate;
@@ -169,34 +156,47 @@ namespace Pokemon
                 await Task.Yield();
             }
 
-            foreach (var enemy in enemies.Where(enemy => enemy != null))
+            foreach (var collider in colliders.Where(enemy => enemy != null))
             {
-                enemy.TakeDamage(_data.Damage, _view.PokemonType);
+                collider.GetComponent<TEnemyView>().TakeDamage(_data.Damage, _view.PokemonType);
+                Debug.Log(collider);
             }
             
             var delay = (int) (_attackAnimation.Duration - _attackAnimation.ActionTime / _attackAnimation.FrameRate) * 1000;
-            //var delay = _attackAnimation.Duration - _attackAnimation.ActionTime / _attackAnimation.FrameRate;
-            //var endTime = Time.time + delay;
             await Task.Delay(delay);
-
-            // while (Time.time < endTime)
-            // {
-            //     if (_collidersInRange != null)
-            //     {
-            //         RotateAt(_collidersInRange[0].transform.position);
-            //     }
-            //     else
-            //     {
-            //         ShouldAttack = false;
-            //     }
-            //     
-            //     await Task.Yield();
-            // }
-            
             _view.Animator.SetBool(_attack, false);
             ShouldAttack = false;
             _data.AttackTime = Time.time + _data.AttackSpeed;
         }
+
+        // protected virtual async Task Attack(List<TEnemyView> enemies)
+        // {
+        //     ShouldAttack = true;
+        //     var attackTime = Time.time + _attackAnimation.ActionTime / _attackAnimation.FrameRate;
+        //     _view.Animator.SetBool(_attack, true);
+        //
+        //     while (Time.time < attackTime)
+        //     {
+        //         if (_collidersInRange[0] != null)
+        //         {
+        //             RotateAt((_collidersInRange[0].transform.position - _view.Transform.position).normalized);
+        //         }
+        //         
+        //         await Task.Yield();
+        //     }
+        //
+        //     foreach (var enemy in enemies.Where(enemy => enemy != null))
+        //     {
+        //         enemy.TakeDamage(_data.Damage, _view.PokemonType);
+        //         Debug.Log(enemy);
+        //     }
+        //     
+        //     var delay = (int) (_attackAnimation.Duration - _attackAnimation.ActionTime / _attackAnimation.FrameRate) * 1000;
+        //     await Task.Delay(delay);
+        //     _view.Animator.SetBool(_attack, false);
+        //     ShouldAttack = false;
+        //     _data.AttackTime = Time.time + _data.AttackSpeed;
+        // }
 
         protected void OnDamageTaken(int damage)
         {
@@ -219,7 +219,6 @@ namespace Pokemon
         {
             if (_data.Health < _data.MaxHealth)
                 _view.HealthBarView.gameObject.SetActive(true);
-            Debug.Log(_data.Health);
 
             _view.SetHealth(_data.Health / (float)_data.MaxHealth);
         }

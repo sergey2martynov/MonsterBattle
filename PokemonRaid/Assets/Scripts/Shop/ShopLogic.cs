@@ -36,6 +36,7 @@ namespace Shop
             _shopView.StartButtonPressed += _playerData.SetMaxHealth;
             _shopView.StartButtonPressed += _playerLogic.HealthBarDisabler;
             _shopView.SetTextCoins(_playerData.Coins);
+            _shopData.PokemonCostChanged += OnPokemonCostChanged;
             _playerLogic.CoinsAdded += _shopView.SetTextCoins;
             _playerData.FirstLevelFinished += ActivePurchaseButton;
             CheckPlayerLevel();
@@ -71,8 +72,6 @@ namespace Shop
             {
                 _shopView.DisableRangePurchaseButton(false);
             }
-            
-            Debug.Log(_playerData.Level);
         }
         
         private void ActivePurchaseButton()
@@ -85,6 +84,11 @@ namespace Shop
             _playerData.Coins += coinsAmount;
         }
 
+        private void OnPokemonCostChanged(int cost)
+        {
+            _shopView.SetCost(cost);
+        }
+
         public void Dispose()
         {
             _shopView.StartButtonPressed -= _playerLogic.HealthBarDisabler;
@@ -92,6 +96,7 @@ namespace Shop
             _shopView.StartButtonPressed -= OnStartButtonPressed;
             _shopView.StartButtonPressed -= _playerData.SetMaxHealth;
             _playerLogic.CoinsAdded -= _shopView.SetTextCoins;
+            _shopData.PokemonCostChanged -= OnPokemonCostChanged;
             _playerData.FirstLevelFinished -= ActivePurchaseButton;
         }
     }

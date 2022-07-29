@@ -13,6 +13,8 @@ namespace Shop
         [SerializeField] private Button _startButton;
         [SerializeField] private Button _cardsButton;
         [SerializeField] private TextMeshProUGUI _text;
+        [SerializeField] private TextMeshProUGUI _meleeCost;
+        [SerializeField] private TextMeshProUGUI _rangedCost;
 
         private const int CenterPositionY = 489;
 
@@ -44,6 +46,12 @@ namespace Shop
         private void OnPurchaseMeleeButtonClicked()
         {
             PurchaseButtonPressed?.Invoke(PokemonType.Melee);
+        }
+
+        public void SetCost(int cost)
+        {
+            _meleeCost.text = cost.ToString();
+            _rangedCost.text = cost.ToString();
         }
 
         public void DisablePurchaseButton(bool isActive)

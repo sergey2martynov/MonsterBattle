@@ -21,7 +21,6 @@ namespace Pokemon.States
 
         public override void OnEnter()
         {
-            Debug.Log("returned");
             base.OnEnter();
             _startTime = Time.time;
             _view.Animator.SetBool(_spawn, true);

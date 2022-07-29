@@ -348,6 +348,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2941465888485461433}
   - component: {fileID: 9093334379860006851}
+  - component: {fileID: -1644950005277214132}
   m_Layer: 0
   m_Name: Scorpion King
   m_TagString: Untagged
@@ -386,7 +387,7 @@ Animator:
   m_GameObject: {fileID: 2565361874747692803}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 843e3ce816742fc4bbddd526666f9641, type: 3}
-  m_Controller: {fileID: 9100000, guid: fa1f82296f558c545891dcf5c8c5c965, type: 2}
+  m_Controller: {fileID: 9100000, guid: 925464ced48417246861c21942fa7e58, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -395,6 +396,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &-1644950005277214132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2565361874747692803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a7f15a739940469a55864c03a8f293, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animations:
+  - _animationClip: {fileID: 1827226128182048838, guid: b4d7064586501c54c88c0fd01df671d7, type: 3}
+    _actionTime: 10
 --- !u!1 &2573504806874951914
 GameObject:
   m_ObjectHideFlags: 0
@@ -750,6 +766,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -882,8 +899,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4855975760748982604}
-  m_LocalRotation: {x: 0.000000029802315, y: 0.000000067055225, z: 0.00000005238689,
-    w: 1}
+  m_LocalRotation: {x: 0.000000029802315, y: 0.000000067055225, z: 0.00000005238689, w: 1}
   m_LocalPosition: {x: -0.2816282, y: -0.0059020994, z: 0.20839843}
   m_LocalScale: {x: 1, y: 1.0000001, z: 1}
   m_Children: []
@@ -1344,8 +1360,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7858117108166810179}
-  m_LocalRotation: {x: 0.000000037252903, y: -0.00000008195638, z: -0.00000003911554,
-    w: 1}
+  m_LocalRotation: {x: 0.000000037252903, y: -0.00000008195638, z: -0.00000003911554, w: 1}
   m_LocalPosition: {x: -0.28162804, y: -0.005902176, z: -0.20839843}
   m_LocalScale: {x: 1.0000001, y: 0.9999999, z: 1.0000001}
   m_Children: []

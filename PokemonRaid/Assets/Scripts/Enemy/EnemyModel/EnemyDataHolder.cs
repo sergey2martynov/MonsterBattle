@@ -5,30 +5,15 @@ namespace Enemy.EnemyModel
 {
     public class EnemyDataHolder
     {
-        private List<BaseEnemyData> _enemiesData = new List<BaseEnemyData>();
-        private int _coinsRewardPerEnemy;
-        private int _totalCoinsReward;
+        private readonly List<BaseEnemyData> _enemiesData = new List<BaseEnemyData>();
+        private float _coinsRewardPerEnemy;
         private int _countKilledEnemy;
 
         public int CountKilledEnemy => _countKilledEnemy;
 
-        public int CoinsRewardPerEnemy
+        public float CoinsRewardPerEnemy
         {
             get => _coinsRewardPerEnemy;
-            set
-            {
-                if (value <= 0)
-                {
-                    throw new ArgumentException("Reward cannot be equal or less than zero");
-                }
-
-                _coinsRewardPerEnemy = value;
-            }
-        }
-
-        public int TotalCoinsReward
-        {
-            get => _totalCoinsReward;
             set
             {
                 if (value <= 0)
@@ -63,7 +48,7 @@ namespace Enemy.EnemyModel
 
         private void OnEnemyDied()
         {
-            EnemyDefeated?.Invoke(_coinsRewardPerEnemy);
+            //EnemyDefeated?.Invoke(_coinsRewardPerEnemy);
         }
     }
 }

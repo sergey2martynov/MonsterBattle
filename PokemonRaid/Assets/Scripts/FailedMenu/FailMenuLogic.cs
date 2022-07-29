@@ -1,3 +1,4 @@
+using System.Globalization;
 using Enemy.EnemyModel;
 using Player;
 using SaveLoad;
@@ -29,7 +30,8 @@ namespace FailedMenu
         private void ShowMenu()
         {
             _failMenuView.Show();
-            _failMenuView.CoinsText.text = (_enemyDataHolder.CoinsRewardPerEnemy * _enemyDataHolder.CountKilledEnemy).ToString();
+            _failMenuView.CoinsText.text = ((int) (_enemyDataHolder.CoinsRewardPerEnemy * _enemyDataHolder.CountKilledEnemy)).ToString(CultureInfo.InvariantCulture);
+            _playerData.Coins += (int) (_enemyDataHolder.CoinsRewardPerEnemy * _enemyDataHolder.CountKilledEnemy);
         }
 
         private void Restart()

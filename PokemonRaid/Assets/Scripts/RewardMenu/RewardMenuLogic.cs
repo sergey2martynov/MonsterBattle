@@ -3,6 +3,7 @@ using Enemy.EnemyModel;
 using Player;
 using SaveLoad;
 using StaticData;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
 namespace RewardMenu
@@ -43,9 +44,9 @@ namespace RewardMenu
         private void ShowRewardMenu()
         {
             _rewardMenuView.Show();
-            _rewardMenuView.SetCoinsAmount(_levelDataHolder.GetLevelData(_playerData.Level - 1).TotalCoinsReward);
-            _playerData.Coins += _levelDataHolder.GetLevelData(_playerData.Level - 1).TotalCoinsReward -
-                                 _enemyDataHolder.CoinsRewardPerEnemy * _enemyDataHolder.CountKilledEnemy;
+            var levelData = _levelDataHolder.GetLevelData(_playerData.Level - 1);
+            _rewardMenuView.SetCoinsAmount(levelData.TotalCoinsReward);
+            _playerData.Coins += levelData.TotalCoinsReward;
 
             foreach (var levelUpgrade in _upgradeLevels.ListUpgradeLevels)
             {

@@ -367,8 +367,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3073696915495393113}
-  m_LocalRotation: {x: 0.000000078848636, y: -0.000000015354752, z: -0.009098066,
-    w: 0.99995863}
+  m_LocalRotation: {x: 0.000000078848636, y: -0.000000015354752, z: -0.009098066, w: 0.99995863}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 0.99999976, y: 0.9999999, z: 0.9999998}
   m_Children:
@@ -481,6 +480,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4333232840991810272}
   - component: {fileID: 7692870113143453850}
+  - component: {fileID: 1735584195274881371}
   m_Layer: 0
   m_Name: Scorpion
   m_TagString: Untagged
@@ -519,7 +519,7 @@ Animator:
   m_GameObject: {fileID: 3992842270661408858}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: f167c3addd65c1c4f9e6a23af2beaf8c, type: 3}
-  m_Controller: {fileID: 9100000, guid: c5ddacd0165a158449df1e86092ea69e, type: 2}
+  m_Controller: {fileID: 9100000, guid: 95dc732411424b04c9a362a9909b8f1b, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -528,6 +528,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1735584195274881371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3992842270661408858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a7f15a739940469a55864c03a8f293, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animations:
+  - _animationClip: {fileID: 1827226128182048838, guid: fa04696b0828c18478d2b8ff0a442f8b, type: 3}
+    _actionTime: 10
 --- !u!1 &4158295569084490724
 GameObject:
   m_ObjectHideFlags: 0
@@ -574,6 +589,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -942,8 +958,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6512235685446770776}
-  m_LocalRotation: {x: -0.0000000038929073, y: -0.000000026553225, z: -0.31633994,
-    w: 0.9486459}
+  m_LocalRotation: {x: -0.0000000038929073, y: -0.000000026553225, z: -0.31633994, w: 0.9486459}
   m_LocalPosition: {x: -0.09328544, y: -0.000000019073486, z: 0}
   m_LocalScale: {x: 0.99999994, y: 1, z: 0.9999999}
   m_Children:
