@@ -122,6 +122,11 @@ namespace Pokemon
         
         protected virtual async Task Attack(Collider[] colliders)
         {
+            if (!colliders[0].TryGetComponent<TEnemyView>(out var groundEnemy))
+            {
+                return;
+            }
+            
             ShouldAttack = true;
             var attackTime = Time.time + _attackAnimation.ActionTime / _attackAnimation.FrameRate;
             _view.Animator.SetBool(_attack, true);
@@ -138,7 +143,10 @@ namespace Pokemon
 
             foreach (var collider in colliders.Where(enemy => enemy != null))
             {
-                collider.GetComponent<TEnemyView>().TakeDamage(_data.Damage, _view.PokemonType);
+                if (collider.TryGetComponent<TEnemyView>(out var enemy))
+                {
+                    enemy.TakeDamage(_data.Damage, _view.PokemonType);
+                }
             }
             
             var delay = (int) (_attackAnimation.Duration - _attackAnimation.ActionTime / _attackAnimation.FrameRate) * 1000;
@@ -148,35 +156,6 @@ namespace Pokemon
             _data.AttackTime = Time.time + _data.AttackSpeed;
             Array.Clear(_collidersInRange, 0, _collidersInRange.Length);
         }
-
-        // protected virtual async Task Attack(List<TEnemyView> enemies)
-        // {
-        //     ShouldAttack = true;
-        //     var attackTime = Time.time + _attackAnimation.ActionTime / _attackAnimation.FrameRate;
-        //     _view.Animator.SetBool(_attack, true);
-        //
-        //     while (Time.time < attackTime)
-        //     {
-        //         if (_collidersInRange[0] != null)
-        //         {
-        //             RotateAt((_collidersInRange[0].transform.position - _view.Transform.position).normalized);
-        //         }
-        //         
-        //         await Task.Yield();
-        //     }
-        //
-        //     foreach (var enemy in enemies.Where(enemy => enemy != null))
-        //     {
-        //         enemy.TakeDamage(_data.Damage, _view.PokemonType);
-        //         Debug.Log(enemy);
-        //     }
-        //     
-        //     var delay = (int) (_attackAnimation.Duration - _attackAnimation.ActionTime / _attackAnimation.FrameRate) * 1000;
-        //     await Task.Delay(delay);
-        //     _view.Animator.SetBool(_attack, false);
-        //     ShouldAttack = false;
-        //     _data.AttackTime = Time.time + _data.AttackSpeed;
-        // }
 
         protected void OnDamageTaken(int damage)
         {

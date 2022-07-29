@@ -30,7 +30,7 @@ namespace Enemy.Bosses.BossStates
         {
             var delayTime = 2 * 1000;
             await Task.Delay(delayTime);
-            var collidersAmount = Physics.OverlapSphereNonAlloc(_view.Transform.position, 100f,
+            Physics.OverlapSphereNonAlloc(_view.Transform.position, 100f,
                 _target, _view.PlayerLayer);
             _target[0].GetComponent<PlayerView>().LevelFinish();
             _logic.Dispose();

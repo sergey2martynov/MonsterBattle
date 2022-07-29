@@ -49,9 +49,9 @@ MonoBehaviour:
     - _enemyPrefabs:
       - {fileID: 8393676187952632429, guid: 374eff02736577f4fb35c38c83abf581, type: 3}
       _positions:
-      - {x: -2, y: 0.41, z: 40}
-      - {x: 0, y: 0.41, z: 40}
-      - {x: 2, y: 0.41, z: 40}
+      - {x: -2, y: 0.41, z: 55}
+      - {x: 0, y: 0.41, z: 55}
+      - {x: 2, y: 0.41, z: 55}
     _totalCoinsReward: 12
     _environment: {fileID: 2640813938487052669, guid: c88422246cbdbc14a8347c5bf4d65b16, type: 3}
   - _level: 3
