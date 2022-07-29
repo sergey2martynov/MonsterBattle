@@ -250,6 +250,8 @@ MonoBehaviour:
   _animations:
   - _animationClip: {fileID: 7400000, guid: 920d5b8d3ffdeb544a5225bba51927e0, type: 3}
     _actionTime: 0
+  - _animationClip: {fileID: 7400000, guid: 6e51d1cae1f1b3843ad4f85940584bb9, type: 3}
+    _actionTime: 10
 --- !u!1 &642005603850278555
 GameObject:
   m_ObjectHideFlags: 0

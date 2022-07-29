@@ -30,9 +30,9 @@ namespace Pokemon
         //protected RaycastHit[] _hit = new RaycastHit[1];
         protected RaycastHit[] _hit = new RaycastHit[2];
         protected CancellationTokenSource _source;
-        private readonly int _attack = Animator.StringToHash("Attack");
+        protected readonly int _attack = Animator.StringToHash("Attack");
 
-        public bool ShouldAttack { get; private set; }
+        public bool ShouldAttack { get; protected set; }
 
         public virtual void Initialize(TView view, PokemonDataBase data, PokemonHolderModel model,
             UpdateHandler updateHandler)
@@ -118,26 +118,6 @@ namespace Pokemon
             }
 
             await Attack(_collidersInRange);
-
-            // for (var i = 0; i < collidersAmount; i++)
-            // {
-            //     if (_collidersInRange[i].TryGetComponent<TEnemyView>(out var enemy))
-            //     {
-            //         _enemies.Add(enemy);
-            //     }
-            // }
-            //
-            // if (ShouldAttack)
-            // {
-            //     return;
-            // }
-            //
-            // if (_enemies.Count > 0 && !ShouldAttack)
-            // {
-            //     await Attack(_enemies);
-            // }
-            //
-            // _enemies.Clear();
         }
         
         protected virtual async Task Attack(Collider[] colliders)
@@ -159,7 +139,6 @@ namespace Pokemon
             foreach (var collider in colliders.Where(enemy => enemy != null))
             {
                 collider.GetComponent<TEnemyView>().TakeDamage(_data.Damage, _view.PokemonType);
-                Debug.Log(collider);
             }
             
             var delay = (int) (_attackAnimation.Duration - _attackAnimation.ActionTime / _attackAnimation.FrameRate) * 1000;

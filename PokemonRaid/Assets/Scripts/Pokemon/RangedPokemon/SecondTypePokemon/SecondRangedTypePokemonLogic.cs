@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Enemy;
@@ -11,40 +12,71 @@ namespace Pokemon.RangedPokemon.SecondTypePokemon
 {
     public class SecondRangedTypePokemonLogic : PokemonLogicBase<SecondRangedTypePokemonView, BaseEnemyView>
     {
-        protected override void CheckForEnemies()
+        // protected override void CheckForEnemies()
+        // {
+        //     _attackCount = 0;
+        //     var collidersAmount = Physics.OverlapSphereNonAlloc(_view.Transform.position, _data.AttackRange,
+        //         _collidersInRange, _view.EnemyLayer);
+        //
+        //     if (Time.time < _data.AttackTime || collidersAmount == 0)
+        //     {
+        //         return;
+        //     }
+        //
+        //     for (var i = 0; i < collidersAmount; i++)
+        //     {
+        //         if (_collidersInRange[i].TryGetComponent<BaseEnemyView>(out var enemy))
+        //         {
+        //             var projectileViewBase =
+        //                 ProjectileFactory.CreateInstance(_view.transform.position, _view.ProjectilePrefab);
+        //
+        //             StartMovingProjectile(projectileViewBase, enemy);
+        //             _attackCount++;
+        //         }
+        //     }
+        //
+        //     for (var i = 0; i < _collidersInRange.Length; i++)
+        //     {
+        //         Array.Clear(_collidersInRange, i, _collidersInRange.Length);
+        //     }
+        //
+        //
+        //     if (_attackCount == 0)
+        //     {
+        //         return;
+        //     }
+        //
+        //     _data.AttackTime = Time.time + _data.AttackSpeed;
+        // }
+
+        protected override async Task Attack(Collider[] colliders)
         {
-            _attackCount = 0;
-            var collidersAmount = Physics.OverlapSphereNonAlloc(_view.Transform.position, _data.AttackRange,
-                _collidersInRange, _view.EnemyLayer);
+            ShouldAttack = true;
+            var attackTime = Time.time + _attackAnimation.ActionTime / _attackAnimation.FrameRate;
+            _view.Animator.SetBool(_attack, true);
 
-            if (Time.time < _data.AttackTime || collidersAmount == 0)
+            while (Time.time < attackTime)
             {
-                return;
-            }
-
-            for (var i = 0; i < collidersAmount; i++)
-            {
-                if (_collidersInRange[i].TryGetComponent<BaseEnemyView>(out var enemy))
+                if (_collidersInRange[0] != null)
                 {
-                    var projectileViewBase =
-                        ProjectileFactory.CreateInstance(_view.transform.position, _view.ProjectilePrefab);
-
-                    StartMovingProjectile(projectileViewBase, enemy);
-                    _attackCount++;
+                    RotateAt((_collidersInRange[0].transform.position - _view.Transform.position).normalized);
                 }
+                
+                await Task.Yield();
             }
 
-            for (var i = 0; i < _collidersInRange.Length; i++)
+            foreach (var collider in colliders.Where(enemy => enemy != null))
             {
-                Array.Clear(_collidersInRange, i, _collidersInRange.Length);
+                var enemy = collider.GetComponent<BaseEnemyView>();
+                var projectile = ProjectileFactory.CreateInstance(_view.Transform.position + new Vector3(0f, 0.8f, 0f),
+                    _view.ProjectilePrefab);
+                StartMovingProjectile(projectile, enemy);
             }
-
-
-            if (_attackCount == 0)
-            {
-                return;
-            }
-
+            
+            var delay = (int) (_attackAnimation.Duration - _attackAnimation.ActionTime / _attackAnimation.FrameRate) * 1000;
+            await Task.Delay(delay);
+            _view.Animator.SetBool(_attack, false);
+            ShouldAttack = false;
             _data.AttackTime = Time.time + _data.AttackSpeed;
         }
 
@@ -64,8 +96,8 @@ namespace Pokemon.RangedPokemon.SecondTypePokemon
             while (Time.time <= startTime + 0.5f)
             {
                 RotateAt(enemyView.transform, projectileView.transform, 2 / Time.deltaTime);
-                projectileView.transform.position = Vector3.Lerp(initialPosition, enemyView.transform.position,
-                    (Time.time - startTime) / 0.5f);
+                projectileView.transform.position = Vector3.Lerp(initialPosition, enemyView.transform.position
+                    + new Vector3(0f, 0.5f, 0f), (Time.time - startTime) / 0.5f);
 
                 await Task.Yield();
             }
