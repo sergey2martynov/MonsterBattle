@@ -156,6 +156,7 @@ MonoBehaviour:
   _collider: {fileID: 6042295403039558595}
   _mergeParticle: {fileID: 4145193862778476504}
   _spawnParticle: {fileID: 5479912862547755251}
+  _pokemonType: 0
   _projectilePrefab: {fileID: 3376967517250490170, guid: 6136d3c7cd1e7a64fa1478f8855c5d0e, type: 3}
 --- !u!136 &6042295403039558595
 CapsuleCollider:
@@ -766,15 +767,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4003190430853332686, guid: d306a7847cca5e94285011958153e820, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -19.22
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4003190430853332686, guid: d306a7847cca5e94285011958153e820, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.44
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4003190430853332686, guid: d306a7847cca5e94285011958153e820, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.27
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4003190430853332686, guid: d306a7847cca5e94285011958153e820, type: 3}
       propertyPath: m_LocalRotation.w
