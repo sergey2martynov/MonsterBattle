@@ -87,7 +87,8 @@ public class ProjectStarter : MonoBehaviour
         if (loadedSuccessfully && _dataLoading)
         {
             pokemonHolderModel.Initialize(data.PokemonData);
-            playerData.Initialize(_playerStats, data.PlayerLevel, data.CoinsAmount, pokemonHolderModel, data.LevelCount);
+            playerData.Initialize(_playerStats, data.PlayerLevel, data.CoinsAmount, pokemonHolderModel, data.LevelCount,
+                data.BuyCounter);
             pokemonAvailabilityLogic.Initialize(data.MeleePokemonAvailabilities, data.RangePokemonAvailabilities,
                 cardsPanelLogic);
             Debug.Log("Loaded successfully");
@@ -112,7 +113,7 @@ public class ProjectStarter : MonoBehaviour
         var shopLogic = new ShopLogic(_pokemonSpawner, _shopView, shopData, playerData, pokemonHolderModel,
             playerLogic);
         shopLogic.Initialize();
-        shopData.Initialize(_shopStats, playerData.Level);
+        shopData.Initialize(_shopStats, playerData.BuyCounter);
 
         var levelBuilderBehaviour = new LevelBuilderBehaviour(_levelDataHolder, playerData, _updateHandler,
             _enemyParentObject, _enemyStats, enemyDataHolder);

@@ -55,6 +55,8 @@ namespace Shop
             
             SetCoins(-_shopData.PokemonCost);
             _shopView.SetTextCoins(_playerData.Coins);
+            _playerData.IncreaseBuyCounter();
+            _shopData.IncreasePokemonCost(_playerData.BuyCounter);
         }
 
         private void OnStartButtonPressed()

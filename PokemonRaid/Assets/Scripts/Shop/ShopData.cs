@@ -6,6 +6,7 @@ namespace Shop
     public class ShopData
     {
         private int _pokemonCost;
+        private int _initialCost;
 
         public int PokemonCost
         {
@@ -25,9 +26,15 @@ namespace Shop
 
         public event Action<int> PokemonCostChanged;
 
-        public void Initialize(ShopStats shopStats, int level)
+        public void Initialize(ShopStats shopStats, int buyCounter)
         {
-            PokemonCost = (int) (shopStats.PokemonCost + shopStats.PokemonCost * 0.15f * (level - 1));
+            _initialCost = shopStats.PokemonCost;
+            PokemonCost = (int) (shopStats.PokemonCost + shopStats.PokemonCost * 0.15f * buyCounter);
+        }
+
+        public void IncreasePokemonCost(int buyCounter)
+        {
+            PokemonCost = (int) (_initialCost + _initialCost * 0.15f * buyCounter);
         }
     }
 }

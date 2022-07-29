@@ -17,10 +17,12 @@ namespace Player
         private int _maxLevel = 100;
         private int _coins;
         private int _levelCount;
+        private int _buyCounter;
         public CancellationTokenSource Source { get; protected set; }
         
         public Vector3 MoveDirection { get; set; }
         public Vector3 LookDirection { get; set; }
+        public int BuyCounter => _buyCounter;
 
 
         public int LevelCount
@@ -132,13 +134,15 @@ namespace Player
             SetStats(stats);
         }
 
-        public void Initialize(PlayerStats stats, int level, int coinsAmount, PokemonHolderModel pokemonHolderModel, int levelCount)
+        public void Initialize(PlayerStats stats, int level, int coinsAmount, PokemonHolderModel pokemonHolderModel,
+            int levelCount, int buyCounter)
         {
             _pokemonHolderModel = pokemonHolderModel;
             SetStats(stats);
             Level = level;
             Coins = coinsAmount;
             _levelCount = levelCount;
+            _buyCounter = buyCounter;
         }
 
         public CancellationTokenSource CreateCancellationTokenSource()
@@ -173,6 +177,11 @@ namespace Player
         public void IncreaseLevelCount()
         {
             _levelCount++;
+        }
+
+        public void IncreaseBuyCounter()
+        {
+            _buyCounter++;
         }
     }
 }
