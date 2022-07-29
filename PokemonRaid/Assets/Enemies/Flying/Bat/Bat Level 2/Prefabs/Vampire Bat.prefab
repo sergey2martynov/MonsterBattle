@@ -690,6 +690,8 @@ SkinnedMeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 3
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -701,6 +703,7 @@ SkinnedMeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -784,6 +787,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6328325485107800004}
   - component: {fileID: 6328325485100009508}
+  - component: {fileID: 5287913545022150964}
   m_Layer: 0
   m_Name: Vampire Bat
   m_TagString: Untagged
@@ -832,7 +836,7 @@ Animator:
   m_GameObject: {fileID: 6328325485107444708}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 8e45cb7c4f2b89c4ab6a1c6c7ee5a597, type: 3}
-  m_Controller: {fileID: 9100000, guid: 29047b97f47a6e349ba370ded507c423, type: 2}
+  m_Controller: {fileID: 9100000, guid: 142210d5d4d01774c9657c826c5f5533, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -841,6 +845,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &5287913545022150964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6328325485107444708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a7f15a739940469a55864c03a8f293, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animations:
+  - _animationClip: {fileID: 7400000, guid: bbafdbae6006ae643865d67c1f2bbcea, type: 3}
+    _actionTime: 10
 --- !u!1 &6328325485107444712
 GameObject:
   m_ObjectHideFlags: 0

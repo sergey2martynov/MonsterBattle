@@ -790,6 +790,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3617569571484532637}
   - component: {fileID: 3617569571475427453}
+  - component: {fileID: -7210510892584545897}
   m_Layer: 0
   m_Name: Sting
   m_TagString: Untagged
@@ -849,7 +850,7 @@ Animator:
   m_GameObject: {fileID: 3617569571484951485}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 2f8efb2beebb08545b82fea5dd3adb70, type: 3}
-  m_Controller: {fileID: 9100000, guid: 0ad55077e9ab5984f9372adf28e7fecd, type: 2}
+  m_Controller: {fileID: 9100000, guid: d480880d9ff95b84e94699a71d815041, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -858,6 +859,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &-7210510892584545897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3617569571484951485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a7f15a739940469a55864c03a8f293, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animations:
+  - _animationClip: {fileID: 7400000, guid: bb2ad69765928044da0885e3a264cd07, type: 3}
+    _actionTime: 25
 --- !u!1 &3617569571484951487
 GameObject:
   m_ObjectHideFlags: 0

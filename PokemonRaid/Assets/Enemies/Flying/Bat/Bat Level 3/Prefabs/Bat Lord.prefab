@@ -993,6 +993,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2156180079196142817}
   - component: {fileID: 2156180079205716737}
+  - component: {fileID: 6888274872695765539}
   m_Layer: 0
   m_Name: Bat Lord
   m_TagString: Untagged
@@ -1060,7 +1061,7 @@ Animator:
   m_GameObject: {fileID: 2156180079196364993}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 9874b1bd035eca640a4d5b787a1e4fcc, type: 3}
-  m_Controller: {fileID: 9100000, guid: 2853a1c97bd342646b3fa83f5c05eab9, type: 2}
+  m_Controller: {fileID: 9100000, guid: 8bb1a2b8ce29c2e4780c1985ae74e1b1, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1069,6 +1070,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &6888274872695765539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2156180079196364993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a7f15a739940469a55864c03a8f293, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animations:
+  - _animationClip: {fileID: 7400000, guid: 909a27b4597cae745bc62169ffced200, type: 3}
+    _actionTime: 10
 --- !u!1 &2156180079196364995
 GameObject:
   m_ObjectHideFlags: 0
@@ -1114,6 +1130,8 @@ SkinnedMeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 3
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1125,6 +1143,7 @@ SkinnedMeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -2170,8 +2189,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2156180079196365129}
-  m_LocalRotation: {x: -0.0000000038883385, y: -0.0000000072383064, z: -0.009094093,
-    w: 0.99995863}
+  m_LocalRotation: {x: -0.0000000038883385, y: -0.0000000072383064, z: -0.009094093, w: 0.99995863}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 1}
   m_Children:
@@ -2202,8 +2220,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2156180079196365131}
-  m_LocalRotation: {x: 0.0000000038308055, y: -0.000000021321634, z: -0.03861096,
-    w: 0.99925435}
+  m_LocalRotation: {x: 0.0000000038308055, y: -0.000000021321634, z: -0.03861096, w: 0.99925435}
   m_LocalPosition: {x: -0.11667709, y: 0.000000009536743, z: 5.684342e-16}
   m_LocalScale: {x: 1.0000001, y: 1.0000002, z: 1}
   m_Children:
@@ -2909,8 +2926,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2156180079196365177}
-  m_LocalRotation: {x: 0.0000000021514366, y: -0.00000009010216, z: -0.016445171,
-    w: 0.9998648}
+  m_LocalRotation: {x: 0.0000000021514366, y: -0.00000009010216, z: -0.016445171, w: 0.9998648}
   m_LocalPosition: {x: -0.15425208, y: 0.000000009536743, z: 9.094947e-15}
   m_LocalScale: {x: 1.0000001, y: 1.0000002, z: 1.0000001}
   m_Children:

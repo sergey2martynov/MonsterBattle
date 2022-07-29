@@ -78,6 +78,7 @@ namespace Pokemon.RangedPokemon.SecondTypePokemon
             _view.Animator.SetBool(_attack, false);
             ShouldAttack = false;
             _data.AttackTime = Time.time + _data.AttackSpeed;
+            Array.Clear(_collidersInRange, 0, _collidersInRange.Length);
         }
 
         private async void StartMovingProjectile(ProjectileViewBase projectileView, BaseEnemyView enemyView)

@@ -146,6 +146,7 @@ namespace Pokemon
             _view.Animator.SetBool(_attack, false);
             ShouldAttack = false;
             _data.AttackTime = Time.time + _data.AttackSpeed;
+            Array.Clear(_collidersInRange, 0, _collidersInRange.Length);
         }
 
         // protected virtual async Task Attack(List<TEnemyView> enemies)

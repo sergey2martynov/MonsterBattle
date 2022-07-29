@@ -21,7 +21,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 16fd6275dfb6fe94a831475abe62e36a, type: 3}
+  m_Motion: {fileID: 7400000, guid: f19acf2cbc0356d4cab2d26c2c703796, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -48,7 +48,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: bbce3f151dee49c4facb4ebd346f3da2, type: 3}
+  m_Motion: {fileID: 7400000, guid: 16ac2f3aa0c152a4db788d70a6465f40, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -142,7 +142,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: eb5a47e69bddb284b8f497cf9119d8cc, type: 3}
+  m_Motion: {fileID: 7400000, guid: 4ff8d78599fe1634691d79a8bad7a65a, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -171,7 +171,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Bee Animator Controller Level 1
+  m_Name: Bee Animator Controller Level 3
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: Idle
@@ -232,7 +232,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 15b8977f9c35191488eeed5535d63319, type: 3}
+  m_Motion: {fileID: 7400000, guid: bb2ad69765928044da0885e3a264cd07, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

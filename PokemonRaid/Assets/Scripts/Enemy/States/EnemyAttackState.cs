@@ -1,4 +1,5 @@
-﻿using Pokemon;
+﻿using System;
+using Pokemon;
 using Pokemon.Animations;
 using UnityEngine;
 
@@ -50,7 +51,10 @@ namespace Enemy.States
             
             foreach (var target in _targets)
             {
-                target.GetComponent<PokemonViewBase>().TakeDamage(_data.Damage);
+                if (target != null)
+                {
+                    target.GetComponent<PokemonViewBase>().TakeDamage(_data.Damage);
+                }
             }
 
             _attacked = true;
@@ -60,6 +64,7 @@ namespace Enemy.States
         {
             base.OnExit();
             _view.Animator.SetBool(_attack, false);
+            Array.Clear(_targets, 0, _targets.Length);
         }
 
         protected override void SetNextState()

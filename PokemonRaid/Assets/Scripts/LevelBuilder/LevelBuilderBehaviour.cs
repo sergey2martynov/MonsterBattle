@@ -1,4 +1,3 @@
-using System;
 using Enemy.EnemyModel;
 using Factories;
 using Player;
@@ -59,14 +58,30 @@ namespace LevelBuilder
                 {
                     var randomIndex = Random.Range(0, spawnPosition.EnemyPrefabs.Count);
                     var enemyLevel = spawnPosition.EnemyPrefabs[randomIndex].Level;
+
+                    // if (spawnPosition.EnemyPrefabs[randomIndex].GetType() == typeof(BossEnemyView))
+                    // {
+                    //     var data = _enemyFactory.CreateInstance(spawnPosition.EnemyPrefabs[randomIndex], position,
+                    //         _bossStats, _enemyParentObject, enemyLevel, out var baseView);
+                    //     _enemyDataHolder.AddEnemyData(data);
+                    // }
+                    // else
+                    // {
+                    //     var data = _enemyFactory.CreateInstance(spawnPosition.EnemyPrefabs[randomIndex], position,
+                    //         _enemyStats, _enemyParentObject, enemyLevel, out var baseView);
+                    //     _enemyDataHolder.AddEnemyData(data);
+                    // }
+                    //
                     var data = _enemyFactory.CreateInstance(spawnPosition.EnemyPrefabs[randomIndex], position,
                         _enemyStats, _enemyParentObject, enemyLevel, out var baseView);
+                    _enemyDataHolder.AddEnemyData(data);
+                    
                     _enemyDataHolder.AddEnemyData(data);
                     totalEnemyCount++;
                 }
             }
 
-            Debug.Log(totalEnemyCount + " " + levelData.TotalCoinsReward);
+            //Debug.Log(totalEnemyCount + " " + levelData.TotalCoinsReward);
             _enemyDataHolder.CoinsRewardPerEnemy = levelData.TotalCoinsReward / (float) totalEnemyCount;
         }
     }

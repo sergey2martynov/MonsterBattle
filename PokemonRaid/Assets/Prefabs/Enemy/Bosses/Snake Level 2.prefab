@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2306504435761336296}
-  - component: {fileID: 8738063155933492773}
   - component: {fileID: 1503819944863798368}
-  m_Layer: 0
+  - component: {fileID: 4028321840565598833}
+  m_Layer: 6
   m_Name: Snake Level 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35,27 +35,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!114 &8738063155933492773
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1555669998405633439}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9abc0ee7779a436cbb221327d1450c9a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _level: 3
-  _animator: {fileID: 8036324982049222679}
-  _pokemonLayer:
-    serializedVersion: 2
-    m_Bits: 8
-  _eventTranslator: {fileID: 3589929017974442702}
-  _collider: {fileID: 1503819944863798368}
-  _meleeDamageParticle: {fileID: 2919187164486262381}
-  _rangeDamageParticle: {fileID: 1605745620569504621}
 --- !u!65 &1503819944863798368
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -67,8 +46,32 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.34, y: 2, z: 4.59}
+  m_Size: {x: 6.87, y: 2, z: 15.01}
   m_Center: {x: 0, y: 1, z: 2}
+--- !u!114 &4028321840565598833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1555669998405633439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37bb7f7600be49c9854ab66e0d2a3584, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _level: 1
+  _animator: {fileID: 8036324982049222679}
+  _pokemonLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  _eventTranslator: {fileID: 3589929017974442702}
+  _collider: {fileID: 1503819944863798368}
+  _meleeDamageParticle: {fileID: 2919187164486262381}
+  _rangeDamageParticle: {fileID: 1605745620569504621}
+  _playerLayer:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!1001 &4528065698918966558
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -240,7 +243,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 902391672072293958, guid: 54e0af8893bc6ae4b9754e3da71ed78c, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 902391672072293958, guid: 54e0af8893bc6ae4b9754e3da71ed78c, type: 3}
       propertyPath: m_LocalRotation.x
@@ -248,7 +251,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 902391672072293958, guid: 54e0af8893bc6ae4b9754e3da71ed78c, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 902391672072293958, guid: 54e0af8893bc6ae4b9754e3da71ed78c, type: 3}
       propertyPath: m_LocalRotation.z
@@ -260,7 +263,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 902391672072293958, guid: 54e0af8893bc6ae4b9754e3da71ed78c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -180
       objectReference: {fileID: 0}
     - target: {fileID: 902391672072293958, guid: 54e0af8893bc6ae4b9754e3da71ed78c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z

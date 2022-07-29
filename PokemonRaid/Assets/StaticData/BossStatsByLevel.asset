@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5e7ee4281304fd3bf64dc3dca6d8d20, type: 3}
+  m_Name: BossStatsByLevel
+  m_EditorClassIdentifier: 
+  _statsByType: []
+  _bossStats:
+  - _moveSpeed: 0
+    _attackSpeed: 0
+    _maxHealth: 0
+    _damage: 0
+    _level: 0
+    _maxLevel: 0
+    _maxTargetsAmount: 0
+    _attackRange: 0
+  - _moveSpeed: 0
+    _attackSpeed: 0
+    _maxHealth: 0
+    _damage: 0
+    _level: 0
+    _maxLevel: 0
+    _maxTargetsAmount: 0
+    _attackRange: 0
+  - _moveSpeed: 0
+    _attackSpeed: 0
+    _maxHealth: 0
+    _damage: 0
+    _level: 0
+    _maxLevel: 0
+    _maxTargetsAmount: 0
+    _attackRange: 0

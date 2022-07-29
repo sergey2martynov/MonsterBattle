@@ -20,10 +20,18 @@ namespace Enemy.Bosses
             _data.EnemyDied += OnEnemyDied;
             _statesToType = new Dictionary<Type, BaseEnemyState<BossEnemyView>>
             {
-                {typeof(BossIdleState), new BossIdleState(_view, this, _data)}
+                {typeof(BossIdleState), new BossIdleState(_view, this, _data)},
+                {typeof(BossAttackState), new BossAttackState(_view, this, _data)},
+                {typeof(BossDieState), new BossDieState(_view, this, _data)}
             };
             _currentState = _statesToType[typeof(BossIdleState)];
             _currentState.OnEnter();
+        }
+
+        protected override void OnEnemyDied(BaseEnemyData data)
+        {
+            SwitchState<BossDieState>();
+            _view.SetViewActive(false);
         }
     }
 }

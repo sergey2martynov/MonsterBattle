@@ -100,14 +100,14 @@ namespace Enemy
             _data.Health -= damage;
         }
 
-        protected void OnEnemyDied(BaseEnemyData data)
+        protected virtual void OnEnemyDied(BaseEnemyData data)
         {
             SwitchState<EnemyDieState<TView>>();
             _view.SetViewActive(false);
             Dispose();
         }
 
-        protected virtual void Dispose()
+        public virtual void Dispose()
         {
             _updateHandler.UpdateTicked -= Update;
             _data.DisposeSource();

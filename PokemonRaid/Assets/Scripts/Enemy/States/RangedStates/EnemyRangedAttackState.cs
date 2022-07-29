@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Enemy.GroundEnemy.RangedEnemy;
@@ -7,6 +8,7 @@ using Pokemon;
 using Pokemon.Animations;
 using Projectile;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace Enemy.States.RangedStates
 {
@@ -87,6 +89,7 @@ namespace Enemy.States.RangedStates
             _view.Animator.SetBool(_attack, false);
             ShouldAttack = false;
             _data.AttackTime = Time.time + _data.AttackSpeed;
+            Array.Clear(_targets, 0, _targets.Length);
         }
 
         private async void StartMovingProjectile(ProjectileViewBase projectileView, PokemonViewBase pokemonView)

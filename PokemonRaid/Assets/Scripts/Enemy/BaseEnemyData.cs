@@ -142,7 +142,7 @@ namespace Enemy
         public event Action<int, int> HealthChanged; 
         public event Action<BaseEnemyData> EnemyDied;
 
-        public void Initialize(EnemyStatsByLevel stats)
+        public virtual void Initialize(EnemyStatsByLevel stats)
         {
             _stats = stats;
             SetStats(stats);
@@ -170,6 +170,7 @@ namespace Enemy
         {
             Source?.Cancel();
             Source?.Dispose();
+            Source = null;
         }
     }
 }
