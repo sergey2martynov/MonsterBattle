@@ -167,26 +167,26 @@ MonoBehaviour:
       - {fileID: 1627224506922606195, guid: e44a4da4c20d105408b4eb9b49766104, type: 3}
       - {fileID: 2351805535717559970, guid: b547d372b0ca7604ea47ae552cdd85bd, type: 3}
       _positions:
-      - {x: -4, y: 0, z: 30}
-      - {x: -2, y: 0, z: 30}
+      - {x: -4, y: 0.41, z: 30}
+      - {x: -2, y: 0.41, z: 30}
     - _enemyPrefabs:
       - {fileID: 4254136415593880790, guid: 356bd95dfa740e34aa7b368ea4ee121b, type: 3}
       - {fileID: 4254136415593880790, guid: 0ef14855461740242a0a378e57a9c3ac, type: 3}
       _positions:
-      - {x: -4, y: 0, z: 40}
-      - {x: -2, y: 0, z: 40}
+      - {x: -4, y: 0.41, z: 40}
+      - {x: -2, y: 0.41, z: 40}
     - _enemyPrefabs:
       - {fileID: 5903531611337837524, guid: 17bce9d0ce5f1c2439ef68fc34ae877b, type: 3}
       _positions:
-      - {x: -4, y: 0, z: 50}
-      - {x: -2, y: 0, z: 50}
-      - {x: 0, y: 0, z: 50}
+      - {x: -4, y: 0.41, z: 50}
+      - {x: -2, y: 0.41, z: 50}
+      - {x: 0, y: 0.41, z: 50}
     - _enemyPrefabs:
       - {fileID: 5903531611337837524, guid: f6df4a93120f1e54a8431612904a7e27, type: 3}
       _positions:
-      - {x: -4, y: 0, z: 65}
-      - {x: -2, y: 0, z: 65}
-      - {x: 0, y: 0, z: 65}
+      - {x: -4, y: 0.41, z: 65}
+      - {x: -2, y: 0.41, z: 65}
+      - {x: 0, y: 0.41, z: 65}
     _totalCoinsReward: 33
     _environment: {fileID: 1515952890826409518, guid: 92a8c057e6a206b47b595a72c55f7f9c, type: 3}
   - _level: 8
@@ -194,125 +194,144 @@ MonoBehaviour:
     - _enemyPrefabs:
       - {fileID: 1627224506922606195, guid: e44a4da4c20d105408b4eb9b49766104, type: 3}
       _positions:
-      - {x: -4, y: 0, z: 30}
-      - {x: -2, y: 0, z: 30}
+      - {x: -4, y: 0.41, z: 30}
+      - {x: -2, y: 0.41, z: 30}
     - _enemyPrefabs:
       - {fileID: 4254136415593880790, guid: 0ef14855461740242a0a378e57a9c3ac, type: 3}
       _positions:
-      - {x: -4, y: 0, z: 50}
-      - {x: -2, y: 0, z: 50}
+      - {x: -4, y: 0.41, z: 50}
+      - {x: -2, y: 0.41, z: 50}
     - _enemyPrefabs:
       - {fileID: 2351805535717559970, guid: b547d372b0ca7604ea47ae552cdd85bd, type: 3}
       _positions:
-      - {x: -4, y: 0, z: 60}
-      - {x: -2, y: 0, z: 60}
-      - {x: 0, y: 0, z: 60}
+      - {x: -4, y: 0.41, z: 60}
+      - {x: -2, y: 0.41, z: 60}
+      - {x: 0, y: 0.41, z: 60}
     - _enemyPrefabs:
       - {fileID: 5903531611337837524, guid: 684dafde7a18fb24dbe565dfaaa57cc7, type: 3}
       _positions:
-      - {x: -4, y: 0, z: 75}
-      - {x: -2, y: 0, z: 75}
-      - {x: 0, y: 0, z: 75}
+      - {x: -4, y: 0.41, z: 75}
+      - {x: -2, y: 0.41, z: 75}
+      - {x: 0, y: 0.41, z: 75}
     _totalCoinsReward: 40
     _environment: {fileID: 2640813938487052669, guid: c88422246cbdbc14a8347c5bf4d65b16, type: 3}
   - _level: 9
     _spawnPositions:
     - _enemyPrefabs:
-      - {fileID: 9183078253694199673, guid: 1e7dbad283bace0409cf0b65541694e8, type: 3}
+      - {fileID: 1627224506922606195, guid: 856b786491b786e429ac059bfffc9d51, type: 3}
       _positions:
-      - {x: -4, y: 0, z: 30}
-      - {x: -2, y: 0, z: 30}
+      - {x: -4, y: 0.41, z: 30}
+      - {x: -2, y: 0.41, z: 30}
     - _enemyPrefabs:
-      - {fileID: 9183078253694199673, guid: 1e7dbad283bace0409cf0b65541694e8, type: 3}
+      - {fileID: 7450976434109585910, guid: 2d3676956c76b7840a9ca64a767ee036, type: 3}
       _positions:
-      - {x: -4, y: 0, z: 50}
-      - {x: -2, y: 0, z: 50}
+      - {x: -4, y: 0.41, z: 50}
+      - {x: -2, y: 0.41, z: 50}
     - _enemyPrefabs:
-      - {fileID: 9183078253694199673, guid: 1e7dbad283bace0409cf0b65541694e8, type: 3}
+      - {fileID: 5903531611337837524, guid: 684dafde7a18fb24dbe565dfaaa57cc7, type: 3}
       _positions:
-      - {x: -4, y: 0, z: 50}
-      - {x: -2, y: 0, z: 50}
-      - {x: 0, y: 0, z: 50}
+      - {x: -4, y: 0.41, z: 70}
+      - {x: -2, y: 0.41, z: 70}
+      - {x: 0, y: 0.41, z: 70}
     _totalCoinsReward: 48
-    _environment: {fileID: 0}
-  - _level: 0
+    _environment: {fileID: 1869392084291384108, guid: 5c672fc37c79cf045aac19ffd278fe04, type: 3}
+  - _level: 10
     _spawnPositions:
     - _enemyPrefabs:
-      - {fileID: 9183078253694199673, guid: 1e7dbad283bace0409cf0b65541694e8, type: 3}
+      - {fileID: 4254136415593880790, guid: 0ef14855461740242a0a378e57a9c3ac, type: 3}
       _positions:
-      - {x: -4, y: 0, z: 30}
-      - {x: -2, y: 0, z: 30}
+      - {x: -4, y: 0.41, z: 30}
+      - {x: -2, y: 0.41, z: 30}
     - _enemyPrefabs:
-      - {fileID: 9183078253694199673, guid: 1e7dbad283bace0409cf0b65541694e8, type: 3}
+      - {fileID: 5903531611337837524, guid: 6b35ab20c14e16a4e8e0ba9d35486fd8, type: 3}
       _positions:
-      - {x: -4, y: 0, z: 50}
-      - {x: -2, y: 0, z: 50}
+      - {x: -4, y: 0.41, z: 50}
+      - {x: -2, y: 0.41, z: 50}
     - _enemyPrefabs:
-      - {fileID: 9183078253694199673, guid: 1e7dbad283bace0409cf0b65541694e8, type: 3}
+      - {fileID: 1627224506922606195, guid: 856b786491b786e429ac059bfffc9d51, type: 3}
       _positions:
-      - {x: -4, y: 0, z: 50}
-      - {x: -2, y: 0, z: 50}
-      - {x: 0, y: 0, z: 50}
+      - {x: -4, y: 0.41, z: 70}
+      - {x: -2, y: 0.41, z: 70}
+      - {x: 0, y: 0.41, z: 70}
+      - {x: 3, y: 0.41, z: 70}
     _totalCoinsReward: 58
     _environment: {fileID: 0}
-  - _level: 0
+  - _level: 11
     _spawnPositions:
     - _enemyPrefabs:
-      - {fileID: 9183078253694199673, guid: 1e7dbad283bace0409cf0b65541694e8, type: 3}
+      - {fileID: 1627224506922606195, guid: 856b786491b786e429ac059bfffc9d51, type: 3}
       _positions:
-      - {x: -4, y: 0, z: 30}
-      - {x: -2, y: 0, z: 30}
+      - {x: -4, y: 0.41, z: 30}
+      - {x: -2, y: 0.41, z: 30}
     - _enemyPrefabs:
-      - {fileID: 9183078253694199673, guid: 1e7dbad283bace0409cf0b65541694e8, type: 3}
+      - {fileID: 7450976434109585910, guid: 2d3676956c76b7840a9ca64a767ee036, type: 3}
+      - {fileID: 5903531611337837524, guid: 6b35ab20c14e16a4e8e0ba9d35486fd8, type: 3}
       _positions:
-      - {x: -4, y: 0, z: 50}
-      - {x: -2, y: 0, z: 50}
+      - {x: -4, y: 0.41, z: 50}
+      - {x: -2, y: 0.41, z: 50}
+      - {x: 3, y: 0.41, z: 50}
     - _enemyPrefabs:
-      - {fileID: 9183078253694199673, guid: 1e7dbad283bace0409cf0b65541694e8, type: 3}
+      - {fileID: 4254136415593880790, guid: 0ef14855461740242a0a378e57a9c3ac, type: 3}
+      - {fileID: 7450976434109585910, guid: 2d3676956c76b7840a9ca64a767ee036, type: 3}
       _positions:
-      - {x: -4, y: 0, z: 50}
-      - {x: -2, y: 0, z: 50}
-      - {x: 0, y: 0, z: 50}
+      - {x: -4, y: 0.41, z: 70}
+      - {x: -2, y: 0.41, z: 70}
+      - {x: 0, y: 0.41, z: 70}
+      - {x: 3, y: 0.41, z: 70}
     _totalCoinsReward: 70
     _environment: {fileID: 0}
-  - _level: 0
+  - _level: 12
     _spawnPositions:
     - _enemyPrefabs:
-      - {fileID: 9183078253694199673, guid: 1e7dbad283bace0409cf0b65541694e8, type: 3}
+      - {fileID: 5903531611337837524, guid: 684dafde7a18fb24dbe565dfaaa57cc7, type: 3}
+      - {fileID: 5903531611337837524, guid: 6b35ab20c14e16a4e8e0ba9d35486fd8, type: 3}
       _positions:
-      - {x: -4, y: 0, z: 30}
-      - {x: -2, y: 0, z: 30}
+      - {x: -4, y: 0.41, z: 30}
+      - {x: -2, y: 0.41, z: 30}
+      - {x: 2, y: 0.41, z: 30}
     - _enemyPrefabs:
-      - {fileID: 9183078253694199673, guid: 1e7dbad283bace0409cf0b65541694e8, type: 3}
+      - {fileID: 4254136415593880790, guid: 0ef14855461740242a0a378e57a9c3ac, type: 3}
       _positions:
-      - {x: -4, y: 0, z: 50}
-      - {x: -2, y: 0, z: 50}
+      - {x: -4, y: 0.41, z: 50}
+      - {x: -2, y: 0.41, z: 50}
+      - {x: 3, y: 0.41, z: 50}
     - _enemyPrefabs:
-      - {fileID: 9183078253694199673, guid: 1e7dbad283bace0409cf0b65541694e8, type: 3}
+      - {fileID: 1627224506922606195, guid: 856b786491b786e429ac059bfffc9d51, type: 3}
+      - {fileID: 7450976434109585910, guid: 2d3676956c76b7840a9ca64a767ee036, type: 3}
       _positions:
-      - {x: -4, y: 0, z: 50}
-      - {x: -2, y: 0, z: 50}
-      - {x: 0, y: 0, z: 50}
+      - {x: -4, y: 0.41, z: 70}
+      - {x: -2, y: 0.41, z: 70}
+      - {x: 0, y: 0.41, z: 70}
+      - {x: 3, y: 0.41, z: 70}
+    - _enemyPrefabs:
+      - {fileID: 4028321840565598833, guid: 4bb1f240064a3fa45bda2ac1436029ec, type: 3}
+      _positions:
+      - {x: 0, y: 0.41, z: 122}
     _totalCoinsReward: 84
     _environment: {fileID: 0}
-  - _level: 0
+  - _level: 13
     _spawnPositions:
     - _enemyPrefabs:
-      - {fileID: 9183078253694199673, guid: 1e7dbad283bace0409cf0b65541694e8, type: 3}
+      - {fileID: 4254136415593880790, guid: 0ef14855461740242a0a378e57a9c3ac, type: 3}
       _positions:
-      - {x: -4, y: 0, z: 30}
-      - {x: -2, y: 0, z: 30}
+      - {x: -4, y: 0.41, z: 30}
+      - {x: -2, y: 0.41, z: 30}
     - _enemyPrefabs:
-      - {fileID: 9183078253694199673, guid: 1e7dbad283bace0409cf0b65541694e8, type: 3}
+      - {fileID: 7450976434109585910, guid: 2d3676956c76b7840a9ca64a767ee036, type: 3}
+      - {fileID: 1627224506922606195, guid: 856b786491b786e429ac059bfffc9d51, type: 3}
       _positions:
-      - {x: -4, y: 0, z: 50}
-      - {x: -2, y: 0, z: 50}
+      - {x: -4, y: 0.41, z: 50}
+      - {x: -2, y: 0.41, z: 50}
+      - {x: 0, y: 0.41, z: 50}
+      - {x: 3, y: 0.41, z: 50}
     - _enemyPrefabs:
-      - {fileID: 9183078253694199673, guid: 1e7dbad283bace0409cf0b65541694e8, type: 3}
+      - {fileID: 5903531611337837524, guid: 6b35ab20c14e16a4e8e0ba9d35486fd8, type: 3}
       _positions:
-      - {x: -4, y: 0, z: 50}
-      - {x: -2, y: 0, z: 50}
-      - {x: 0, y: 0, z: 50}
+      - {x: -4, y: 0.41, z: 70}
+      - {x: -2, y: 0.41, z: 70}
+      - {x: 0, y: 0.41, z: 70}
+      - {x: -2, y: 0.41, z: 70}
+      - {x: 3, y: 0.41, z: 70}
     _totalCoinsReward: 101
     _environment: {fileID: 0}
   - _level: 0

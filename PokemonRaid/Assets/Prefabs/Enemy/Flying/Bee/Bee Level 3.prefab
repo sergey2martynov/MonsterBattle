@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37e437f67dde43dca7304b34be561d58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _level: 1
+  _level: 3
   _animator: {fileID: 2151988750919369576}
   _pokemonLayer:
     serializedVersion: 2

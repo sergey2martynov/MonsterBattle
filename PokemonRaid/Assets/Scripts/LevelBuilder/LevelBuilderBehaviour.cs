@@ -43,7 +43,17 @@ namespace LevelBuilder
         {
             var level = _playerData.Level;
             var levelData = _levelDataHolder.GetLevelData(level);
-            Object.Instantiate(levelData.Environment, Vector3.zero, quaternion.identity);
+
+            if (levelData.Environment == null)
+            {
+                level = level % 6 == 0 ?  6 : level % 6;
+                var environment = _levelDataHolder.GetLevelData(level).Environment;
+                Object.Instantiate(environment, Vector3.zero, quaternion.identity);
+            }
+            else
+            {
+                Object.Instantiate(levelData.Environment, Vector3.zero, quaternion.identity);
+            }
         }
 
         private void FillLevelWithEnemies()
@@ -58,20 +68,6 @@ namespace LevelBuilder
                 {
                     var randomIndex = Random.Range(0, spawnPosition.EnemyPrefabs.Count);
                     var enemyLevel = spawnPosition.EnemyPrefabs[randomIndex].Level;
-
-                    // if (spawnPosition.EnemyPrefabs[randomIndex].GetType() == typeof(BossEnemyView))
-                    // {
-                    //     var data = _enemyFactory.CreateInstance(spawnPosition.EnemyPrefabs[randomIndex], position,
-                    //         _bossStats, _enemyParentObject, enemyLevel, out var baseView);
-                    //     _enemyDataHolder.AddEnemyData(data);
-                    // }
-                    // else
-                    // {
-                    //     var data = _enemyFactory.CreateInstance(spawnPosition.EnemyPrefabs[randomIndex], position,
-                    //         _enemyStats, _enemyParentObject, enemyLevel, out var baseView);
-                    //     _enemyDataHolder.AddEnemyData(data);
-                    // }
-                    //
                     var data = _enemyFactory.CreateInstance(spawnPosition.EnemyPrefabs[randomIndex], position,
                         _enemyStats, _enemyParentObject, enemyLevel, out var baseView);
                     _enemyDataHolder.AddEnemyData(data);
