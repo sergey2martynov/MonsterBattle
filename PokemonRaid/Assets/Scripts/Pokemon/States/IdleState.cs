@@ -38,9 +38,9 @@ namespace Pokemon.States
 
         protected override void SetNextState()
         {
-            var moveDirection = (Vector3) _data.MoveDirection;
+            var direction = (Vector3) _data.LookDirection;
             
-            if (moveDirection.magnitude == 0)
+            if (direction.magnitude == 0)
             {
                 return;
             }

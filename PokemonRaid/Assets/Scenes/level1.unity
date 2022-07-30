@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2138677392}
-  m_IndirectSpecularColor: {r: 0.28385073, g: 0.37043008, b: 0.5007635, a: 1}
+  m_IndirectSpecularColor: {r: 0.28385052, g: 0.37042952, b: 0.50076085, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3027,7 +3027,7 @@ PrefabInstance:
       objectReference: {fileID: 5882980373408904197}
     - target: {fileID: 1339164300679375854, guid: 5b76d7af153ba994f990647493604eb2, type: 3}
       propertyPath: _dataLoading
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1339164300679375854, guid: 5b76d7af153ba994f990647493604eb2, type: 3}
       propertyPath: _playerStats
@@ -3456,6 +3456,18 @@ PrefabInstance:
     - target: {fileID: 3537211413158860543, guid: 4db3bd436603ea44991d5c05d7ea81b8, type: 3}
       propertyPath: m_Name
       value: RoadBounds
+      objectReference: {fileID: 0}
+    - target: {fileID: 3537211413199136681, guid: 4db3bd436603ea44991d5c05d7ea81b8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 3537211413784269523, guid: 4db3bd436603ea44991d5c05d7ea81b8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -6.78
+      objectReference: {fileID: 0}
+    - target: {fileID: 3537211414423112494, guid: 4db3bd436603ea44991d5c05d7ea81b8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 7.15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4db3bd436603ea44991d5c05d7ea81b8, type: 3}
