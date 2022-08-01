@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
 using InputPlayer;
+using LevelEnvironment;
 using Pokemon;
 using Pokemon.PokemonHolder;
 using Pokemon.PokemonHolder.Cell;

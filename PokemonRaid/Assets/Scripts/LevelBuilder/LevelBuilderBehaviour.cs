@@ -1,5 +1,6 @@
 using Enemy.EnemyModel;
 using Factories;
+using LevelEnvironment;
 using Player;
 using Shop;
 using StaticData;
@@ -52,7 +53,13 @@ namespace LevelBuilder
             }
             else
             {
-                Object.Instantiate(levelData.Environment, Vector3.zero, quaternion.identity);
+                var environment = Object.Instantiate(levelData.Environment, Vector3.zero, quaternion.identity);
+
+                if (level == 2)
+                {
+                    environment.GetComponent<EnvironmentView>().PlaneView.Chest.Chest.gameObject.SetActive(false);
+                    environment.GetComponent<EnvironmentView>().PlaneView.Chest.Egg.gameObject.SetActive(true);
+                }
             }
         }
 

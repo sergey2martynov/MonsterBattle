@@ -23,6 +23,7 @@ namespace Player
         private float _rayCastDistance = 1f;
         private float _smooth = 0.1f;
         private static readonly int Blend = Animator.StringToHash("Blend");
+        private static readonly int ThrowBall = Animator.StringToHash("ThrowBall");
 
         public event Action<int> CoinsAdded;
         public event Action LevelUpped;
@@ -169,6 +170,11 @@ namespace Player
             }
 
             _data.Coins += coinsReward;
+        }
+
+        public void OnPurchase()
+        {
+            _view.Animator.SetTrigger(ThrowBall);
         }
 
         private void OnCoinsAmountChanged(int coins)

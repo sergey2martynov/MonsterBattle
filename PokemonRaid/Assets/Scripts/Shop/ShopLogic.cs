@@ -106,6 +106,8 @@ namespace Shop
                 int[] indexes = { cell.Row, cell.Column };
                 _pokemonSpawner.CreateFirstLevelRandomPokemon(cell.Position,
                     pokemonType, indexes);
+
+                _playerLogic.OnPurchase();
             }
         }
 
