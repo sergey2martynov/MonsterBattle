@@ -7,12 +7,14 @@ namespace Chest
     public class ChestView : MonoBehaviour
     {
         [SerializeField] private Animator _animator;
+        [SerializeField] private ParticleSystem _openParticle;
+        [SerializeField] private GameObject _egg;
+        [SerializeField] private GameObject _chest;
         
         private bool _isOpened;
         private static readonly int Open = Animator.StringToHash("Open");
         
-        [SerializeField] private GameObject _egg;
-        [SerializeField] private GameObject _chest;
+        
 
         public GameObject Egg => _egg;
         public GameObject Chest => _chest;
@@ -35,6 +37,7 @@ namespace Chest
 
         private async Task StartDelay(PlayerView playerView)
         {
+            _openParticle.Play();
             _animator.SetBool(Open, true);
             var delay = (int) (1.5 * 1000f);
             await Task.Delay(delay);

@@ -82,7 +82,7 @@ namespace Enemy
                 Quaternion.RotateTowards(_view.Transform.rotation, destinationRotation, 720 * Time.deltaTime);
         }
 
-        protected virtual void OnDamageTaken(int damage, PokemonType damageType)
+        protected void OnDamageTaken(int damage, PokemonType damageType)
         {
             if (damage < 0)
             {
@@ -114,6 +114,7 @@ namespace Enemy
 
         protected virtual void OnEnemyDied(BaseEnemyData data)
         {
+            _view.LastHitParticle.Play();
             _view.HealthBarView.gameObject.SetActive(false);
             SwitchState<EnemyDieState<TView>>();
             _view.SetViewActive(false);

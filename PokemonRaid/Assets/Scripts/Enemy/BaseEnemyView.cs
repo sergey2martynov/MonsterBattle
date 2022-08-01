@@ -14,6 +14,7 @@ namespace Enemy
         [SerializeField] private Collider _collider;
         [SerializeField] private ParticleSystem _meleeDamageParticle;
         [SerializeField] private ParticleSystem _rangeDamageParticle;
+        [SerializeField] private ParticleSystem _lastHitParticle;
         [SerializeField] private HealthBarView _healthBarView;
 
         public int Level => _level;
@@ -23,6 +24,7 @@ namespace Enemy
         public AnimationEventTranslator EventTranslator => _eventTranslator;
         public ParticleSystem MeleeDamageParticle => _meleeDamageParticle;
         public ParticleSystem RangeDamageParticle => _rangeDamageParticle;
+        public ParticleSystem LastHitParticle => _lastHitParticle;
         public HealthBarView HealthBarView => _healthBarView;
 
         public event Action<int, PokemonType> DamageTaken;
