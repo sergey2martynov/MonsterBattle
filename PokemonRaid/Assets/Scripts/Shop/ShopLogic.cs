@@ -1,10 +1,12 @@
 using System;
+using System.Linq;
 using Analitycs;
 using DG.Tweening;
 using Merge;
 using Player;
 using Pokemon.PokemonHolder;
 using Pool;
+using StaticData;
 using UnityEngine;
 
 namespace Shop
@@ -18,6 +20,7 @@ namespace Shop
         private readonly PlayerLogic _playerLogic;
         private readonly PlayerData _playerData;
         private readonly PokemonCellPlacer _pokemonCellPlacer;
+        private readonly PokemonPrefabHolder _pokemonPrefabHolder;
         private bool _isMergeTutorialActivated;
 
 
@@ -27,7 +30,8 @@ namespace Shop
         public event Action StartButtonScaled;
 
         public ShopLogic(PokemonSpawner pokemonSpawner, ShopView shopView, ShopData shopData, PlayerData playerData,
-            PokemonHolderModel pokemonHolderModel, PlayerLogic playerLogic, PokemonCellPlacer pokemonCellPlacer)
+            PokemonHolderModel pokemonHolderModel, PlayerLogic playerLogic, PokemonCellPlacer pokemonCellPlacer,
+            PokemonPrefabHolder pokemonPrefabHolder)
         {
             _pokemonSpawner = pokemonSpawner;
             _shopView = shopView;
@@ -36,6 +40,7 @@ namespace Shop
             _pokemonHolderModel = pokemonHolderModel;
             _playerLogic = playerLogic;
             _pokemonCellPlacer = pokemonCellPlacer;
+            _pokemonPrefabHolder = pokemonPrefabHolder;
         }
 
         public void Initialize()
@@ -46,7 +51,6 @@ namespace Shop
             _shopView.StartButtonPressed += _playerData.SetMaxHealth;
             _pokemonCellPlacer.ObjectSelected += DisableMergeTutorial;
             _shopView.SetTextCoins(_playerData.Coins);
-            //_shopData.PokemonCostChanged += OnPokemonCostChanged;
             _shopData.MeleePokemonCostChanged += OnMeleePokemonCostChanged;
             _shopData.RangedPokemonCostChanged += OnRangedPokemonCostChanged;
             _playerLogic.CoinsAdded += _shopView.SetTextCoins;
@@ -55,44 +59,54 @@ namespace Shop
             PurchaseTutorialScaled += ScaleTutorial;
             StartButtonScaled += ScaleStartButton;
             ActivatePurchaseTutorial();
-            ActivateStartButtonScale();
             CheckPlayerLevel();
         }
 
         private void TryPurchasePokemon(PokemonType pokemonType)
         {
-            if (_playerData.Coins < _shopData.PokemonCost || !_pokemonHolderModel.CheckEmptyCells())
+            if (!_pokemonHolderModel.CheckEmptyCells() || 
+                ((pokemonType == PokemonType.Melee && _shopData.MeleePokemonCost > _playerData.Coins) ||
+                pokemonType == PokemonType.Ranged && _shopData.RangedPokemonCost > _playerData.Coins))
                 return;
 
-            switch (pokemonType)
+            if (_playerData.Level == 1 && _pokemonHolderModel.PokemonsList.ToList()[1][2] == null)
             {
-                case PokemonType.Melee:
-                    SetCoins(-_shopData.MeleePokemonCost);
-                    _shopView.SetTextCoins(_playerData.Coins);
-                    _playerData.IncreaseMeleeBuyCounter();
-                    _shopData.IncreaseMeleePokemonCost(_playerData.MeleeBuyCounter);
-                    break;
-                
-                case PokemonType.Ranged:
-                    SetCoins(-_shopData.RangedPokemonCost);
-                    _shopView.SetTextCoins(_playerData.Coins);
-                    _playerData.IncreaseRangedBuyCounter();
-                    _shopData.IncreaseRangedPokemonCost(_playerData.RangedBuyCounter);
-                    break;
-                
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(pokemonType), pokemonType, null);
+                int[] indexes = { 1, 2 };
+
+                _pokemonSpawner.CreatePokemon(new Vector3(0.0099f, 0.42f, 13.29f),
+                    _pokemonPrefabHolder.MeleePokemons[0], 1, indexes);
+                SetCoins(-_shopData.MeleePokemonCost);
+                _shopView.SetTextCoins(_playerData.Coins);
+                _playerData.IncreaseMeleeBuyCounter();
+                _shopData.IncreaseMeleePokemonCost(_playerData.MeleeBuyCounter);
             }
+            else
+            {
+                switch (pokemonType)
+                {
+                    case PokemonType.Melee:
+                        SetCoins(-_shopData.MeleePokemonCost);
+                        _shopView.SetTextCoins(_playerData.Coins);
+                        _playerData.IncreaseMeleeBuyCounter();
+                        _shopData.IncreaseMeleePokemonCost(_playerData.MeleeBuyCounter);
+                        break;
 
-            var cell = _pokemonHolderModel.GetFirstEmptyCell();
-            int[] indexes = {cell.Row, cell.Column};
-            _pokemonSpawner.CreateFirstLevelRandomPokemon(cell.Position,
-                pokemonType, indexes);
+                    case PokemonType.Ranged:
+                        SetCoins(-_shopData.RangedPokemonCost);
+                        _shopView.SetTextCoins(_playerData.Coins);
+                        _playerData.IncreaseRangedBuyCounter();
+                        _shopData.IncreaseRangedPokemonCost(_playerData.RangedBuyCounter);
+                        break;
 
-            // SetCoins(-_shopData.PokemonCost);
-            // _shopView.SetTextCoins(_playerData.Coins);
-            // _playerData.IncreaseBuyCounter();
-            // _shopData.IncreasePokemonCost(_playerData.BuyCounter);
+                    default:
+                        throw new ArgumentOutOfRangeException(nameof(pokemonType), pokemonType, null);
+                }
+
+                var cell = _pokemonHolderModel.GetFirstEmptyCell();
+                int[] indexes = { cell.Row, cell.Column };
+                _pokemonSpawner.CreateFirstLevelRandomPokemon(cell.Position,
+                    pokemonType, indexes);
+            }
         }
 
         private void OnStartButtonPressed()
@@ -108,7 +122,8 @@ namespace Shop
         {
             if (_playerData.Level == 1)
             {
-                _shopView.DisablePurchaseButton(false);
+                _shopView.DisableRangePurchaseButton(false);
+                StartButtonDisable(false);
             }
 
             if (_playerData.Level > 1 && _playerData.Level < 3)
@@ -119,6 +134,13 @@ namespace Shop
 
         private void DisableTutorials(PokemonType pokemonType)
         {
+            if (_playerData.Level == 1 && _playerData.LevelCount == 1)
+            {
+                _shopView.PurchaseTutorial.gameObject.SetActive(false);
+                StartButtonDisable(true);
+                ScaleStartButton();
+            }
+
             if (_playerData.Level == 2 && !_isMergeTutorialActivated && _playerData.LevelCount == 2)
             {
                 _shopView.PurchaseTutorial.gameObject.SetActive(false);
@@ -128,9 +150,15 @@ namespace Shop
             }
         }
 
+        private void StartButtonDisable(bool isActive)
+        {
+            _shopView.StartButton.gameObject.SetActive(isActive);
+        }
+
         private void ActivatePurchaseTutorial()
         {
-            if (_playerData.Level == 2 && _playerData.LevelCount == 2)
+            if (_playerData.Level == 2 && _playerData.LevelCount == 2 ||
+                _playerData.Level == 1 && _playerData.LevelCount == 1)
             {
                 _shopView.PurchaseTutorial.gameObject.SetActive(true);
                 ScaleTutorial();
@@ -139,7 +167,7 @@ namespace Shop
 
         private void DisableMergeTutorial()
         {
-            if (_playerData.Level == 2 )
+            if (_playerData.Level == 2)
                 _shopView.MergeTutorial.gameObject.SetActive(false);
         }
 
@@ -158,16 +186,13 @@ namespace Shop
 
         private void ScaleTutorial()
         {
-            if (_playerData.Level == 2)
+            _shopView.PurchaseTutorial.GetComponent<RectTransform>().DOScale(2, 1).OnComplete(() =>
             {
-                _shopView.PurchaseTutorial.GetComponent<RectTransform>().DOScale(2, 1).OnComplete(() =>
+                _shopView.PurchaseTutorial.GetComponent<RectTransform>().DOScale(1.5f, 1).OnComplete(() =>
                 {
-                    _shopView.PurchaseTutorial.GetComponent<RectTransform>().DOScale(1.5f, 1).OnComplete(() =>
-                    {
-                        PurchaseTutorialScaled?.Invoke();
-                    });
+                    PurchaseTutorialScaled?.Invoke();
                 });
-            }
+            });
         }
 
         private void ScaleStartButton()
@@ -179,12 +204,6 @@ namespace Shop
                     StartButtonScaled?.Invoke();
                 });
             });
-        }
-
-        private void ActivateStartButtonScale()
-        {
-            if (_playerData.Level == 1)
-                ScaleStartButton();
         }
 
         private void ActivePurchaseButton()

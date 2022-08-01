@@ -15,4 +15,4 @@ MonoBehaviour:
   _moveSpeed: 5
   _maxHealth: 5
   _level: 1
-  _coins: 0
+  _coins: 11

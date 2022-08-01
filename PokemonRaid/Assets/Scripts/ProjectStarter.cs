@@ -117,7 +117,7 @@ public class ProjectStarter : MonoBehaviour
 
         var shopData = new ShopData();
         var shopLogic = new ShopLogic(_pokemonSpawner, _shopView, shopData, playerData, pokemonHolderModel,
-            playerLogic, pokemonCellPlacer);
+            playerLogic, pokemonCellPlacer, pokemonPrefabHolder);
         shopLogic.Initialize();
         shopData.Initialize(_shopStats, playerData.MeleeBuyCounter, playerData.RangedBuyCounter);
 
