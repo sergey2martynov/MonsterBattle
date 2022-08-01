@@ -86,7 +86,7 @@ public class ProjectStarter : MonoBehaviour
 
         if (loadedSuccessfully && _dataLoading)
         {
-            pokemonHolderModel.Initialize(data.PokemonData);
+            pokemonHolderModel.Initialize(data.PokemonData, enemyDataHolder);
             playerData.Initialize(_playerStats, data.PlayerLevel, data.CoinsAmount, pokemonHolderModel, data.LevelCount,
                 data.MeleeBuyCounter, data.RangedBuyCounter);
             pokemonAvailabilityLogic.Initialize(data.MeleePokemonAvailabilities, data.RangePokemonAvailabilities,
@@ -95,7 +95,7 @@ public class ProjectStarter : MonoBehaviour
         }
         else
         {
-            pokemonHolderModel.Initialize();
+            pokemonHolderModel.Initialize(enemyDataHolder);
             playerData.Initialize(_playerStats, pokemonHolderModel);
             pokemonAvailabilityLogic.Initialize(cardsPanelLogic);
             Debug.Log("Load failed");

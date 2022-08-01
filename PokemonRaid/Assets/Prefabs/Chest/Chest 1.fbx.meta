@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: c86f1c948d7e97a4281cd30b06bd5804
+guid: b0f12f983a39e08459d934c1d917ccf5
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable:
   - first:
-      74: 1827226128182048838
-    second: Attack
+      74: -1498010087492872569
+    second: CINEMA_4D_Main
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -35,11 +35,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Attack
-      takeName: Take 001
+      name: CINEMA_4D_Main
+      takeName: CINEMA_4D_Main
       internalID: 0
-      firstFrame: 0
-      lastFrame: 25
+      firstFrame: 36
+      lastFrame: 73
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -126,7 +126,7 @@ ModelImporter:
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 0
+  avatarSetup: 1
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   additionalBone: 0
   userData: 

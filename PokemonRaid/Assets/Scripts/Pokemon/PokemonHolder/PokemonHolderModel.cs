@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using Enemy.EnemyModel;
 using Player;
 using Pokemon.PokemonHolder.Cell;
 using UnityEngine;
@@ -13,11 +15,15 @@ namespace Pokemon.PokemonHolder
         private List<PokemonDataBase> _pokemons = new List<PokemonDataBase>();
         private List<List<PokemonDataBase>> _pokemonsList;
         private PlayerData _playerData;
+        private EnemyDataHolder _enemyDataHolder;
+        private float _speedMultiplier = 1f;
         
         public IEnumerable<List<PokemonDataBase>> PokemonsList => _pokemonsList;
 
-        public void Initialize()
+        public void Initialize(EnemyDataHolder dataHolder)
         {
+            _enemyDataHolder = dataHolder;
+            _enemyDataHolder.AllEnemiesDefeated += () => _speedMultiplier = 1.5f;
             _pokemonsList = new List<List<PokemonDataBase>>();
 
             for (int i = 0; i < 4; i++)
@@ -31,8 +37,10 @@ namespace Pokemon.PokemonHolder
             }
         }
 
-        public void Initialize(IEnumerable<List<PokemonDataBase>> pokemonList)
+        public void Initialize(IEnumerable<List<PokemonDataBase>> pokemonList, EnemyDataHolder dataHolder)
         {
+            _enemyDataHolder = dataHolder;
+            _enemyDataHolder.AllEnemiesDefeated += () => _speedMultiplier = 1.5f;
             _pokemonsList = pokemonList.ToList();
 
             foreach (var pokemonRow in _pokemonsList)
@@ -110,12 +118,14 @@ namespace Pokemon.PokemonHolder
                 {
                     //Debug.Log(correctedDirection + " " + scaleVector + "\n" + direction );
                     correctedDirection = Vector3.Scale(correctedDirection, scaleVector);
-                    SetMoveDirection(correctedDirection);
+                    SetMoveDirection(correctedDirection * _speedMultiplier);
                     return;
                 }
             }
 
-            SetMoveDirection(playerCorrectedDirection != wrongVector ? playerCorrectedDirection : direction);
+            SetMoveDirection(playerCorrectedDirection != wrongVector
+                ? playerCorrectedDirection * _speedMultiplier
+                : direction * _speedMultiplier);
         }
 
         private void SetMoveDirection(Vector3 direction)

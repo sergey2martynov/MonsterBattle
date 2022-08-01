@@ -5580,6 +5580,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4876908900278797462}
   - component: {fileID: 1535285584391757548}
+  - component: {fileID: 4858402245840359246}
   m_Layer: 0
   m_Name: Wraith
   m_TagString: Untagged
@@ -5614,7 +5615,7 @@ Animator:
   m_GameObject: {fileID: 5252765493520981548}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 3739c082c4e17224e9e58b41bc862c4e, type: 3}
-  m_Controller: {fileID: 9100000, guid: 1b94ebaf640b1bf408e87e1e569f7833, type: 2}
+  m_Controller: {fileID: 9100000, guid: 349ea06a6b3f44245b40d2798b900976, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -5623,6 +5624,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &4858402245840359246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5252765493520981548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a7f15a739940469a55864c03a8f293, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animations:
+  - _animationClip: {fileID: 1827226128182048838, guid: c86f1c948d7e97a4281cd30b06bd5804, type: 3}
+    _actionTime: 10
 --- !u!1 &5389359311896570452
 GameObject:
   m_ObjectHideFlags: 0

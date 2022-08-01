@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Enemy.Bosses;
 
 namespace Enemy.EnemyModel
 {
@@ -8,6 +9,7 @@ namespace Enemy.EnemyModel
         private readonly List<BaseEnemyData> _enemiesData = new List<BaseEnemyData>();
         private float _coinsRewardPerEnemy;
         private int _countKilledEnemy;
+        private int _totalEnemyAmount;
 
         public int CountKilledEnemy => _countKilledEnemy;
 
@@ -26,6 +28,7 @@ namespace Enemy.EnemyModel
         }
 
         public event Action<int> EnemyDefeated;
+        public event Action AllEnemiesDefeated;
         
         public void AddEnemyData(BaseEnemyData data)
         {
@@ -35,6 +38,7 @@ namespace Enemy.EnemyModel
             }
             
             _enemiesData.Add(data);
+            _totalEnemyAmount++;
             data.EnemyDied += RemoveEnemyData;
         }
 
@@ -42,6 +46,12 @@ namespace Enemy.EnemyModel
         {
             _enemiesData.Remove(data);
             _countKilledEnemy++;
+
+            if (_countKilledEnemy == _totalEnemyAmount)
+            {
+                AllEnemiesDefeated?.Invoke();
+            }
+                
             data.EnemyDied -= RemoveEnemyData;
             OnEnemyDied();
         }
