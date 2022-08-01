@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9abc0ee7779a436cbb221327d1450c9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _level: 4
+  _level: 5
   _animator: {fileID: 3012428843068651671}
   _pokemonLayer:
     serializedVersion: 2

@@ -66,9 +66,16 @@ namespace LevelBuilder
         private void FillLevelWithEnemies()
         {
             var level = _playerData.Level;
+
+            if (level > 24)
+            {
+                level = level % 6 == 0 ? 24 : 18 + level % 6;
+            }
+            
+            // var level = _playerData.Level;
             var levelData = _levelDataHolder.GetLevelData(level);
             var totalEnemyCount = 0;
-
+            
             foreach (var spawnPosition in levelData.SpawnPositions)
             {
                 foreach (var position in spawnPosition.Positions)
@@ -83,8 +90,7 @@ namespace LevelBuilder
                     totalEnemyCount++;
                 }
             }
-
-            //Debug.Log(totalEnemyCount + " " + levelData.TotalCoinsReward);
+            
             _enemyDataHolder.CoinsRewardPerEnemy = levelData.TotalCoinsReward / (float) totalEnemyCount;
         }
     }

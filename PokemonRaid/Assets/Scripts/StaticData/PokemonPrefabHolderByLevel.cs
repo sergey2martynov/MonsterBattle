@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Attributes;
+using NSubstitute.Exceptions;
 using UnityEngine;
 
 namespace StaticData
@@ -12,7 +13,7 @@ namespace StaticData
 
         public PokemonPrefabHolder GetPokemonPrefabHolder(int level)
         {
-            return _pokemonPrefabByLevel[level - 1];
+            return level <= 24 ? _pokemonPrefabByLevel[level - 1] : _pokemonPrefabByLevel[23];
         }
     }
 }

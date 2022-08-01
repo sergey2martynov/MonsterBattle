@@ -113,3 +113,27 @@ MonoBehaviour:
     _rangedPokemons:
     - {fileID: 6943248506083428063, guid: 5fed9d1635359ad4d9ce03ad55df9ae6, type: 3}
     - {fileID: 2711931426556632022, guid: 23143f931dd95c44aa59a2198406bee7, type: 3}
+  - _meleePokemons:
+    - {fileID: 5825225041619624878, guid: f766764cd5ea99f41b9a964ace79f385, type: 3}
+    - {fileID: 891051601361968121, guid: 956a5ceebb5fb6945af62c65aa0e22d4, type: 3}
+    _rangedPokemons:
+    - {fileID: 6943248506083428063, guid: 5fed9d1635359ad4d9ce03ad55df9ae6, type: 3}
+    - {fileID: 2711931426556632022, guid: 23143f931dd95c44aa59a2198406bee7, type: 3}
+  - _meleePokemons:
+    - {fileID: 5825225041619624878, guid: f766764cd5ea99f41b9a964ace79f385, type: 3}
+    - {fileID: 891051601361968121, guid: 956a5ceebb5fb6945af62c65aa0e22d4, type: 3}
+    _rangedPokemons:
+    - {fileID: 6943248506083428063, guid: 5fed9d1635359ad4d9ce03ad55df9ae6, type: 3}
+    - {fileID: 2711931426556632022, guid: 23143f931dd95c44aa59a2198406bee7, type: 3}
+  - _meleePokemons:
+    - {fileID: 5825225041619624878, guid: f766764cd5ea99f41b9a964ace79f385, type: 3}
+    - {fileID: 891051601361968121, guid: 956a5ceebb5fb6945af62c65aa0e22d4, type: 3}
+    _rangedPokemons:
+    - {fileID: 6943248506083428063, guid: 5fed9d1635359ad4d9ce03ad55df9ae6, type: 3}
+    - {fileID: 2711931426556632022, guid: 23143f931dd95c44aa59a2198406bee7, type: 3}
+  - _meleePokemons:
+    - {fileID: 5825225041619624878, guid: f766764cd5ea99f41b9a964ace79f385, type: 3}
+    - {fileID: 891051601361968121, guid: 956a5ceebb5fb6945af62c65aa0e22d4, type: 3}
+    _rangedPokemons:
+    - {fileID: 6943248506083428063, guid: 5fed9d1635359ad4d9ce03ad55df9ae6, type: 3}
+    - {fileID: 2711931426556632022, guid: 23143f931dd95c44aa59a2198406bee7, type: 3}
