@@ -146,7 +146,7 @@ namespace CardsCollection
                 _meleePokemonCards[count].LevelText.text = "LEVEL " + (level +1);
                 _meleePokemonCards[count].DamageText.text = damage.ToString();
 
-                DOTween.Sequence().AppendInterval(1f).OnComplete(() =>
+                DOTween.Sequence().AppendInterval(0.5f).OnComplete(() =>
                 {
                     _newPokemonCanvasView.SetStats(_meleePokemonCards[count].HealthText.text, _meleePokemonCards[count].DamageText.text,
                         _meleePokemonCards[count].SpriteCard.sprite, _meleePokemonCards[count].PokemonImage.sprite, name, level);
@@ -171,7 +171,7 @@ namespace CardsCollection
                 _rangePokemonCards[count].DamageText.text = damage.ToString();
                 
                 
-                DOTween.Sequence().AppendInterval(1f).OnComplete(() =>
+                DOTween.Sequence().AppendInterval(0.5f).OnComplete(() =>
                 {
                     _newPokemonCanvasView.SetStats(_rangePokemonCards[count].HealthText.text, _rangePokemonCards[count].DamageText.text,
                         _rangePokemonCards[count].SpriteCard.sprite, _rangePokemonCards[count].PokemonImage.sprite, rangeName, level);

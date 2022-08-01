@@ -48,7 +48,12 @@ namespace Enemy.EnemyModel
 
         private void OnEnemyDied()
         {
-            //EnemyDefeated?.Invoke(_coinsRewardPerEnemy);
+            var rewardCoins = Convert.ToInt32(_coinsRewardPerEnemy / 50);
+
+            if (rewardCoins < 1)
+                rewardCoins = 1;
+            
+            EnemyDefeated?.Invoke(rewardCoins);
         }
     }
 }

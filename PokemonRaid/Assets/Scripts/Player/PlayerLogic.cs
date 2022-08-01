@@ -46,6 +46,7 @@ namespace Player
             _data.DirectionCorrectionRequested += CheckForBounds;
             _data.HealthChange += OnHealthChange;
             _data.CoinsAmountChanged += OnCoinsAmountChanged;
+            _enemyDataHolder.EnemyDefeated += OnEnemyDefeated;
         }
 
         private void Update()
@@ -176,6 +177,7 @@ namespace Player
         {
             _view.Animator.SetTrigger(ThrowBall);
         }
+        
 
         private void OnCoinsAmountChanged(int coins)
         {
@@ -189,9 +191,10 @@ namespace Player
             //_enemyDataHolder.EnemyDefeated -= OnEnemyDefeated;
             _data.DisposeSource();
             _view.ViewDestroyed -= Dispose;
-            _view.LevelFinished += IncreaseLevel;
+            _view.LevelFinished -= IncreaseLevel;
             _data.DirectionCorrectionRequested -= CheckForBounds;
             _data.CoinsAmountChanged -= OnCoinsAmountChanged;
+            _enemyDataHolder.EnemyDefeated -= OnEnemyDefeated;
         }
     }
 }

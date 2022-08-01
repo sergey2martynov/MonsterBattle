@@ -136,7 +136,7 @@ namespace Shop
 
         private void DisableTutorials(PokemonType pokemonType)
         {
-            if (_playerData.Level == 1 && _playerData.LevelCount == 1)
+            if (_playerData.Level == 1)
             {
                 _shopView.PurchaseTutorial.gameObject.SetActive(false);
                 StartButtonDisable(true);
