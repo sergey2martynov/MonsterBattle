@@ -122,7 +122,7 @@ public class ProjectStarter : MonoBehaviour
         shopData.Initialize(_shopStats, playerData.MeleeBuyCounter, playerData.RangedBuyCounter);
 
         var levelBuilderBehaviour = new LevelBuilderBehaviour(_levelDataHolder, playerData, _updateHandler,
-            _enemyParentObject, _enemyStats, enemyDataHolder);
+            _enemyParentObject, _enemyStats, enemyDataHolder, _camera);
         levelBuilderBehaviour.Initialize(shopLogic);
 
         directionTranslator.SetShopLogic(shopLogic);

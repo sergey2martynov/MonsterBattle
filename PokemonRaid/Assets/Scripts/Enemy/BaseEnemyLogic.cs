@@ -28,12 +28,13 @@ namespace Enemy
             _view.ViewDestroyed += Dispose;
             _view.DamageTaken += OnDamageTaken;
             _data.EnemyDied += OnEnemyDied;
+            _data.HealthChanged += OnHealthChanged;
             _statesToType = new Dictionary<Type, BaseEnemyState<TView>>
             {
-                {typeof(EnemyMoveState<TView>), new EnemyMoveState<TView>(_view, this, _data)},
-                {typeof(EnemyIdleState<TView>), new EnemyIdleState<TView>(_view, this, _data)},
-                {typeof(EnemyAttackState<TView>), new EnemyAttackState<TView>(_view, this, _data)},
-                {typeof(EnemyDieState<TView>), new EnemyDieState<TView>(_view, this, _data)}
+                { typeof(EnemyMoveState<TView>), new EnemyMoveState<TView>(_view, this, _data) },
+                { typeof(EnemyIdleState<TView>), new EnemyIdleState<TView>(_view, this, _data) },
+                { typeof(EnemyAttackState<TView>), new EnemyAttackState<TView>(_view, this, _data) },
+                { typeof(EnemyDieState<TView>), new EnemyDieState<TView>(_view, this, _data) }
             };
             _currentState = _statesToType[typeof(EnemyIdleState<TView>)];
             _currentState.OnEnter();
@@ -74,14 +75,14 @@ namespace Enemy
             return collidersAmount > 0 ? _collidersInRange : null;
         }
 
-        public void RotateAt(Vector3 point) 
+        public void RotateAt(Vector3 point)
         {
             var destinationRotation = Quaternion.LookRotation(point, Vector3.up);
             _view.Transform.rotation =
                 Quaternion.RotateTowards(_view.Transform.rotation, destinationRotation, 720 * Time.deltaTime);
         }
 
-        protected void OnDamageTaken(int damage, PokemonType damageType)
+        protected virtual void OnDamageTaken(int damage, PokemonType damageType)
         {
             if (damage < 0)
             {
@@ -100,8 +101,20 @@ namespace Enemy
             _data.Health -= damage;
         }
 
+        protected virtual void OnHealthChanged(int health, int maxHealth)
+        {
+            if (_data.Level > 2)
+            {
+                if (_data.Health < _data.MaxHealth)
+                    _view.HealthBarView.gameObject.SetActive(true);
+
+                _view.SetHealth(_data.Health / (float)_data.MaxHealth);
+            }
+        }
+
         protected virtual void OnEnemyDied(BaseEnemyData data)
         {
+            _view.HealthBarView.gameObject.SetActive(false);
             SwitchState<EnemyDieState<TView>>();
             _view.SetViewActive(false);
             Dispose();
@@ -113,6 +126,7 @@ namespace Enemy
             _data.DisposeSource();
             _view.DamageTaken -= OnDamageTaken;
             _view.ViewDestroyed -= Dispose;
+            _data.HealthChanged -= OnHealthChanged;
             _data.EnemyDied -= OnEnemyDied;
         }
     }

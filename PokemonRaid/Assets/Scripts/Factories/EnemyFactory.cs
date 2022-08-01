@@ -15,10 +15,12 @@ namespace Factories
     public class EnemyFactory
     {
         private readonly UpdateHandler _updateHandler;
+        private readonly Transform _camera;
 
-        public EnemyFactory(UpdateHandler updateHandler)
+        public EnemyFactory(UpdateHandler updateHandler, Transform camera)
         {
             _updateHandler = updateHandler;
+            _camera = camera;
         }
 
         public BaseEnemyData CreateInstance(BaseEnemyView view, Vector3 position, EnemyStats stats, Transform parent,
@@ -55,6 +57,7 @@ namespace Factories
             where TData : BaseEnemyData, new()
         {
             var instantiatedView = Object.Instantiate(view, position, Quaternion.identity, parent);
+            instantiatedView.HealthBarView.SetCameraRef(_camera);
             baseView = instantiatedView;
             var data = new TData();
             var logic = new TLogic();

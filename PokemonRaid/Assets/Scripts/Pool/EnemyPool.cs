@@ -13,12 +13,13 @@ namespace Pool
         [SerializeField] private EnemyStats _stats;
         [SerializeField] private List<BaseEnemyView> _enemyViews;
         [SerializeField] private UpdateHandler _updateHandler;
+        [SerializeField] private Transform _camera;
 
         private EnemyFactory _factory;
 
         private void Awake()
         {
-            _factory = new EnemyFactory(_updateHandler);
+            _factory = new EnemyFactory(_updateHandler, _camera);
 
             foreach (var enemyView in _enemyViews)
             {

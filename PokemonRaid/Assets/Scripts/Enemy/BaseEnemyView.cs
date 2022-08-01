@@ -1,4 +1,5 @@
 ﻿using System;
+using HealthBar;
 using Pokemon.Animations;
 using UnityEngine;
 
@@ -13,6 +14,7 @@ namespace Enemy
         [SerializeField] private Collider _collider;
         [SerializeField] private ParticleSystem _meleeDamageParticle;
         [SerializeField] private ParticleSystem _rangeDamageParticle;
+        [SerializeField] private HealthBarView _healthBarView;
 
         public int Level => _level;
         public Transform Transform => transform;
@@ -21,6 +23,7 @@ namespace Enemy
         public AnimationEventTranslator EventTranslator => _eventTranslator;
         public ParticleSystem MeleeDamageParticle => _meleeDamageParticle;
         public ParticleSystem RangeDamageParticle => _rangeDamageParticle;
+        public HealthBarView HealthBarView => _healthBarView;
 
         public event Action<int, PokemonType> DamageTaken;
         public event Action ViewDestroyed;
@@ -29,6 +32,11 @@ namespace Enemy
         {
             //gameObject.SetActive(isActive);
             _collider.enabled = isActive;
+        }
+        
+        public void SetHealth(float health)
+        {
+            _healthBarView.SetHealth(health);
         }
 
         public void TakeDamage(int damage, PokemonType pokemonType)

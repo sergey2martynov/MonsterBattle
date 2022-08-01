@@ -20,10 +20,11 @@ namespace LevelBuilder
         private readonly PlayerData _playerData;
         private readonly EnemyStats _enemyStats;
         private readonly Transform _enemyParentObject;
+        private readonly Transform _camera;
         private EnemyFactory _enemyFactory;
 
         public LevelBuilderBehaviour(LevelDataHolder levelDataHolder, PlayerData playerData,
-            UpdateHandler updateHandler, Transform enemyParentObject, EnemyStats enemyStats, EnemyDataHolder enemyDataHolder)
+            UpdateHandler updateHandler, Transform enemyParentObject, EnemyStats enemyStats, EnemyDataHolder enemyDataHolder, Transform camera)
         {
             _levelDataHolder = levelDataHolder;  
             _playerData = playerData;
@@ -31,11 +32,12 @@ namespace LevelBuilder
             _enemyParentObject = enemyParentObject;
             _enemyStats = enemyStats;
             _enemyDataHolder = enemyDataHolder;
+            _camera = camera;
         }
 
         public void Initialize(ShopLogic shopLogic)
         {
-            _enemyFactory = new EnemyFactory(_updateHandler);
+            _enemyFactory = new EnemyFactory(_updateHandler, _camera);
             shopLogic.StartButtonPressed += FillLevelWithEnemies;
             SpawnEnvironment();
         }
