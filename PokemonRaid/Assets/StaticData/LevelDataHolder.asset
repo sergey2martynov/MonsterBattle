@@ -164,10 +164,10 @@ MonoBehaviour:
       - {fileID: 5903531611337837524, guid: 17bce9d0ce5f1c2439ef68fc34ae877b, type: 3}
       - {fileID: 5903531611337837524, guid: f6df4a93120f1e54a8431612904a7e27, type: 3}
       _positions:
-      - {x: -4, y: 0.41, z: 100}
-      - {x: -2, y: 0.41, z: 100}
-      - {x: 0, y: 0.41, z: 100}
-      - {x: 2, y: 0.41, z: 100}
+      - {x: -4, y: 0.41, z: 110}
+      - {x: -2, y: 0.41, z: 110}
+      - {x: 0, y: 0.41, z: 110}
+      - {x: 2, y: 0.41, z: 110}
     _totalCoinsReward: 27
     _environment: {fileID: 7335228174981870637, guid: ac2438e651610d147b5001070f204950, type: 3}
   - _level: 7
@@ -199,7 +199,7 @@ MonoBehaviour:
     - _enemyPrefabs:
       - {fileID: 2351805535717559970, guid: 870826acf8c344c4d9ad798df7e6327e, type: 3}
       _positions:
-      - {x: 0, y: 0.41, z: 75}
+      - {x: 0, y: 0.41, z: 70}
     _totalCoinsReward: 33
     _environment: {fileID: 1515952890826409518, guid: 92a8c057e6a206b47b595a72c55f7f9c, type: 3}
   - _level: 8
@@ -236,7 +236,7 @@ MonoBehaviour:
     - _enemyPrefabs:
       - {fileID: 2351805535717559970, guid: 870826acf8c344c4d9ad798df7e6327e, type: 3}
       _positions:
-      - {x: 0, y: 0.41, z: 85}
+      - {x: 0, y: 0.41, z: 80}
     _totalCoinsReward: 40
     _environment: {fileID: 2640813938487052669, guid: c88422246cbdbc14a8347c5bf4d65b16, type: 3}
   - _level: 9
@@ -406,11 +406,10 @@ MonoBehaviour:
       - {x: 3, y: 0.41, z: 55}
     - _enemyPrefabs:
       - {fileID: 2351805535717559970, guid: 870826acf8c344c4d9ad798df7e6327e, type: 3}
-      - {fileID: 2351805535717559970, guid: 025a2b9a0bab8c44e9f853a66c5a9477, type: 3}
       _positions:
       - {x: -3, y: 0.41, z: 75}
-      - {x: 3, y: 0.41, z: 80}
-      - {x: 0, y: 0.41, z: 95}
+      - {x: 3, y: 0.41, z: 75}
+      - {x: 0, y: 0.41, z: 75}
     _totalCoinsReward: 122
     _environment: {fileID: 0}
   - _level: 15
@@ -469,12 +468,12 @@ MonoBehaviour:
       - {fileID: 5903531611337837524, guid: 684dafde7a18fb24dbe565dfaaa57cc7, type: 3}
       - {fileID: 4254136415593880790, guid: 0ef14855461740242a0a378e57a9c3ac, type: 3}
       _positions:
-      - {x: -2, y: 0.41, z: 80}
+      - {x: -2, y: 0.41, z: 75}
+      - {x: 2, y: 0.41, z: 75}
+      - {x: 4, y: 0.41, z: 75}
       - {x: 2, y: 0.41, z: 80}
-      - {x: 4, y: 0.41, z: 80}
-      - {x: 2, y: 0.41, z: 85}
-      - {x: 1, y: 0.41, z: 90}
-      - {x: 3, y: 0.41, z: 90}
+      - {x: 1, y: 0.41, z: 80}
+      - {x: 3, y: 0.41, z: 80}
     _totalCoinsReward: 177
     _environment: {fileID: 0}
   - _level: 17

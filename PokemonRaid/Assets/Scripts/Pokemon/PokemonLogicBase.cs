@@ -63,6 +63,7 @@ namespace Pokemon
             _attackAnimation = _view.EventTranslator.GetAnimationInfo("Attack");
             _currentState = _statesToType[typeof(SpawnState<TView, TEnemyView>)];
             _currentState.OnEnter();
+            _data.LookDirection = Vector3.forward;
         }
 
         public void SetMaxTargetsAmount(int amount)
