@@ -117,6 +117,10 @@ MonoBehaviour:
   _canvas: {fileID: 6529632923023266811}
   _outerJoystick: {fileID: 1762819938062012458}
   _innerJoystick: {fileID: 5049261842704312581}
+  _leftBorderForMerge: 0
+  _rightBorderForMerge: 0
+  _upBorderForMerge: 0
+  _downBorderForMerge: 0
   isPreparingStage: 1
 --- !u!1 &7007237596106795443
 GameObject:
@@ -153,7 +157,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &617551954582941681
 CanvasRenderer:
@@ -229,7 +233,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4449706849125281379
 CanvasRenderer:

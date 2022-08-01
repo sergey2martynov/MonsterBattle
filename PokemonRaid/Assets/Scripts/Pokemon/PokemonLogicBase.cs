@@ -8,7 +8,6 @@ using Pokemon.Animations;
 using Pokemon.PokemonHolder;
 using Pokemon.States;
 using UnityEngine;
-using UnityEngine.UIElements;
 using UpdateHandlerFolder;
 
 namespace Pokemon

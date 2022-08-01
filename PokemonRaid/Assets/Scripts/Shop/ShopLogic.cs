@@ -46,7 +46,9 @@ namespace Shop
             _shopView.StartButtonPressed += _playerData.SetMaxHealth;
             _pokemonCellPlacer.ObjectSelected += DisableMergeTutorial;
             _shopView.SetTextCoins(_playerData.Coins);
-            _shopData.PokemonCostChanged += OnPokemonCostChanged;
+            //_shopData.PokemonCostChanged += OnPokemonCostChanged;
+            _shopData.MeleePokemonCostChanged += OnMeleePokemonCostChanged;
+            _shopData.RangedPokemonCostChanged += OnRangedPokemonCostChanged;
             _playerLogic.CoinsAdded += _shopView.SetTextCoins;
             _playerData.FirstLevelFinished += ActivePurchaseButton;
             MergeTutorialCompleted += MoveMergeTutorial;
@@ -62,15 +64,35 @@ namespace Shop
             if (_playerData.Coins < _shopData.PokemonCost || !_pokemonHolderModel.CheckEmptyCells())
                 return;
 
+            switch (pokemonType)
+            {
+                case PokemonType.Melee:
+                    SetCoins(-_shopData.MeleePokemonCost);
+                    _shopView.SetTextCoins(_playerData.Coins);
+                    _playerData.IncreaseMeleeBuyCounter();
+                    _shopData.IncreaseMeleePokemonCost(_playerData.MeleeBuyCounter);
+                    break;
+                
+                case PokemonType.Ranged:
+                    SetCoins(-_shopData.RangedPokemonCost);
+                    _shopView.SetTextCoins(_playerData.Coins);
+                    _playerData.IncreaseRangedBuyCounter();
+                    _shopData.IncreaseRangedPokemonCost(_playerData.RangedBuyCounter);
+                    break;
+                
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(pokemonType), pokemonType, null);
+            }
+
             var cell = _pokemonHolderModel.GetFirstEmptyCell();
             int[] indexes = {cell.Row, cell.Column};
             _pokemonSpawner.CreateFirstLevelRandomPokemon(cell.Position,
                 pokemonType, indexes);
 
-            SetCoins(-_shopData.PokemonCost);
-            _shopView.SetTextCoins(_playerData.Coins);
-            _playerData.IncreaseBuyCounter();
-            _shopData.IncreasePokemonCost(_playerData.BuyCounter);
+            // SetCoins(-_shopData.PokemonCost);
+            // _shopView.SetTextCoins(_playerData.Coins);
+            // _playerData.IncreaseBuyCounter();
+            // _shopData.IncreasePokemonCost(_playerData.BuyCounter);
         }
 
         private void OnStartButtonPressed()
@@ -180,13 +202,25 @@ namespace Shop
             _shopView.SetCost(cost);
         }
 
+        private void OnMeleePokemonCostChanged(int cost)
+        {
+            _shopView.SetMeleePokemonCost(cost);
+        }
+
+        private void OnRangedPokemonCostChanged(int cost)
+        {
+            _shopView.SetRangedPokemonCost(cost);
+        }
+
         public void Dispose()
         {
             _shopView.PurchaseButtonPressed -= TryPurchasePokemon;
             _shopView.StartButtonPressed -= OnStartButtonPressed;
             _shopView.StartButtonPressed -= _playerData.SetMaxHealth;
             _playerLogic.CoinsAdded -= _shopView.SetTextCoins;
-            _shopData.PokemonCostChanged -= OnPokemonCostChanged;
+            //_shopData.PokemonCostChanged -= OnPokemonCostChanged;
+            _shopData.MeleePokemonCostChanged -= OnMeleePokemonCostChanged;
+            _shopData.RangedPokemonCostChanged -= OnRangedPokemonCostChanged;
             _playerData.FirstLevelFinished -= ActivePurchaseButton;
         }
     }

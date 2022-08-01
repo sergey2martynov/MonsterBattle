@@ -2,7 +2,6 @@ using System;
 using Menu;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Shop
@@ -78,6 +77,38 @@ namespace Shop
             else
             {
                 _meleeCost.text = cost.ToString();
+                _rangedCost.text = cost.ToString();
+            }
+        }
+
+        public void SetMeleePokemonCost(int cost)
+        {
+            if (cost > 10000000)
+            {
+                _meleeCost.text = cost / 1000000 + "M";
+            }
+            else if (cost > 10000)
+            {
+                _meleeCost.text = cost / 1000 + "K";
+            }
+            else
+            {
+                _meleeCost.text = cost.ToString();
+            }
+        }
+
+        public void SetRangedPokemonCost(int cost)
+        {
+            if (cost > 10000000)
+            {
+                _rangedCost.text = cost / 1000000 + "M";
+            }
+            else if (cost > 10000)
+            {
+                _rangedCost.text = cost / 1000 + "K";
+            }
+            else
+            {
                 _rangedCost.text = cost.ToString();
             }
         }

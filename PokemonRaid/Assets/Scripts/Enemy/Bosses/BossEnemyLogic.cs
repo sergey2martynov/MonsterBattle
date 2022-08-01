@@ -30,8 +30,9 @@ namespace Enemy.Bosses
 
         protected override void OnEnemyDied(BaseEnemyData data)
         {
-            SwitchState<BossDieState>();
             _view.SetViewActive(false);
+            SwitchState<BossDieState>();
+            Dispose();
         }
     }
 }

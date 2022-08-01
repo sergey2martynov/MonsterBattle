@@ -33,7 +33,7 @@ namespace Enemy.Bosses.BossStates
             Physics.OverlapSphereNonAlloc(_view.Transform.position, 100f,
                 _target, _view.PlayerLayer);
             _target[0].GetComponent<PlayerView>().LevelFinish();
-            _logic.Dispose();
+            //_logic.Dispose();
         }
     }
 }

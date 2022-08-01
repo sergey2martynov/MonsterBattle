@@ -18,11 +18,15 @@ namespace Player
         private int _coins;
         private int _levelCount;
         private int _buyCounter;
+        private int _meleeBuyCounter;
+        private int _rangedBuyCounter;
         public CancellationTokenSource Source { get; protected set; }
         
         public Vector3 MoveDirection { get; set; }
         public Vector3 LookDirection { get; set; }
         public int BuyCounter => _buyCounter;
+        public int MeleeBuyCounter => _meleeBuyCounter;
+        public int RangedBuyCounter => _rangedBuyCounter;
 
 
         public int LevelCount
@@ -135,14 +139,15 @@ namespace Player
         }
 
         public void Initialize(PlayerStats stats, int level, int coinsAmount, PokemonHolderModel pokemonHolderModel,
-            int levelCount, int buyCounter)
+            int levelCount, int meleeBuyCounter, int rangedBuyCounter)
         {
             _pokemonHolderModel = pokemonHolderModel;
             SetStats(stats);
             Level = level;
             Coins = coinsAmount;
             _levelCount = levelCount;
-            _buyCounter = buyCounter;
+            _meleeBuyCounter = meleeBuyCounter;
+            _rangedBuyCounter = rangedBuyCounter;
         }
 
         public CancellationTokenSource CreateCancellationTokenSource()
@@ -182,6 +187,16 @@ namespace Player
         public void IncreaseBuyCounter()
         {
             _buyCounter++;
+        }
+
+        public void IncreaseMeleeBuyCounter()
+        {
+            _meleeBuyCounter++;
+        }
+
+        public void IncreaseRangedBuyCounter()
+        {
+            _rangedBuyCounter++;
         }
     }
 }
