@@ -1,4 +1,5 @@
-﻿using DG.Tweening;
+﻿using System;
+using DG.Tweening;
 using Pokemon.PokemonHolder;
 using Shop;
 using UnityEngine;
@@ -10,6 +11,8 @@ namespace InputPlayer
         private readonly InputView _view;
         private readonly PokemonHolderModel _model;
         private ShopLogic _shopLogic;
+
+        public event Action DirectionReceived;
 
         public InputLogic(InputView view, PokemonHolderModel model)
         {
@@ -36,7 +39,7 @@ namespace InputPlayer
 
         public void OnStart()
         {
-             _view.ChangePreparingStage(); 
+            _view.ChangePreparingStage(); 
         }
 
         private void Dispose()

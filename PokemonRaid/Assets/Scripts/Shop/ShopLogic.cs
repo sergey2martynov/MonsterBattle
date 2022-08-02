@@ -2,6 +2,8 @@ using System;
 using System.Linq;
 using Analitycs;
 using DG.Tweening;
+using GameCanvas;
+using InputPlayer;
 using Merge;
 using Player;
 using Pokemon.PokemonHolder;
@@ -21,6 +23,8 @@ namespace Shop
         private readonly PlayerData _playerData;
         private readonly PokemonCellPlacer _pokemonCellPlacer;
         private readonly PokemonPrefabHolder _pokemonPrefabHolder;
+        private readonly GameCanvasView _gameCanvasView;
+        private readonly InputLogic _inputLogic;
         private bool _isMergeTutorialActivated;
 
 
@@ -31,7 +35,7 @@ namespace Shop
 
         public ShopLogic(PokemonSpawner pokemonSpawner, ShopView shopView, ShopData shopData, PlayerData playerData,
             PokemonHolderModel pokemonHolderModel, PlayerLogic playerLogic, PokemonCellPlacer pokemonCellPlacer,
-            PokemonPrefabHolder pokemonPrefabHolder)
+            PokemonPrefabHolder pokemonPrefabHolder, InputLogic inputLogic, GameCanvasView gameCanvasView)
         {
             _pokemonSpawner = pokemonSpawner;
             _shopView = shopView;
@@ -41,6 +45,8 @@ namespace Shop
             _playerLogic = playerLogic;
             _pokemonCellPlacer = pokemonCellPlacer;
             _pokemonPrefabHolder = pokemonPrefabHolder;
+            _inputLogic = inputLogic;
+            _gameCanvasView = gameCanvasView;
         }
 
         public void Initialize()
@@ -54,19 +60,21 @@ namespace Shop
             _shopData.MeleePokemonCostChanged += OnMeleePokemonCostChanged;
             _shopData.RangedPokemonCostChanged += OnRangedPokemonCostChanged;
             _playerLogic.CoinsAdded += _shopView.SetTextCoins;
+            _pokemonCellPlacer.PokemonMerged += StartButtonDisable;
             _playerData.FirstLevelFinished += ActivePurchaseButton;
             MergeTutorialCompleted += MoveMergeTutorial;
             PurchaseTutorialScaled += ScaleTutorial;
             StartButtonScaled += ScaleStartButton;
+            _inputLogic.DirectionReceived += OnDirectionReceive;
             ActivatePurchaseTutorial();
             CheckPlayerLevel();
         }
 
         private void TryPurchasePokemon(PokemonType pokemonType)
         {
-            if (!_pokemonHolderModel.CheckEmptyCells() || 
+            if (!_pokemonHolderModel.CheckEmptyCells() ||
                 ((pokemonType == PokemonType.Melee && _shopData.MeleePokemonCost > _playerData.Coins) ||
-                pokemonType == PokemonType.Ranged && _shopData.RangedPokemonCost > _playerData.Coins))
+                 pokemonType == PokemonType.Ranged && _shopData.RangedPokemonCost > _playerData.Coins))
                 return;
 
             if (_playerData.Level == 1 && _pokemonHolderModel.PokemonsList.ToList()[1][2] == null)
@@ -115,9 +123,23 @@ namespace Shop
         {
             DOTween.Sequence().AppendInterval(2).OnComplete(() =>
             {
+                if (_playerData.Level == 1)
+                    _gameCanvasView.MoveTutorialView.gameObject.SetActive(true);
+
                 EventSender.SendLevelStart(_playerData.Level, _playerData.LevelCount);
                 StartButtonPressed?.Invoke();
             });
+            
+            DOTween.Sequence().AppendInterval(8).OnComplete(() =>
+            {
+                    _gameCanvasView.MoveTutorialView.gameObject.SetActive(false);
+            });
+        }
+
+        private void OnDirectionReceive()
+        {
+            if (_playerData.Level == 1)
+                _gameCanvasView.MoveTutorialView.gameObject.SetActive(false);
         }
 
         private void CheckPlayerLevel()
@@ -131,6 +153,7 @@ namespace Shop
             if (_playerData.Level > 1 && _playerData.Level < 3)
             {
                 _shopView.DisableRangePurchaseButton(false);
+                StartButtonDisable(false);
             }
         }
 

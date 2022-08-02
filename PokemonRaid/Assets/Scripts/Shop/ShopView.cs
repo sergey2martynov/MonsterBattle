@@ -1,6 +1,7 @@
 using System;
 using Menu;
 using TMPro;
+using Tutorial;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,6 +16,7 @@ namespace Shop
         [SerializeField] private TextMeshProUGUI _text;
         [SerializeField] private TextMeshProUGUI _meleeCost;
         [SerializeField] private TextMeshProUGUI _rangedCost;
+        [SerializeField] private MoveTutorialView _moveTutorial;
         [SerializeField] private Image _mergeTutorial;
         [SerializeField] private Image _purchaseTutorial;
 
@@ -22,6 +24,7 @@ namespace Shop
 
         public Image MergeTutorial => _mergeTutorial;
         public Image PurchaseTutorial => _purchaseTutorial;
+        public MoveTutorialView MoveTutorial => _moveTutorial;
         public Button StartButton => _startButton;
         public event Action<PokemonType> PurchaseButtonPressed;
         public event Action StartButtonPressed;

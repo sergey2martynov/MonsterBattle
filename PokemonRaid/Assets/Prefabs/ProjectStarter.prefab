@@ -43,9 +43,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2b3772dc0c047e4b8c2c0d63d11824a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _dataLoading: 1
   _updateHandler: {fileID: 0}
   _shopView: {fileID: 0}
-  _testStats: {fileID: 0}
-  _pokemonPrefabHolder: {fileID: 0}
-  _pokemonParentObject: {fileID: 0}
+  _shopStats: {fileID: 11400000, guid: e90fe33eaae69a741bae8a4d26792494, type: 2}
   _playerView: {fileID: 0}
+  _playerStats: {fileID: 11400000, guid: 03f091b023efeb148baa1baaf9b63f89, type: 2}
+  _pokemonStats: {fileID: 11400000, guid: b9b3f6e804c26d3469bba7f6d37fa721, type: 2}
+  _pokemonPrefabHolderByLevel: {fileID: 11400000, guid: 8cbfbaef7603cfb408a8e83fd7207c19, type: 2}
+  _pokemonParentObject: {fileID: 0}
+  _fieldView: {fileID: 0}
+  _inputView: {fileID: 0}
+  _enemyStats: {fileID: 11400000, guid: 98548dd8a3e586745a696b91feab3d05, type: 2}
+  _enemyParentObject: {fileID: 0}
+  _levelDataHolder: {fileID: 11400000, guid: afb9975f927bc764c9d3b2aa976b1754, type: 2}
+  _camera: {fileID: 0}
+  _healthPlayerBarView: {fileID: 0}
+  _levelSpritesHolder: {fileID: 11400000, guid: b0d94a38acbb593419767a495f17473a, type: 2}
+  _levelCounterView: {fileID: 0}
+  _cardsPanelView: {fileID: 0}
+  _cardSpritesHolder: {fileID: 11400000, guid: c4fd4942a86857f4ba1653fe73986fbb, type: 2}
+  _cardView: {fileID: -529431005739011804, guid: 402818dacb7b79e4692be9be32c75c11, type: 3}
+  _cardParent: {fileID: 0}
+  _upgradeLevels: {fileID: 11400000, guid: 41a968041dc546c4cb23db6d5812a87b, type: 2}
+  _pokemonSpritesHolder: {fileID: 11400000, guid: 14bf03c56cb5dc44396a0db0bc2426b2, type: 2}
+  _rewardMenuView: {fileID: 0}
+  _cardsPanelConfig: {fileID: 11400000, guid: 3bd837dc7e987aa4f9ec11d7e2556399, type: 2}
+  _newPokemonCanvasView: {fileID: 0}
+  _failMenuView: {fileID: 0}
+  _gameCanvasView: {fileID: 0}

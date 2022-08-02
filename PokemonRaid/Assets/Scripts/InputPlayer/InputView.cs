@@ -67,6 +67,7 @@ namespace InputPlayer
                         x = Input.mousePosition.x / sizeDelta.x / _scale,
                         y = Input.mousePosition.y / sizeDelta.y / _scale
                     };
+                    
                     _outerJoystick.rectTransform.anchoredPosition = Input.mousePosition / _scale;
                 }
                 else if (Input.GetMouseButtonUp(0))

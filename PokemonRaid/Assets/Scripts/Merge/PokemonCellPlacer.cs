@@ -33,6 +33,7 @@ namespace Merge
         private readonly float _distanceForMerge = 0.8f;
 
         public event Action ObjectSelected;
+        public event Action<bool> PokemonMerged;
 
         public PokemonCellPlacer(InputView inputView, FieldView fieldView, PokemonHolderModel pokemonHolderModel,
             PokemonMerger pokemonMerger, PokemonSpawner pokemonSpawner)
@@ -103,6 +104,8 @@ namespace Merge
                     var indexes = _pokemonForSwap.GetIndexes().ToArray();
                     _pokemonSpawner.CreatePokemon(currentCell.transform.position, _targetPokemon,
                         _pokemonForSwap.GetPokemonLevel() + 1, indexes/*_pokemonForSwap.GetIndexes()*/);
+                    
+                    PokemonMerged?.Invoke(true);
 
                     Object.Destroy(_pokemonForSwap.gameObject);
                     Object.Destroy(_targetPokemon.gameObject);

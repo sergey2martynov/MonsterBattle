@@ -1,6 +1,7 @@
 ﻿using CardsCollection;
 using Enemy.EnemyModel;
 using FailedMenu;
+using GameCanvas;
 using HealthBar;
 using InputPlayer;
 using LevelBuilder;
@@ -51,6 +52,7 @@ public class ProjectStarter : MonoBehaviour
     [SerializeField] private CardsPanelConfig _cardsPanelConfig;
     [SerializeField] private NewPokemonCanvasView _newPokemonCanvasView;
     [SerializeField] private FailMenuView _failMenuView;
+    [SerializeField] private GameCanvasView _gameCanvasView;
 
     private PokemonSpawner _pokemonSpawner;
     private SaveLoadSystem _saveLoadSystem;
@@ -108,7 +110,7 @@ public class ProjectStarter : MonoBehaviour
         _pokemonSpawner = new PokemonSpawner(pokemonPrefabHolder, _pokemonParentObject, _pokemonStats, _updateHandler,
             pokemonHolderModel, _fieldView, _camera, playerData);
         _pokemonSpawner.Initialize();
-        
+
         var pokemonMerger = new PokemonMerger(_fieldView, _pokemonSpritesHolder, pokemonAvailabilityLogic);
 
         var pokemonCellPlacer =
@@ -117,7 +119,7 @@ public class ProjectStarter : MonoBehaviour
 
         var shopData = new ShopData();
         var shopLogic = new ShopLogic(_pokemonSpawner, _shopView, shopData, playerData, pokemonHolderModel,
-            playerLogic, pokemonCellPlacer, pokemonPrefabHolder);
+            playerLogic, pokemonCellPlacer, pokemonPrefabHolder, directionTranslator, _gameCanvasView);
         shopLogic.Initialize();
         shopData.Initialize(_shopStats, playerData.MeleeBuyCounter, playerData.RangedBuyCounter);
 
