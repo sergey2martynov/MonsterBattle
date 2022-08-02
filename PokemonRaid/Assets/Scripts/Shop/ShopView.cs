@@ -1,5 +1,6 @@
 using System;
 using Menu;
+using StaticData;
 using TMPro;
 using Tutorial;
 using UnityEngine;
@@ -17,8 +18,14 @@ namespace Shop
         [SerializeField] private TextMeshProUGUI _meleeCost;
         [SerializeField] private TextMeshProUGUI _rangedCost;
         [SerializeField] private MoveTutorialView _moveTutorial;
+        [SerializeField] private Image _meleePokemonOnButton;
+        [SerializeField] private Image _rangePokemonOnButton;
         [SerializeField] private Image _mergeTutorial;
         [SerializeField] private Image _purchaseTutorial;
+        [SerializeField] private Image _meleeCoins;
+        [SerializeField] private Image _rangeCoins;
+        [SerializeField] private CardSpritesHolder _cardSpritesHolder;
+        private static readonly int Property = Shader.PropertyToID("_EffectAmount");
 
         private const int CenterPositionY = 489;
 
@@ -44,6 +51,34 @@ namespace Shop
             _purchaseRangedButton.onClick.RemoveListener(OnPurchaseRangedButtonClicked);
             _startButton.onClick.RemoveListener(OnStartButtonClicked);
             _cardsButton.onClick.RemoveListener(OnCardsButtonClicked);
+        }
+
+        public void SetGrayColorForButton(PokemonType pokemonType)
+        {
+            if (pokemonType == PokemonType.Melee)
+            {
+                _purchaseMeleeButton.image.material.SetFloat(Property, 1);
+                _meleePokemonOnButton.material.SetFloat(Property, 1);
+
+            }
+            else
+            {
+                _purchaseRangedButton.image.material.SetFloat(Property, 1);
+                _rangePokemonOnButton.material.SetFloat(Property, 1);
+            }
+        }
+
+        public void CreateMaterialInstance()
+        {
+            var ButtonMaterial = _purchaseMeleeButton.image.material;
+            
+            _purchaseMeleeButton.image.material = new Material(ButtonMaterial);
+            _meleePokemonOnButton.material = _purchaseMeleeButton.image.material;
+            _meleeCoins.material = _purchaseMeleeButton.image.material;
+            
+            _purchaseRangedButton.image.material = new Material(ButtonMaterial);
+            _rangePokemonOnButton.material = _purchaseRangedButton.image.material;
+            _rangeCoins.material = _purchaseRangedButton.image.material;
         }
 
         public void SetTextCoins(int coinsAmount)
@@ -126,8 +161,8 @@ namespace Shop
         {
             _purchaseRangedButton.gameObject.SetActive(isActive);
 
-            _purchaseMeleeButton.GetComponent<RectTransform>().anchoredPosition = new Vector2(CenterPositionY,
-                _purchaseMeleeButton.GetComponent<RectTransform>().anchoredPosition.y);
+            // _purchaseMeleeButton.GetComponent<RectTransform>().anchoredPosition = new Vector2(CenterPositionY,
+            //     _purchaseMeleeButton.GetComponent<RectTransform>().anchoredPosition.y);
         }
 
         private void OnPurchaseRangedButtonClicked()

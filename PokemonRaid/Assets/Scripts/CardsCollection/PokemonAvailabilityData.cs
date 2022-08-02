@@ -38,7 +38,7 @@ namespace CardsCollection
                     
                     if (i == 0 && j == 0)
                     {
-                        meleePokemonAvailabilities[0] = true;
+                        //meleePokemonAvailabilities[0] = true;
                     }
                 }
                 

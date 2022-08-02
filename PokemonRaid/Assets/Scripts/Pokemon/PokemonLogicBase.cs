@@ -51,6 +51,7 @@ namespace Pokemon
             _data.PokemonDied += OnPokemonDied;
             _data.HealthChanged += OnHealthChanged;
             _data.DirectionCorrectionRequested += CheckForBounds;
+            _model.EnemyDataHolder.AllEnemiesDefeated += OnEnemyDefeated;
             _statesToType = new Dictionary<Type, BaseState<TView, TEnemyView>>
             {
                 {typeof(IdleState<TView, TEnemyView>), new IdleState<TView, TEnemyView>(_view, this, _data)},
@@ -242,6 +243,12 @@ namespace Pokemon
             return outDirection;
         }
 
+        private void OnEnemyDefeated()
+        {
+            _view.MoveParticle.gameObject.SetActive(true);
+            _view.MoveParticle.Play();
+        }
+
         // public Vector3 CheckForBounds()
         // {
         //     var ray = new Ray(_view.Transform.position, _data.LookDirection);
@@ -285,6 +292,7 @@ namespace Pokemon
             _data.PokemonDied -= OnPokemonDied;
             _data.HealthChanged -= OnHealthChanged;
             _data.DirectionCorrectionRequested -= CheckForBounds;
+            _model.EnemyDataHolder.AllEnemiesDefeated -= OnEnemyDefeated;
         }
     }
 }

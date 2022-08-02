@@ -19,6 +19,7 @@ namespace Pokemon.PokemonHolder
         private float _speedMultiplier = 1f;
         
         public IEnumerable<List<PokemonDataBase>> PokemonsList => _pokemonsList;
+        public EnemyDataHolder EnemyDataHolder => _enemyDataHolder;
 
         public void Initialize(EnemyDataHolder dataHolder)
         {

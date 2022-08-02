@@ -1097,7 +1097,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rectTransform: {fileID: 7774102750185092107}
-  _parent: {fileID: 0}
+  _parent: {fileID: 6516890727743819307}
   Speed: 4
   XScale: 140
   YScale: 140

@@ -4,6 +4,7 @@ using System.Linq;
 using DG.Tweening;
 using InputPlayer;
 using LevelEnvironment;
+using Player;
 using Pokemon;
 using Pokemon.PokemonHolder;
 using Pokemon.PokemonHolder.Cell;
@@ -22,6 +23,7 @@ namespace Merge
         private readonly PokemonHolderModel _pokemonHolderModel;
         private readonly PokemonSpawner _pokemonSpawner;
         private readonly PokemonMerger _pokemonMerger;
+        private readonly PlayerData _playerData;
         
         private List<CellView> _cellViews;
         private Ray _ray;
@@ -32,16 +34,16 @@ namespace Merge
         private readonly float _moveDuration = 0.2f;
         private readonly float _distanceForMerge = 0.8f;
 
-        public event Action ObjectSelected;
         public event Action<bool> PokemonMerged;
 
         public PokemonCellPlacer(InputView inputView, FieldView fieldView, PokemonHolderModel pokemonHolderModel,
-            PokemonMerger pokemonMerger, PokemonSpawner pokemonSpawner)
+            PokemonMerger pokemonMerger, PokemonSpawner pokemonSpawner, PlayerData playerData)
         {
             _fieldView = fieldView;
             _pokemonHolderModel = pokemonHolderModel;
             _pokemonMerger = pokemonMerger;
             _pokemonSpawner = pokemonSpawner;
+            _playerData = playerData;
             _inputView = inputView;
         }
 
@@ -63,7 +65,6 @@ namespace Merge
             {
                 _targetPokemon = pokemon;
                 _fixedCell = GetCurrentCell(_targetPokemon.transform.position,true);
-                ObjectSelected.Invoke();
             }
         }
 
@@ -131,14 +132,20 @@ namespace Merge
                     
                     _pokemonHolderModel.SetValueCellData(_fixedIndex, false);
                 }
-                else
+                else if (_playerData.Level != 2)
                 {
                     var nearestCell = GetNearestEmptyCell(_targetPokemon.transform.position, out var cellData);
-                    _pokemonHolderModel.SwapPokemons(_targetPokemon.GetIndexes(), new []{cellData.Row, cellData.Column});
-                    _targetPokemon.SetIndexes(new []{cellData.Row, cellData.Column});
+                    _pokemonHolderModel.SwapPokemons(_targetPokemon.GetIndexes(),
+                        new[] { cellData.Row, cellData.Column });
+                    _targetPokemon.SetIndexes(new[] { cellData.Row, cellData.Column });
 
                     _targetPokemon.transform.DOMoveX(nearestCell.transform.position.x, _moveDuration);
                     _targetPokemon.transform.DOMoveZ(nearestCell.transform.position.z, _moveDuration);
+                }
+                else if (_playerData.Level == 2 && _playerData.Coins > 7)
+                {
+                    _targetPokemon.transform.DOMoveX(_fixedCell.gameObject.transform.position.x, _moveDuration);
+                    _targetPokemon.transform.DOMoveZ(_fixedCell.gameObject.transform.position.z, _moveDuration);
                 }
 
                 _targetPokemon = null;

@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using Analitycs;
+using CardsCollection;
 using DG.Tweening;
 using GameCanvas;
 using InputPlayer;
@@ -25,6 +26,7 @@ namespace Shop
         private readonly PokemonPrefabHolder _pokemonPrefabHolder;
         private readonly GameCanvasView _gameCanvasView;
         private readonly InputLogic _inputLogic;
+        private readonly CardsPanelLogic _cardsPanelLogic;
         private bool _isMergeTutorialActivated;
 
 
@@ -35,7 +37,8 @@ namespace Shop
 
         public ShopLogic(PokemonSpawner pokemonSpawner, ShopView shopView, ShopData shopData, PlayerData playerData,
             PokemonHolderModel pokemonHolderModel, PlayerLogic playerLogic, PokemonCellPlacer pokemonCellPlacer,
-            PokemonPrefabHolder pokemonPrefabHolder, InputLogic inputLogic, GameCanvasView gameCanvasView)
+            PokemonPrefabHolder pokemonPrefabHolder, InputLogic inputLogic, GameCanvasView gameCanvasView,
+            CardsPanelLogic cardsPanelLogic)
         {
             _pokemonSpawner = pokemonSpawner;
             _shopView = shopView;
@@ -47,6 +50,7 @@ namespace Shop
             _pokemonPrefabHolder = pokemonPrefabHolder;
             _inputLogic = inputLogic;
             _gameCanvasView = gameCanvasView;
+            _cardsPanelLogic = cardsPanelLogic;
         }
 
         public void Initialize()
@@ -55,7 +59,7 @@ namespace Shop
             _shopView.PurchaseButtonPressed += DisableTutorials;
             _shopView.StartButtonPressed += OnStartButtonPressed;
             _shopView.StartButtonPressed += _playerData.SetMaxHealth;
-            _pokemonCellPlacer.ObjectSelected += DisableMergeTutorial;
+            _pokemonCellPlacer.PokemonMerged += DisableMergeTutorial;
             _shopView.SetTextCoins(_playerData.Coins);
             _shopData.MeleePokemonCostChanged += OnMeleePokemonCostChanged;
             _shopData.RangedPokemonCostChanged += OnRangedPokemonCostChanged;
@@ -68,6 +72,8 @@ namespace Shop
             _inputLogic.DirectionReceived += OnDirectionReceive;
             ActivatePurchaseTutorial();
             CheckPlayerLevel();
+            _shopView.CreateMaterialInstance();
+            CheckCoins();
         }
 
         private void TryPurchasePokemon(PokemonType pokemonType)
@@ -87,6 +93,8 @@ namespace Shop
                 _shopView.SetTextCoins(_playerData.Coins);
                 _playerData.IncreaseMeleeBuyCounter();
                 _shopData.IncreaseMeleePokemonCost(_playerData.MeleeBuyCounter);
+                _cardsPanelLogic.UpdateSpawnCards(0, 0);
+                CheckCoins();
             }
             else
             {
@@ -115,7 +123,22 @@ namespace Shop
                 _pokemonSpawner.CreateFirstLevelRandomPokemon(cell.Position,
                     pokemonType, indexes);
 
+                CheckCoins();
+
                 _playerLogic.OnPurchase();
+            }
+        }
+
+        public void CheckCoins()
+        {
+            if (_shopData.MeleePokemonCost > _playerData.Coins)
+            {
+                _shopView.SetGrayColorForButton(PokemonType.Melee);
+            }
+
+            if (_shopData.RangedPokemonCost > _playerData.Coins)
+            {
+                _shopView.SetGrayColorForButton(PokemonType.Ranged);
             }
         }
 
@@ -129,10 +152,10 @@ namespace Shop
                 EventSender.SendLevelStart(_playerData.Level, _playerData.LevelCount);
                 StartButtonPressed?.Invoke();
             });
-            
+
             DOTween.Sequence().AppendInterval(8).OnComplete(() =>
             {
-                    _gameCanvasView.MoveTutorialView.gameObject.SetActive(false);
+                _gameCanvasView.MoveTutorialView.gameObject.SetActive(false);
             });
         }
 
@@ -150,7 +173,7 @@ namespace Shop
                 StartButtonDisable(false);
             }
 
-            if (_playerData.Level > 1 && _playerData.Level < 3)
+            if (_playerData.Level > 1 && _playerData.Level < 3  && _playerData.Coins > 7)
             {
                 _shopView.DisableRangePurchaseButton(false);
                 StartButtonDisable(false);
@@ -182,7 +205,7 @@ namespace Shop
 
         private void ActivatePurchaseTutorial()
         {
-            if (_playerData.Level == 2 && _playerData.LevelCount == 2 ||
+            if (_playerData.Coins > 7 && _playerData.Level == 2 && _playerData.LevelCount == 2 ||
                 _playerData.Level == 1 && _playerData.LevelCount == 1)
             {
                 _shopView.PurchaseTutorial.gameObject.SetActive(true);
@@ -190,7 +213,7 @@ namespace Shop
             }
         }
 
-        private void DisableMergeTutorial()
+        private void DisableMergeTutorial(bool isActive)
         {
             if (_playerData.Level == 2)
                 _shopView.MergeTutorial.gameObject.SetActive(false);
@@ -222,9 +245,9 @@ namespace Shop
 
         private void ScaleStartButton()
         {
-            _shopView.StartButton.GetComponent<RectTransform>().DOScale(1, 1).OnComplete(() =>
+            _shopView.StartButton.GetComponent<RectTransform>().DOScale(0.8f, 0.8f).OnComplete(() =>
             {
-                _shopView.StartButton.GetComponent<RectTransform>().DOScale(0.8f, 1).OnComplete(() =>
+                _shopView.StartButton.GetComponent<RectTransform>().DOScale(0.7f, 0.8f).OnComplete(() =>
                 {
                     StartButtonScaled?.Invoke();
                 });

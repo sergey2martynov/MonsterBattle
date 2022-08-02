@@ -114,12 +114,12 @@ public class ProjectStarter : MonoBehaviour
         var pokemonMerger = new PokemonMerger(_fieldView, _pokemonSpritesHolder, pokemonAvailabilityLogic);
 
         var pokemonCellPlacer =
-            new PokemonCellPlacer(_inputView, _fieldView, pokemonHolderModel, pokemonMerger, _pokemonSpawner);
+            new PokemonCellPlacer(_inputView, _fieldView, pokemonHolderModel, pokemonMerger, _pokemonSpawner, playerData);
         pokemonCellPlacer.Initialize();
 
         var shopData = new ShopData();
         var shopLogic = new ShopLogic(_pokemonSpawner, _shopView, shopData, playerData, pokemonHolderModel,
-            playerLogic, pokemonCellPlacer, pokemonPrefabHolder, directionTranslator, _gameCanvasView);
+            playerLogic, pokemonCellPlacer, pokemonPrefabHolder, directionTranslator, _gameCanvasView, cardsPanelLogic);
         shopLogic.Initialize();
         shopData.Initialize(_shopStats, playerData.MeleeBuyCounter, playerData.RangedBuyCounter);
 
@@ -144,6 +144,8 @@ public class ProjectStarter : MonoBehaviour
 
         var failMenuLogic = new FailMenuLogic(playerData, enemyDataHolder, _failMenuView, _saveLoadSystem);
         failMenuLogic.Initialize();
+        
+        shopLogic.CheckCoins();
     }
 
     private void OnApplicationQuit()
