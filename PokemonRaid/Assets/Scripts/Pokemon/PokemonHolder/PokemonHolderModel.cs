@@ -116,7 +116,7 @@ namespace Pokemon.PokemonHolder
 
                 if (correctedDirection != scaleVector)
                 {
-                    //Debug.Log(correctedDirection + " " + scaleVector + "\n" + direction );
+                    Debug.Log(correctedDirection + " " + scaleVector + "\n" + direction );
                     correctedDirection = Vector3.Scale(correctedDirection, scaleVector);
                     SetMoveDirection(correctedDirection * _speedMultiplier);
                     return;

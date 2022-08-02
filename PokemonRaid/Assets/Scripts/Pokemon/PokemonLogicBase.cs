@@ -24,11 +24,12 @@ namespace Pokemon
         protected List<TEnemyView> _enemies = new List<TEnemyView>();
         protected BaseState<TView, TEnemyView> _currentState;
         protected Collider[] _collidersInRange;
+        protected Collider[] _boundsInRange = new Collider[2];
         protected BaseAnimation _attackAnimation;
         protected int _attackCount;
         protected float _rayCastDistance = 1f;
         //protected RaycastHit[] _hit = new RaycastHit[1];
-        protected RaycastHit[] _hit = new RaycastHit[2];
+        protected RaycastHit[] _hit = new RaycastHit[1];
         protected CancellationTokenSource _source;
         protected readonly int _attack = Animator.StringToHash("Attack");
 
@@ -190,70 +191,88 @@ namespace Pokemon
                 Quaternion.RotateTowards(_view.Transform.rotation, destinationRotation, 720 * Time.deltaTime);
         }
 
-        // public Vector3 CheckForBounds()
-        // {
-        //     var ray = new Ray(_view.Transform.position, _view.Transform.forward);
-        //     //var ray = new Ray(_view.Transform.position, Vector3.zero);
-        //
-        //     if (Physics.RaycastNonAlloc(ray, _hit, _rayCastDistance, _view.BoundsLayer) > 0)
-        //     {
-        //         var direction = (Vector3) _data.LookDirection;
-        //         direction.Normalize();
-        //         //var normal = _hit[0].normal;
-        //         var normal = new Vector3(
-        //             Mathf.Clamp(_hit[0].normal.x, -Mathf.Abs(direction.x), Mathf.Abs(direction.x)),
-        //             Mathf.Clamp(_hit[0].normal.y, -Mathf.Abs(direction.y), Mathf.Abs(direction.y)),
-        //             Mathf.Clamp(_hit[0].normal.z, -Mathf.Abs(direction.z), Mathf.Abs(direction.z)));
-        //         
-        //         Debug.Log("NORMAL : " + normal);
-        //         
-        //         //TODO: Change raycastnonalloc to spherecastnonalloc to be able to get collisions with two bounds at ones
-        //
-        //         // return direction - new Vector3(Mathf.Abs(normal.x) * direction.x, Mathf.Abs(normal.y) * direction.y,
-        //         //     Mathf.Abs(normal.z) * direction.z);
-        //
-        //         var xSign = direction.x == 0 ? 0f : Mathf.Sign(direction.x); 
-        //         var ySign = direction.y == 0 ? 0f : Mathf.Sign(direction.y); 
-        //         var zSign = direction.z == 0 ? 0f : Mathf.Sign(direction.z); 
-        //         
-        //         return direction - new Vector3(Mathf.Abs(normal.x) * xSign, Mathf.Abs(normal.y) * ySign,
-        //             Mathf.Abs(normal.z) * zSign);
-        //     }
-        //
-        //     return new Vector3(10f, 10f, 10f);
-        // }
-
         public Vector3 CheckForBounds()
         {
-            var ray = new Ray(_view.Transform.position, _data.LookDirection);
+            var boundsAmount = Physics.OverlapSphereNonAlloc(_view.Transform.position, _rayCastDistance, _boundsInRange,
+                _view.BoundsLayer);
 
-            if (Physics.SphereCastNonAlloc(ray, _rayCastDistance, _hit, 0.1f, _view.BoundsLayer) > 0)
+            if (boundsAmount == 0)
             {
-                var direction = (Vector3) _data.LookDirection;
-                var outDirection = (Vector3) _data.LookDirection;
-                direction.Normalize();
+                return new Vector3(10f, 10f, 10f);
+            }
 
-                foreach (var hit in _hit)
+            var direction = (Vector3) _data.LookDirection;
+            var outDirection = (Vector3) _data.LookDirection;
+            direction.Normalize();
+            
+            foreach (var boundCollider in _boundsInRange)
+            {
+                if (boundCollider == null)
+                {
+                    continue;
+                }
+                
+                var position = _view.Transform.position;
+                var positionDelta = boundCollider.transform.position - position;
+                var ray = new Ray(position, positionDelta.normalized);
+
+                if (Physics.RaycastNonAlloc(ray, _hit, positionDelta.magnitude, _view.BoundsLayer) > 0)
                 {
                     var normal = new Vector3(
-                        Mathf.Clamp(_hit[0].normal.x, -Mathf.Abs(direction.x), Mathf.Abs(direction.x)),
-                        Mathf.Clamp(_hit[0].normal.y, -Mathf.Abs(direction.y), Mathf.Abs(direction.y)),
-                        Mathf.Clamp(_hit[0].normal.z, -Mathf.Abs(direction.z), Mathf.Abs(direction.z)));
+                    Mathf.Clamp(_hit[0].normal.x, -Mathf.Abs(direction.x), Mathf.Abs(direction.x)),
+                    Mathf.Clamp(_hit[0].normal.y, -Mathf.Abs(direction.y), Mathf.Abs(direction.y)),
+                    Mathf.Clamp(_hit[0].normal.z, -Mathf.Abs(direction.z), Mathf.Abs(direction.z)));
                     
                     var xSign = direction.x == 0 ? 0f : Mathf.Sign(direction.x); 
                     var ySign = direction.y == 0 ? 0f : Mathf.Sign(direction.y); 
-                    var zSign = direction.z == 0 ? 0f : Mathf.Sign(direction.z); 
+                    var zSign = direction.z == 0 ? 0f : Mathf.Sign(direction.z);
+
+                    if (Vector3.Angle(normal, direction) <= 90)
+                    {
+                        continue;
+                    }
+                    
                     outDirection -= new Vector3(Mathf.Abs(normal.x) * xSign, Mathf.Abs(normal.y) * ySign,
                         Mathf.Abs(normal.z) * zSign);
                 }
-
-                Array.Clear(_hit, 0, _hit.Length);
-                return outDirection;
             }
             
+            Array.Clear(_boundsInRange, 0, _boundsInRange.Length);
             Array.Clear(_hit, 0, _hit.Length);
-            return new Vector3(10f, 10f, 10f);
+            return outDirection;
         }
+
+        // public Vector3 CheckForBounds()
+        // {
+        //     var ray = new Ray(_view.Transform.position, _data.LookDirection);
+        //
+        //     if (Physics.SphereCastNonAlloc(ray, _rayCastDistance, _hit, 0.1f, _view.BoundsLayer) > 0)
+        //     {
+        //         var direction = (Vector3) _data.LookDirection;
+        //         var outDirection = (Vector3) _data.LookDirection;
+        //         direction.Normalize();
+        //
+        //         foreach (var hit in _hit)
+        //         {
+        //             var normal = new Vector3(
+        //                 Mathf.Clamp(_hit[0].normal.x, -Mathf.Abs(direction.x), Mathf.Abs(direction.x)),
+        //                 Mathf.Clamp(_hit[0].normal.y, -Mathf.Abs(direction.y), Mathf.Abs(direction.y)),
+        //                 Mathf.Clamp(_hit[0].normal.z, -Mathf.Abs(direction.z), Mathf.Abs(direction.z)));
+        //             
+        //             var xSign = direction.x == 0 ? 0f : Mathf.Sign(direction.x); 
+        //             var ySign = direction.y == 0 ? 0f : Mathf.Sign(direction.y); 
+        //             var zSign = direction.z == 0 ? 0f : Mathf.Sign(direction.z); 
+        //             outDirection -= new Vector3(Mathf.Abs(normal.x) * xSign, Mathf.Abs(normal.y) * ySign,
+        //                 Mathf.Abs(normal.z) * zSign);
+        //         }
+        //
+        //         Array.Clear(_hit, 0, _hit.Length);
+        //         return outDirection;
+        //     }
+        //     
+        //     Array.Clear(_hit, 0, _hit.Length);
+        //     return new Vector3(10f, 10f, 10f);
+        // }
 
         protected virtual void Dispose()
         {

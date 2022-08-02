@@ -19,7 +19,8 @@ namespace Player
         private UpgradeLevels _upgradeLevels;
         private PokemonAvailabilityLogic _pokemonAvailabilityLogic;
         private PokemonHolderModel _pokemonHolderModel;
-        private RaycastHit[] _hit = new RaycastHit[2];
+        private RaycastHit[] _hit = new RaycastHit[1];
+        private Collider[] _boundsInRange = new Collider[2];
         private float _rayCastDistance = 1f;
         private float _smooth = 0.1f;
         private static readonly int Blend = Animator.StringToHash("Blend");
@@ -102,15 +103,30 @@ namespace Player
         
         public Vector3 CheckForBounds()
         {
-            var ray = new Ray(_view.Transform.position, _data.LookDirection);
+            var boundsAmount = Physics.OverlapSphereNonAlloc(_view.Transform.position, _rayCastDistance, _boundsInRange,
+                _view.BoundsLayer);
 
-            if (Physics.SphereCastNonAlloc(ray, _rayCastDistance, _hit, 0.1f, _view.BoundsLayer) > 0)
+            if (boundsAmount == 0)
             {
-                var direction = _data.LookDirection;
-                var outDirection = _data.LookDirection;
-                direction.Normalize();
+                return new Vector3(10f, 10f, 10f);
+            }
 
-                foreach (var hit in _hit)
+            var direction = (Vector3) _data.LookDirection;
+            var outDirection = (Vector3) _data.LookDirection;
+            direction.Normalize();
+            
+            foreach (var boundCollider in _boundsInRange)
+            {
+                if (boundCollider == null)
+                {
+                    continue;
+                }
+
+                var position = _view.Transform.position;
+                var positionDelta = boundCollider.transform.position - position;
+                var ray = new Ray(position, positionDelta.normalized);
+
+                if (Physics.RaycastNonAlloc(ray, _hit, positionDelta.magnitude, _view.BoundsLayer) > 0)
                 {
                     var normal = new Vector3(
                         Mathf.Clamp(_hit[0].normal.x, -Mathf.Abs(direction.x), Mathf.Abs(direction.x)),
@@ -119,18 +135,54 @@ namespace Player
                     
                     var xSign = direction.x == 0 ? 0f : Mathf.Sign(direction.x); 
                     var ySign = direction.y == 0 ? 0f : Mathf.Sign(direction.y); 
-                    var zSign = direction.z == 0 ? 0f : Mathf.Sign(direction.z); 
+                    var zSign = direction.z == 0 ? 0f : Mathf.Sign(direction.z);
+                    
+                    if (Vector3.Angle(normal, direction) <= 90)
+                    {
+                        continue;
+                    }
+                    
                     outDirection -= new Vector3(Mathf.Abs(normal.x) * xSign, Mathf.Abs(normal.y) * ySign,
                         Mathf.Abs(normal.z) * zSign);
                 }
-                
-                Array.Clear(_hit, 0, _hit.Length);
-                return outDirection;
             }
-
+            
+            Array.Clear(_boundsInRange, 0, _boundsInRange.Length);
             Array.Clear(_hit, 0, _hit.Length);
-            return new Vector3(10f, 10f, 10f);
+            return outDirection;
         }
+        
+        // public Vector3 CheckForBounds()
+        // {
+        //     var ray = new Ray(_view.Transform.position, _data.LookDirection);
+        //
+        //     if (Physics.SphereCastNonAlloc(ray, _rayCastDistance, _hit, 0.1f, _view.BoundsLayer) > 0)
+        //     {
+        //         var direction = _data.LookDirection;
+        //         var outDirection = _data.LookDirection;
+        //         direction.Normalize();
+        //
+        //         foreach (var hit in _hit)
+        //         {
+        //             var normal = new Vector3(
+        //                 Mathf.Clamp(_hit[0].normal.x, -Mathf.Abs(direction.x), Mathf.Abs(direction.x)),
+        //                 Mathf.Clamp(_hit[0].normal.y, -Mathf.Abs(direction.y), Mathf.Abs(direction.y)),
+        //                 Mathf.Clamp(_hit[0].normal.z, -Mathf.Abs(direction.z), Mathf.Abs(direction.z)));
+        //             
+        //             var xSign = direction.x == 0 ? 0f : Mathf.Sign(direction.x); 
+        //             var ySign = direction.y == 0 ? 0f : Mathf.Sign(direction.y); 
+        //             var zSign = direction.z == 0 ? 0f : Mathf.Sign(direction.z); 
+        //             outDirection -= new Vector3(Mathf.Abs(normal.x) * xSign, Mathf.Abs(normal.y) * ySign,
+        //                 Mathf.Abs(normal.z) * zSign);
+        //         }
+        //         
+        //         Array.Clear(_hit, 0, _hit.Length);
+        //         return outDirection;
+        //     }
+        //
+        //     Array.Clear(_hit, 0, _hit.Length);
+        //     return new Vector3(10f, 10f, 10f);
+        // }
 
         public void HealthBarDisabler()
         {

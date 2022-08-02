@@ -9,6 +9,14 @@ using UnityEngine;
 using UpdateHandlerFolder;
 using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
+/* env_1 - 55
+ * env_2 - 55
+ * env_3 - 55
+ * env_4 - 65
+ * env_5 - 58
+ * env_6 - 110
+ * 
+ */
 
 namespace LevelBuilder
 {
