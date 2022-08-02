@@ -82,7 +82,6 @@ namespace LevelBuilder
                 level = level % 6 == 0 ? 24 : 18 + level % 6;
             }
             
-            // var level = _playerData.Level;
             var levelData = _levelDataHolder.GetLevelData(level);
             var totalEnemyCount = 0;
             
@@ -94,6 +93,12 @@ namespace LevelBuilder
                     var enemyLevel = spawnPosition.EnemyPrefabs[randomIndex].Level;
                     var data = _enemyFactory.CreateInstance(spawnPosition.EnemyPrefabs[randomIndex], position,
                         _enemyStats, _enemyParentObject, enemyLevel, out var baseView);
+
+                    if (level == 1)
+                    {
+                        data.MoveSpeed = 0f;
+                    }
+                    
                     _enemyDataHolder.AddEnemyData(data);
                     
                     _enemyDataHolder.AddEnemyData(data);

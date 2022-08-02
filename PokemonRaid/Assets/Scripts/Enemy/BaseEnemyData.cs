@@ -27,9 +27,9 @@ namespace Enemy
             get => _moveSpeed;
             set
             {
-                if (value <= 0)
+                if (value < 0)
                 {
-                    throw new ArgumentException("Move speed cannot be equal or less than zero");
+                    throw new ArgumentException("Move speed cannot be less than zero");
                 }
 
                 _moveSpeed = value;

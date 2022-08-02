@@ -20,7 +20,7 @@ namespace Enemy.States
         public override void Update()
         {
             base.Update();
-            _logic.RotateAt(-Vector3.forward);
+            _logic.RotateAt(Vector3.forward);
             _view.transform.position += -Vector3.forward * _data.MoveSpeed * Time.deltaTime;
         }
 

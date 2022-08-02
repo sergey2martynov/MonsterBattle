@@ -39,9 +39,10 @@ namespace Pokemon.RangedPokemon.FirstTypePokemon
             var delay = (int) (_attackAnimation.Duration - _attackAnimation.ActionTime / _attackAnimation.FrameRate) * 1000;
             await Task.Delay(delay);
             _view.Animator.SetBool(_attack, false);
-            ShouldAttack = false;
+            // ShouldAttack = false;
             _data.AttackTime = Time.time + _data.AttackSpeed;
             Array.Clear(_collidersInRange, 0, _collidersInRange.Length);
+            ShouldAttack = false;
         }
 
         private async void StartMovingProjectile(ProjectileViewBase projectileView, BaseEnemyView enemyView)

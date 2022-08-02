@@ -86,9 +86,8 @@ namespace Shop
             if (_playerData.Level == 1 && _pokemonHolderModel.PokemonsList.ToList()[1][2] == null)
             {
                 int[] indexes = { 1, 2 };
-
-                _pokemonSpawner.CreatePokemon(new Vector3(0.0099f, 0.42f, 13.29f),
-                    _pokemonPrefabHolder.MeleePokemons[0], 1, indexes);
+                var cellPosition = _pokemonHolderModel.GetCellData(7).Position;
+                _pokemonSpawner.CreatePokemon(cellPosition, _pokemonPrefabHolder.MeleePokemons[0], 1, indexes);
                 SetCoins(-_shopData.MeleePokemonCost);
                 _shopView.SetTextCoins(_playerData.Coins);
                 _playerData.IncreaseMeleeBuyCounter();

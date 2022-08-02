@@ -1,9 +1,6 @@
-using System.Linq;
-using Enemy.GroundEnemy.MeleeEnemy;
 using Factories;
 using Player;
 using Pokemon;
-using Pokemon.MeleePokemon.FifthTypePokemon;
 using Pokemon.PokemonHolder;
 using Pokemon.PokemonHolder.Field;
 using StaticData;
@@ -41,10 +38,6 @@ namespace Pool
         public void Initialize()
         {
             _factory = new PokemonTypeFactory(_updateHandler, _model, _camera);
-
-            
-
-            
         }
 
         public void CreateFirstLevelRandomPokemon(Vector3 position, PokemonType pokemonType, int[] indexes)

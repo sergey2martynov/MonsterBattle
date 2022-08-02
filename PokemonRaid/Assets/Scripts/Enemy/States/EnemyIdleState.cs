@@ -35,15 +35,19 @@ namespace Enemy.States
                 return;
             }
 
-            if (targets == null)
+            if (targets == null && _data.MoveSpeed != 0)
             {
                 _logic.SwitchState<EnemyMoveState<TView>>();
+                return;
             }
-            else
+
+            if (targets == null)
             {
-                var attackState = _logic.SwitchState<EnemyAttackState<TView>>();
-                attackState.SetTargets(targets);
+                return;
             }
+            
+            var attackState = _logic.SwitchState<EnemyAttackState<TView>>();
+            attackState.SetTargets(targets);
         }
     }
 }
