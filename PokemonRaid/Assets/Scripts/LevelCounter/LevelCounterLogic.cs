@@ -20,33 +20,31 @@ namespace LevelCounter
         private void UpdateCounter()
         {
             int count = 0;
-            int countLine = 0;
+            int biomeCount = 0;
+            int levelCount = 1;
+
+            for (int i = 1; i < _playerData.Level; i ++)
+            {
+                if (i % 5 == 0)
+                {
+                    levelCount = 0;
+                    biomeCount++; 
+                }
+
+                levelCount++;
+            }
             
-            for (int i = 0; i < _playerData.Level; i++)
+            _view.Images[0].sprite = _levelSpritesHolder.BiomSprites[biomeCount ];
+            _view.Images[5].sprite = _levelSpritesHolder.BossSprites[biomeCount];
+            
+            for (int i = 1; i <= 4; i ++)
             {
-                count++;
-                if (i % 6 == 0)
-                {
-                    count = 0;
-                }
-            }
-
-            if (count == 0)
-            {
-                for (int i = 1; i < _view.Images.Count; i++)
-                {
-                    _view.Images[i].gameObject.SetActive(false);
-                }
-            }
-
-            for (int i = 0; i < _view.Images.Count; i++)
-            {
-                if (i < count)
+                if (i < levelCount )
                 {
                     _view.Images[i].gameObject.SetActive(true);
                     _view.Images[i].sprite = _levelSpritesHolder.Sprites[0];
                 }
-                else if (i == count)
+                else if (i == levelCount)
                 {
                     _view.Images[i].gameObject.SetActive(true);
                     _view.Images[i].sprite = _levelSpritesHolder.Sprites[1];
@@ -56,6 +54,43 @@ namespace LevelCounter
                     _view.Images[i].gameObject.SetActive(false);
                 }
             }
+            
+            _view.LevelText.text = "LEVEL " + _playerData.Level;
+            
+            // for (int i = 0; i < _playerData.Level; i++)
+            // {
+            //     count++;
+            //     if (i % 6 == 0)
+            //     {
+            //         count = 0;
+            //     }
+            // }
+            //
+            // if (count == 0)
+            // {
+            //     for (int i = 1; i < _view.Images.Count; i++)
+            //     {
+            //         _view.Images[i].gameObject.SetActive(false);
+            //     }
+            // }
+            //
+            // for (int i = 0; i < _view.Images.Count; i++)
+            // {
+            //     if (i < count)
+            //     {
+            //         _view.Images[i].gameObject.SetActive(true);
+            //         _view.Images[i].sprite = _levelSpritesHolder.Sprites[0];
+            //     }
+            //     else if (i == count)
+            //     {
+            //         _view.Images[i].gameObject.SetActive(true);
+            //         _view.Images[i].sprite = _levelSpritesHolder.Sprites[1];
+            //     }
+            //     else
+            //     {
+            //         _view.Images[i].gameObject.SetActive(false);
+            //     }
+            // }
 
             _view.LevelText.text = "LEVEL " + _playerData.Level;
         }

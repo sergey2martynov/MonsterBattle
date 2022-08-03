@@ -15,3 +15,11 @@ MonoBehaviour:
   _sprites:
   - {fileID: 21300000, guid: cf45d6360c0123b4ca233bb61e36506f, type: 3}
   - {fileID: 21300000, guid: c166b8e2fe4641e47b1a69ecaf8bd276, type: 3}
+  _bossSprites:
+  - {fileID: 21300000, guid: e62d650157b99dd41a2737224a0c26e6, type: 3}
+  - {fileID: 21300000, guid: 42df2975791fbb5438b120045e48bce1, type: 3}
+  - {fileID: 21300000, guid: c93a346329c7bc24e9d1b27fbc00dbd9, type: 3}
+  _biomSprites:
+  - {fileID: 21300000, guid: e62d650157b99dd41a2737224a0c26e6, type: 3}
+  - {fileID: 21300000, guid: 42df2975791fbb5438b120045e48bce1, type: 3}
+  - {fileID: 21300000, guid: c93a346329c7bc24e9d1b27fbc00dbd9, type: 3}

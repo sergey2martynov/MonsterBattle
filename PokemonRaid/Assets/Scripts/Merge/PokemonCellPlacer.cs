@@ -150,7 +150,7 @@ namespace Merge
                     
                     _pokemonHolderModel.SetValueCellData(_fixedIndex, false);
                 }
-                else if (_playerData.Level != 2)
+                else if (_playerData.Level != 2  && _playerData.Level != 1)
                 {
                     var nearestCell = GetNearestEmptyCell(_targetPokemon.transform.position, out var cellData);
                     _pokemonHolderModel.SwapPokemons(_targetPokemon.GetIndexes(),
@@ -160,7 +160,7 @@ namespace Merge
                     _targetPokemon.transform.DOMoveX(nearestCell.transform.position.x, _moveDuration);
                     _targetPokemon.transform.DOMoveZ(nearestCell.transform.position.z, _moveDuration);
                 }
-                else if (_playerData.Level == 2 && _playerData.Coins > 7)
+                else if ((_playerData.Level == 2 && _playerData.Coins < 7) || _playerData.Level == 1)
                 {
                     _targetPokemon.transform.DOMoveX(_fixedCell.gameObject.transform.position.x, _moveDuration);
                     _targetPokemon.transform.DOMoveZ(_fixedCell.gameObject.transform.position.z, _moveDuration);

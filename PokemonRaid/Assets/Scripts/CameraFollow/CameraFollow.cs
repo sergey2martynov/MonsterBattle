@@ -1,4 +1,3 @@
-using System;
 using DG.Tweening;
 using Player;
 using Shop;
@@ -10,12 +9,14 @@ namespace CameraFollow
     {
         [SerializeField] private PlayerView _playerView;
         [SerializeField] private ShopView _shopView;
+        [SerializeField] private Vector3 _vector3;
 
         private bool _isCanAddOffset = true;
-        private Vector3 _offset = new Vector3(0, 18, -6.68f);
+        private Vector3 _offset;
 
         private void Start()
         {
+            _offset = _vector3;
             _shopView.StartButtonPressed += MoveCamera;
         }
 
@@ -34,6 +35,8 @@ namespace CameraFollow
         private void MoveCamera()
         {
             _isCanAddOffset = false;
+
+            transform.DORotate(new Vector3(50, 0, 0), 1);
 
             transform.DOMove(new Vector3(0, 15, 4.18f), 2).OnComplete(() =>
             {
