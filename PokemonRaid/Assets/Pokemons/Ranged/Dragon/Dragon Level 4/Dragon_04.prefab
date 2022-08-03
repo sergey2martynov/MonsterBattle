@@ -1545,6 +1545,7 @@ GameObject:
   - component: {fileID: 4721684398125464133}
   - component: {fileID: 8952164502036589690}
   - component: {fileID: 7587717045211257336}
+  - component: {fileID: 8992692674762358678}
   m_Layer: 0
   m_Name: Dragon_04
   m_TagString: Untagged
@@ -1633,6 +1634,19 @@ MonoBehaviour:
     _actionTime: 0
   - _animationClip: {fileID: 7400000, guid: 7f74c70c06be91948a09d7e323361822, type: 3}
     _actionTime: 10
+--- !u!114 &8992692674762358678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5389993316059570431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ecdc6f6301f462a989fd0312ab836a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _firePoint: {fileID: 1901181043937869391}
 --- !u!1 &5495367154148450962
 GameObject:
   m_ObjectHideFlags: 0

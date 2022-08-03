@@ -3,12 +3,11 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Enemy.GroundEnemy.RangedEnemy;
-using Factories;
 using Pokemon;
 using Pokemon.Animations;
+using Pool;
 using Projectile;
 using UnityEngine;
-using Object = UnityEngine.Object;
 
 namespace Enemy.States.RangedStates
 {
@@ -17,17 +16,16 @@ namespace Enemy.States.RangedStates
         private readonly int _attack = Animator.StringToHash("Attack");
         private readonly BaseAnimation _attackAnimation;
 
+        private ObjectPool<ProjectileViewBase> _projectilePool;
         private Collider[] _targets;
-        private float _startTime;
-        private float _attackTime;
-        private bool _attacked;
 
-        public bool ShouldAttack { get; private set; }
+        private bool ShouldAttack { get; set; }
 
         public EnemyRangedAttackState(RangedTypeEnemyView view, BaseEnemyLogic<RangedTypeEnemyView> logic,
             BaseEnemyData data) : base(view, logic, data)
         {
             _attackAnimation = _view.EventTranslator.GetAnimationInfo("Attack");
+            _projectilePool = new ObjectPool<ProjectileViewBase>(20, _view.Projectile, _view.Transform);
         }
 
         public override void OnEnter()
@@ -58,10 +56,11 @@ namespace Enemy.States.RangedStates
         public override async void SetTargets(Collider[] targets)
         {
             _targets = targets;
-            await Attack();
+            var token = _data.Source?.Token ?? _data.CreateCancellationTokenSource().Token;
+            await Attack(token);
         }
-        
-        protected async Task Attack()
+
+        private async Task Attack(CancellationToken token)
         {
             ShouldAttack = true;
             var attackTime = Time.time + _attackAnimation.ActionTime / _attackAnimation.FrameRate;
@@ -69,6 +68,11 @@ namespace Enemy.States.RangedStates
 
             while (Time.time < attackTime)
             {
+                if (token.IsCancellationRequested)
+                {
+                    return;
+                }
+                
                 if (_targets[0] != null)
                 {
                     _logic.RotateAt((_view.Transform.position - _targets[0].transform.position).normalized);
@@ -80,7 +84,7 @@ namespace Enemy.States.RangedStates
             foreach (var collider in _targets.Where(pokemon => pokemon != null))
             {
                 var pokemon = collider.GetComponent<PokemonViewBase>();
-                var projectile = ProjectileFactory.CreateInstance(_view.FirePosition, _view.Projectile);
+                var projectile = _projectilePool.TryPoolObject();
                 StartMovingProjectile(projectile, pokemon);
             }
             
@@ -102,11 +106,25 @@ namespace Enemy.States.RangedStates
             PokemonViewBase pokemonView)
         {
             var startTime = Time.time;
-            var initialPosition = projectileView.transform.position;
-            RotateAt(pokemonView.Transform, projectileView.transform, 2);
+            var transform = projectileView.transform;
+            transform.position = _view.FirePosition;
+            var initialPosition = transform.position;
+            RotateAt(pokemonView.Transform, transform, 2);
 
             while (Time.time <= startTime + 0.5f)
             {
+                if (token.IsCancellationRequested)
+                {
+                    _projectilePool.ReturnToPool(projectileView);
+                    return;
+                }
+
+                if (pokemonView == null)
+                {
+                    _projectilePool.ReturnToPool(projectileView);
+                    return;
+                }
+                
                 RotateAt(pokemonView.transform, projectileView.transform, 2 / Time.deltaTime);
                 projectileView.transform.position = Vector3.Lerp(initialPosition, pokemonView.transform.position
                     + new Vector3(0f, 0.5f, 0f), (Time.time - startTime) / 0.5f);
@@ -114,8 +132,7 @@ namespace Enemy.States.RangedStates
                 await Task.Yield();
             }
             
-            Object.Destroy(projectileView.gameObject);
-
+            _projectilePool.ReturnToPool(projectileView);
             pokemonView.TakeDamage(_data.Damage);
         }
 

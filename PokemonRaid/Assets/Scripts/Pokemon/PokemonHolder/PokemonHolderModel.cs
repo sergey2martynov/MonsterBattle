@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Data.Common;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using Enemy.EnemyModel;
 using Player;
 using Pokemon.PokemonHolder.Cell;
@@ -12,7 +10,6 @@ namespace Pokemon.PokemonHolder
     public class PokemonHolderModel
     {
         private List<List<CellData>> _cells = new List<List<CellData>>();
-        private List<PokemonDataBase> _pokemons = new List<PokemonDataBase>();
         private List<List<PokemonDataBase>> _pokemonsList;
         private PlayerData _playerData;
         private EnemyDataHolder _enemyDataHolder;
@@ -44,13 +41,12 @@ namespace Pokemon.PokemonHolder
             _enemyDataHolder.AllEnemiesDefeated += () => _speedMultiplier = 1.5f;
             _pokemonsList = pokemonList.ToList();
 
-            foreach (var pokemonRow in _pokemonsList)
+            foreach (var pokemonData in from pokemonRow in _pokemonsList
+                     from pokemonData in pokemonRow
+                     where pokemonData != null
+                     select pokemonData)
             {
-                foreach (var pokemonData in pokemonRow)
-                {
-                    if (pokemonData != null)
-                        pokemonData.HealthChanged += SetHealthPlayer;
-                }
+                pokemonData.HealthChanged += SetHealthPlayer;
             }
         }
 
@@ -67,17 +63,14 @@ namespace Pokemon.PokemonHolder
         
         public int GetAllHealth()
         {
-            return (from pokemonRow in _pokemonsList from pokemon in pokemonRow where pokemon != null select pokemon.Health).Sum();
+            return (from pokemonRow in _pokemonsList
+                from pokemon in pokemonRow
+                where pokemon != null
+                select pokemon.Health).Sum();
         }
         
         public void SetLookDirection(Vector3 direction)
         {
-            // foreach (var pokemon in _pokemons)
-            // {
-            //     pokemon.MoveDirection = direction;
-            //     _playerData.MoveDirection = direction;
-            // }
-
             foreach (var pokemon in from pokemonList in _pokemonsList
                      from pokemon in pokemonList
                      where pokemon != null
@@ -145,8 +138,8 @@ namespace Pokemon.PokemonHolder
 
         public void SwapPokemons(int[] firstPosition, int[] secondPosition)
         {
-            (_pokemonsList[firstPosition[0]][firstPosition[1]], _pokemonsList[secondPosition[0]][secondPosition[1]]) = (
-                _pokemonsList[secondPosition[0]][secondPosition[1]], _pokemonsList[firstPosition[0]][firstPosition[1]]);
+            (_pokemonsList[firstPosition[0]][firstPosition[1]], _pokemonsList[secondPosition[0]][secondPosition[1]]) = 
+            (_pokemonsList[secondPosition[0]][secondPosition[1]], _pokemonsList[firstPosition[0]][firstPosition[1]]);
         }
 
         public void DeletePokemonFromList(int[] position)
@@ -177,17 +170,9 @@ namespace Pokemon.PokemonHolder
 
         public void AddPokemonToList(PokemonDataBase pokemonData, int[] indexes)
         {
-            // if (!_pokemons.Contains(pokemonData))
-            // {
-            //     _pokemons.Add(pokemonData);
-            // }
-
             _pokemonsList[indexes[0]][indexes[1]] = pokemonData;
-            
             _pokemonsList[indexes[0]][indexes[1]].HealthChanged += SetHealthPlayer;
-            
             _playerData.Health = GetAllHealth();
-
         }
 
         public CellData GetCellData(int index)

@@ -19,7 +19,7 @@ namespace Pokemon
         [SerializeField] private ParticleSystem _moveParticle;
         [SerializeField] private PokemonType _pokemonType;
 
-        private int _level;
+        protected int _level;
 
         public Transform Transform => transform;
 

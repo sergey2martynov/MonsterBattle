@@ -7,20 +7,22 @@ namespace Pokemon.PokemonHolder.Field
 {
     public class BracketLogic
     {
-        private BracketView _bracketPrefab;
+        private readonly BracketView _bracketPrefab;
+        private readonly PokemonCellPlacer _pokemonCellPlacer;
+        private readonly Transform _parent;
         private ObjectPool<BracketView> _bracketPool;
         private Queue<BracketView> _pooledBrackets;
-        private PokemonCellPlacer _pokemonCellPlacer;
 
-        public BracketLogic(BracketView bracketPrefab, PokemonCellPlacer pokemonCellPlacer)
+        public BracketLogic(BracketView bracketPrefab, PokemonCellPlacer pokemonCellPlacer, Transform parent)
         {
             _bracketPrefab = bracketPrefab;
             _pokemonCellPlacer = pokemonCellPlacer;
+            _parent = parent;
         }
 
         public void Initialize(int poolCapacity)
         {
-            _bracketPool = new ObjectPool<BracketView>(poolCapacity, _bracketPrefab);
+            _bracketPool = new ObjectPool<BracketView>(poolCapacity, _bracketPrefab, _parent);
             _pooledBrackets = new Queue<BracketView>(poolCapacity);
             _pokemonCellPlacer.MatchFound += ActivateBrackets;
             _pokemonCellPlacer.PokemonReleased += DeactivateBrackets;

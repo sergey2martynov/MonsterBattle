@@ -32,7 +32,6 @@ namespace Enemy
 
         public void SetViewActive(bool isActive)
         {
-            //gameObject.SetActive(isActive);
             _collider.enabled = isActive;
         }
 

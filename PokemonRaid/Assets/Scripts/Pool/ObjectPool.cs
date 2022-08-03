@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -10,16 +9,14 @@ namespace Pool
         where TObj : MonoBehaviour, IObjectToPool
     {
         private readonly Queue<TObj> _objects;
-        private readonly TObj _prefab;
 
-        public ObjectPool(int capacity, TObj prefab)
+        public ObjectPool(int capacity, TObj prefab, Transform parent)
         {
-            _prefab = prefab;
             _objects = new Queue<TObj>(capacity);
             
             for (var i = 0; i < capacity; i++)
             {
-                var obj = Object.Instantiate(prefab, Vector3.zero, quaternion.identity);
+                var obj = Object.Instantiate(prefab, parent, false);
                 obj.SetObjectActive(false);
                 _objects.Enqueue(obj);
             }

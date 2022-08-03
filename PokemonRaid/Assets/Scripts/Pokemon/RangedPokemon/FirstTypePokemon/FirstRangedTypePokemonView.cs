@@ -1,12 +1,6 @@
-﻿using Projectile;
-using UnityEngine;
-
-namespace Pokemon.RangedPokemon.FirstTypePokemon
+﻿namespace Pokemon.RangedPokemon.FirstTypePokemon
 {
-    public class FirstRangedTypePokemonView : PokemonViewBase
+    public class FirstRangedTypePokemonView : RangedPokemonView
     {
-        [SerializeField] private ProjectileViewBase _projectilePrefab;
-
-        public ProjectileViewBase ProjectilePrefab => _projectilePrefab;
     }
 }

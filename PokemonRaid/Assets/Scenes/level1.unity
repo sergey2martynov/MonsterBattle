@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2138677392}
-  m_IndirectSpecularColor: {r: 0.5642787, g: 0.63505816, b: 0.7252604, a: 1}
+  m_IndirectSpecularColor: {r: 0.57322085, g: 0.62481, b: 0.67355525, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -167,6 +167,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee5e6b73b903449a94c0d2e90c4e68e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &181702203 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7230088152638197254, guid: 96996a3b2b7182343b4c31a7c889e67e, type: 3}
+  m_PrefabInstance: {fileID: 1479670388}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &359293894 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8217546495801069829, guid: 4c10d66e8842088448f075037b5bca95, type: 3}
@@ -1753,6 +1758,10 @@ PrefabInstance:
       propertyPath: _enemyParentObject
       value: 
       objectReference: {fileID: 6127382444085501945}
+    - target: {fileID: 1339164300679375854, guid: 5b76d7af153ba994f990647493604eb2, type: 3}
+      propertyPath: _bracketParentObject
+      value: 
+      objectReference: {fileID: 181702203}
     - target: {fileID: 1339164300679375854, guid: 5b76d7af153ba994f990647493604eb2, type: 3}
       propertyPath: _healthPlayerBarView
       value: 

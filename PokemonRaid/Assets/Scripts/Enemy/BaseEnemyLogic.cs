@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using Enemy.States;
 using UnityEngine;
@@ -48,7 +49,6 @@ namespace Enemy
         protected virtual void Update()
         {
             _currentState.Update();
-            //Attack();
         }
 
         public T SwitchState<T>()
@@ -105,7 +105,7 @@ namespace Enemy
         {
             if (_data.Level > 2)
             {
-                if (_data.Health < _data.MaxHealth)
+                if (_data.Health < _data.MaxHealth && _data.Health > 0)
                     _view.HealthBarView.gameObject.SetActive(true);
 
                 _view.SetHealth(_data.Health / (float)_data.MaxHealth);
@@ -114,15 +114,17 @@ namespace Enemy
 
         protected virtual async void OnEnemyDied(BaseEnemyData data)
         {
+            _data.EnemyDied -= OnEnemyDied;
             _view.LastHitParticle.Play();
             _view.HealthBarView.gameObject.SetActive(false);
             SwitchState<EnemyDieState<TView>>();
             _view.SetViewActive(false);
+            var token = _data.Source?.Token ?? _data.CreateCancellationTokenSource().Token;
+            await MoveUnderground(token);
             Dispose();
-            await MoveUnderground();
         }
 
-        private async Task MoveUnderground()
+        private async Task MoveUnderground(CancellationToken token)
         {
             var delay = _moveUndergroundDelay * 1000;
             await Task.Delay(delay);
@@ -132,12 +134,17 @@ namespace Enemy
 
             while (Time.time < startTime + _moveUndergroundDuration)
             {
+                if (token.IsCancellationRequested)
+                {
+                    return;
+                }
+                
                 _view.Transform.position = Vector3.Lerp(_view.Transform.position, destinationPosition,
                     (Time.time - startTime) / _moveUndergroundDuration);
                 await Task.Yield();
             }
             
-            _view.DestroyView();
+            _view.gameObject.SetActive(false);
         }
 
         public virtual void Dispose()

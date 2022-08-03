@@ -1948,6 +1948,7 @@ GameObject:
   - component: {fileID: 8964281437017009962}
   - component: {fileID: 7025992060258132625}
   - component: {fileID: -408379191996444050}
+  - component: {fileID: 1581032967037165616}
   m_Layer: 0
   m_Name: Dragon_05
   m_TagString: Untagged
@@ -2009,6 +2010,19 @@ MonoBehaviour:
     _actionTime: 0
   - _animationClip: {fileID: 7400000, guid: 7f74c70c06be91948a09d7e323361822, type: 3}
     _actionTime: 10
+--- !u!114 &1581032967037165616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8587334060080543120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ecdc6f6301f462a989fd0312ab836a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _firePoint: {fileID: 2847144262697233184}
 --- !u!1 &8747783123482867661
 GameObject:
   m_ObjectHideFlags: 0

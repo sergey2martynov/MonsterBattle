@@ -72,6 +72,7 @@ public class ProjectStarter : MonoBehaviour
     [SerializeField] private InputView _inputView;
     [SerializeField] private Transform _camera;
     [SerializeField] private BracketView _bracketPrefab;
+    [SerializeField] private Transform _bracketParentObject;
     
     private PokemonSpawner _pokemonSpawner;
     private SaveLoadSystem _saveLoadSystem;
@@ -136,7 +137,7 @@ public class ProjectStarter : MonoBehaviour
             new PokemonCellPlacer(_inputView, _fieldView, pokemonHolderModel, pokemonMerger, _pokemonSpawner, playerData);
         pokemonCellPlacer.Initialize();
         
-        var bracketLogic = new BracketLogic(_bracketPrefab, pokemonCellPlacer);
+        var bracketLogic = new BracketLogic(_bracketPrefab, pokemonCellPlacer, _bracketParentObject);
         bracketLogic.Initialize(20);
 
         var shopData = new ShopData();

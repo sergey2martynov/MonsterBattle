@@ -28,7 +28,6 @@ namespace Pokemon
         protected BaseAnimation _attackAnimation;
         protected int _attackCount;
         protected float _rayCastDistance = 1f;
-        //protected RaycastHit[] _hit = new RaycastHit[1];
         protected RaycastHit[] _hit = new RaycastHit[1];
         protected CancellationTokenSource _source;
         protected readonly int _attack = Animator.StringToHash("Attack");
@@ -71,6 +70,11 @@ namespace Pokemon
         public void SetMaxTargetsAmount(int amount)
         {
             _collidersInRange = new Collider[amount];
+        }
+
+        private CancellationTokenSource CreateCancellationTokenSource()
+        {
+            return _source = new CancellationTokenSource();
         }
 
         protected virtual void Update()
@@ -120,10 +124,11 @@ namespace Pokemon
                 return;
             }
 
-            await Attack(_collidersInRange);
+            var token = _source?.Token ?? CreateCancellationTokenSource().Token;
+            await Attack(_collidersInRange, token);
         }
         
-        protected virtual async Task Attack(Collider[] colliders)
+        protected virtual async Task Attack(Collider[] colliders, CancellationToken token)
         {
             if (!colliders[0].TryGetComponent<TEnemyView>(out var groundEnemy))
             {
@@ -136,6 +141,11 @@ namespace Pokemon
 
             while (Time.time < attackTime)
             {
+                if (token.IsCancellationRequested)
+                {
+                    return;
+                }
+                
                 if (_collidersInRange[0] != null)
                 {
                     RotateAt((_collidersInRange[0].transform.position - _view.Transform.position).normalized);
@@ -155,7 +165,6 @@ namespace Pokemon
             var delay = (int) (_attackAnimation.Duration - _attackAnimation.ActionTime / _attackAnimation.FrameRate) * 1000;
             await Task.Delay(delay);
             _view.Animator.SetBool(_attack, false);
-            // ShouldAttack = false;
             _data.AttackTime = Time.time + _data.AttackSpeed;
             Array.Clear(_collidersInRange, 0, _collidersInRange.Length);
             ShouldAttack = false;
@@ -250,38 +259,6 @@ namespace Pokemon
             _view.MoveParticle.Play();
         }
 
-        // public Vector3 CheckForBounds()
-        // {
-        //     var ray = new Ray(_view.Transform.position, _data.LookDirection);
-        //
-        //     if (Physics.SphereCastNonAlloc(ray, _rayCastDistance, _hit, 0.1f, _view.BoundsLayer) > 0)
-        //     {
-        //         var direction = (Vector3) _data.LookDirection;
-        //         var outDirection = (Vector3) _data.LookDirection;
-        //         direction.Normalize();
-        //
-        //         foreach (var hit in _hit)
-        //         {
-        //             var normal = new Vector3(
-        //                 Mathf.Clamp(_hit[0].normal.x, -Mathf.Abs(direction.x), Mathf.Abs(direction.x)),
-        //                 Mathf.Clamp(_hit[0].normal.y, -Mathf.Abs(direction.y), Mathf.Abs(direction.y)),
-        //                 Mathf.Clamp(_hit[0].normal.z, -Mathf.Abs(direction.z), Mathf.Abs(direction.z)));
-        //             
-        //             var xSign = direction.x == 0 ? 0f : Mathf.Sign(direction.x); 
-        //             var ySign = direction.y == 0 ? 0f : Mathf.Sign(direction.y); 
-        //             var zSign = direction.z == 0 ? 0f : Mathf.Sign(direction.z); 
-        //             outDirection -= new Vector3(Mathf.Abs(normal.x) * xSign, Mathf.Abs(normal.y) * ySign,
-        //                 Mathf.Abs(normal.z) * zSign);
-        //         }
-        //
-        //         Array.Clear(_hit, 0, _hit.Length);
-        //         return outDirection;
-        //     }
-        //     
-        //     Array.Clear(_hit, 0, _hit.Length);
-        //     return new Vector3(10f, 10f, 10f);
-        // }
-
         protected virtual void Dispose()
         {
             _updateHandler.UpdateTicked -= Update;
@@ -294,6 +271,10 @@ namespace Pokemon
             _data.HealthChanged -= OnHealthChanged;
             _data.DirectionCorrectionRequested -= CheckForBounds;
             _model.EnemyDataHolder.AllEnemiesDefeated -= OnEnemyDefeated;
+            
+            _source?.Cancel();
+            _source?.Dispose();
+            _source = null;
         }
     }
 }

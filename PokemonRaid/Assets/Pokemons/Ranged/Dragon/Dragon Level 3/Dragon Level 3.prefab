@@ -153,6 +153,7 @@ GameObject:
   - component: {fileID: 4250620673213164067}
   - component: {fileID: 4250620673205700035}
   - component: {fileID: 6158280338378409495}
+  - component: {fileID: 4904291546526904393}
   m_Layer: 0
   m_Name: Dragon Level 3
   m_TagString: Untagged
@@ -239,6 +240,19 @@ MonoBehaviour:
   _animations:
   - _animationClip: {fileID: 7400000, guid: 50bd78ddd1a494e418aedd56036c463e, type: 3}
     _actionTime: 0
+--- !u!114 &4904291546526904393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4250620673213003267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ecdc6f6301f462a989fd0312ab836a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _firePoint: {fileID: 4250620673213164073}
 --- !u!1 &4250620673213003269
 GameObject:
   m_ObjectHideFlags: 0

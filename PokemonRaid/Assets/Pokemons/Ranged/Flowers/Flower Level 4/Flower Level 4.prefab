@@ -431,6 +431,7 @@ GameObject:
   - component: {fileID: 1400912796271923935}
   - component: {fileID: 1400912796278897983}
   - component: {fileID: 8838047739014610305}
+  - component: {fileID: 8756895458120666329}
   m_Layer: 0
   m_Name: Flower Level 4
   m_TagString: Untagged
@@ -512,6 +513,19 @@ MonoBehaviour:
     _actionTime: 0
   - _animationClip: {fileID: 7400000, guid: 2a8db8698852e3041828005d9c90525c, type: 3}
     _actionTime: 10
+--- !u!114 &8756895458120666329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1400912796271628031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ecdc6f6301f462a989fd0312ab836a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _firePoint: {fileID: 1400912796271924039}
 --- !u!1 &1400912796271628051
 GameObject:
   m_ObjectHideFlags: 0
