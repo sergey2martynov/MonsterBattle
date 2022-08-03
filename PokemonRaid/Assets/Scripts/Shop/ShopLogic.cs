@@ -222,10 +222,10 @@ namespace Shop
         {
             if (_playerData.Level == 2)
             {
-                _shopView.MergeTutorial.GetComponent<RectTransform>().DOAnchorPos(new Vector2(116, -172), 3).OnComplete(
+                _shopView.MergeTutorial.GetComponent<RectTransform>().DOAnchorPos(new Vector2(22, -203), 3).OnComplete(
                     () =>
                     {
-                        _shopView.MergeTutorial.GetComponent<RectTransform>().anchoredPosition = new Vector2(-224, -27);
+                        _shopView.MergeTutorial.GetComponent<RectTransform>().anchoredPosition = new Vector2(474, -348);
                         MergeTutorialCompleted?.Invoke();
                     });
             }

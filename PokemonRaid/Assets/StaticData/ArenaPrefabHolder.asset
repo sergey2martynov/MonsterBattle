@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff9c5e30ef5fac44e9d2ada028b73767, type: 3}
+  m_Name: ArenaPrefabHolder
+  m_EditorClassIdentifier: 
+  _enemies:
+  - {fileID: 5903531611337837524, guid: b0d1990e61dfe644c999b1ccbbf11b79, type: 3}
+  - {fileID: 5903531611337837524, guid: 2f4194055749011409dfec46a2b7f2f6, type: 3}
+  - {fileID: 2351805535717559970, guid: 025a2b9a0bab8c44e9f853a66c5a9477, type: 3}
