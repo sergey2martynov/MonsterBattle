@@ -22,38 +22,57 @@ using UpdateHandlerFolder;
 
 public class ProjectStarter : MonoBehaviour
 {
-    [Header("For debug save/load system")] [SerializeField]
-    private bool _dataLoading;
-
-    [SerializeField] private UpdateHandler _updateHandler;
+    [Header("For debug save/load system")] 
+    [SerializeField] private bool _dataLoading;
+    
+    [Header("Shop")]
     [SerializeField] private ShopView _shopView;
     [SerializeField] private ShopStats _shopStats;
+    
+    [Header("Player")]
     [SerializeField] private PlayerView _playerView;
     [SerializeField] private PlayerStats _playerStats;
+    [SerializeField] private HealthBarView _healthPlayerBarView;
+
+    
+    [Header("Pokemons")]
     [SerializeField] private PokemonStats _pokemonStats;
     [SerializeField] private PokemonPrefabHolderByLevel _pokemonPrefabHolderByLevel;
     [SerializeField] private Transform _pokemonParentObject;
-    [SerializeField] private FieldView _fieldView;
-    [SerializeField] private InputView _inputView;
+    [SerializeField] private PokemonSpritesHolder _pokemonSpritesHolder;
+    [SerializeField] private NewPokemonCanvasView _newPokemonCanvasView;
+
+
+    [Header("Enemies")]
     [SerializeField] private EnemyStats _enemyStats;
     [SerializeField] private Transform _enemyParentObject;
+    
+    [Header("Levels")]
     [SerializeField] private LevelDataHolder _levelDataHolder;
-    [SerializeField] private Transform _camera;
-    [SerializeField] private HealthBarView _healthPlayerBarView;
     [SerializeField] private LevelSpritesHolder _levelSpritesHolder;
     [SerializeField] private LevelCounterView _levelCounterView;
+    [SerializeField] private UpgradeLevels _upgradeLevels;
+
+    
+    [Header("Cards")]
     [SerializeField] private CardsPanelView _cardsPanelView;
     [SerializeField] private CardSpritesHolder _cardSpritesHolder;
     [SerializeField] private CardView _cardView;
     [SerializeField] private Transform _cardParent;
-    [SerializeField] private UpgradeLevels _upgradeLevels;
-    [SerializeField] private PokemonSpritesHolder _pokemonSpritesHolder;
-    [SerializeField] private RewardMenuView _rewardMenuView;
     [SerializeField] private CardsPanelConfig _cardsPanelConfig;
-    [SerializeField] private NewPokemonCanvasView _newPokemonCanvasView;
+    
+    [Header("Game")]
+    [SerializeField] private RewardMenuView _rewardMenuView;
     [SerializeField] private FailMenuView _failMenuView;
     [SerializeField] private GameCanvasView _gameCanvasView;
-
+    
+    [Header("Other")]
+    [SerializeField] private UpdateHandler _updateHandler;
+    [SerializeField] private FieldView _fieldView;
+    [SerializeField] private InputView _inputView;
+    [SerializeField] private Transform _camera;
+    [SerializeField] private BracketView _bracketPrefab;
+    
     private PokemonSpawner _pokemonSpawner;
     private SaveLoadSystem _saveLoadSystem;
 
@@ -116,6 +135,9 @@ public class ProjectStarter : MonoBehaviour
         var pokemonCellPlacer =
             new PokemonCellPlacer(_inputView, _fieldView, pokemonHolderModel, pokemonMerger, _pokemonSpawner, playerData);
         pokemonCellPlacer.Initialize();
+        
+        var bracketLogic = new BracketLogic(_bracketPrefab, pokemonCellPlacer);
+        bracketLogic.Initialize(20);
 
         var shopData = new ShopData();
         var shopLogic = new ShopLogic(_pokemonSpawner, _shopView, shopData, playerData, pokemonHolderModel,

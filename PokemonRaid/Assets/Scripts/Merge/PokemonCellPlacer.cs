@@ -24,6 +24,7 @@ namespace Merge
         private readonly PokemonSpawner _pokemonSpawner;
         private readonly PokemonMerger _pokemonMerger;
         private readonly PlayerData _playerData;
+        private readonly List<Vector3> _matchedPositions = new List<Vector3>(20);
         
         private List<CellView> _cellViews;
         private Ray _ray;
@@ -35,6 +36,8 @@ namespace Merge
         private readonly float _distanceForMerge = 0.8f;
 
         public event Action<bool> PokemonMerged;
+        public event Action<List<Vector3>> MatchFound;
+        public event Action PokemonReleased;
 
         public PokemonCellPlacer(InputView inputView, FieldView fieldView, PokemonHolderModel pokemonHolderModel,
             PokemonMerger pokemonMerger, PokemonSpawner pokemonSpawner, PlayerData playerData)
@@ -65,6 +68,21 @@ namespace Merge
             {
                 _targetPokemon = pokemon;
                 _fixedCell = GetCurrentCell(_targetPokemon.transform.position,true);
+
+                foreach (var pokemonView in _fieldView.PokemonViews.Where(pokemonView =>
+                             _targetPokemon.GetType() == pokemonView.GetType() &&
+                             _targetPokemon.GetPokemonLevel() == pokemonView.GetPokemonLevel() &&
+                             _targetPokemon != pokemonView))
+                {
+                    _matchedPositions.Add(pokemonView.Transform.position);
+                }
+
+                if (_matchedPositions.Count == 0)
+                {
+                    return;
+                }
+                
+                MatchFound?.Invoke(_matchedPositions);
             }
         }
 
@@ -119,7 +137,7 @@ namespace Merge
                     _pokemonHolderModel.SwapPokemons(tempIndexes,tempIndexes2);
 
                     if (tempIndexes == tempIndexes2)
-                        throw new Exception();
+                        throw new Exception("Indexes are equal. Check Pokemon Holder Model");
                         
                     _targetPokemon.SetIndexes(tempIndexes2);
                     _pokemonForSwap.SetIndexes(tempIndexes);
@@ -150,6 +168,9 @@ namespace Merge
 
                 _targetPokemon = null;
             }
+            
+            PokemonReleased?.Invoke();
+            _matchedPositions.Clear();
         }
 
         private CellView GetNearestEmptyCell(Vector3 pokemonPosition, out CellData outCellData)

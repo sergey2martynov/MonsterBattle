@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using HealthBar;
 using Pokemon.Animations;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Pokemon
 {

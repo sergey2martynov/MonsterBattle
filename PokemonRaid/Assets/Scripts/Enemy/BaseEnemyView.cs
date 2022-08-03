@@ -35,6 +35,11 @@ namespace Enemy
             //gameObject.SetActive(isActive);
             _collider.enabled = isActive;
         }
+
+        public void DestroyView()
+        {
+            Destroy(gameObject);
+        }
         
         public void SetHealth(float health)
         {

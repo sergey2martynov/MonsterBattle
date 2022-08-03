@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Enemy.States;
-using Merge;
-using Pokemon;
 using UnityEngine;
 using UpdateHandlerFolder;
 
@@ -11,13 +10,14 @@ namespace Enemy
     public abstract class BaseEnemyLogic<TView>
         where TView : BaseEnemyView
     {
+        protected readonly float _moveUndergroundDuration = 3f;
+        protected readonly int _moveUndergroundDelay = 2;
         protected TView _view;
         protected BaseEnemyData _data;
         protected UpdateHandler _updateHandler;
         protected Dictionary<Type, BaseEnemyState<TView>> _statesToType;
         protected BaseEnemyState<TView> _currentState;
         protected Collider[] _collidersInRange;
-        protected int _attackCount;
 
         public virtual void Initialize(TView view, BaseEnemyData data, UpdateHandler updateHandler)
         {
@@ -112,13 +112,32 @@ namespace Enemy
             }
         }
 
-        protected virtual void OnEnemyDied(BaseEnemyData data)
+        protected virtual async void OnEnemyDied(BaseEnemyData data)
         {
             _view.LastHitParticle.Play();
             _view.HealthBarView.gameObject.SetActive(false);
             SwitchState<EnemyDieState<TView>>();
             _view.SetViewActive(false);
             Dispose();
+            await MoveUnderground();
+        }
+
+        private async Task MoveUnderground()
+        {
+            var delay = _moveUndergroundDelay * 1000;
+            await Task.Delay(delay);
+            var startTime = Time.time;
+            var position = _view.Transform.position;
+            var destinationPosition = new Vector3(position.x, -1f, position.z);
+
+            while (Time.time < startTime + _moveUndergroundDuration)
+            {
+                _view.Transform.position = Vector3.Lerp(_view.Transform.position, destinationPosition,
+                    (Time.time - startTime) / _moveUndergroundDuration);
+                await Task.Yield();
+            }
+            
+            _view.DestroyView();
         }
 
         public virtual void Dispose()

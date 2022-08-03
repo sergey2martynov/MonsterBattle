@@ -1,10 +1,9 @@
 using System.Collections.Generic;
-using Pokemon.PokemonHolder.Field;
+using Pokemon.PokemonHolder.Cell;
 using Pool;
 using Shop;
-using UnityEngine;
 
-namespace Pokemon.PokemonHolder.Cell
+namespace Pokemon.PokemonHolder.Field
 {
     public class FieldLogic
     {

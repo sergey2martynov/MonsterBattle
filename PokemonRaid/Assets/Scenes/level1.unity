@@ -1718,12 +1718,16 @@ PrefabInstance:
       objectReference: {fileID: 5882980373408904197}
     - target: {fileID: 1339164300679375854, guid: 5b76d7af153ba994f990647493604eb2, type: 3}
       propertyPath: _dataLoading
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1339164300679375854, guid: 5b76d7af153ba994f990647493604eb2, type: 3}
       propertyPath: _failMenuView
       value: 
       objectReference: {fileID: 990930692}
+    - target: {fileID: 1339164300679375854, guid: 5b76d7af153ba994f990647493604eb2, type: 3}
+      propertyPath: _bracketPrefab
+      value: 
+      objectReference: {fileID: -8704042648249945494, guid: f1cdb5b08097e884f912dd34fefafe4c, type: 3}
     - target: {fileID: 1339164300679375854, guid: 5b76d7af153ba994f990647493604eb2, type: 3}
       propertyPath: _updateHandler
       value: 
