@@ -34,11 +34,6 @@ namespace Enemy
         {
             _collider.enabled = isActive;
         }
-
-        public void DestroyView()
-        {
-            Destroy(gameObject);
-        }
         
         public void SetHealth(float health)
         {

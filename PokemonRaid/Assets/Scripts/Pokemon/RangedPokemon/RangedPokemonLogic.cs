@@ -15,6 +15,7 @@ namespace Pokemon.RangedPokemon
         where TView : RangedPokemonView
         where TEnemyView : BaseEnemyView
     {
+        private readonly float _projectileTravelTime = 0.3f;
         private ObjectPool<ProjectileViewBase> _projectilePool;
 
         public override void Initialize(TView view, PokemonDataBase data, PokemonHolderModel model, UpdateHandler updateHandler)
@@ -74,7 +75,7 @@ namespace Pokemon.RangedPokemon
             var initialPosition = projectileViewTransform.position;
             RotateAt(enemyView.Transform, projectileViewTransform, 2);
 
-            while (Time.time <= startTime + 0.5f)
+            while (Time.time <= startTime + _projectileTravelTime)
             {
                 if (token.IsCancellationRequested)
                 {
@@ -90,7 +91,7 @@ namespace Pokemon.RangedPokemon
                 
                 RotateAt(enemyView.transform, projectileViewTransform, 2 / Time.deltaTime);
                 projectileViewTransform.position = Vector3.Lerp(initialPosition, enemyView.transform.position
-                    + new Vector3(0f, 0.5f, 0f), (Time.time - startTime) / 0.5f);
+                    + new Vector3(0f, 0.5f, 0f), (Time.time - startTime) / _projectileTravelTime);
 
                 await Task.Yield();
             }

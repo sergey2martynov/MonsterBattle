@@ -115,10 +115,10 @@ namespace Enemy
         protected virtual async void OnEnemyDied(BaseEnemyData data)
         {
             _data.EnemyDied -= OnEnemyDied;
+            _view.SetViewActive(false);
             _view.LastHitParticle.Play();
             _view.HealthBarView.gameObject.SetActive(false);
             SwitchState<EnemyDieState<TView>>();
-            _view.SetViewActive(false);
             var token = _data.Source?.Token ?? _data.CreateCancellationTokenSource().Token;
             await MoveUnderground(token);
             Dispose();
