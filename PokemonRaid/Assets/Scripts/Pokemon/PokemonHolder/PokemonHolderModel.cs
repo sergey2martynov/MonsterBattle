@@ -206,5 +206,13 @@ namespace Pokemon.PokemonHolder
         }
 
         public void SetPlayerData(PlayerData playerData) => _playerData = playerData;
+        
+        public void MoveStrongPokemons(List<PokemonDataBase> strongPokemons, List<Transform> pokemonPositions)
+        {
+            for (int i = 0; i < strongPokemons.Count; i++)
+            {
+                strongPokemons[i].SetPosition(pokemonPositions[i].position);
+            }
+        }
     }
 }

@@ -13,6 +13,21 @@ MonoBehaviour:
   m_Name: ArenaPrefabHolder
   m_EditorClassIdentifier: 
   _enemies:
-  - {fileID: 5903531611337837524, guid: b0d1990e61dfe644c999b1ccbbf11b79, type: 3}
-  - {fileID: 5903531611337837524, guid: 2f4194055749011409dfec46a2b7f2f6, type: 3}
-  - {fileID: 2351805535717559970, guid: 025a2b9a0bab8c44e9f853a66c5a9477, type: 3}
+  - _level: 3
+    _levelsEnemy: 010000000100000001000000
+    _enemies:
+    - {fileID: 5903531611337837524, guid: b0d1990e61dfe644c999b1ccbbf11b79, type: 3}
+    - {fileID: 5903531611337837524, guid: 2f4194055749011409dfec46a2b7f2f6, type: 3}
+    - {fileID: 8393676187952632429, guid: 374eff02736577f4fb35c38c83abf581, type: 3}
+  - _level: 6
+    _levelsEnemy: 010000000100000001000000
+    _enemies:
+    - {fileID: 8971474976718796664, guid: d2131430a64dde74693b08fe0159aa02, type: 3}
+    - {fileID: 1627224506922606195, guid: c552290d3b9bc064da407a0974d5b5c5, type: 3}
+    - {fileID: 8393676187952632429, guid: 374eff02736577f4fb35c38c83abf581, type: 3}
+  - _level: 9
+    _levelsEnemy: 020000000100000001000000
+    _enemies:
+    - {fileID: 4254136415593880790, guid: 356bd95dfa740e34aa7b368ea4ee121b, type: 3}
+    - {fileID: 1627224506922606195, guid: c552290d3b9bc064da407a0974d5b5c5, type: 3}
+    - {fileID: 5903531611337837524, guid: 2f4194055749011409dfec46a2b7f2f6, type: 3}

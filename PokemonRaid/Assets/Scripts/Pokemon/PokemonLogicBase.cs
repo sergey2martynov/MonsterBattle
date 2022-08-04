@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using DG.Tweening;
 using Enemy;
 using Pokemon.Animations;
 using Pokemon.PokemonHolder;
@@ -50,12 +51,13 @@ namespace Pokemon
             _data.PokemonDied += OnPokemonDied;
             _data.HealthChanged += OnHealthChanged;
             _data.DirectionCorrectionRequested += CheckForBounds;
+            _data.PositionSeted += GoToArena;
             _model.EnemyDataHolder.AllEnemiesDefeated += OnEnemyDefeated;
             _statesToType = new Dictionary<Type, BaseState<TView, TEnemyView>>
             {
-                {typeof(IdleState<TView, TEnemyView>), new IdleState<TView, TEnemyView>(_view, this, _data)},
-                {typeof(SpawnState<TView, TEnemyView>), new SpawnState<TView, TEnemyView>(_view, this, _data)},
-                {typeof(DieState<TView, TEnemyView>), new DieState<TView, TEnemyView>(_view, this, _data)},
+                { typeof(IdleState<TView, TEnemyView>), new IdleState<TView, TEnemyView>(_view, this, _data) },
+                { typeof(SpawnState<TView, TEnemyView>), new SpawnState<TView, TEnemyView>(_view, this, _data) },
+                { typeof(DieState<TView, TEnemyView>), new DieState<TView, TEnemyView>(_view, this, _data) },
                 {
                     typeof(MoveState<TView, TEnemyView>),
                     new MoveState<TView, TEnemyView>(_view, this, _data)
@@ -127,14 +129,14 @@ namespace Pokemon
             var token = _source?.Token ?? CreateCancellationTokenSource().Token;
             await Attack(_collidersInRange, token);
         }
-        
+
         protected virtual async Task Attack(Collider[] colliders, CancellationToken token)
         {
             if (!colliders[0].TryGetComponent<TEnemyView>(out var groundEnemy))
             {
                 return;
             }
-            
+
             ShouldAttack = true;
             var attackTime = Time.time + _attackAnimation.ActionTime / _attackAnimation.FrameRate;
             _view.Animator.SetBool(_attack, true);
@@ -145,12 +147,12 @@ namespace Pokemon
                 {
                     return;
                 }
-                
+
                 if (_collidersInRange[0] != null)
                 {
                     RotateAt((_collidersInRange[0].transform.position - _view.Transform.position).normalized);
                 }
-                
+
                 await Task.Yield();
             }
 
@@ -161,8 +163,9 @@ namespace Pokemon
                     enemy.TakeDamage(_data.Damage, _view.PokemonType);
                 }
             }
-            
-            var delay = (int) (_attackAnimation.Duration - _attackAnimation.ActionTime / _attackAnimation.FrameRate) * 1000;
+
+            var delay = (int)(_attackAnimation.Duration - _attackAnimation.ActionTime / _attackAnimation.FrameRate) *
+                        1000;
             await Task.Delay(delay);
             _view.Animator.SetBool(_attack, false);
             _data.AttackTime = Time.time + _data.AttackSpeed;
@@ -176,7 +179,7 @@ namespace Pokemon
             {
                 return;
             }
-            
+
             _data.Health -= damage;
         }
 
@@ -194,7 +197,7 @@ namespace Pokemon
 
             _view.SetHealth(_data.Health / (float)_data.MaxHealth);
         }
-        
+
         public void RotateAt(Vector3 point)
         {
             var destinationRotation = Quaternion.LookRotation(point, Vector3.up);
@@ -212,17 +215,17 @@ namespace Pokemon
                 return new Vector3(10f, 10f, 10f);
             }
 
-            var direction = (Vector3) _data.LookDirection;
-            var outDirection = (Vector3) _data.LookDirection;
+            var direction = (Vector3)_data.LookDirection;
+            var outDirection = (Vector3)_data.LookDirection;
             direction.Normalize();
-            
+
             foreach (var boundCollider in _boundsInRange)
             {
                 if (boundCollider == null)
                 {
                     continue;
                 }
-                
+
                 var position = _view.Transform.position;
                 var positionDelta = boundCollider.transform.position - position;
                 var ray = new Ray(position, positionDelta.normalized);
@@ -230,24 +233,24 @@ namespace Pokemon
                 if (Physics.RaycastNonAlloc(ray, _hit, positionDelta.magnitude, _view.BoundsLayer) > 0)
                 {
                     var normal = new Vector3(
-                    Mathf.Clamp(_hit[0].normal.x, -Mathf.Abs(direction.x), Mathf.Abs(direction.x)),
-                    Mathf.Clamp(_hit[0].normal.y, -Mathf.Abs(direction.y), Mathf.Abs(direction.y)),
-                    Mathf.Clamp(_hit[0].normal.z, -Mathf.Abs(direction.z), Mathf.Abs(direction.z)));
-                    
-                    var xSign = direction.x == 0 ? 0f : Mathf.Sign(direction.x); 
-                    var ySign = direction.y == 0 ? 0f : Mathf.Sign(direction.y); 
+                        Mathf.Clamp(_hit[0].normal.x, -Mathf.Abs(direction.x), Mathf.Abs(direction.x)),
+                        Mathf.Clamp(_hit[0].normal.y, -Mathf.Abs(direction.y), Mathf.Abs(direction.y)),
+                        Mathf.Clamp(_hit[0].normal.z, -Mathf.Abs(direction.z), Mathf.Abs(direction.z)));
+
+                    var xSign = direction.x == 0 ? 0f : Mathf.Sign(direction.x);
+                    var ySign = direction.y == 0 ? 0f : Mathf.Sign(direction.y);
                     var zSign = direction.z == 0 ? 0f : Mathf.Sign(direction.z);
 
                     if (Vector3.Angle(normal, direction) <= 90)
                     {
                         continue;
                     }
-                    
+
                     outDirection -= new Vector3(Mathf.Abs(normal.x) * xSign, Mathf.Abs(normal.y) * ySign,
                         Mathf.Abs(normal.z) * zSign);
                 }
             }
-            
+
             Array.Clear(_boundsInRange, 0, _boundsInRange.Length);
             Array.Clear(_hit, 0, _hit.Length);
             return outDirection;
@@ -257,6 +260,11 @@ namespace Pokemon
         {
             _view.MoveParticle.gameObject.SetActive(true);
             _view.MoveParticle.Play();
+        }
+
+        private void GoToArena(Vector3 newPosition)
+        {
+            _view.transform.DOMove(newPosition, 3);
         }
 
         protected virtual void Dispose()
@@ -270,8 +278,9 @@ namespace Pokemon
             _data.PokemonDied -= OnPokemonDied;
             _data.HealthChanged -= OnHealthChanged;
             _data.DirectionCorrectionRequested -= CheckForBounds;
+            _data.PositionSeted -= GoToArena;
             _model.EnemyDataHolder.AllEnemiesDefeated -= OnEnemyDefeated;
-            
+
             _source?.Cancel();
             _source?.Dispose();
             _source = null;

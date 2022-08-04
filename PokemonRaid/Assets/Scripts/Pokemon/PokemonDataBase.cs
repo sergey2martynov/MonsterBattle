@@ -182,6 +182,8 @@ namespace Pokemon
         public event Action<int, int> HealthChanged; 
         [field: NonSerialized]
         public event Action PokemonDied;
+        [field: NonSerialized]
+        public event Action<Vector3> PositionSeted;
         [field: NonSerialized] 
         public event Func<Vector3> DirectionCorrectionRequested; 
 
@@ -212,6 +214,11 @@ namespace Pokemon
         public Vector3 GetCorrectedDirection()
         {
             return DirectionCorrectionRequested?.Invoke() ?? new Vector3(10f, 10f, 10f);
+        }
+
+        public void SetPosition(Vector3 position)
+        {
+            PositionSeted?.Invoke(position);
         }
 
         protected virtual void SetStats(PokemonStatsByLevel stats)
