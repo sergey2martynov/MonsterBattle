@@ -35,13 +35,18 @@ namespace Enemy.States
                 return;
             }
 
+            if (_logic.IsIdleRequired)
+            {
+                return;
+            }
+            
             if (targets == null && _data.MoveSpeed != 0)
             {
                 _logic.SwitchState<EnemyMoveState<TView>>();
                 return;
             }
 
-            if (targets == null)
+            if (targets == null && _logic.IsIdleRequired)
             {
                 return;
             }

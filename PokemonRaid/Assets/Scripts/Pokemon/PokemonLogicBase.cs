@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
-using System.Threading.Tasks;
 using DG.Tweening;
 using Enemy;
 using Pokemon.Animations;
 using Pokemon.PokemonHolder;
 using Pokemon.States;
+using Pokemon.States.SubStates;
 using UnityEngine;
 using UpdateHandlerFolder;
 
@@ -22,18 +21,19 @@ namespace Pokemon
         protected PokemonHolderModel _model;
         protected UpdateHandler _updateHandler;
         protected Dictionary<Type, BaseState<TView, TEnemyView>> _statesToType;
-        protected List<TEnemyView> _enemies = new List<TEnemyView>();
+        protected Dictionary<Type, BaseState<TView, TEnemyView>> _subStatesToType;
         protected BaseState<TView, TEnemyView> _currentState;
+        protected BaseState<TView, TEnemyView> _currentSubState;
         protected Collider[] _collidersInRange;
         protected Collider[] _boundsInRange = new Collider[2];
         protected BaseAnimation _attackAnimation;
-        protected int _attackCount;
         protected float _rayCastDistance = 1f;
         protected RaycastHit[] _hit = new RaycastHit[1];
         protected CancellationTokenSource _source;
         protected readonly int _attack = Animator.StringToHash("Attack");
 
-        public bool ShouldAttack { get; protected set; }
+        public bool ShouldAttack { get; set; }
+        public CancellationTokenSource Source => _source;
 
         public virtual void Initialize(TView view, PokemonDataBase data, PokemonHolderModel model,
             UpdateHandler updateHandler)
@@ -53,28 +53,44 @@ namespace Pokemon
             _data.DirectionCorrectionRequested += CheckForBounds;
             _data.PositionSeted += GoToArena;
             _model.EnemyDataHolder.AllEnemiesDefeated += OnEnemyDefeated;
-            _statesToType = new Dictionary<Type, BaseState<TView, TEnemyView>>
-            {
-                { typeof(IdleState<TView, TEnemyView>), new IdleState<TView, TEnemyView>(_view, this, _data) },
-                { typeof(SpawnState<TView, TEnemyView>), new SpawnState<TView, TEnemyView>(_view, this, _data) },
-                { typeof(DieState<TView, TEnemyView>), new DieState<TView, TEnemyView>(_view, this, _data) },
-                {
-                    typeof(MoveState<TView, TEnemyView>),
-                    new MoveState<TView, TEnemyView>(_view, this, _data)
-                },
-            };
-            _attackAnimation = _view.EventTranslator.GetAnimationInfo("Attack");
-            _currentState = _statesToType[typeof(SpawnState<TView, TEnemyView>)];
-            _currentState.OnEnter();
+            CreateStatesDictionaries();
+            SetInitialStates();
             _data.LookDirection = Vector3.forward;
         }
 
         public void SetMaxTargetsAmount(int amount)
         {
-            _collidersInRange = new Collider[amount];
+            var attackSubState =
+                _subStatesToType[typeof(AttackSubState<TView, TEnemyView>)] as AttackSubState<TView, TEnemyView>;
+            attackSubState?.SetMaxTargetsAmount(amount);
         }
 
-        private CancellationTokenSource CreateCancellationTokenSource()
+        protected virtual void CreateStatesDictionaries()
+        {
+            _statesToType = new Dictionary<Type, BaseState<TView, TEnemyView>>
+            {
+                {typeof(IdleState<TView, TEnemyView>), new IdleState<TView, TEnemyView>(_view, this, _data)},
+                {typeof(SpawnState<TView, TEnemyView>), new SpawnState<TView, TEnemyView>(_view, this, _data)},
+                {typeof(DieState<TView, TEnemyView>), new DieState<TView, TEnemyView>(_view, this, _data)},
+                {typeof(MoveState<TView, TEnemyView>), new MoveState<TView, TEnemyView>(_view, this, _data)},
+            };
+            
+            _subStatesToType = new Dictionary<Type, BaseState<TView, TEnemyView>>
+            {
+                {typeof(IdleSubState<TView, TEnemyView>), new IdleSubState<TView, TEnemyView>(_view, this, _data)},
+                {typeof(AttackSubState<TView, TEnemyView>), new AttackSubState<TView, TEnemyView>(_view, this, _data)}
+            };
+        }
+
+        protected virtual void SetInitialStates()
+        {
+            _currentState = _statesToType[typeof(SpawnState<TView, TEnemyView>)];
+            _currentSubState = _subStatesToType[typeof(AttackSubState<TView, TEnemyView>)];
+            _currentState.OnEnter();
+            _currentSubState.OnEnter();
+        }
+
+        public CancellationTokenSource CreateCancellationTokenSource()
         {
             return _source = new CancellationTokenSource();
         }
@@ -82,7 +98,7 @@ namespace Pokemon
         protected virtual void Update()
         {
             _currentState.Update();
-            CheckForEnemies();
+            _currentSubState.Update();
         }
 
         public T SwitchState<T>()
@@ -101,6 +117,34 @@ namespace Pokemon
             throw new KeyNotFoundException("There is no state of type " + type);
         }
 
+        public T SwitchSubState<T>()
+            where T : BaseState<TView, TEnemyView>
+        {
+            var type = typeof(T);
+
+            if (_subStatesToType.TryGetValue(type, out var subState))
+            {
+                _currentSubState.OnExit();
+                _currentSubState = subState;
+                _currentSubState.OnEnter();
+                return _currentSubState as T;
+            }
+            
+            throw new KeyNotFoundException("There is no substate of type " + type);
+        }
+
+        public void ChangeSubStateToAttack(bool isAttackSubStateRequired)
+        {
+            if (isAttackSubStateRequired)
+            {
+                SwitchSubState<AttackSubState<TView, TEnemyView>>();
+            }
+            else
+            {
+                SwitchSubState<IdleSubState<TView, TEnemyView>>();
+            }
+        }
+
         private int[] GetIndexes()
         {
             return _data.Indexes;
@@ -115,65 +159,7 @@ namespace Pokemon
         {
             return _data.Level;
         }
-
-        protected virtual async void CheckForEnemies()
-        {
-            var collidersAmount = Physics.OverlapSphereNonAlloc(_view.Transform.position, _data.AttackRange,
-                _collidersInRange, _view.EnemyLayer);
-
-            if (Time.time < _data.AttackTime || collidersAmount == 0 || ShouldAttack)
-            {
-                return;
-            }
-
-            var token = _source?.Token ?? CreateCancellationTokenSource().Token;
-            await Attack(_collidersInRange, token);
-            //TODO: try to clear colliders in range when colliders amount == 0
-        }
-
-        protected virtual async Task Attack(Collider[] colliders, CancellationToken token)
-        {
-            if (!colliders[0].TryGetComponent<TEnemyView>(out var groundEnemy))
-            {
-                return;
-            }
-
-            ShouldAttack = true;
-            var attackTime = Time.time + _attackAnimation.ActionTime / _attackAnimation.FrameRate;
-            _view.Animator.SetBool(_attack, true);
-
-            while (Time.time < attackTime)
-            {
-                if (token.IsCancellationRequested)
-                {
-                    return;
-                }
-
-                if (_collidersInRange[0] != null)
-                {
-                    RotateAt((_collidersInRange[0].transform.position - _view.Transform.position).normalized);
-                }
-
-                await Task.Yield();
-            }
-
-            foreach (var collider in colliders.Where(enemy => enemy != null))
-            {
-                if (collider.TryGetComponent<TEnemyView>(out var enemy))
-                {
-                    enemy.TakeDamage(_data.Damage, _view.PokemonType);
-                }
-            }
-
-            var delay = (int)(_attackAnimation.Duration - _attackAnimation.ActionTime / _attackAnimation.FrameRate) *
-                        1000;
-            await Task.Delay(delay);
-            _view.Animator.SetBool(_attack, false);
-            _data.AttackTime = Time.time + _data.AttackSpeed;
-            Array.Clear(_collidersInRange, 0, _collidersInRange.Length);
-            ShouldAttack = false;
-        }
-
+        
         protected void OnDamageTaken(int damage)
         {
             if (damage < 0)

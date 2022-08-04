@@ -20,6 +20,8 @@ namespace Enemy
         protected BaseEnemyState<TView> _currentState;
         protected Collider[] _collidersInRange;
 
+        public bool IsIdleRequired { get; set; }
+
         public virtual void Initialize(TView view, BaseEnemyData data, UpdateHandler updateHandler)
         {
             _view = view;
@@ -44,6 +46,12 @@ namespace Enemy
         public void SetMaxTargetsAmount(int amount)
         {
             _collidersInRange = new Collider[amount];
+        }
+
+        public void SetIdleStateRequirement(bool isRequired)
+        {
+            IsIdleRequired = isRequired;
+            SwitchState<EnemyIdleState<TView>>();
         }
 
         protected virtual void Update()
