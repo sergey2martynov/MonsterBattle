@@ -128,6 +128,7 @@ namespace Pokemon
 
             var token = _source?.Token ?? CreateCancellationTokenSource().Token;
             await Attack(_collidersInRange, token);
+            //TODO: try to clear colliders in range when colliders amount == 0
         }
 
         protected virtual async Task Attack(Collider[] colliders, CancellationToken token)

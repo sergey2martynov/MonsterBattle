@@ -116,28 +116,28 @@ MonoBehaviour:
       _level: 1
       _maxLevel: 4
       _maxTargetsAmount: 2
-      _attackRange: 10
+      _attackRange: 18
     - _moveSpeed: 1
       _attackSpeed: 3
-      _maxHealth: 360
+      _maxHealth: 300
       _damage: 15
       _level: 1
       _maxLevel: 4
       _maxTargetsAmount: 2
-      _attackRange: 12
+      _attackRange: 18
     - _moveSpeed: 1
       _attackSpeed: 3
-      _maxHealth: 520
+      _maxHealth: 460
       _damage: 25
       _level: 1
       _maxLevel: 4
       _maxTargetsAmount: 3
-      _attackRange: 14
+      _attackRange: 18
     - _moveSpeed: 1
       _attackSpeed: 3
-      _maxHealth: 800
-      _damage: 48
+      _maxHealth: 680
+      _damage: 32
       _level: 1
       _maxLevel: 4
       _maxTargetsAmount: 3
-      _attackRange: 16
+      _attackRange: 18

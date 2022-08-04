@@ -57,7 +57,7 @@ namespace LevelBuilder
 
             if (levelData.Environment == null)
             {
-                level = level % 6 == 0 ?  6 : level % 6;
+                level = level % 5 == 0 ?  10 : 5 + level % 5;
                 var environment = _levelDataHolder.GetLevelData(level).Environment;
                 Object.Instantiate(environment, Vector3.zero, quaternion.identity);
             }
@@ -77,9 +77,9 @@ namespace LevelBuilder
         {
             var level = _playerData.Level;
 
-            if (level > 24)
+            if (level > 20)
             {
-                level = level % 6 == 0 ? 24 : 18 + level % 6;
+                level = level % 5 == 0 ? 20 : 15 + level % 5;
             }
             
             var levelData = _levelDataHolder.GetLevelData(level);
