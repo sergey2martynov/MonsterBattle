@@ -2585,10 +2585,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chest Place
       objectReference: {fileID: 0}
+    - target: {fileID: 3411936890181122591, guid: e6805b9eb7875e64396624b9c7cac001, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6928108707740421390, guid: e6805b9eb7875e64396624b9c7cac001, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6928108708177577674, guid: e6805b9eb7875e64396624b9c7cac001, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6928108708742749969, guid: e6805b9eb7875e64396624b9c7cac001, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7128561142747060047, guid: e6805b9eb7875e64396624b9c7cac001, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: fee95b80be342714b9a96337b233218a, type: 2}
+    - target: {fileID: 8443168716290909951, guid: e6805b9eb7875e64396624b9c7cac001, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6805b9eb7875e64396624b9c7cac001, type: 3}
 --- !u!4 &5862949919487813308 stripped

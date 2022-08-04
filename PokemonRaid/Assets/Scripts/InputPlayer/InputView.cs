@@ -125,6 +125,11 @@ namespace InputPlayer
             _innerJoystick.gameObject.SetActive(isActive);
         }
 
+        public void ResetDirection()
+        {
+            DirectionReceived?.Invoke(Vector3.zero);
+        }
+
         private void OnDestroy()
         {
             ViewDestroyed?.Invoke();

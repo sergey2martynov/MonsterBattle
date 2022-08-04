@@ -14,7 +14,7 @@ namespace Pokemon.PokemonHolder
         private PlayerData _playerData;
         private EnemyDataHolder _enemyDataHolder;
         private float _speedMultiplier = 1f;
-        
+
         public IEnumerable<List<PokemonDataBase>> PokemonsList => _pokemonsList;
         public EnemyDataHolder EnemyDataHolder => _enemyDataHolder;
 
@@ -27,7 +27,7 @@ namespace Pokemon.PokemonHolder
             for (int i = 0; i < 4; i++)
             {
                 _pokemonsList.Add(new List<PokemonDataBase>());
-                
+
                 for (int j = 0; j < 5; j++)
                 {
                     _pokemonsList[i].Add(default);
@@ -57,10 +57,10 @@ namespace Pokemon.PokemonHolder
 
         public void SetInitialHealthPlayer()
         {
-            if(_pokemonsList != null)
+            if (_pokemonsList != null)
                 _playerData.Health = GetAllHealth();
         }
-        
+
         public int GetAllHealth()
         {
             return (from pokemonRow in _pokemonsList
@@ -68,7 +68,7 @@ namespace Pokemon.PokemonHolder
                 where pokemon != null
                 select pokemon.Health).Sum();
         }
-        
+
         public void SetLookDirection(Vector3 direction)
         {
             foreach (var pokemon in from pokemonList in _pokemonsList
@@ -133,13 +133,14 @@ namespace Pokemon.PokemonHolder
                 pokemon.MoveDirection = direction;
             }
 
-            _playerData.MoveDirection = direction;        
+            _playerData.MoveDirection = direction;
         }
 
         public void SwapPokemons(int[] firstPosition, int[] secondPosition)
         {
-            (_pokemonsList[firstPosition[0]][firstPosition[1]], _pokemonsList[secondPosition[0]][secondPosition[1]]) = 
-            (_pokemonsList[secondPosition[0]][secondPosition[1]], _pokemonsList[firstPosition[0]][firstPosition[1]]);
+            (_pokemonsList[firstPosition[0]][firstPosition[1]], _pokemonsList[secondPosition[0]][secondPosition[1]]) =
+                (_pokemonsList[secondPosition[0]][secondPosition[1]],
+                    _pokemonsList[firstPosition[0]][firstPosition[1]]);
         }
 
         public void DeletePokemonFromList(int[] position)
@@ -206,12 +207,18 @@ namespace Pokemon.PokemonHolder
         }
 
         public void SetPlayerData(PlayerData playerData) => _playerData = playerData;
-        
-        public void MoveStrongPokemons(List<PokemonDataBase> strongPokemons, List<Transform> pokemonPositions)
+
+        public void MoveStrongPokemons(List<PokemonDataBase> strongPokemons, List<Transform> pokemonPositions,
+            Vector3 playerPosition)
         {
             for (int i = 0; i < strongPokemons.Count; i++)
             {
-                strongPokemons[i].SetPosition(pokemonPositions[i].position);
+                if (strongPokemons[i] != null)
+                {
+                    strongPokemons[i].SetPosition(pokemonPositions[i].position);
+
+                    _playerData.SetPosition(playerPosition);
+                }
             }
         }
     }

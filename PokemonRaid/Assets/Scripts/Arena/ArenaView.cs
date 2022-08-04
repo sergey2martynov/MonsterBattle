@@ -26,9 +26,9 @@ namespace Arena
         {
             if (other.TryGetComponent(out PlayerView playerView))
             {
+                _inputView.ResetDirection();
                 _inputView.gameObject.SetActive(false);
                 PlayerTriggered?.Invoke();
-                
             }
         }
     }

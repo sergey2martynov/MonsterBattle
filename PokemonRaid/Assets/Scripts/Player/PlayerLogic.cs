@@ -48,6 +48,7 @@ namespace Player
             _data.HealthChange += OnHealthChange;
             _data.CoinsAmountChanged += OnCoinsAmountChanged;
             _enemyDataHolder.EnemyDefeated += OnEnemyDefeated;
+            _data.PositionSeted += GoToArena;
         }
 
         private void Update()
@@ -229,9 +230,14 @@ namespace Player
         {
             _view.Animator.SetTrigger(ThrowBall);
         }
-        
 
-        private void OnCoinsAmountChanged(int coins)
+        private void GoToArena(Vector3 newPosition)
+        {
+            _view.transform.DOMove(newPosition, 3);
+        }
+
+
+            private void OnCoinsAmountChanged(int coins)
         {
             CoinsAdded?.Invoke(coins);
         }
@@ -247,6 +253,7 @@ namespace Player
             _data.DirectionCorrectionRequested -= CheckForBounds;
             _data.CoinsAmountChanged -= OnCoinsAmountChanged;
             _enemyDataHolder.EnemyDefeated -= OnEnemyDefeated;
+            _data.PositionSeted -= GoToArena;
         }
     }
 }

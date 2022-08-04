@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using System.Linq;
 using Enemy;
 using Factories;
+using Helpers;
 using Player;
 using Pokemon;
 using Pokemon.PokemonHolder;
@@ -37,7 +39,6 @@ namespace Arena
             _view.PlayerTriggered += SpawnEnemy;
         }
 
-        
 
         private void Fight()
         {
@@ -62,25 +63,25 @@ namespace Arena
 
             SelectPokemon();
         }
-        
+
         private void SelectPokemon()
         {
-            int maxLevel = 1;
+            var pokemonsData = new List<PokemonDataBase>(20);
 
-            for (int i = 0; i < 3; i++)
+            //pokemonsData.AddRange(_pokemonHolderModel.PokemonsList.SelectMany(rowPokemons => rowPokemons));
+
+            pokemonsData.AddRange(from pokemonRow in _pokemonHolderModel.PokemonsList
+                from pokemonData in pokemonRow
+                where pokemonData != null
+                select pokemonData);
+            HeapSortHelper.Sort(pokemonsData);
+
+            for (int i = 1; i <= _strongPokemonData.Capacity; i++)
             {
-                _strongPokemonData.Add(null);
+                _strongPokemonData.Add(pokemonsData[pokemonsData.Count - i]);
             }
 
-            foreach (var rowPokemons in _pokemonHolderModel.PokemonsList)
-            {
-                foreach (var pokemonData in rowPokemons)
-                {
-                    AddToListStrongPokemonData(pokemonData);
-                }
-            }
-
-            _pokemonHolderModel.MoveStrongPokemons(_strongPokemonData, _view.SpawnPokemonPositions);
+            _pokemonHolderModel.MoveStrongPokemons(_strongPokemonData, _view.SpawnPokemonPositions, _view.PlayerPosition.position);
         }
 
         private void AddToListStrongPokemonData(PokemonDataBase pokemonDataBase)
@@ -89,7 +90,7 @@ namespace Arena
             {
                 if (pokemonDataBase == null)
                     return;
-                
+
                 if (_strongPokemonData[i] == null)
                 {
                     _strongPokemonData[i] = pokemonDataBase;

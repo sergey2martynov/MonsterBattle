@@ -131,6 +131,7 @@ namespace Player
         public event Action FirstLevelFinished;
         public event Action PlayerDied;
         public event Func<Vector3> DirectionCorrectionRequested;
+        public event Action<Vector3> PositionSeted; 
 
         public virtual void Initialize(PlayerStats stats, PokemonHolderModel pokemonHolderModel)
         {
@@ -197,6 +198,11 @@ namespace Player
         public void IncreaseRangedBuyCounter()
         {
             _rangedBuyCounter++;
+        }
+        
+        public void SetPosition(Vector3 position)
+        {
+            PositionSeted?.Invoke(position);
         }
     }
 }
