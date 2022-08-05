@@ -21,6 +21,7 @@ namespace Pokemon
         protected readonly float _rayCastDistance = 1f;
         protected readonly RaycastHit[] _hit = new RaycastHit[1];
         private readonly int _move = Animator.StringToHash("Move");
+        private readonly int _blend = Animator.StringToHash("Blend");
         protected TView _view;
         protected PokemonDataBase _data;
         protected PokemonHolderModel _model;
@@ -149,6 +150,7 @@ namespace Pokemon
         private async void ActivateMoveAnimation(float duration)
         {
             _view.Animator.SetBool(_move, true);
+            _view.Animator.SetFloat(_blend, 0.8f);
             var delay = (int) duration * 1000;
             await Task.Delay(delay);
             _view.Animator.SetBool(_move, false);

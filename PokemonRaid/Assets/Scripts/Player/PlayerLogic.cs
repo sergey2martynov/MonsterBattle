@@ -126,6 +126,7 @@ namespace Player
         private async void ActivateMoveAnimation(float duration)
         {
             _view.Animator.SetBool(_move, true);
+            _view.Animator.SetFloat(Blend, 0.8f);
             var delay = (int) duration * 1000;
             await Task.Delay(delay);
             _view.Animator.SetBool(_move, false);
