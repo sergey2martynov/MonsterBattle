@@ -46,7 +46,7 @@ namespace Enemy.States
                 return;
             }
 
-            if (targets == null && _logic.IsIdleRequired)
+            if (targets == null)
             {
                 return;
             }
