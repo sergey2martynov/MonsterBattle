@@ -24,6 +24,7 @@ namespace Player
         private Collider[] _boundsInRange = new Collider[2];
         private float _rayCastDistance = 1f;
         private float _smooth = 0.1f;
+        private bool _isMovingToArena;
         private static readonly int Blend = Animator.StringToHash("Blend");
         private static readonly int ThrowBall = Animator.StringToHash("ThrowBall");
         private readonly int _move = Animator.StringToHash("Move");
@@ -57,7 +58,15 @@ namespace Player
         private void Update()
         {
             _view.Transform.position += _data.MoveDirection * _data.MoveSpeed * Time.deltaTime;
-            _view.Animator.SetFloat(Blend, _data.MoveDirection.magnitude, _smooth, Time.deltaTime);
+
+            if (!_isMovingToArena)
+            {
+                _view.Animator.SetFloat(Blend, _data.MoveDirection.magnitude, _smooth, Time.deltaTime);
+            }
+            else
+            {
+                _view.Animator.SetFloat(Blend, 0.8f, _smooth, Time.deltaTime);
+            }
 
             if (_data.LookDirection.magnitude != 0)
             {
@@ -125,11 +134,10 @@ namespace Player
         
         private async void ActivateMoveAnimation(float duration)
         {
-            _view.Animator.SetBool(_move, true);
-            _view.Animator.SetFloat(Blend, 0.8f);
             var delay = (int) duration * 1000;
+            _isMovingToArena = true;
             await Task.Delay(delay);
-            _view.Animator.SetBool(_move, false);
+            _isMovingToArena = false;
         }
 
         public void HealthBarDisabler()

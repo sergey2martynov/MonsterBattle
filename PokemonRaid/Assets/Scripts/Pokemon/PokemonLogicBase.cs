@@ -75,6 +75,7 @@ namespace Pokemon
                 {typeof(SpawnState<TView, TEnemyView>), new SpawnState<TView, TEnemyView>(_view, this, _data)},
                 {typeof(DieState<TView, TEnemyView>), new DieState<TView, TEnemyView>(_view, this, _data)},
                 {typeof(MoveState<TView, TEnemyView>), new MoveState<TView, TEnemyView>(_view, this, _data)},
+                {typeof(MoveToArenaState<TView, TEnemyView>), new MoveToArenaState<TView, TEnemyView>(_view, this, _data, 3)},
             };
             
             _subStatesToType = new Dictionary<Type, BaseState<TView, TEnemyView>>
@@ -147,13 +148,9 @@ namespace Pokemon
             }
         }
 
-        private async void ActivateMoveAnimation(float duration)
+        private void ActivateMoveAnimation(float duration)
         {
-            _view.Animator.SetBool(_move, true);
-            _view.Animator.SetFloat(_blend, 0.8f);
-            var delay = (int) duration * 1000;
-            await Task.Delay(delay);
-            _view.Animator.SetBool(_move, false);
+            SwitchState<MoveToArenaState<TView, TEnemyView>>();
         }
 
         private int[] GetIndexes()
