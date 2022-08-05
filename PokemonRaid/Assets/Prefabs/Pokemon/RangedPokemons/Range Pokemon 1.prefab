@@ -726,6 +726,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 231894670698548730}
     m_Modifications:
+    - target: {fileID: -7484452515895854412, guid: fbed8af4c6cd616479bb5a5bc896dac7, type: 3}
+      propertyPath: _animations.Array.data[0]._animationClip
+      value: 
+      objectReference: {fileID: 7400000, guid: 50bd78ddd1a494e418aedd56036c463e, type: 3}
     - target: {fileID: 478177618406053062, guid: fbed8af4c6cd616479bb5a5bc896dac7, type: 3}
       propertyPath: m_Name
       value: Dragon_02

@@ -18,8 +18,10 @@ namespace Pokemon.RangedPokemon
 
         protected override void SetInitialStates()
         {
-            _currentState = _statesToType[typeof(IdleState<TView, TEnemyView>)];
+            _currentState = _statesToType[typeof(SpawnState<TView, TEnemyView>)];
             _currentSubState = _subStatesToType[typeof(AttackSubState<TView, TEnemyView>)];
+            _currentState.OnEnter();
+            _currentSubState.OnEnter();
         }
     }
 }

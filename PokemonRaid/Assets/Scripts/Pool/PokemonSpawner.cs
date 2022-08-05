@@ -82,7 +82,7 @@ namespace Pool
 
         public void CreatePokemonFromData(PokemonDataBase dataBase, Vector3 position)
         {
-            var view = _factory.CreateInstance(dataBase, _pokemonPrefabHolder, position, _parent);
+            var view = _factory.CreateInstance(dataBase, _stats, _pokemonPrefabHolder, position, _parent);
             _fieldView.AddPokemonView(view);
         }
     }

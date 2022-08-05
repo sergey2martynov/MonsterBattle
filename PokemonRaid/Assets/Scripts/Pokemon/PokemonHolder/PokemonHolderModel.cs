@@ -1,6 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Text;
 using Enemy.EnemyModel;
+using Factories;
 using Player;
 using Pokemon.PokemonHolder.Cell;
 using UnityEngine;
@@ -35,11 +39,51 @@ namespace Pokemon.PokemonHolder
             }
         }
 
-        public void Initialize(IEnumerable<List<PokemonDataBase>> pokemonList, EnemyDataHolder dataHolder)
+        public void Initialize(/*IEnumerable<List<PokemonDataBase>> pokemonList*/ List<(Type type, int level, int[] indexes)> tuplesData, EnemyDataHolder dataHolder)
         {
             _enemyDataHolder = dataHolder;
             _enemyDataHolder.AllEnemiesDefeated += () => _speedMultiplier = 1.5f;
-            _pokemonsList = pokemonList.ToList();
+            //_pokemonsList = pokemonList.ToList();
+            
+            _pokemonsList = new List<List<PokemonDataBase>>();
+            var index = 0;
+
+            for (var i = 0; i < 4; i++)
+            {
+                _pokemonsList.Add(new List<PokemonDataBase>());
+                
+                for (var j = 0; j < 5; j++)
+                {
+                    if (index < tuplesData.Count)
+                    {
+                        if (tuplesData[index].indexes.SequenceEqual(new[] {i, j}))
+                        {
+                            if (PokemonTypeFactory.FuncToType.TryGetValue(tuplesData[index].type, out var func))
+                            {
+                                var data = func();
+                                data.Indexes = tuplesData[index].indexes.ToArray();
+                                data.MaxLevel = 5;
+                                data.Level = tuplesData[index].level;
+                                _pokemonsList[i].Add(data);
+                                index++;
+                            }
+                            else
+                            {
+                                throw new ArgumentException("There is no pokemon data of given type " +
+                                                            tuplesData[index].type);
+                            }
+                        }
+                        else
+                        {
+                            _pokemonsList[i].Add(default);
+                        }
+                    }
+                    else
+                    {
+                        _pokemonsList[i].Add(default);
+                    }
+                }
+            }
 
             foreach (var pokemonData in from pokemonRow in _pokemonsList
                      from pokemonData in pokemonRow

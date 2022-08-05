@@ -16,7 +16,6 @@ using Pokemon.RangedPokemon.SecondTypePokemon;
 using Pokemon.RangedPokemon.ThirdTypePokemon;
 using StaticData;
 using Stats;
-using TMPro;
 using UnityEngine;
 using UpdateHandlerFolder;
 using Object = UnityEngine.Object;
@@ -28,6 +27,21 @@ namespace Factories
         private readonly PokemonHolderModel _model;
         private readonly UpdateHandler _updateHandler;
         private readonly Transform _camera;
+
+        public static readonly Dictionary<Type, Func<PokemonDataBase>> FuncToType =
+            new Dictionary<Type, Func<PokemonDataBase>>
+            {
+                {typeof(FirstMeleeTypePokemonData), () => new FirstMeleeTypePokemonData()},
+                {typeof(SecondMeleeTypePokemonData), () => new SecondMeleeTypePokemonData()},
+                {typeof(ThirdMeleeTypePokemonData), () => new ThirdMeleeTypePokemonData()},
+                {typeof(FourthMeleeTypePokemonData), () => new FourthMeleeTypePokemonData()},
+                {typeof(FifthMeleeTypePokemonData), () => new FifthMeleeTypePokemonData()},
+                {typeof(FirstRangedTypePokemonData), () => new FirstRangedTypePokemonData()},
+                {typeof(SecondRangedTypePokemonData), () => new SecondRangedTypePokemonData()},
+                {typeof(ThirdRangedTypePokemonData), () => new ThirdRangedTypePokemonData()},
+                {typeof(FourthRangedTypePokemonData), () => new FourthRangedTypePokemonData()},
+                {typeof(FifthRangedTypePokemonData), () => new FifthRangedTypePokemonData()},
+            };
 
         public PokemonTypeFactory(UpdateHandler updateHandler, PokemonHolderModel model, Transform camera)
         {
@@ -87,71 +101,71 @@ namespace Factories
             };
         }
 
-        public PokemonViewBase CreateInstance(PokemonDataBase dataBase, PokemonPrefabHolder pokemonPrefabHolder, Vector3 position,
-            Transform parent)
+        public PokemonViewBase CreateInstance(PokemonDataBase dataBase, PokemonStats stats,
+            PokemonPrefabHolder pokemonPrefabHolder, Vector3 position, Transform parent)
         {
             return dataBase switch
             {
                 FirstMeleeTypePokemonData concreteData =>
                     CreateConcreteInstanceFromData<FirstMeleeTypePokemonView, GroundEnemyView,
                         FirstMeleeTypePokemonLogic, FirstMeleeTypePokemonData>(concreteData,
-                        GetConcreteView<FirstMeleeTypePokemonView>(pokemonPrefabHolder.MeleePokemons), position,
+                        GetConcreteView<FirstMeleeTypePokemonView>(pokemonPrefabHolder.MeleePokemons), stats, position,
                         parent),
-                
+
                 SecondMeleeTypePokemonData concreteData =>
                     CreateConcreteInstanceFromData<SecondMeleeTypePokemonView, GroundEnemyView,
                         SecondMeleeTypePokemonLogic, SecondMeleeTypePokemonData>(concreteData,
-                        GetConcreteView<SecondMeleeTypePokemonView>(pokemonPrefabHolder.MeleePokemons), position,
+                        GetConcreteView<SecondMeleeTypePokemonView>(pokemonPrefabHolder.MeleePokemons), stats, position,
                         parent),
-                
+
                 ThirdMeleeTypePokemonData concreteData =>
                     CreateConcreteInstanceFromData<ThirdMeleeTypePokemonView, GroundEnemyView,
                         ThirdMeleeTypePokemonLogic, ThirdMeleeTypePokemonData>(concreteData,
-                        GetConcreteView<ThirdMeleeTypePokemonView>(pokemonPrefabHolder.MeleePokemons), position,
+                        GetConcreteView<ThirdMeleeTypePokemonView>(pokemonPrefabHolder.MeleePokemons), stats, position,
                         parent),
-                
+
                 FourthMeleeTypePokemonData concreteData =>
                     CreateConcreteInstanceFromData<FourthMeleeTypePokemonView, GroundEnemyView,
                         FourthMeleeTypePokemonLogic, FourthMeleeTypePokemonData>(concreteData,
-                        GetConcreteView<FourthMeleeTypePokemonView>(pokemonPrefabHolder.MeleePokemons), position,
+                        GetConcreteView<FourthMeleeTypePokemonView>(pokemonPrefabHolder.MeleePokemons), stats, position,
                         parent),
-                
+
                 FifthMeleeTypePokemonData concreteData =>
                     CreateConcreteInstanceFromData<FifthMeleeTypePokemonView, GroundEnemyView,
                         FifthMeleeTypePokemonLogic, FifthMeleeTypePokemonData>(concreteData,
-                        GetConcreteView<FifthMeleeTypePokemonView>(pokemonPrefabHolder.MeleePokemons), position,
+                        GetConcreteView<FifthMeleeTypePokemonView>(pokemonPrefabHolder.MeleePokemons), stats, position,
                         parent),
-                
+
                 FirstRangedTypePokemonData concreteData =>
                     CreateConcreteInstanceFromData<FirstRangedTypePokemonView, BaseEnemyView,
                         FirstRangedTypePokemonLogic, FirstRangedTypePokemonData>(concreteData,
-                        GetConcreteView<FirstRangedTypePokemonView>(pokemonPrefabHolder.RangedPokemons), position,
-                        parent),
-                
+                        GetConcreteView<FirstRangedTypePokemonView>(pokemonPrefabHolder.RangedPokemons), stats,
+                        position, parent),
+
                 SecondRangedTypePokemonData concreteData =>
                     CreateConcreteInstanceFromData<SecondRangedTypePokemonView, BaseEnemyView,
                         SecondRangedTypePokemonLogic, SecondRangedTypePokemonData>(concreteData,
-                        GetConcreteView<SecondRangedTypePokemonView>(pokemonPrefabHolder.RangedPokemons), position,
-                        parent),
-                
+                        GetConcreteView<SecondRangedTypePokemonView>(pokemonPrefabHolder.RangedPokemons), stats,
+                        position, parent),
+
                 ThirdRangedTypePokemonData concreteData =>
                     CreateConcreteInstanceFromData<ThirdRangedTypePokemonView, BaseEnemyView,
                         ThirdRangedTypePokemonLogic, ThirdRangedTypePokemonData>(concreteData,
-                        GetConcreteView<ThirdRangedTypePokemonView>(pokemonPrefabHolder.RangedPokemons), position,
-                        parent),
-                
+                        GetConcreteView<ThirdRangedTypePokemonView>(pokemonPrefabHolder.RangedPokemons), stats,
+                        position, parent),
+
                 FourthRangedTypePokemonData concreteData =>
                     CreateConcreteInstanceFromData<FourthRangedTypePokemonView, BaseEnemyView,
                         FourthRangedTypePokemonLogic, FourthRangedTypePokemonData>(concreteData,
-                        GetConcreteView<FourthRangedTypePokemonView>(pokemonPrefabHolder.RangedPokemons), position,
-                        parent),
-                
+                        GetConcreteView<FourthRangedTypePokemonView>(pokemonPrefabHolder.RangedPokemons), stats,
+                        position, parent),
+
                 FifthRangedTypePokemonData concreteData =>
                     CreateConcreteInstanceFromData<FifthRangedTypePokemonView, BaseEnemyView,
                         FifthRangedTypePokemonLogic, FifthRangedTypePokemonData>(concreteData,
-                        GetConcreteView<FifthRangedTypePokemonView>(pokemonPrefabHolder.RangedPokemons), position,
-                        parent),
-                
+                        GetConcreteView<FifthRangedTypePokemonView>(pokemonPrefabHolder.RangedPokemons), stats,
+                        position, parent),
+
                 _ => throw new ArgumentException("luls")
             };
         }
@@ -188,19 +202,20 @@ namespace Factories
         }
 
         private TView CreateConcreteInstanceFromData<TView, TEnemyView, TLogic, TData>(TData data, TView view,
-            Vector3 position, Transform parent)
+            PokemonStats stats, Vector3 position, Transform parent)
             where TView : PokemonViewBase
             where TEnemyView : BaseEnemyView
             where TLogic : PokemonLogicBase<TView, TEnemyView>, new()
             where TData : PokemonDataBase, new()
         {
+            var statsByLevel = stats.GetTypeStats(view).GetLevelStats(data.Level);
             var instantiatedView = Object.Instantiate(view, position, Quaternion.identity, parent);
             var logic = new TLogic();
             instantiatedView.HealthBarView.SetCameraRef(_camera);
             instantiatedView.SetLevel(data.Level);
             logic.Initialize(instantiatedView, data, _model, _updateHandler);
             logic.SetMaxTargetsAmount(data.MaxTargetsAmount);
-            data.Initialize();
+            data.Initialize(statsByLevel);
             logic.SetMaxTargetsAmount(data.MaxTargetsAmount);
             
             instantiatedView.SpawnParticle.gameObject.SetActive(true);

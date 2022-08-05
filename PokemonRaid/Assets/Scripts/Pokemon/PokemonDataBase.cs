@@ -196,10 +196,11 @@ namespace Pokemon
             SetStats(stats);
         }
 
-        public virtual void Initialize()
+        public virtual void Initialize(PokemonStatsByLevel stats)
         {
             MoveDirection = Vector3.zero;
-            Health = MaxHealth;
+            //Health = MaxHealth;
+            SetStats(stats);
             _attackTime = 0f;
         }
 
