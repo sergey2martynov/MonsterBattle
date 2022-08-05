@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
+using System.Threading.Tasks;
 using DG.Tweening;
 using Enemy;
 using Pokemon.Animations;
@@ -16,6 +17,10 @@ namespace Pokemon
         where TView : PokemonViewBase
         where TEnemyView : BaseEnemyView
     {
+        protected readonly Collider[] _boundsInRange = new Collider[2];
+        protected readonly float _rayCastDistance = 1f;
+        protected readonly RaycastHit[] _hit = new RaycastHit[1];
+        private readonly int _move = Animator.StringToHash("Move");
         protected TView _view;
         protected PokemonDataBase _data;
         protected PokemonHolderModel _model;
@@ -24,13 +29,7 @@ namespace Pokemon
         protected Dictionary<Type, BaseState<TView, TEnemyView>> _subStatesToType;
         protected BaseState<TView, TEnemyView> _currentState;
         protected BaseState<TView, TEnemyView> _currentSubState;
-        protected Collider[] _collidersInRange;
-        protected Collider[] _boundsInRange = new Collider[2];
-        protected BaseAnimation _attackAnimation;
-        protected float _rayCastDistance = 1f;
-        protected RaycastHit[] _hit = new RaycastHit[1];
         protected CancellationTokenSource _source;
-        protected readonly int _attack = Animator.StringToHash("Attack");
 
         public bool ShouldAttack { get; set; }
         public CancellationTokenSource Source => _source;
@@ -53,6 +52,7 @@ namespace Pokemon
             _data.DirectionCorrectionRequested += CheckForBounds;
             _data.PositionSeted += GoToArena;
             _data.AttackStateRequired += ChangeSubStateToAttack;
+            _data.MoveAnimationRequested += ActivateMoveAnimation;
             _model.EnemyDataHolder.AllEnemiesDefeated += OnEnemyDefeated;
             CreateStatesDictionaries();
             SetInitialStates();
@@ -134,7 +134,7 @@ namespace Pokemon
             throw new KeyNotFoundException("There is no substate of type " + type);
         }
 
-        public void ChangeSubStateToAttack(bool isAttackSubStateRequired)
+        private void ChangeSubStateToAttack(bool isAttackSubStateRequired)
         {
             if (isAttackSubStateRequired)
             {
@@ -144,6 +144,14 @@ namespace Pokemon
             {
                 SwitchSubState<IdleSubState<TView, TEnemyView>>();
             }
+        }
+
+        private async void ActivateMoveAnimation(float duration)
+        {
+            _view.Animator.SetBool(_move, true);
+            var delay = (int) duration * 1000;
+            await Task.Delay(delay);
+            _view.Animator.SetBool(_move, false);
         }
 
         private int[] GetIndexes()
@@ -268,6 +276,7 @@ namespace Pokemon
             _data.DirectionCorrectionRequested -= CheckForBounds;
             _data.PositionSeted -= GoToArena;
             _data.AttackStateRequired -= ChangeSubStateToAttack;
+            _data.MoveAnimationRequested -= ActivateMoveAnimation;
             _model.EnemyDataHolder.AllEnemiesDefeated -= OnEnemyDefeated;
 
             _source?.Cancel();

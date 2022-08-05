@@ -190,6 +190,8 @@ namespace Pokemon
         [field: NonSerialized]
         public event Action<bool> AttackStateRequired;
 
+        public event Action<float> MoveAnimationRequested;
+
         public virtual void Initialize(PokemonStatsByLevel stats, int[] indexes)
         {
             Indexes = indexes;
@@ -207,6 +209,11 @@ namespace Pokemon
         public void OnAttackSubStateRequired(bool isRequired)
         {
             AttackStateRequired?.Invoke(isRequired);
+        }
+
+        public void OnMoveAnimationRequested(float duration)
+        {
+            MoveAnimationRequested?.Invoke(duration);
         }
 
         // public CancellationTokenSource CreateCancellationTokenSource()

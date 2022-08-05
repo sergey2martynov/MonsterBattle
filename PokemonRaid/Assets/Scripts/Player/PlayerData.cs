@@ -131,7 +131,8 @@ namespace Player
         public event Action FirstLevelFinished;
         public event Action PlayerDied;
         public event Func<Vector3> DirectionCorrectionRequested;
-        public event Action<Vector3> PositionSeted; 
+        public event Action<Vector3> PositionSet;
+        public event Action<float> MoveAnimationRequested;
 
         public virtual void Initialize(PlayerStats stats, PokemonHolderModel pokemonHolderModel)
         {
@@ -202,7 +203,12 @@ namespace Player
         
         public void SetPosition(Vector3 position)
         {
-            PositionSeted?.Invoke(position);
+            PositionSet?.Invoke(position);
+        }
+        
+        public void OnMoveAnimationRequested(float duration)
+        {
+            MoveAnimationRequested?.Invoke(duration);
         }
     }
 }
