@@ -185,7 +185,9 @@ namespace Pokemon
         [field: NonSerialized]
         public event Action<Vector3> PositionSeted;
         [field: NonSerialized] 
-        public event Func<Vector3> DirectionCorrectionRequested; 
+        public event Func<Vector3> DirectionCorrectionRequested;
+
+        public event Action<bool> AttackStateRequired;
 
         public virtual void Initialize(PokemonStatsByLevel stats, int[] indexes)
         {
@@ -198,6 +200,11 @@ namespace Pokemon
             MoveDirection = Vector3.zero;
             Health = MaxHealth;
             _attackTime = 0f;
+        }
+
+        public void OnAttackSubStateRequired(bool isRequired)
+        {
+            AttackStateRequired?.Invoke(isRequired);
         }
 
         // public CancellationTokenSource CreateCancellationTokenSource()

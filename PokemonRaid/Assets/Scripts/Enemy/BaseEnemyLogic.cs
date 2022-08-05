@@ -32,6 +32,7 @@ namespace Enemy
             _view.DamageTaken += OnDamageTaken;
             _data.EnemyDied += OnEnemyDied;
             _data.HealthChanged += OnHealthChanged;
+            _data.IdleStateRequested += SetIdleStateRequirement;
             _statesToType = new Dictionary<Type, BaseEnemyState<TView>>
             {
                 { typeof(EnemyMoveState<TView>), new EnemyMoveState<TView>(_view, this, _data) },
@@ -163,6 +164,7 @@ namespace Enemy
             _view.ViewDestroyed -= Dispose;
             _data.HealthChanged -= OnHealthChanged;
             _data.EnemyDied -= OnEnemyDied;
+            _data.IdleStateRequested -= SetIdleStateRequirement;
         }
     }
 }

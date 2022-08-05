@@ -141,6 +141,7 @@ namespace Enemy
 
         public event Action<int, int> HealthChanged; 
         public event Action<BaseEnemyData> EnemyDied;
+        public event Action<bool> IdleStateRequested;
 
         public virtual void Initialize(EnemyStatsByLevel stats)
         {
@@ -164,6 +165,11 @@ namespace Enemy
             Level = stats.Level;
             MaxTargetsAmount = stats.MaxTargetsAmount;
             AttackRange = stats.AttackRange;
+        }
+
+        public void OnIdleStateRequired(bool isRequired)
+        {
+            IdleStateRequested?.Invoke(isRequired);
         }
 
         public void DisposeSource()

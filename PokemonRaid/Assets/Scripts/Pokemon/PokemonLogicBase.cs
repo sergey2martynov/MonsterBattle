@@ -52,6 +52,7 @@ namespace Pokemon
             _data.HealthChanged += OnHealthChanged;
             _data.DirectionCorrectionRequested += CheckForBounds;
             _data.PositionSeted += GoToArena;
+            _data.AttackStateRequired += ChangeSubStateToAttack;
             _model.EnemyDataHolder.AllEnemiesDefeated += OnEnemyDefeated;
             CreateStatesDictionaries();
             SetInitialStates();
@@ -266,6 +267,7 @@ namespace Pokemon
             _data.HealthChanged -= OnHealthChanged;
             _data.DirectionCorrectionRequested -= CheckForBounds;
             _data.PositionSeted -= GoToArena;
+            _data.AttackStateRequired -= ChangeSubStateToAttack;
             _model.EnemyDataHolder.AllEnemiesDefeated -= OnEnemyDefeated;
 
             _source?.Cancel();
