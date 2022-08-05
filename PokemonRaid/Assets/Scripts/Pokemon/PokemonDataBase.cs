@@ -184,9 +184,10 @@ namespace Pokemon
         public event Action PokemonDied;
         [field: NonSerialized]
         public event Action<Vector3> PositionSeted;
-        [field: NonSerialized] 
+        [field: NonSerialized]
         public event Func<Vector3> DirectionCorrectionRequested;
 
+        [field: NonSerialized]
         public event Action<bool> AttackStateRequired;
 
         public virtual void Initialize(PokemonStatsByLevel stats, int[] indexes)
