@@ -3,7 +3,6 @@ using CardsCollection;
 using Menu;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 namespace RewardMenu
@@ -15,12 +14,14 @@ namespace RewardMenu
         [SerializeField] private CardView _cardView;
         [SerializeField] private TextMeshProUGUI _youEarnedText;
         [SerializeField] private GameObject _coinsView;
+        [SerializeField] private GameObject _gemsView;
         [SerializeField] private TextMeshProUGUI _coinsAmount;
         [SerializeField] private RewardMenuConfig _rewardMenuConfig;
 
         public CardView CardView => _cardView;
 
         public event Action NextLevelButtonPressed;
+        public event Action Destroed;
         public void CardDisable(bool isActive)
         {
             _panelWithCard.gameObject.SetActive(isActive);
@@ -31,19 +32,39 @@ namespace RewardMenu
             _nextLevelButton.onClick.AddListener(OnNextLevelButtonClick);
         }
 
-        public void ChangePositionText(bool isGetNewCard)
+        public void ChangePositionText(bool isGetNewCard, bool isGetGems, int level)
         {
-            if (isGetNewCard)
+            if (isGetNewCard && level != 3) 
             {
                 _youEarnedText.GetComponent<RectTransform>().anchoredPosition = _rewardMenuConfig.DefaultTextPosition;
-                _coinsView.GetComponent<RectTransform>().anchoredPosition = _rewardMenuConfig.DefaultCoinsPosition;
+                _coinsView.GetComponent<RectTransform>().anchoredPosition = _rewardMenuConfig.DefaultCoinsPositionWithGems;
+                _gemsView.GetComponent<RectTransform>().anchoredPosition = _rewardMenuConfig.DefaultGemsPosition;
+                _gemsView.gameObject.SetActive(true);
             }
-            else
+            else if (isGetGems)
+            {
+                _youEarnedText.GetComponent<RectTransform>().anchoredPosition = _rewardMenuConfig.CenterTextPosition;
+                _gemsView.GetComponent<RectTransform>().anchoredPosition = _rewardMenuConfig.CenterGemsPosition;
+                _coinsView.GetComponent<RectTransform>().anchoredPosition = _rewardMenuConfig.CenterCoinsPositionWithGems;
+                _gemsView.gameObject.SetActive(true);
+            }
+            else if(level != 3)
             {
                 _youEarnedText.GetComponent<RectTransform>().anchoredPosition = _rewardMenuConfig.CenterTextPosition;
                 _coinsView.GetComponent<RectTransform>().anchoredPosition = _rewardMenuConfig.CenterCoinsPosition;
             }
+            else
+            {
+                _youEarnedText.GetComponent<RectTransform>().anchoredPosition = _rewardMenuConfig.DefaultTextPosition;
+                _coinsView.GetComponent<RectTransform>().anchoredPosition = _rewardMenuConfig.DefaultCoinsPosition;
+            }
             
+        }
+
+        public void ShowGems()
+        {
+            _gemsView.SetActive(true);
+            _coinsView.GetComponent<RectTransform>().anchoredPosition = new Vector2(-283, 128);
         }
 
         private void OnNextLevelButtonClick()
@@ -63,7 +84,11 @@ namespace RewardMenu
             }
             else
                 _coinsAmount.text = amount.ToString();
-            
+        }
+
+        private void OnDestroy()
+        {
+            Destroed?.Invoke();
         }
     }
 }

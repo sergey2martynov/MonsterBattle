@@ -1,12 +1,16 @@
 using System;
+using Facebook.Unity.Example;
+using Menu;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Arena
 {
-    public class ArenaMenuView : MonoBehaviour
+    public class ArenaMenuView : MenuViewBase
     {
         [SerializeField] private Button _fightButton;
+
+        public Button FightButton => _fightButton;
         
         public event Action FightButtonPressed;
 

@@ -3,17 +3,17 @@ using DG.Tweening;
 using Player;
 using Shop;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace CameraFollow
 {
-    public class CameraFollow : MonoBehaviour
+    public class CameraView : MonoBehaviour
     {
         [SerializeField] private PlayerView _playerView;
         [SerializeField] private ShopView _shopView;
         [SerializeField] private Vector3 _vector3;
         [SerializeField] private Vector3 _offsetForArena;
-        [SerializeField] private ArenaView _arenaView;
+        [SerializeField] private ArenaMenuView _arenaMenuView;
+        private ArenaView _arenaView;
 
         private bool _isCanAddOffset = true;
         private Vector3 _offset;
@@ -22,13 +22,11 @@ namespace CameraFollow
         {
             _offset = _vector3;
             _shopView.StartButtonPressed += MoveCameraToStart;
-            _arenaView.PlayerTriggered += MoveCameraToArena;
         }
 
         private void OnDestroy()
         {
             _shopView.StartButtonPressed -= MoveCameraToStart;
-            _arenaView.PlayerTriggered -= MoveCameraToArena;
         }
 
 
@@ -52,7 +50,7 @@ namespace CameraFollow
             });
         }
         
-        private void MoveCameraToArena()
+        public void MoveCameraToArena()
         {
             _isCanAddOffset = false;
 
@@ -60,7 +58,16 @@ namespace CameraFollow
 
             var pos = _arenaView.transform.position + _offsetForArena;
 
-            transform.DOMove(pos, 4);
+            transform.DOMove(pos, 4).OnComplete(() =>
+            {
+                _arenaMenuView.Show();
+            });
+        }
+
+        public void SetRefArenaView(ArenaView arenaView)
+        {
+            _arenaView = arenaView;
+            _arenaView.PlayerTriggered += MoveCameraToArena;
         }
     }
 }

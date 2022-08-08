@@ -1,5 +1,7 @@
 using System;
+using Arena;
 using HealthBar;
+using InputPlayer;
 using UnityEngine;
 
 namespace Player
@@ -10,12 +12,16 @@ namespace Player
         [SerializeField] protected HealthBarView _healthBarView;
         [SerializeField] private LayerMask _boundsLayer;
         [SerializeField] private ParticleSystem _particle;
+        [SerializeField] private InputView _inputView;
+        [SerializeField] private ArenaMenuView _arenaMenuView;
 
         public Transform Transform => transform;
         public Animator Animator => _animator;
         public LayerMask BoundsLayer => _boundsLayer;
         public HealthBarView HealthBarView => _healthBarView;
         public ParticleSystem Particle => _particle;
+        public InputView InputView => _inputView;
+        public ArenaMenuView ArenaMenuView => _arenaMenuView;
 
         public event Action ViewDestroyed;
         public event Action LevelFinished;

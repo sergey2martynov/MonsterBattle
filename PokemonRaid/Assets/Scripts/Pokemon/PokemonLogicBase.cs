@@ -260,6 +260,7 @@ namespace Pokemon
         private void GoToArena(Vector3 newPosition)
         {
             _view.transform.DOMove(newPosition, 3);
+            ActivateMoveAnimation(3);
         }
 
         protected virtual void Dispose()

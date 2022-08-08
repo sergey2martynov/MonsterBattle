@@ -125,9 +125,25 @@ namespace Player
                 CoinsAmountChanged?.Invoke(_coins);
             }
         }
+        
+        public int Gems
+        {
+            get => _coins;
+            set
+            {
+                if (value < 0)
+                {
+                    _coins = 0;
+                }
+
+                _coins = value;
+                GemsAmountChanged?.Invoke(_coins);
+            }
+        }
 
         public event Action<int, int> HealthChange;
         public event Action<int> CoinsAmountChanged;
+        public event Action<int> GemsAmountChanged;
         public event Action FirstLevelFinished;
         public event Action PlayerDied;
         public event Func<Vector3> DirectionCorrectionRequested;

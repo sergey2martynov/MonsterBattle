@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Analitycs;
+using Arena;
 using CardsCollection;
 using DG.Tweening;
 using Enemy.EnemyModel;
@@ -20,6 +21,7 @@ namespace Player
         private UpgradeLevels _upgradeLevels;
         private PokemonAvailabilityLogic _pokemonAvailabilityLogic;
         private PokemonHolderModel _pokemonHolderModel;
+        private ArenaLogic _arenaLogic;
         private RaycastHit[] _hit = new RaycastHit[1];
         private Collider[] _boundsInRange = new Collider[2];
         private float _rayCastDistance = 1f;
@@ -34,7 +36,7 @@ namespace Player
 
         public virtual void Initialize(PlayerView playerView, PlayerData playerData,
             UpdateHandler updateHandler, PokemonHolderModel pokemonHolderModel, EnemyDataHolder enemyDataHolder,
-            UpgradeLevels upgradeLevels, PokemonAvailabilityLogic pokemonAvailabilityLogic)
+            UpgradeLevels upgradeLevels, PokemonAvailabilityLogic pokemonAvailabilityLogic, ArenaLogic arenaLogic)
         {
             _view = playerView;
             _data = playerData;
@@ -43,6 +45,7 @@ namespace Player
             _enemyDataHolder = enemyDataHolder;
             _upgradeLevels = upgradeLevels;
             _pokemonAvailabilityLogic = pokemonAvailabilityLogic;
+            _arenaLogic = arenaLogic;
             _updateHandler.UpdateTicked += Update;
             //_enemyDataHolder.EnemyDefeated += OnEnemyDefeated;
             _view.ViewDestroyed += Dispose;
@@ -53,6 +56,7 @@ namespace Player
             _data.MoveAnimationRequested += ActivateMoveAnimation;
             _enemyDataHolder.EnemyDefeated += OnEnemyDefeated;
             _data.PositionSet += GoToArena;
+            _arenaLogic.ArenaCompleted += IncreaseLevel;
         }
 
         private void Update()
@@ -189,6 +193,7 @@ namespace Player
         private void GoToArena(Vector3 newPosition)
         {
             _view.transform.DOMove(newPosition, 3);
+            ActivateMoveAnimation(3);
         }
 
 
@@ -210,6 +215,7 @@ namespace Player
             _enemyDataHolder.EnemyDefeated -= OnEnemyDefeated;
             _data.PositionSet -= GoToArena;
             _data.MoveAnimationRequested -= ActivateMoveAnimation;
+            _arenaLogic.ArenaCompleted -= IncreaseLevel;
         }
     }
 }

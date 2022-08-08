@@ -1,4 +1,5 @@
 ﻿using Arena;
+using CameraFollow;
 using CardsCollection;
 using Enemy.EnemyModel;
 using Factories;
@@ -67,8 +68,11 @@ public class ProjectStarter : MonoBehaviour
     [SerializeField] private Transform _camera;
     [SerializeField] private BracketView _bracketPrefab;
     [SerializeField] private Transform _bracketParentObject;
-    [SerializeField] private ArenaView _arenaView;
-    [SerializeField] private ArenaPrefabHolder _arenaPrefabHolder;
+    [SerializeField] private CameraView _cameraView;
+
+
+    [Header("Arena")] [SerializeField] private ArenaPrefabHolder _arenaPrefabHolder;
+    [SerializeField] private ArenaMenuView _arenaMenuView;
 
     private PokemonSpawner _pokemonSpawner;
     private SaveLoadSystem _saveLoadSystem;
@@ -92,10 +96,13 @@ public class ProjectStarter : MonoBehaviour
 
         var enemyDataHolder = new EnemyDataHolder();
 
+
         var playerData = new PlayerData();
         var playerLogic = new PlayerLogic();
+        var arenaLogic = new ArenaLogic(pokemonHolderModel, new EnemyFactory(_updateHandler, _camera),
+            playerData, _arenaPrefabHolder, _enemyStats, _arenaMenuView);
         playerLogic.Initialize(_playerView, playerData, _updateHandler, pokemonHolderModel, enemyDataHolder,
-            _upgradeLevels, pokemonAvailabilityLogic);
+            _upgradeLevels, pokemonAvailabilityLogic, arenaLogic);
         _healthPlayerBarView.SetCameraRef(_camera);
         pokemonHolderModel.SetInitialHealthPlayer();
 
@@ -143,12 +150,13 @@ public class ProjectStarter : MonoBehaviour
 
         var shopData = new ShopData();
         var shopLogic = new ShopLogic(_pokemonSpawner, _shopView, shopData, playerData, pokemonHolderModel,
-            playerLogic, pokemonCellPlacer, pokemonPrefabHolder, directionTranslator, _gameCanvasView, cardsPanelLogic);
+            playerLogic, pokemonCellPlacer, pokemonPrefabHolder, directionTranslator, _gameCanvasView, cardsPanelLogic,
+            pokemonAvailabilityLogic);
         shopLogic.Initialize();
         shopData.Initialize(_shopStats, playerData.MeleeBuyCounter, playerData.RangedBuyCounter);
 
         var levelBuilderBehaviour = new LevelBuilderBehaviour(_levelDataHolder, playerData, _updateHandler,
-            _enemyParentObject, _enemyStats, enemyDataHolder, _camera);
+            _enemyParentObject, _enemyStats, enemyDataHolder, _camera, _cameraView, arenaLogic);
         levelBuilderBehaviour.Initialize(shopLogic);
 
         directionTranslator.SetShopLogic(shopLogic);
@@ -161,7 +169,8 @@ public class ProjectStarter : MonoBehaviour
         levelCounterLogic.Initialize(_levelCounterView, playerData, _levelSpritesHolder);
 
         var rewardMenuLogic = new RewardMenuLogic(playerLogic, _rewardMenuView, _upgradeLevels, playerData,
-            _levelDataHolder, _saveLoadSystem, pokemonAvailabilityLogic, _cardSpritesHolder, enemyDataHolder);
+            _levelDataHolder, _saveLoadSystem, pokemonAvailabilityLogic, _cardSpritesHolder, enemyDataHolder,
+            arenaLogic);
         rewardMenuLogic.Initialize();
         _newPokemonCanvasView.Initialize();
         _cardsPanelView.Initialize();
@@ -169,8 +178,6 @@ public class ProjectStarter : MonoBehaviour
         var failMenuLogic = new FailMenuLogic(playerData, enemyDataHolder, _failMenuView, _saveLoadSystem);
         failMenuLogic.Initialize();
 
-        var arenaLogic = new ArenaLogic(_arenaView, pokemonHolderModel, new EnemyFactory(_updateHandler, _camera),
-            playerData, _arenaPrefabHolder,_enemyStats);
 
         shopLogic.CheckCoins();
     }

@@ -1,3 +1,5 @@
+using Arena;
+using CameraFollow;
 using Enemy.EnemyModel;
 using Factories;
 using LevelEnvironment;
@@ -9,6 +11,7 @@ using UnityEngine;
 using UpdateHandlerFolder;
 using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
+
 /* env_1 - 55
  * env_2 - 55
  * env_3 - 55
@@ -29,18 +32,23 @@ namespace LevelBuilder
         private readonly EnemyStats _enemyStats;
         private readonly Transform _enemyParentObject;
         private readonly Transform _camera;
+        private readonly ArenaLogic _arenaLogic;
         private EnemyFactory _enemyFactory;
+        private CameraView _cameraView;
 
         public LevelBuilderBehaviour(LevelDataHolder levelDataHolder, PlayerData playerData,
-            UpdateHandler updateHandler, Transform enemyParentObject, EnemyStats enemyStats, EnemyDataHolder enemyDataHolder, Transform camera)
+            UpdateHandler updateHandler, Transform enemyParentObject, EnemyStats enemyStats,
+            EnemyDataHolder enemyDataHolder, Transform camera, CameraView cameraView, ArenaLogic arenaLogic)
         {
-            _levelDataHolder = levelDataHolder;  
+            _levelDataHolder = levelDataHolder;
             _playerData = playerData;
             _updateHandler = updateHandler;
             _enemyParentObject = enemyParentObject;
             _enemyStats = enemyStats;
             _enemyDataHolder = enemyDataHolder;
             _camera = camera;
+            _cameraView = cameraView;
+            _arenaLogic = arenaLogic;
         }
 
         public void Initialize(ShopLogic shopLogic)
@@ -57,7 +65,7 @@ namespace LevelBuilder
 
             if (levelData.Environment == null)
             {
-                level = level % 5 == 0 ?  10 : 5 + level % 5;
+                level = level % 5 == 0 ? 10 : 5 + level % 5;
                 var environment = _levelDataHolder.GetLevelData(level).Environment;
                 Object.Instantiate(environment, Vector3.zero, quaternion.identity);
             }
@@ -71,6 +79,13 @@ namespace LevelBuilder
                     environment.GetComponent<EnvironmentView>().PlaneView.Chest.Egg.gameObject.SetActive(true);
                 }
             }
+
+            if (level % 5 == 3)
+            {
+                var arena = Object.Instantiate(_levelDataHolder.ArenaView, new Vector3(0, 0, 70), Quaternion.identity);
+                _cameraView.SetRefArenaView(arena);
+                _arenaLogic.SetArenaView(arena);
+            }
         }
 
         private void FillLevelWithEnemies()
@@ -81,10 +96,10 @@ namespace LevelBuilder
             {
                 level = level % 5 == 0 ? 20 : 15 + level % 5;
             }
-            
+
             var levelData = _levelDataHolder.GetLevelData(level);
             var totalEnemyCount = 0;
-            
+
             foreach (var spawnPosition in levelData.SpawnPositions)
             {
                 foreach (var position in spawnPosition.Positions)
@@ -98,15 +113,15 @@ namespace LevelBuilder
                     {
                         data.MoveSpeed = 0f;
                     }
-                    
+
                     _enemyDataHolder.AddEnemyData(data);
-                    
+
                     _enemyDataHolder.AddEnemyData(data);
                     totalEnemyCount++;
                 }
             }
-            
-            _enemyDataHolder.CoinsRewardPerEnemy = levelData.TotalCoinsReward / (float) totalEnemyCount;
+
+            _enemyDataHolder.CoinsRewardPerEnemy = levelData.TotalCoinsReward / (float)totalEnemyCount;
         }
     }
 }

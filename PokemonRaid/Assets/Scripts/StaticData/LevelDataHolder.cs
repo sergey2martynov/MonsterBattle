@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Arena;
 using Attributes;
 using Stats;
 using UnityEngine;
@@ -11,6 +12,10 @@ namespace StaticData
         //[NamedList(new []{"Level 1", "Level 2", "Level 3"})]
         [NamedProperty("Level")]
         [SerializeField] private List<LevelData> _levelData;
+
+        [SerializeField] private ArenaView _arenaView;
+
+        public ArenaView ArenaView => _arenaView;
 
         public LevelData GetLevelData(int level)
         {

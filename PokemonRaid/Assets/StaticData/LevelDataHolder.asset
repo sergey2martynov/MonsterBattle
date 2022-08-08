@@ -30,6 +30,7 @@ MonoBehaviour:
       - {x: -2, y: 0.41, z: 48}
       - {x: 0, y: 0.41, z: 52}
     _totalCoinsReward: 10
+    _totalGemsReward: 0
     _environment: {fileID: 1515952890826409518, guid: 92a8c057e6a206b47b595a72c55f7f9c, type: 3}
   - _level: 2
     _spawnPositions:
@@ -52,6 +53,7 @@ MonoBehaviour:
       - {x: 0, y: 0.41, z: 58}
       - {x: 2, y: 0.41, z: 54}
     _totalCoinsReward: 12
+    _totalGemsReward: 0
     _environment: {fileID: 2640813938487052669, guid: c88422246cbdbc14a8347c5bf4d65b16, type: 3}
   - _level: 3
     _spawnPositions:
@@ -72,6 +74,7 @@ MonoBehaviour:
       - {x: -1, y: 0.41, z: 52}
       - {x: 3, y: 0.41, z: 57}
     _totalCoinsReward: 14
+    _totalGemsReward: 0
     _environment: {fileID: 1869392084291384108, guid: 5c672fc37c79cf045aac19ffd278fe04, type: 3}
   - _level: 4
     _spawnPositions:
@@ -100,6 +103,7 @@ MonoBehaviour:
       - {x: 1, y: 0.41, z: 55}
       - {x: 3, y: 0.41, z: 56}
     _totalCoinsReward: 17
+    _totalGemsReward: 0
     _environment: {fileID: 2416796185129638679, guid: cfa033be41a83884197e5288f484ccd3, type: 3}
   - _level: 5
     _spawnPositions:
@@ -144,6 +148,7 @@ MonoBehaviour:
       _positions:
       - {x: 0, y: 0.41, z: 113}
     _totalCoinsReward: 21
+    _totalGemsReward: 0
     _environment: {fileID: 7335228174981870637, guid: ac2438e651610d147b5001070f204950, type: 3}
   - _level: 6
     _spawnPositions:
@@ -169,6 +174,7 @@ MonoBehaviour:
       _positions:
       - {x: 2, y: 0.41, z: 62}
     _totalCoinsReward: 27
+    _totalGemsReward: 0
     _environment: {fileID: 477269757528698986, guid: c52265e05c9c06641b0374d235a8fdf8, type: 3}
   - _level: 7
     _spawnPositions:
@@ -201,6 +207,7 @@ MonoBehaviour:
       _positions:
       - {x: 0, y: 0.41, z: 58}
     _totalCoinsReward: 33
+    _totalGemsReward: 0
     _environment: {fileID: 721872216426782616, guid: 4fcd1633d866c5b4e8b07106e6790a8a, type: 3}
   - _level: 8
     _spawnPositions:
@@ -232,6 +239,7 @@ MonoBehaviour:
       _positions:
       - {x: 0, y: 0.41, z: 58}
     _totalCoinsReward: 40
+    _totalGemsReward: 0
     _environment: {fileID: 3364622451351329967, guid: 15ba6ab998fe5a4429c3908aa88b0fa2, type: 3}
   - _level: 9
     _spawnPositions:
@@ -258,6 +266,7 @@ MonoBehaviour:
       _positions:
       - {x: -4, y: 0.41, z: 55}
     _totalCoinsReward: 48
+    _totalGemsReward: 0
     _environment: {fileID: 2331766990992820319, guid: cba7a5c6116cdda49a6bd5fb5692c986, type: 3}
   - _level: 10
     _spawnPositions:
@@ -301,6 +310,7 @@ MonoBehaviour:
       _positions:
       - {x: 0, y: 0.41, z: 113}
     _totalCoinsReward: 58
+    _totalGemsReward: 0
     _environment: {fileID: 665124266023623727, guid: a7b02d9ff6f8b4c4384adf288aaa7982, type: 3}
   - _level: 11
     _spawnPositions:
@@ -333,6 +343,7 @@ MonoBehaviour:
       _positions:
       - {x: 0, y: 0.41, z: 58}
     _totalCoinsReward: 70
+    _totalGemsReward: 0
     _environment: {fileID: 5729918361733987999, guid: e6bfe51200573f540ae207550bf190ac, type: 3}
   - _level: 12
     _spawnPositions:
@@ -362,6 +373,7 @@ MonoBehaviour:
       _positions:
       - {x: 1, y: 0.41, z: 60}
     _totalCoinsReward: 84
+    _totalGemsReward: 0
     _environment: {fileID: 6856258337522201310, guid: 87cc84560d1bf5b4fafee90cf6bc726f, type: 3}
   - _level: 13
     _spawnPositions:
@@ -386,6 +398,7 @@ MonoBehaviour:
       - {x: 2, y: 0.41, z: 55}
       - {x: 4, y: 0.41, z: 53}
     _totalCoinsReward: 101
+    _totalGemsReward: 0
     _environment: {fileID: 2667785713799392065, guid: e42667b3f38eb0d49957190ae8d6d467, type: 3}
   - _level: 14
     _spawnPositions:
@@ -414,6 +427,7 @@ MonoBehaviour:
       - {x: 3, y: 0.41, z: 60}
       - {x: 0, y: 0.41, z: 58}
     _totalCoinsReward: 122
+    _totalGemsReward: 0
     _environment: {fileID: 6972595788644372457, guid: d769b9843c59c824faa4fa21b7802ee4, type: 3}
   - _level: 15
     _spawnPositions:
@@ -459,6 +473,7 @@ MonoBehaviour:
       _positions:
       - {x: 0, y: 0.41, z: 113}
     _totalCoinsReward: 147
+    _totalGemsReward: 0
     _environment: {fileID: 8749536805340578723, guid: 0d24e1a8295dd5043a508225f2392046, type: 3}
   - _level: 16
     _spawnPositions:
@@ -492,6 +507,7 @@ MonoBehaviour:
       - {x: 1, y: 0.41, z: 58}
       - {x: 3, y: 0.41, z: 58}
     _totalCoinsReward: 177
+    _totalGemsReward: 0
     _environment: {fileID: 0}
   - _level: 17
     _spawnPositions:
@@ -528,6 +544,7 @@ MonoBehaviour:
       - {x: 4, y: 0.41, z: 59}
       - {x: -2, y: 0.41, z: 62}
     _totalCoinsReward: 213
+    _totalGemsReward: 0
     _environment: {fileID: 0}
   - _level: 18
     _spawnPositions:
@@ -556,6 +573,7 @@ MonoBehaviour:
       - {x: -2, y: 0.41, z: 58}
       - {x: 0, y: 0.41, z: 60}
     _totalCoinsReward: 256
+    _totalGemsReward: 0
     _environment: {fileID: 0}
   - _level: 19
     _spawnPositions:
@@ -584,6 +602,7 @@ MonoBehaviour:
       - {x: -2, y: 0.41, z: 58}
       - {x: 0, y: 0.41, z: 62}
     _totalCoinsReward: 308
+    _totalGemsReward: 0
     _environment: {fileID: 0}
   - _level: 20
     _spawnPositions:
@@ -626,6 +645,7 @@ MonoBehaviour:
       _positions:
       - {x: 0, y: 0.41, z: 113}
     _totalCoinsReward: 370
+    _totalGemsReward: 0
     _environment: {fileID: 0}
   - _level: 21
     _spawnPositions:
@@ -655,6 +675,7 @@ MonoBehaviour:
       - {x: -2, y: 0.41, z: 55}
       - {x: 3, y: 0.41, z: 58}
     _totalCoinsReward: 444
+    _totalGemsReward: 0
     _environment: {fileID: 0}
   - _level: 22
     _spawnPositions:
@@ -683,6 +704,7 @@ MonoBehaviour:
       - {x: -3, y: 0.41, z: 59}
       - {x: 2, y: 0.41, z: 57}
     _totalCoinsReward: 533
+    _totalGemsReward: 0
     _environment: {fileID: 0}
   - _level: 23
     _spawnPositions:
@@ -710,6 +732,7 @@ MonoBehaviour:
       - {x: 2, y: 0.41, z: 52}
       - {x: 4, y: 0.41, z: 57}
     _totalCoinsReward: 640
+    _totalGemsReward: 0
     _environment: {fileID: 0}
   - _level: 24
     _spawnPositions:
@@ -736,6 +759,7 @@ MonoBehaviour:
       - {x: 1, y: 0.41, z: 62}
       - {x: 4, y: 0.41, z: 61}
     _totalCoinsReward: 768
+    _totalGemsReward: 0
     _environment: {fileID: 0}
   - _level: 0
     _spawnPositions:
@@ -756,6 +780,7 @@ MonoBehaviour:
       - {x: -2, y: 0, z: 50}
       - {x: 0, y: 0, z: 50}
     _totalCoinsReward: 922
+    _totalGemsReward: 0
     _environment: {fileID: 0}
   - _level: 0
     _spawnPositions:
@@ -776,6 +801,7 @@ MonoBehaviour:
       - {x: -2, y: 0, z: 50}
       - {x: 0, y: 0, z: 50}
     _totalCoinsReward: 1107
+    _totalGemsReward: 0
     _environment: {fileID: 0}
   - _level: 0
     _spawnPositions:
@@ -796,6 +822,7 @@ MonoBehaviour:
       - {x: -2, y: 0, z: 50}
       - {x: 0, y: 0, z: 50}
     _totalCoinsReward: 1329
+    _totalGemsReward: 0
     _environment: {fileID: 0}
   - _level: 0
     _spawnPositions:
@@ -816,6 +843,7 @@ MonoBehaviour:
       - {x: -2, y: 0, z: 50}
       - {x: 0, y: 0, z: 50}
     _totalCoinsReward: 1594
+    _totalGemsReward: 0
     _environment: {fileID: 0}
   - _level: 0
     _spawnPositions:
@@ -836,6 +864,7 @@ MonoBehaviour:
       - {x: -2, y: 0, z: 50}
       - {x: 0, y: 0, z: 50}
     _totalCoinsReward: 1912
+    _totalGemsReward: 0
     _environment: {fileID: 0}
   - _level: 0
     _spawnPositions:
@@ -856,6 +885,7 @@ MonoBehaviour:
       - {x: -2, y: 0, z: 50}
       - {x: 0, y: 0, z: 50}
     _totalCoinsReward: 2295
+    _totalGemsReward: 0
     _environment: {fileID: 0}
   - _level: 0
     _spawnPositions:
@@ -876,6 +906,7 @@ MonoBehaviour:
       - {x: -2, y: 0, z: 50}
       - {x: 0, y: 0, z: 50}
     _totalCoinsReward: 2755
+    _totalGemsReward: 0
     _environment: {fileID: 0}
   - _level: 0
     _spawnPositions:
@@ -896,6 +927,7 @@ MonoBehaviour:
       - {x: -2, y: 0, z: 50}
       - {x: 0, y: 0, z: 50}
     _totalCoinsReward: 3306
+    _totalGemsReward: 0
     _environment: {fileID: 0}
   - _level: 0
     _spawnPositions:
@@ -916,6 +948,7 @@ MonoBehaviour:
       - {x: -2, y: 0, z: 50}
       - {x: 0, y: 0, z: 50}
     _totalCoinsReward: 3967
+    _totalGemsReward: 0
     _environment: {fileID: 0}
   - _level: 0
     _spawnPositions:
@@ -936,6 +969,7 @@ MonoBehaviour:
       - {x: -2, y: 0, z: 50}
       - {x: 0, y: 0, z: 50}
     _totalCoinsReward: 4761
+    _totalGemsReward: 0
     _environment: {fileID: 0}
   - _level: 0
     _spawnPositions:
@@ -956,6 +990,7 @@ MonoBehaviour:
       - {x: -2, y: 0, z: 50}
       - {x: 0, y: 0, z: 50}
     _totalCoinsReward: 5713
+    _totalGemsReward: 0
     _environment: {fileID: 0}
   - _level: 0
     _spawnPositions:
@@ -976,6 +1011,7 @@ MonoBehaviour:
       - {x: -2, y: 0, z: 50}
       - {x: 0, y: 0, z: 50}
     _totalCoinsReward: 6855
+    _totalGemsReward: 0
     _environment: {fileID: 0}
   - _level: 0
     _spawnPositions:
@@ -996,6 +1032,7 @@ MonoBehaviour:
       - {x: -2, y: 0, z: 50}
       - {x: 0, y: 0, z: 50}
     _totalCoinsReward: 8226
+    _totalGemsReward: 0
     _environment: {fileID: 0}
   - _level: 0
     _spawnPositions:
@@ -1016,6 +1053,7 @@ MonoBehaviour:
       - {x: -2, y: 0, z: 50}
       - {x: 0, y: 0, z: 50}
     _totalCoinsReward: 9872
+    _totalGemsReward: 0
     _environment: {fileID: 0}
   - _level: 0
     _spawnPositions:
@@ -1036,6 +1074,7 @@ MonoBehaviour:
       - {x: -2, y: 0, z: 50}
       - {x: 0, y: 0, z: 50}
     _totalCoinsReward: 11846
+    _totalGemsReward: 0
     _environment: {fileID: 0}
   - _level: 0
     _spawnPositions:
@@ -1056,4 +1095,6 @@ MonoBehaviour:
       - {x: -2, y: 0, z: 50}
       - {x: 0, y: 0, z: 50}
     _totalCoinsReward: 14215
+    _totalGemsReward: 0
     _environment: {fileID: 0}
+  _arenaView: {fileID: 7164912525051957465, guid: 69c5c1bef56579743862d2202a84dce4, type: 3}

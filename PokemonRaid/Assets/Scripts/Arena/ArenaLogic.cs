@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Enemy;
@@ -6,42 +7,80 @@ using Helpers;
 using Player;
 using Pokemon;
 using Pokemon.PokemonHolder;
+using RewardMenu;
 using StaticData;
 
 namespace Arena
 {
     public class ArenaLogic
     {
-        private readonly ArenaView _view;
+        private readonly ArenaMenuView _arenaMenuView;
         private readonly ArenaPrefabHolder _arenaPrefabHolder;
         private readonly PokemonHolderModel _pokemonHolderModel;
         private readonly EnemyFactory _enemyFactory;
         private readonly PlayerData _playerData;
         private readonly EnemyStats _enemyStats;
+        private  ArenaView _arenaView;
 
         private List<PokemonDataBase> _strongPokemonData = new List<PokemonDataBase>(3);
         private List<BaseEnemyView> _enemiesViews = new List<BaseEnemyView>();
+        private List<BaseEnemyData> _enemiesData = new List<BaseEnemyData>();
 
-        public ArenaLogic(ArenaView view, PokemonHolderModel pokemonHolderModel, EnemyFactory enemyFactory,
-            PlayerData playerData, ArenaPrefabHolder arenaPrefabHolder, EnemyStats enemyStats)
+        public event Action ArenaCompleted;
+        public event Action ArenaDefeated;
+
+        public ArenaLogic(PokemonHolderModel pokemonHolderModel, EnemyFactory enemyFactory,
+            PlayerData playerData, ArenaPrefabHolder arenaPrefabHolder, EnemyStats enemyStats,
+            ArenaMenuView arenaMenuView)
         {
-            _view = view;
             _pokemonHolderModel = pokemonHolderModel;
             _enemyFactory = enemyFactory;
             _playerData = playerData;
             _arenaPrefabHolder = arenaPrefabHolder;
             _enemyStats = enemyStats;
+            _arenaMenuView = arenaMenuView;
             Initialize();
         }
 
         public void Initialize()
         {
-            _view.PlayerTriggered += SpawnEnemy;
+            _arenaMenuView.FightButtonPressed += Fight;
         }
-
 
         private void Fight()
         {
+            _arenaMenuView.FightButton.gameObject.SetActive(false);
+            
+            for (int i = 0; i < _enemiesData.Count; i++)
+            {
+                _enemiesData[i].OnIdleStateRequired(false);
+
+                if (i < _strongPokemonData.Count)
+                    _strongPokemonData[i]?.OnAttackSubStateRequired(true);
+            }
+        }
+
+        private void RemoveEnemy(BaseEnemyData baseEnemyData)
+        {
+            baseEnemyData.EnemyDied -= RemoveEnemy;
+            _enemiesData.Remove(baseEnemyData);
+
+            if (_enemiesData.Count == 0)
+            {
+                ArenaDefeated?.Invoke();
+                ArenaCompleted?.Invoke();
+            }
+        }
+
+        private void RemovePokemon(PokemonDataBase pokemonDataBase)
+        {
+            pokemonDataBase.ThisPokemonDied -= RemovePokemon;
+            _strongPokemonData.Remove(pokemonDataBase);
+
+            if (_strongPokemonData.Count == 0)
+            {
+                ArenaCompleted?.Invoke();
+            }
         }
 
         private void SpawnEnemy()
@@ -54,9 +93,14 @@ namespace Arena
 
                     for (int j = 0; j < _enemiesViews.Count; j++)
                     {
-                        var data = _enemyFactory.CreateInstance(_enemiesViews[j], _view.SpawnEnemyPositions[j].position,
-                            _enemyStats, _view.transform, _arenaPrefabHolder.ListEnemies[i].LevelsEnemy[j],
+                        var data = _enemyFactory.CreateInstance(_enemiesViews[j], _arenaView.SpawnEnemyPositions[j].position,
+                            _enemyStats, _arenaView.transform, _arenaPrefabHolder.ListEnemies[i].LevelsEnemy[j],
                             out var baseView);
+
+                        _enemiesData.Add(data);
+                        data.EnemyDied += RemoveEnemy;
+                        data.AttackRange = 7;
+                        data.OnIdleStateRequired(true);
                     }
                 }
             }
@@ -68,8 +112,6 @@ namespace Arena
         {
             var pokemonsData = new List<PokemonDataBase>(20);
 
-            //pokemonsData.AddRange(_pokemonHolderModel.PokemonsList.SelectMany(rowPokemons => rowPokemons));
-
             pokemonsData.AddRange(from pokemonRow in _pokemonHolderModel.PokemonsList
                 from pokemonData in pokemonRow
                 where pokemonData != null
@@ -78,33 +120,32 @@ namespace Arena
 
             for (int i = 1; i <= _strongPokemonData.Capacity; i++)
             {
-                _strongPokemonData.Add(pokemonsData[pokemonsData.Count - i]);
+                if (i <= pokemonsData.Count)
+                {
+                    var pokemonData = pokemonsData[pokemonsData.Count - i];
+                    pokemonData.OnAttackSubStateRequired(false);
+                    pokemonData.AttackRange = 10;
+                    pokemonData.ThisPokemonDied += RemovePokemon;
+                    _strongPokemonData.Add(pokemonsData[pokemonsData.Count - i]);
+                }
             }
 
-            _pokemonHolderModel.MoveStrongPokemons(_strongPokemonData, _view.SpawnPokemonPositions, _view.PlayerPosition.position);
+            _pokemonHolderModel.MoveStrongPokemons(_strongPokemonData, _arenaView.SpawnPokemonPositions,
+                _arenaView.PlayerPosition.position);
         }
 
-        private void AddToListStrongPokemonData(PokemonDataBase pokemonDataBase)
+        private void Dispose()
         {
-            for (int i = 0; i < _strongPokemonData.Capacity; i++)
-            {
-                if (pokemonDataBase == null)
-                    return;
+            _arenaView.PlayerTriggered -= SpawnEnemy;
+            _arenaMenuView.FightButtonPressed -= Fight;
+            _arenaView.Destroed -= Dispose;
+        }
 
-                if (_strongPokemonData[i] == null)
-                {
-                    _strongPokemonData[i] = pokemonDataBase;
-                    return;
-                }
-
-                if (pokemonDataBase.Level > _strongPokemonData[i].Level ||
-                    pokemonDataBase.Level == _strongPokemonData[i].Level &&
-                    pokemonDataBase.Health > _strongPokemonData[i].Health)
-                {
-                    _strongPokemonData[i] = pokemonDataBase;
-                    return;
-                }
-            }
+        public void SetArenaView(ArenaView arenaView)
+        {
+            _arenaView = arenaView;
+            _arenaView.PlayerTriggered += SpawnEnemy;
+            _arenaView.Destroed += Dispose;
         }
     }
 }

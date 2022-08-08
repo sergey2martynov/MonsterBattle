@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Menu
 {
-    public abstract class MenuViewBase : MonoBehaviour
+    public class MenuViewBase : MonoBehaviour
     {
         public void Show()
         {

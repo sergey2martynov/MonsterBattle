@@ -104,6 +104,7 @@ namespace Pokemon
                 if (_health == 0)
                 {
                     PokemonDied?.Invoke();
+                    ThisPokemonDied?.Invoke(this);
                 }
             }
         }
@@ -182,6 +183,8 @@ namespace Pokemon
         public event Action<int, int> HealthChanged; 
         [field: NonSerialized]
         public event Action PokemonDied;
+        [field: NonSerialized]
+        public event Action<PokemonDataBase> ThisPokemonDied;
         [field: NonSerialized]
         public event Action<Vector3> PositionSeted;
         [field: NonSerialized] 

@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: RewardMenuConfig
   m_EditorClassIdentifier: 
   _defaultTextPosition: {x: 5.5, y: -70.8558}
-  _defaultCoinsPosition: {x: 1, y: 109.1441}
+  _defaultCoinsPosition: {x: -40, y: 109.1441}
   _centerTextPosition: {x: 5.5, y: -451}
-  _centerCoinsPosition: {x: 1, y: -270.9999}
+  _centerCoinsPosition: {x: -70, y: -270.9999}
+  _defaultCoinsPositionWithGems: {x: -260, y: 128}
+  _centerCoinsPositionWithGems: {x: -260, y: -259}
+  _centerGemsPosition: {x: -282, y: -582}
+  _defaultGemsPosition: {x: -282, y: -188}

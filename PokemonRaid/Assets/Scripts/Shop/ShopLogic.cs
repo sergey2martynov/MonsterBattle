@@ -27,6 +27,7 @@ namespace Shop
         private readonly GameCanvasView _gameCanvasView;
         private readonly InputLogic _inputLogic;
         private readonly CardsPanelLogic _cardsPanelLogic;
+        private readonly PokemonAvailabilityLogic _pokemonAvailabilityLogic;
         private bool _isMergeTutorialActivated;
 
 
@@ -38,7 +39,7 @@ namespace Shop
         public ShopLogic(PokemonSpawner pokemonSpawner, ShopView shopView, ShopData shopData, PlayerData playerData,
             PokemonHolderModel pokemonHolderModel, PlayerLogic playerLogic, PokemonCellPlacer pokemonCellPlacer,
             PokemonPrefabHolder pokemonPrefabHolder, InputLogic inputLogic, GameCanvasView gameCanvasView,
-            CardsPanelLogic cardsPanelLogic)
+            CardsPanelLogic cardsPanelLogic, PokemonAvailabilityLogic pokemonAvailabilityLogic)
         {
             _pokemonSpawner = pokemonSpawner;
             _shopView = shopView;
@@ -51,6 +52,7 @@ namespace Shop
             _inputLogic = inputLogic;
             _gameCanvasView = gameCanvasView;
             _cardsPanelLogic = cardsPanelLogic;
+            _pokemonAvailabilityLogic = pokemonAvailabilityLogic;
         }
 
         public void Initialize()
@@ -92,6 +94,7 @@ namespace Shop
                 _shopView.SetTextCoins(_playerData.Coins);
                 _playerData.IncreaseMeleeBuyCounter();
                 _shopData.IncreaseMeleePokemonCost(_playerData.MeleeBuyCounter);
+                _pokemonAvailabilityLogic.UnLockNewTypeMeleePokemon();
                 _cardsPanelLogic.UpdateSpawnCards(0, 0);
                 CheckCoins();
             }
