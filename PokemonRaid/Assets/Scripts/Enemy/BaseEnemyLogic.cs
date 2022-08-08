@@ -79,7 +79,7 @@ namespace Enemy
         public Collider[] CheckForPokemons()
         {
             var collidersAmount = Physics.OverlapSphereNonAlloc(_view.Transform.position, _data.AttackRange,
-                _collidersInRange, _view.PokemonLayer);
+                _collidersInRange, 1 << 3/*_view.PokemonLayer*/);
 
             return collidersAmount > 0 ? _collidersInRange : null;
         }

@@ -333,7 +333,7 @@ MonoBehaviour:
       _positions:
       - {x: 0, y: 0.41, z: 58}
     _totalCoinsReward: 70
-    _environment: {fileID: 0}
+    _environment: {fileID: 5729918361733987999, guid: e6bfe51200573f540ae207550bf190ac, type: 3}
   - _level: 12
     _spawnPositions:
     - _enemyPrefabs:
@@ -362,7 +362,7 @@ MonoBehaviour:
       _positions:
       - {x: 1, y: 0.41, z: 60}
     _totalCoinsReward: 84
-    _environment: {fileID: 0}
+    _environment: {fileID: 6856258337522201310, guid: 87cc84560d1bf5b4fafee90cf6bc726f, type: 3}
   - _level: 13
     _spawnPositions:
     - _enemyPrefabs:
@@ -386,7 +386,7 @@ MonoBehaviour:
       - {x: 2, y: 0.41, z: 55}
       - {x: 4, y: 0.41, z: 53}
     _totalCoinsReward: 101
-    _environment: {fileID: 0}
+    _environment: {fileID: 2667785713799392065, guid: e42667b3f38eb0d49957190ae8d6d467, type: 3}
   - _level: 14
     _spawnPositions:
     - _enemyPrefabs:
@@ -414,7 +414,7 @@ MonoBehaviour:
       - {x: 3, y: 0.41, z: 60}
       - {x: 0, y: 0.41, z: 58}
     _totalCoinsReward: 122
-    _environment: {fileID: 0}
+    _environment: {fileID: 6972595788644372457, guid: d769b9843c59c824faa4fa21b7802ee4, type: 3}
   - _level: 15
     _spawnPositions:
     - _enemyPrefabs:
@@ -459,7 +459,7 @@ MonoBehaviour:
       _positions:
       - {x: 0, y: 0.41, z: 113}
     _totalCoinsReward: 147
-    _environment: {fileID: 0}
+    _environment: {fileID: 8749536805340578723, guid: 0d24e1a8295dd5043a508225f2392046, type: 3}
   - _level: 16
     _spawnPositions:
     - _enemyPrefabs:
