@@ -1003,7 +1003,7 @@ MonoBehaviour:
   _shopView: {fileID: 7081882528667929485}
   _vector3: {x: 0, y: 11.5, z: 17}
   _offsetForArena: {x: 8.28, y: 13.92, z: 5}
-  _arenaMenuView: {fileID: 0}
+  _arenaMenuView: {fileID: 683097996085945922}
 --- !u!20 &1687258584
 Camera:
   m_ObjectHideFlags: 0
@@ -1847,6 +1847,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 400661891}
     - target: {fileID: 1339164300679375854, guid: 5b76d7af153ba994f990647493604eb2, type: 3}
+      propertyPath: _cameraView
+      value: 
+      objectReference: {fileID: 1687258583}
+    - target: {fileID: 1339164300679375854, guid: 5b76d7af153ba994f990647493604eb2, type: 3}
       propertyPath: _cardParent
       value: 
       objectReference: {fileID: 1525935664}
@@ -2464,6 +2468,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6886880067031693422, guid: c1f9906ca0940a04d8eec4a32f3cf694, type: 3}
+      propertyPath: _inputView
+      value: 
+      objectReference: {fileID: 400661891}
+    - target: {fileID: 6886880067031693422, guid: c1f9906ca0940a04d8eec4a32f3cf694, type: 3}
+      propertyPath: _arenaMenuView
+      value: 
+      objectReference: {fileID: 683097996085945922}
     - target: {fileID: 6897552145426929971, guid: c1f9906ca0940a04d8eec4a32f3cf694, type: 3}
       propertyPath: m_RootOrder
       value: 9
