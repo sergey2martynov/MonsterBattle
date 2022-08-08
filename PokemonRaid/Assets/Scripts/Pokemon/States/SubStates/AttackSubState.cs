@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Enemy;
+using Helpers;
 using Pokemon.Animations;
 using UnityEngine;
 
@@ -72,7 +73,9 @@ namespace Pokemon.States.SubStates
 
                 if (_collidersInRange[0] != null)
                 {
-                    _logic.RotateAt((_collidersInRange[0].transform.position - _view.Transform.position).normalized);
+                    RotationHandler.Rotate(_view.Transform,
+                        (_collidersInRange[0].transform.position - _view.Transform.position).normalized);
+                    // _logic.RotateAt((_collidersInRange[0].transform.position - _view.Transform.position).normalized);
                 }
 
                 await Task.Yield();

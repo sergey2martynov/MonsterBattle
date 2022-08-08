@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Enemy;
+using Helpers;
 using Pokemon.RangedPokemon;
 using Pool;
 using Projectile;
@@ -38,7 +39,9 @@ namespace Pokemon.States.SubStates
                 
                 if (_collidersInRange[0] != null)
                 {
-                    _logic.RotateAt((_collidersInRange[0].transform.position - _view.Transform.position).normalized);
+                    RotationHandler.Rotate(_view.Transform,
+                        (_collidersInRange[0].transform.position - _view.Transform.position).normalized);
+                    // _logic.RotateAt((_collidersInRange[0].transform.position - _view.Transform.position).normalized);
                 }
                 
                 await Task.Yield();
@@ -72,7 +75,8 @@ namespace Pokemon.States.SubStates
             var projectileViewTransform = projectileView.transform;
             projectileViewTransform.position = _view.FirePoint;
             var initialPosition = projectileViewTransform.position;
-            RotateAt(enemyView.Transform, projectileViewTransform, 2);
+            RotationHandler.RotateProjectile(enemyView.Transform, projectileViewTransform, 2);
+            // RotateAt(enemyView.Transform, projectileViewTransform, 2);
 
             while (Time.time <= startTime + _projectileTravelTime)
             {
@@ -88,7 +92,8 @@ namespace Pokemon.States.SubStates
                     return;
                 }
                 
-                RotateAt(enemyView.transform, projectileViewTransform, 2 / Time.deltaTime);
+                RotationHandler.RotateProjectile(enemyView.Transform, projectileViewTransform, 2 / Time.deltaTime);
+                // RotateAt(enemyView.transform, projectileViewTransform, 2 / Time.deltaTime);
                 projectileViewTransform.position = Vector3.Lerp(initialPosition, enemyView.transform.position
                     + new Vector3(0f, 0.5f, 0f), (Time.time - startTime) / _projectileTravelTime);
 
@@ -99,27 +104,27 @@ namespace Pokemon.States.SubStates
             enemyView.TakeDamage(_data.Damage, _view.PokemonType);
         }
 
-        private void RotateAt(Transform point, Transform obj, float divider)
-        {
-            var angle = CalculateAngle(point, obj) * Mathf.PI / 180;
-
-            if (Mathf.Abs(angle) < 0.01f)
-            {
-                return;
-            }
-            
-            var rotation = new Quaternion(0f, Mathf.Sin(angle / divider), 0f, Mathf.Cos(angle / divider));
-            obj.rotation *= rotation;
-        }
-
-        private float CalculateAngle(Transform point, Transform obj)
-        {
-            if ((point.position - obj.position).magnitude >= 0.1f)
-            {
-                return Vector3.SignedAngle(obj.forward, point.position - obj.position, Vector3.up);
-            }
-
-            return 0;
-        }
+        // private void RotateAt(Transform point, Transform obj, float divider)
+        // {
+        //     var angle = CalculateAngle(point, obj) * Mathf.PI / 180;
+        //
+        //     if (Mathf.Abs(angle) < 0.01f)
+        //     {
+        //         return;
+        //     }
+        //     
+        //     var rotation = new Quaternion(0f, Mathf.Sin(angle / divider), 0f, Mathf.Cos(angle / divider));
+        //     obj.rotation *= rotation;
+        // }
+        //
+        // private float CalculateAngle(Transform point, Transform obj)
+        // {
+        //     if ((point.position - obj.position).magnitude >= 0.1f)
+        //     {
+        //         return Vector3.SignedAngle(obj.forward, point.position - obj.position, Vector3.up);
+        //     }
+        //
+        //     return 0;
+        // }
     }
 }

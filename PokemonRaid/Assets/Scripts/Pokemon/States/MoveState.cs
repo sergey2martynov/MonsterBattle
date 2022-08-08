@@ -1,4 +1,5 @@
 ﻿using Enemy;
+using Helpers;
 using UnityEngine;
 
 namespace Pokemon.States
@@ -32,7 +33,8 @@ namespace Pokemon.States
             
             if (lookDirection.magnitude != 0 && !_logic.ShouldAttack)
             {
-                _logic.RotateAt(_data.LookDirection);
+                //_logic.RotateAt(_data.LookDirection);
+                RotationHandler.Rotate(_view.Transform, _data.LookDirection);
             }
         }
 
