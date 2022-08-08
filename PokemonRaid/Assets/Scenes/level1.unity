@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2138677392}
-  m_IndirectSpecularColor: {r: 0.5642787, g: 0.63505816, b: 0.7252604, a: 1}
+  m_IndirectSpecularColor: {r: 0.56409055, g: 0.6347899, b: 0.7253995, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1115,13 +1115,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1687258581}
-  m_LocalRotation: {x: 0, y: 0.94776845, z: -0.3189593, w: 0}
-  m_LocalPosition: {x: 15.52, y: 10.24, z: 71.72}
+  m_LocalRotation: {x: -0.3758351, y: 0.0000027389417, z: -0.0000008525144, w: -0.9266866}
+  m_LocalPosition: {x: 0.1, y: 11.6, z: 0.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 37.2, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 44.152, y: 360, z: 0}
 --- !u!114 &1687258586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1421,7 +1421,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: -1.953885e+37}
+  m_BoundingSphereOverride: {x: 0.039941967, y: 0, z: 0, w: -75.53839}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -1433,13 +1433,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2138677391}
-  m_LocalRotation: {x: 0.16572715, y: -0.48949653, z: 0.6792644, w: 0.521083}
+  m_LocalRotation: {x: 0.31556645, y: -0.3785483, z: 0.6650953, w: 0.56104124}
   m_LocalPosition: {x: 0.24, y: 20, z: 368.82}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 56.899, y: -31.457, z: 87.663}
+  m_LocalEulerAnglesHint: {x: 59.052, y: -0.557, z: 99.386}
 --- !u!1 &683097996085945921 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8804804551972811517, guid: 4b024a7eedef34f4f850804c1563b73b, type: 3}
