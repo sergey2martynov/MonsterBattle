@@ -159,7 +159,7 @@ namespace Merge
                     _targetPokemon.transform.DOMoveX(nearestCell.transform.position.x, _moveDuration);
                     _targetPokemon.transform.DOMoveZ(nearestCell.transform.position.z, _moveDuration);
                 }
-                else if ((_playerData.Level == 2 && _playerData.Coins < 7) || _playerData.Level == 1)
+                else if (_playerData.Level == 2 || _playerData.Level == 1)
                 {
                     _targetPokemon.transform.DOMoveX(_fixedCell.gameObject.transform.position.x, _moveDuration);
                     _targetPokemon.transform.DOMoveZ(_fixedCell.gameObject.transform.position.z, _moveDuration);

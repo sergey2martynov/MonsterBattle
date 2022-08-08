@@ -13,6 +13,7 @@ namespace CameraFollow
         [SerializeField] private Vector3 _vector3;
         [SerializeField] private Vector3 _offsetForArena;
         [SerializeField] private ArenaMenuView _arenaMenuView;
+        [SerializeField] private ParticleSystem _particleSystem;
         private ArenaView _arenaView;
 
         private bool _isCanAddOffset = true;
@@ -62,6 +63,12 @@ namespace CameraFollow
             {
                 _arenaMenuView.Show();
             });
+        }
+
+        public void PlaySpeedParticle()
+        {
+            _particleSystem.gameObject.SetActive(true);
+            _particleSystem.Play();
         }
 
         public void SetRefArenaView(ArenaView arenaView)

@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Analitycs;
 using Arena;
+using CameraFollow;
 using CardsCollection;
 using DG.Tweening;
 using Enemy.EnemyModel;
@@ -22,6 +23,7 @@ namespace Player
         private UpgradeLevels _upgradeLevels;
         private PokemonAvailabilityLogic _pokemonAvailabilityLogic;
         private PokemonHolderModel _pokemonHolderModel;
+        private CameraView _cameraView;
         private ArenaLogic _arenaLogic;
         private RaycastHit[] _hit = new RaycastHit[1];
         private Collider[] _boundsInRange = new Collider[2];
@@ -32,12 +34,13 @@ namespace Player
         private static readonly int ThrowBall = Animator.StringToHash("ThrowBall");
         private readonly int _move = Animator.StringToHash("Move");
 
+
         public event Action<int> CoinsAdded;
         public event Action LevelUpped;
 
         public virtual void Initialize(PlayerView playerView, PlayerData playerData,
             UpdateHandler updateHandler, PokemonHolderModel pokemonHolderModel, EnemyDataHolder enemyDataHolder,
-            UpgradeLevels upgradeLevels, PokemonAvailabilityLogic pokemonAvailabilityLogic, ArenaLogic arenaLogic)
+            UpgradeLevels upgradeLevels, PokemonAvailabilityLogic pokemonAvailabilityLogic, ArenaLogic arenaLogic, CameraView cameraView)
         {
             _view = playerView;
             _data = playerData;
@@ -47,6 +50,7 @@ namespace Player
             _upgradeLevels = upgradeLevels;
             _pokemonAvailabilityLogic = pokemonAvailabilityLogic;
             _arenaLogic = arenaLogic;
+            _cameraView = cameraView;
             _updateHandler.UpdateTicked += Update;
             //_enemyDataHolder.EnemyDefeated += OnEnemyDefeated;
             _view.ViewDestroyed += Dispose;
@@ -57,6 +61,7 @@ namespace Player
             _data.MoveAnimationRequested += ActivateMoveAnimation;
             _enemyDataHolder.EnemyDefeated += OnEnemyDefeated;
             _data.PositionSet += GoToArena;
+            _enemyDataHolder.AllEnemiesDefeated += ActivateSpeed;
             _arenaLogic.ArenaCompleted += IncreaseLevel;
         }
 
@@ -219,6 +224,12 @@ namespace Player
             _data.PositionSet -= GoToArena;
             _data.MoveAnimationRequested -= ActivateMoveAnimation;
             _arenaLogic.ArenaCompleted -= IncreaseLevel;
+            _enemyDataHolder.AllEnemiesDefeated -= ActivateSpeed;
+        }
+
+        private void ActivateSpeed()
+        {
+            _cameraView.PlaySpeedParticle();
         }
     }
 }

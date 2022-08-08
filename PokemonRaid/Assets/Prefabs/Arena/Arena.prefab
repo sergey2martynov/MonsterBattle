@@ -109,7 +109,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7341890633326630940
 Transform:
   m_ObjectHideFlags: 0
@@ -248,7 +248,7 @@ MonoBehaviour:
   - {fileID: 7201820152425543293}
   - {fileID: 122785652}
   - {fileID: 444820855}
-  _fieldView: {fileID: 0}
+  _arenaMenuView: {fileID: 0}
 --- !u!65 &1448109169
 BoxCollider:
   m_ObjectHideFlags: 0

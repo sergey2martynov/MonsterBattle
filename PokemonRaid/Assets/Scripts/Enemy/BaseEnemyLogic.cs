@@ -79,7 +79,7 @@ namespace Enemy
         public Collider[] CheckForPokemons()
         {
             var collidersAmount = Physics.OverlapSphereNonAlloc(_view.Transform.position, _data.AttackRange,
-                _collidersInRange, 1 << 3/*_view.PokemonLayer*/);
+                _collidersInRange, 1 << 3 /*_view.PokemonLayer*/);
 
             return collidersAmount > 0 ? _collidersInRange : null;
         }
@@ -112,13 +112,10 @@ namespace Enemy
 
         protected virtual void OnHealthChanged(int health, int maxHealth)
         {
-            if (_data.Level > 2)
-            {
-                if (_data.Health < _data.MaxHealth && _data.Health > 0)
-                    _view.HealthBarView.gameObject.SetActive(true);
+            if (_data.Health < _data.MaxHealth && _data.Health > 0)
+                _view.HealthBarView.gameObject.SetActive(true);
 
-                _view.SetHealth(_data.Health / (float)_data.MaxHealth);
-            }
+            _view.SetHealth(_data.Health / (float)_data.MaxHealth);
         }
 
         protected virtual async void OnEnemyDied(BaseEnemyData data)
@@ -147,12 +144,12 @@ namespace Enemy
                 {
                     return;
                 }
-                
+
                 _view.Transform.position = Vector3.Lerp(_view.Transform.position, destinationPosition,
                     (Time.time - startTime) / _moveUndergroundDuration);
                 await Task.Yield();
             }
-            
+
             _view.gameObject.SetActive(false);
         }
 

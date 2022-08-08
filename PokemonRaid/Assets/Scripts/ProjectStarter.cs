@@ -102,7 +102,7 @@ public class ProjectStarter : MonoBehaviour
         var arenaLogic = new ArenaLogic(pokemonHolderModel, new EnemyFactory(_updateHandler, _camera),
             playerData, _arenaPrefabHolder, _enemyStats, _arenaMenuView);
         playerLogic.Initialize(_playerView, playerData, _updateHandler, pokemonHolderModel, enemyDataHolder,
-            _upgradeLevels, pokemonAvailabilityLogic, arenaLogic);
+            _upgradeLevels, pokemonAvailabilityLogic, arenaLogic, _cameraView);
         _healthPlayerBarView.SetCameraRef(_camera);
         pokemonHolderModel.SetInitialHealthPlayer();
 
