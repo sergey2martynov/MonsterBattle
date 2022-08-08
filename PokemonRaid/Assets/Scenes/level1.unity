@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2138677392}
-  m_IndirectSpecularColor: {r: 0.57322085, g: 0.62481, b: 0.67355525, a: 1}
+  m_IndirectSpecularColor: {r: 0.5642787, g: 0.63505816, b: 0.7252604, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -572,6 +572,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1472033022 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7386825265742236575, guid: 006ae51e1baf68442b235fc6ef7cba90, type: 3}
+  m_PrefabInstance: {fileID: 3399046710990301566}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1479670388
@@ -1972,6 +1983,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1178419662170442280, guid: 006ae51e1baf68442b235fc6ef7cba90, type: 3}
+      propertyPath: _gemsText
+      value: 
+      objectReference: {fileID: 1472033022}
+    - target: {fileID: 1178419662170442280, guid: 006ae51e1baf68442b235fc6ef7cba90, type: 3}
       propertyPath: _gemsView
       value: 
       objectReference: {fileID: 3399046710990301567}
@@ -2097,7 +2112,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6909029766337899458, guid: 006ae51e1baf68442b235fc6ef7cba90, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -282
+      value: -382
       objectReference: {fileID: 0}
     - target: {fileID: 6909029766337899458, guid: 006ae51e1baf68442b235fc6ef7cba90, type: 3}
       propertyPath: m_AnchoredPosition.y

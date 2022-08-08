@@ -13,6 +13,7 @@ namespace RewardMenu
         [SerializeField] private GameObject _panelWithCard; 
         [SerializeField] private CardView _cardView;
         [SerializeField] private TextMeshProUGUI _youEarnedText;
+        [SerializeField] private TextMeshProUGUI _gemsText;
         [SerializeField] private GameObject _coinsView;
         [SerializeField] private GameObject _gemsView;
         [SerializeField] private TextMeshProUGUI _coinsAmount;
@@ -61,10 +62,9 @@ namespace RewardMenu
             
         }
 
-        public void ShowGems()
+        public void SetGems(int gemsAmount)
         {
-            _gemsView.SetActive(true);
-            _coinsView.GetComponent<RectTransform>().anchoredPosition = new Vector2(-283, 128);
+            _gemsText.text = gemsAmount.ToString();
         }
 
         private void OnNextLevelButtonClick()

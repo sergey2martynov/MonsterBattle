@@ -18,5 +18,5 @@ MonoBehaviour:
   _centerCoinsPosition: {x: -70, y: -270.9999}
   _defaultCoinsPositionWithGems: {x: -260, y: 128}
   _centerCoinsPositionWithGems: {x: -260, y: -259}
-  _centerGemsPosition: {x: -282, y: -582}
-  _defaultGemsPosition: {x: -282, y: -188}
+  _centerGemsPosition: {x: -382, y: -582}
+  _defaultGemsPosition: {x: -382, y: -188}

@@ -4,7 +4,6 @@ using Enemy.EnemyModel;
 using Player;
 using SaveLoad;
 using StaticData;
-using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
 namespace RewardMenu
@@ -16,7 +15,6 @@ namespace RewardMenu
         private readonly UpgradeLevels _upgradeLevels;
         private readonly PlayerData _playerData;
         private readonly LevelDataHolder _levelDataHolder;
-        private EnemyDataHolder _enemyDataHolder;
         private readonly SaveLoadSystem _saveLoadSystem;
         private readonly PokemonAvailabilityLogic _availabilityLogic;
         private readonly CardSpritesHolder _cardSpritesHolder;
@@ -37,7 +35,6 @@ namespace RewardMenu
             _saveLoadSystem = saveLoadSystem;
             _availabilityLogic = availabilityLogic;
             _cardSpritesHolder = cardSpritesHolder;
-            _enemyDataHolder = enemyDataHolder;
             _arenaLogic = arenaLogic;
         }
 
@@ -52,6 +49,7 @@ namespace RewardMenu
         {
             _rewardMenuView.Show();
             var levelData = _levelDataHolder.GetLevelData(_playerData.Level - 1);
+            _rewardMenuView.SetGems(_levelDataHolder.GetLevelData(_playerData.Level - 1).TotalGemsReward);
             _rewardMenuView.SetCoinsAmount(levelData.TotalCoinsReward);
             _playerData.Coins += levelData.TotalCoinsReward;
 
@@ -81,6 +79,7 @@ namespace RewardMenu
                 }
             }
 
+            
             _rewardMenuView.CardDisable(false);
             _rewardMenuView.ChangePositionText(false, _isCanShowGemsReward, _playerData.Level);
         }
