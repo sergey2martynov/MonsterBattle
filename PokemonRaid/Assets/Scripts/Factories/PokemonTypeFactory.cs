@@ -58,23 +58,23 @@ namespace Factories
             return view switch
             {
                 FirstMeleeTypePokemonView concreteView =>
-                    CreateConcreteInstance<FirstMeleeTypePokemonView, GroundEnemyView, FirstMeleeTypePokemonLogic,
+                    CreateConcreteInstance<FirstMeleeTypePokemonView, BaseEnemyView, FirstMeleeTypePokemonLogic,
                         FirstMeleeTypePokemonData>(concreteView, position, statsByLevel, parent, indexes, level, out baseView),
                 
                 SecondMeleeTypePokemonView concreteView =>
-                    CreateConcreteInstance<SecondMeleeTypePokemonView, GroundEnemyView, SecondMeleeTypePokemonLogic,
+                    CreateConcreteInstance<SecondMeleeTypePokemonView, BaseEnemyView, SecondMeleeTypePokemonLogic,
                         SecondMeleeTypePokemonData>(concreteView, position, statsByLevel, parent, indexes, level, out baseView),
                 
                 ThirdMeleeTypePokemonView concreteView =>
-                    CreateConcreteInstance<ThirdMeleeTypePokemonView, GroundEnemyView, ThirdMeleeTypePokemonLogic,
+                    CreateConcreteInstance<ThirdMeleeTypePokemonView, BaseEnemyView, ThirdMeleeTypePokemonLogic,
                         ThirdMeleeTypePokemonData>(concreteView, position, statsByLevel, parent, indexes, level, out baseView),
                 
                 FourthMeleeTypePokemonView concreteView =>
-                    CreateConcreteInstance<FourthMeleeTypePokemonView, GroundEnemyView, FourthMeleeTypePokemonLogic,
+                    CreateConcreteInstance<FourthMeleeTypePokemonView, BaseEnemyView, FourthMeleeTypePokemonLogic,
                         FourthMeleeTypePokemonData>(concreteView, position, statsByLevel, parent, indexes, level, out baseView),
                 
                 FifthMeleeTypePokemonView concreteView =>
-                    CreateConcreteInstance<FifthMeleeTypePokemonView, GroundEnemyView, FifthMeleeTypePokemonLogic,
+                    CreateConcreteInstance<FifthMeleeTypePokemonView, BaseEnemyView, FifthMeleeTypePokemonLogic,
                         FifthMeleeTypePokemonData>(concreteView, position, statsByLevel, parent, indexes, level, out baseView),
                 
                 FirstRangedTypePokemonView concreteView =>
@@ -107,31 +107,31 @@ namespace Factories
             return dataBase switch
             {
                 FirstMeleeTypePokemonData concreteData =>
-                    CreateConcreteInstanceFromData<FirstMeleeTypePokemonView, GroundEnemyView,
+                    CreateConcreteInstanceFromData<FirstMeleeTypePokemonView, BaseEnemyView,
                         FirstMeleeTypePokemonLogic, FirstMeleeTypePokemonData>(concreteData,
                         GetConcreteView<FirstMeleeTypePokemonView>(pokemonPrefabHolder.MeleePokemons), stats, position,
                         parent),
 
                 SecondMeleeTypePokemonData concreteData =>
-                    CreateConcreteInstanceFromData<SecondMeleeTypePokemonView, GroundEnemyView,
+                    CreateConcreteInstanceFromData<SecondMeleeTypePokemonView, BaseEnemyView,
                         SecondMeleeTypePokemonLogic, SecondMeleeTypePokemonData>(concreteData,
                         GetConcreteView<SecondMeleeTypePokemonView>(pokemonPrefabHolder.MeleePokemons), stats, position,
                         parent),
 
                 ThirdMeleeTypePokemonData concreteData =>
-                    CreateConcreteInstanceFromData<ThirdMeleeTypePokemonView, GroundEnemyView,
+                    CreateConcreteInstanceFromData<ThirdMeleeTypePokemonView, BaseEnemyView,
                         ThirdMeleeTypePokemonLogic, ThirdMeleeTypePokemonData>(concreteData,
                         GetConcreteView<ThirdMeleeTypePokemonView>(pokemonPrefabHolder.MeleePokemons), stats, position,
                         parent),
 
                 FourthMeleeTypePokemonData concreteData =>
-                    CreateConcreteInstanceFromData<FourthMeleeTypePokemonView, GroundEnemyView,
+                    CreateConcreteInstanceFromData<FourthMeleeTypePokemonView, BaseEnemyView,
                         FourthMeleeTypePokemonLogic, FourthMeleeTypePokemonData>(concreteData,
                         GetConcreteView<FourthMeleeTypePokemonView>(pokemonPrefabHolder.MeleePokemons), stats, position,
                         parent),
 
                 FifthMeleeTypePokemonData concreteData =>
-                    CreateConcreteInstanceFromData<FifthMeleeTypePokemonView, GroundEnemyView,
+                    CreateConcreteInstanceFromData<FifthMeleeTypePokemonView, BaseEnemyView,
                         FifthMeleeTypePokemonLogic, FifthMeleeTypePokemonData>(concreteData,
                         GetConcreteView<FifthMeleeTypePokemonView>(pokemonPrefabHolder.MeleePokemons), stats, position,
                         parent),

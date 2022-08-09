@@ -42,6 +42,7 @@ namespace Pokemon
             _model = model;
             _updateHandler = updateHandler;
             _updateHandler.UpdateTicked += Update;
+            _updateHandler.LateUpdateTicked += LateUpdate;
             _view.ViewDestroyed += Dispose;
             _view.LevelRequested += GetPokemonLevel;
             _view.DamageTaken += OnDamageTaken;
@@ -100,6 +101,12 @@ namespace Pokemon
         {
             _currentState.Update();
             _currentSubState.Update();
+        }
+
+        protected virtual void LateUpdate()
+        {
+            _currentState.LateUpdate();
+            _currentSubState.LateUpdate();
         }
 
         public T SwitchState<T>()
@@ -214,6 +221,7 @@ namespace Pokemon
         protected virtual void Dispose()
         {
             _updateHandler.UpdateTicked -= Update;
+            _updateHandler.LateUpdateTicked -= LateUpdate;
             _view.ViewDestroyed -= Dispose;
             _view.LevelRequested -= GetPokemonLevel;
             _view.DamageTaken -= OnDamageTaken;

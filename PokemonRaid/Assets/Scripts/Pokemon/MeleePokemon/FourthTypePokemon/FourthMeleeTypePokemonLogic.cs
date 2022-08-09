@@ -1,8 +1,8 @@
-﻿using Enemy.GroundEnemy;
+﻿using Enemy;
 
 namespace Pokemon.MeleePokemon.FourthTypePokemon
 {
-    public class FourthMeleeTypePokemonLogic : PokemonLogicBase<FourthMeleeTypePokemonView, GroundEnemyView>
+    public class FourthMeleeTypePokemonLogic : PokemonLogicBase<FourthMeleeTypePokemonView, BaseEnemyView>
     {
         
     }

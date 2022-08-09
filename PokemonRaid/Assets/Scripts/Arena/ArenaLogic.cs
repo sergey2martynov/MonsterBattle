@@ -118,7 +118,7 @@ namespace Arena
                 from pokemonData in pokemonRow
                 where pokemonData != null
                 select pokemonData);
-            HeapSortHelper.Sort(pokemonsData);
+            HeapSortHelper.SortByLevelAndHealth(pokemonsData);
 
             for (int i = 1; i <= _strongPokemonData.Capacity; i++)
             {

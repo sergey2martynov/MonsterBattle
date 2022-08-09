@@ -27,6 +27,11 @@ namespace Pokemon.States
             SetNextState();
         }
 
+        public virtual void LateUpdate()
+        {
+            
+        }
+
         public virtual void OnExit()
         {
             

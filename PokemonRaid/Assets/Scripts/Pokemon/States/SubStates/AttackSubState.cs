@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -18,6 +19,7 @@ namespace Pokemon.States.SubStates
         protected int _maxCollidersAmount;
         protected Collider[] _collidersInRange;
         protected Collider[] _enemiesForAttack;
+        protected readonly List<Collider> _enemiesForAttackList = new List<Collider>(10);
         protected CancellationTokenSource _source;
         
         public AttackSubState(TView view, PokemonLogicBase<TView, TEnemyView> logic, PokemonDataBase data) : base(view,
@@ -29,6 +31,12 @@ namespace Pokemon.States.SubStates
         public override void Update()
         {
             base.Update();
+            //CheckForEnemies();
+        }
+
+        public override void LateUpdate()
+        {
+            base.LateUpdate();
             CheckForEnemies();
         }
 
@@ -57,41 +65,50 @@ namespace Pokemon.States.SubStates
         public void SetMaxTargetsAmount(int amount)
         {
             _maxCollidersAmount = amount;
-            _collidersInRange = new Collider[_maxCollidersAmount];
+            _collidersInRange = new Collider[10];
             _enemiesForAttack = new Collider[_maxCollidersAmount];
         }
 
         protected virtual async void CheckForEnemies()
         {
+            Array.Clear(_collidersInRange, 0, _collidersInRange.Length);
             var collidersAmount = Physics.OverlapSphereNonAlloc(_view.Transform.position, _data.AttackRange,
                 _collidersInRange, _view.EnemyLayer);
 
-            // if (_enemiesForAttack[_maxCollidersAmount - 1] == null)
-            // {
-            //     
-            //     _enemiesForAttack = _collidersInRange.ToArray();
-            // }
+            if (collidersAmount > 0)
+            {
+                foreach (var collider in _collidersInRange)
+                {
+                    if (collider != null)
+                    {
+                        _enemiesForAttackList.Add(collider);
+                    }
+                }
             
+                HeapSortHelper.SortByDistance(_enemiesForAttackList, _view.Transform);
+            
+                for (var i = 0; i < _enemiesForAttack.Length; i++)
+                {
+                    if (i < _enemiesForAttackList.Count)
+                    {
+                        _enemiesForAttack[i] = _enemiesForAttackList[i];
+                    }
+                }
+            
+                _enemiesForAttackList.Clear();
+            }
+
             if (Time.time < _data.AttackTime || collidersAmount == 0  || _logic.ShouldAttack)
             {
                 return;
             }
 
             var token = _source?.Token ?? CreateCancellationTokenSource().Token;
-            //await Attack(_enemiesForAttack, token);
-            // Array.Clear(_collidersInRange, 0, _collidersInRange.Length);
-            // Array.Clear(_enemiesForAttack, 0, _enemiesForAttack.Length);
-            await Attack(_collidersInRange, token);
-            //TODO: try to clear colliders in range when colliders amount == 0
+            await Attack(_enemiesForAttack, token);
         }
 
         protected virtual async Task Attack(Collider[] colliders, CancellationToken token)
         {
-            if (!colliders[0].TryGetComponent<TEnemyView>(out var groundEnemy))
-            {
-                return;
-            }
-
             _logic.ShouldAttack = true;
             var attackTime = Time.time + _attackAnimation.ActionTime / _attackAnimation.FrameRate;
             _view.Animator.SetBool(_attack, true);
@@ -112,11 +129,16 @@ namespace Pokemon.States.SubStates
                 await Task.Yield();
             }
 
-            foreach (var collider in colliders.Where(enemy => enemy != null))
+            for (var i = 0; i < colliders.Length; i++)
             {
-                if (collider.TryGetComponent<TEnemyView>(out var enemy))
+                if (colliders[i] != null)
                 {
-                    enemy.TakeDamage(_data.Damage, _view.PokemonType);
+                    if (colliders[i].TryGetComponent<TEnemyView>(out var enemy))
+                    {
+                        enemy.TakeDamage(_data.Damage, _view.PokemonType);
+                    }
+
+                    colliders[i] = null;
                 }
             }
 
@@ -125,7 +147,6 @@ namespace Pokemon.States.SubStates
             await Task.Delay(delay);
             _view.Animator.SetBool(_attack, false);
             _data.AttackTime = Time.time + _data.AttackSpeed;
-            Array.Clear(colliders, 0, colliders.Length);
             _logic.ShouldAttack = false;
         }
 

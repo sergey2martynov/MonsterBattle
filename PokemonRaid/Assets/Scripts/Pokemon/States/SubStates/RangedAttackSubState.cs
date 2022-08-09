@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using Enemy;
 using Helpers;
@@ -26,7 +24,6 @@ namespace Pokemon.States.SubStates
 
         protected override async Task Attack(Collider[] colliders, CancellationToken token)
         {
-            //Debug.Log(colliders[0] + " " +  colliders[1]);
             _logic.ShouldAttack = true;
             var attackTime = Time.time + _attackAnimation.ActionTime / _attackAnimation.FrameRate;
             _view.Animator.SetBool(_attack, true);
@@ -47,11 +44,15 @@ namespace Pokemon.States.SubStates
                 await Task.Yield();
             }
 
-            foreach (var collider in colliders.Where(enemy => enemy != null))
+            for (var i = 0; i < colliders.Length; i++)
             {
-                var enemy = collider.GetComponent<BaseEnemyView>();
-                var projectile = _projectilePool.TryPoolObject();
-                StartMovingProjectile(projectile, enemy);
+                if (colliders[i] != null)
+                {
+                    var enemy = colliders[i].GetComponent<BaseEnemyView>();
+                    var projectile = _projectilePool.TryPoolObject();
+                    StartMovingProjectile(projectile, enemy);
+                    colliders[i] = null;
+                }
             }
 
             var delay = (int) (_attackAnimation.Duration - _attackAnimation.ActionTime / _attackAnimation.FrameRate) *
@@ -59,9 +60,7 @@ namespace Pokemon.States.SubStates
             await Task.Delay(delay);
             _view.Animator.SetBool(_attack, false);
             _data.AttackTime = Time.time + _data.AttackSpeed;
-            
             _logic.ShouldAttack = false;
-            Array.Clear(colliders, 0, colliders.Length);
         }
 
         private async void StartMovingProjectile(ProjectileViewBase projectileView, BaseEnemyView enemyView)
