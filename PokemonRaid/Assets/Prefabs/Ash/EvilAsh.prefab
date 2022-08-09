@@ -600,7 +600,7 @@ GameObject:
   - component: {fileID: 5586131920681370797}
   - component: {fileID: 1974196999734615767}
   m_Layer: 0
-  m_Name: Ash
+  m_Name: EvilAsh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -753,7 +753,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 45833c2ffc5a1f2479e7f5e138f4bf74, type: 2}
+  - {fileID: 2100000, guid: 2c4a21b7cf703a34da13c1c1deefd34d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1137,7 +1137,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9866f72f099793d488d3d7fd1fef4822, type: 2}
+  - {fileID: 2100000, guid: ff4cb07f91e16b54db383914fe608691, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
