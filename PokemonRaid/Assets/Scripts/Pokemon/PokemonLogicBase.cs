@@ -253,12 +253,6 @@ namespace Pokemon
             // return outDirection;
         }
 
-        private void OnEnemyDefeated()
-        {
-            _view.MoveParticle.gameObject.SetActive(true);
-            _view.MoveParticle.Play();
-        }
-
         private void GoToArena(Vector3 newPosition)
         {
             _view.transform.DOMove(newPosition, 3);
@@ -279,7 +273,6 @@ namespace Pokemon
             _data.PositionSeted -= GoToArena;
             _data.AttackStateRequired -= ChangeSubStateToAttack;
             _data.MoveAnimationRequested -= ActivateMoveAnimation;
-            _model.EnemyDataHolder.AllEnemiesDefeated -= OnEnemyDefeated;
 
             _source?.Cancel();
             _source?.Dispose();
