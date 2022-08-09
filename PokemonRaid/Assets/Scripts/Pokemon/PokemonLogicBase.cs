@@ -53,7 +53,6 @@ namespace Pokemon
             _data.PositionSeted += GoToArena;
             _data.AttackStateRequired += ChangeSubStateToAttack;
             _data.MoveAnimationRequested += ActivateMoveAnimation;
-            _model.EnemyDataHolder.AllEnemiesDefeated += OnEnemyDefeated;
             CreateStateDictionaries();
             SetInitialStates();
             _data.LookDirection = Vector3.forward;
