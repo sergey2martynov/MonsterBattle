@@ -15,7 +15,7 @@ namespace Pokemon.States.SubStates
         where TView : RangedPokemonView
         where TEnemyView : BaseEnemyView
     {
-        private readonly float _projectileTravelTime = 0.3f;
+        private readonly float _projectileTravelTime = 0.2f;
         private readonly ObjectPool<ProjectileViewBase> _projectilePool;
         
         public RangedAttackSubState(TView view, PokemonLogicBase<TView, TEnemyView> logic, PokemonDataBase data) : base(
@@ -23,26 +23,27 @@ namespace Pokemon.States.SubStates
         {
             _projectilePool = new ObjectPool<ProjectileViewBase>(20, _view.ProjectilePrefab, _view.Transform);
         }
-        
-         protected override async Task Attack(Collider[] colliders, CancellationToken token)
+
+        protected override async Task Attack(Collider[] colliders, CancellationToken token)
         {
+            //Debug.Log(colliders[0] + " " +  colliders[1]);
             _logic.ShouldAttack = true;
             var attackTime = Time.time + _attackAnimation.ActionTime / _attackAnimation.FrameRate;
             _view.Animator.SetBool(_attack, true);
 
-            while (Time.time < attackTime)
+            while (Time.time <= attackTime)
             {
                 if (token.IsCancellationRequested)
                 {
                     return;
                 }
-                
-                if (_collidersInRange[0] != null)
+
+                if (colliders[0] != null)
                 {
                     RotationHandler.Rotate(_view.Transform,
-                        (_collidersInRange[0].transform.position - _view.Transform.position).normalized);
+                        (colliders[0].transform.position - _view.Transform.position).normalized);
                 }
-                
+
                 await Task.Yield();
             }
 
@@ -52,13 +53,15 @@ namespace Pokemon.States.SubStates
                 var projectile = _projectilePool.TryPoolObject();
                 StartMovingProjectile(projectile, enemy);
             }
-            
-            var delay = (int) (_attackAnimation.Duration - _attackAnimation.ActionTime / _attackAnimation.FrameRate) * 1000;
+
+            var delay = (int) (_attackAnimation.Duration - _attackAnimation.ActionTime / _attackAnimation.FrameRate) *
+                        1000;
             await Task.Delay(delay);
             _view.Animator.SetBool(_attack, false);
             _data.AttackTime = Time.time + _data.AttackSpeed;
-            Array.Clear(_collidersInRange, 0, _collidersInRange.Length);
+            
             _logic.ShouldAttack = false;
+            Array.Clear(colliders, 0, colliders.Length);
         }
 
         private async void StartMovingProjectile(ProjectileViewBase projectileView, BaseEnemyView enemyView)
