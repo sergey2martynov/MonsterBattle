@@ -16,6 +16,7 @@ namespace Player
         private int _level;
         private int _maxLevel = 100;
         private int _coins;
+        private int _gems;
         private int _levelCount;
         private int _buyCounter;
         private int _meleeBuyCounter;
@@ -128,16 +129,16 @@ namespace Player
         
         public int Gems
         {
-            get => _coins;
+            get => _gems;
             set
             {
                 if (value < 0)
                 {
-                    _coins = 0;
+                    _gems = 0;
                 }
 
-                _coins = value;
-                GemsAmountChanged?.Invoke(_coins);
+                _gems = value;
+                GemsAmountChanged?.Invoke(_gems);
             }
         }
 
@@ -157,7 +158,7 @@ namespace Player
         }
 
         public void Initialize(PlayerStats stats, int level, int coinsAmount, PokemonHolderModel pokemonHolderModel,
-            int levelCount, int meleeBuyCounter, int rangedBuyCounter)
+            int levelCount, int meleeBuyCounter, int rangedBuyCounter, int gems)
         {
             _pokemonHolderModel = pokemonHolderModel;
             SetStats(stats);
@@ -166,6 +167,7 @@ namespace Player
             _levelCount = levelCount;
             _meleeBuyCounter = meleeBuyCounter;
             _rangedBuyCounter = rangedBuyCounter;
+            Gems = gems;
         }
 
         public CancellationTokenSource CreateCancellationTokenSource()

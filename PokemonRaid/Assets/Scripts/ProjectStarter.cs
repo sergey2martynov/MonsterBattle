@@ -117,7 +117,7 @@ public class ProjectStarter : MonoBehaviour
             //     data.MeleeBuyCounter, data.RangedBuyCounter);
             playerData.Initialize(_playerStats, data.playerData.PlayerLevel, data.playerData.CoinsAmount,
                 pokemonHolderModel, data.playerData.LevelCount, data.playerData.MeleeBuyCounter,
-                data.playerData.RangedBuyCounter);
+                data.playerData.RangedBuyCounter, data.playerData.Gems);
             pokemonAvailabilityLogic.Initialize(data.MeleePokemonAvailabilities, data.RangePokemonAvailabilities,
                 cardsPanelLogic);
             Debug.Log("Loaded successfully");

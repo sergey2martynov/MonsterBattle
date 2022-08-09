@@ -16,6 +16,7 @@ namespace Shop
         [SerializeField] private Button _startButton;
         [SerializeField] private Button _cardsButton;
         [SerializeField] private TextMeshProUGUI _text;
+        [SerializeField] private TextMeshProUGUI _gemsText;
         [SerializeField] private TextMeshProUGUI _meleeCost;
         [SerializeField] private TextMeshProUGUI _rangedCost;
         [SerializeField] private MoveTutorialView _moveTutorial;
@@ -61,7 +62,6 @@ namespace Shop
             {
                 _purchaseMeleeButton.image.material.SetFloat(Property, 1);
                 _meleePokemonOnButton.material.SetFloat(Property, 1);
-
             }
             else
             {
@@ -73,11 +73,11 @@ namespace Shop
         public void CreateMaterialInstance()
         {
             var ButtonMaterial = _purchaseMeleeButton.image.material;
-            
+
             _purchaseMeleeButton.image.material = new Material(ButtonMaterial);
             _meleePokemonOnButton.material = _purchaseMeleeButton.image.material;
             _meleeCoins.material = _purchaseMeleeButton.image.material;
-            
+
             _purchaseRangedButton.image.material = new Material(ButtonMaterial);
             _rangePokemonOnButton.material = _purchaseRangedButton.image.material;
             _rangeCoins.material = _purchaseRangedButton.image.material;
@@ -95,6 +95,11 @@ namespace Shop
             }
             else
                 _text.text = coinsAmount.ToString();
+        }
+
+        public void SetTextGems(int gemsAmount)
+        {
+            _gemsText.text = gemsAmount.ToString();
         }
 
         private void OnPurchaseMeleeButtonClicked()
