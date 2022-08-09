@@ -121,7 +121,8 @@ namespace Enemy
         protected virtual async void OnEnemyDied(BaseEnemyData data)
         {
             _data.EnemyDied -= OnEnemyDied;
-            _view.SetViewActive(false);
+            //_view.SetViewActive(false);
+            _view.gameObject.layer = 9;
             _view.LastHitParticle.Play();
             _view.HealthBarView.gameObject.SetActive(false);
             SwitchState<EnemyDieState<TView>>();
@@ -134,23 +135,27 @@ namespace Enemy
         {
             var delay = _moveUndergroundDelay * 1000;
             await Task.Delay(delay);
-            var startTime = Time.time;
-            var position = _view.Transform.position;
-            var destinationPosition = new Vector3(position.x, -1f, position.z);
-
-            while (Time.time < startTime + _moveUndergroundDuration)
+            
+            if (_view != null)
             {
-                if (token.IsCancellationRequested)
+                var startTime = Time.time;
+                var position = _view.Transform.position;
+                var destinationPosition = new Vector3(position.x, -1f, position.z);
+
+                while (Time.time < startTime + _moveUndergroundDuration)
                 {
-                    return;
+                    if (token.IsCancellationRequested)
+                    {
+                        return;
+                    }
+
+                    _view.Transform.position = Vector3.Lerp(_view.Transform.position, destinationPosition,
+                        (Time.time - startTime) / _moveUndergroundDuration);
+                    await Task.Yield();
                 }
 
-                _view.Transform.position = Vector3.Lerp(_view.Transform.position, destinationPosition,
-                    (Time.time - startTime) / _moveUndergroundDuration);
-                await Task.Yield();
+                _view.gameObject.SetActive(false);
             }
-
-            _view.gameObject.SetActive(false);
         }
 
         public virtual void Dispose()

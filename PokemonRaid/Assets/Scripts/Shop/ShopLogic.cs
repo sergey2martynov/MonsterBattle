@@ -63,9 +63,11 @@ namespace Shop
             _shopView.StartButtonPressed += _playerData.SetMaxHealth;
             _pokemonCellPlacer.PokemonMerged += DisableMergeTutorial;
             _shopView.SetTextCoins(_playerData.Coins);
+            _shopView.SetTextGems(_playerData.Gems);
             _shopData.MeleePokemonCostChanged += OnMeleePokemonCostChanged;
             _shopData.RangedPokemonCostChanged += OnRangedPokemonCostChanged;
             _playerLogic.CoinsAdded += _shopView.SetTextCoins;
+            _playerLogic.GemsAdded += _shopView.SetTextGems;
             _pokemonCellPlacer.PokemonMerged += StartButtonDisable;
             _playerData.FirstLevelFinished += ActivePurchaseButton;
             MergeTutorialCompleted += MoveMergeTutorial;
@@ -146,6 +148,7 @@ namespace Shop
 
         private void OnStartButtonPressed()
         {
+            _shopView.DisableLevelCounter(false);
             DOTween.Sequence().AppendInterval(2).OnComplete(() =>
             {
                 if (_playerData.Level == 1)

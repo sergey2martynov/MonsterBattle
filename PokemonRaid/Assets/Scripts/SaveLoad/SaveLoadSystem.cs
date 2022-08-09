@@ -31,7 +31,7 @@ namespace SaveLoad
             var data = new Data(_pokemonHolderModel.PokemonsList, _playerData.Level, _playerData.Coins,
                 _pokemonAvailabilityData.MeleePokemonAvailabilities,
                 _pokemonAvailabilityData.RangePokemonAvailabilities, _playerData.LevelCount,
-                _playerData.MeleeBuyCounter, _playerData.RangedBuyCounter);
+                _playerData.MeleeBuyCounter, _playerData.RangedBuyCounter, _playerData.Gems);
 
             using (fileStream)
             {

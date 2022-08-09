@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
-using System.Threading.Tasks;
 using DG.Tweening;
 using Enemy;
 using Helpers;
-using Pokemon.Animations;
 using Pokemon.PokemonHolder;
 using Pokemon.States;
 using Pokemon.States.SubStates;
@@ -55,8 +53,7 @@ namespace Pokemon
             _data.PositionSeted += GoToArena;
             _data.AttackStateRequired += ChangeSubStateToAttack;
             _data.MoveAnimationRequested += ActivateMoveAnimation;
-            _model.EnemyDataHolder.AllEnemiesDefeated += OnEnemyDefeated;
-            CreateStatesDictionaries();
+            CreateStateDictionaries();
             SetInitialStates();
             _data.LookDirection = Vector3.forward;
         }
@@ -68,7 +65,7 @@ namespace Pokemon
             attackSubState?.SetMaxTargetsAmount(amount);
         }
 
-        protected virtual void CreateStatesDictionaries()
+        protected virtual void CreateStateDictionaries()
         {
             _statesToType = new Dictionary<Type, BaseState<TView, TEnemyView>>
             {
@@ -182,6 +179,7 @@ namespace Pokemon
         protected void OnPokemonDied()
         {
             SwitchState<DieState<TView, TEnemyView>>();
+            SwitchSubState<IdleSubState<TView, TEnemyView>>();
             _view.SetViewActive(false);
             Dispose();
         }
@@ -201,63 +199,10 @@ namespace Pokemon
                 Quaternion.RotateTowards(_view.Transform.rotation, destinationRotation, 720 * Time.deltaTime);
         }
 
-        public Vector3 CheckForBounds()
+        private Vector3 CheckForBounds()
         {
             return CollisionHandler.CheckForBounds(_view.Transform, _rayCastDistance, _boundsInRange, _hit,
                 _data.LookDirection);
-            // var boundsAmount = Physics.OverlapSphereNonAlloc(_view.Transform.position, _rayCastDistance, _boundsInRange,
-            //     _view.BoundsLayer);
-            //
-            // if (boundsAmount == 0)
-            // {
-            //     return new Vector3(10f, 10f, 10f);
-            // }
-            //
-            // var direction = (Vector3)_data.LookDirection;
-            // var outDirection = (Vector3)_data.LookDirection;
-            // direction.Normalize();
-            //
-            // foreach (var boundCollider in _boundsInRange)
-            // {
-            //     if (boundCollider == null)
-            //     {
-            //         continue;
-            //     }
-            //
-            //     var position = _view.Transform.position;
-            //     var positionDelta = boundCollider.transform.position - position;
-            //     var ray = new Ray(position, positionDelta.normalized);
-            //
-            //     if (Physics.RaycastNonAlloc(ray, _hit, positionDelta.magnitude, _view.BoundsLayer) > 0)
-            //     {
-            //         var normal = new Vector3(
-            //             Mathf.Clamp(_hit[0].normal.x, -Mathf.Abs(direction.x), Mathf.Abs(direction.x)),
-            //             Mathf.Clamp(_hit[0].normal.y, -Mathf.Abs(direction.y), Mathf.Abs(direction.y)),
-            //             Mathf.Clamp(_hit[0].normal.z, -Mathf.Abs(direction.z), Mathf.Abs(direction.z)));
-            //
-            //         var xSign = direction.x == 0 ? 0f : Mathf.Sign(direction.x);
-            //         var ySign = direction.y == 0 ? 0f : Mathf.Sign(direction.y);
-            //         var zSign = direction.z == 0 ? 0f : Mathf.Sign(direction.z);
-            //
-            //         if (Vector3.Angle(normal, direction) <= 90)
-            //         {
-            //             continue;
-            //         }
-            //
-            //         outDirection -= new Vector3(Mathf.Abs(normal.x) * xSign, Mathf.Abs(normal.y) * ySign,
-            //             Mathf.Abs(normal.z) * zSign);
-            //     }
-            // }
-            //
-            // Array.Clear(_boundsInRange, 0, _boundsInRange.Length);
-            // Array.Clear(_hit, 0, _hit.Length);
-            // return outDirection;
-        }
-
-        private void OnEnemyDefeated()
-        {
-            _view.MoveParticle.gameObject.SetActive(true);
-            _view.MoveParticle.Play();
         }
 
         private void GoToArena(Vector3 newPosition)
@@ -280,7 +225,6 @@ namespace Pokemon
             _data.PositionSeted -= GoToArena;
             _data.AttackStateRequired -= ChangeSubStateToAttack;
             _data.MoveAnimationRequested -= ActivateMoveAnimation;
-            _model.EnemyDataHolder.AllEnemiesDefeated -= OnEnemyDefeated;
 
             _source?.Cancel();
             _source?.Dispose();

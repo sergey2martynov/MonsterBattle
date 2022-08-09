@@ -36,11 +36,13 @@ namespace Player
 
 
         public event Action<int> CoinsAdded;
+        public event Action<int> GemsAdded;
         public event Action LevelUpped;
 
         public virtual void Initialize(PlayerView playerView, PlayerData playerData,
             UpdateHandler updateHandler, PokemonHolderModel pokemonHolderModel, EnemyDataHolder enemyDataHolder,
-            UpgradeLevels upgradeLevels, PokemonAvailabilityLogic pokemonAvailabilityLogic, ArenaLogic arenaLogic, CameraView cameraView)
+            UpgradeLevels upgradeLevels, PokemonAvailabilityLogic pokemonAvailabilityLogic, ArenaLogic arenaLogic,
+            CameraView cameraView)
         {
             _view = playerView;
             _data = playerData;
@@ -58,6 +60,7 @@ namespace Player
             _data.DirectionCorrectionRequested += CheckForBounds;
             _data.HealthChange += OnHealthChange;
             _data.CoinsAmountChanged += OnCoinsAmountChanged;
+            _data.GemsAmountChanged += OnGemsAmountChanged;
             _data.MoveAnimationRequested += ActivateMoveAnimation;
             _enemyDataHolder.EnemyDefeated += OnEnemyDefeated;
             _data.PositionSet += GoToArena;
@@ -143,10 +146,10 @@ namespace Player
             // Array.Clear(_hit, 0, _hit.Length);
             // return outDirection;
         }
-        
+
         private async void ActivateMoveAnimation(float duration)
         {
-            var delay = (int) duration * 1000;
+            var delay = (int)duration * 1000;
             _isMovingToArena = true;
             await Task.Delay(delay);
             _isMovingToArena = false;
@@ -170,7 +173,7 @@ namespace Player
             {
                 _pokemonAvailabilityLogic.UnLockNewTypeMeleePokemon();
             }
-            
+
             EventSender.SendLevelFinish();
 
             _data.IncreaseLevelCount();
@@ -180,7 +183,7 @@ namespace Player
 
         private void OnHealthChange(int health, int maxHealth)
         {
-            _view.SetHealth(_data.Health / (float) _data.MaxHealth);
+            _view.SetHealth(_data.Health / (float)_data.MaxHealth);
         }
 
         private void OnEnemyDefeated(int coinsReward)
@@ -204,10 +207,14 @@ namespace Player
             ActivateMoveAnimation(3);
         }
 
-
-            private void OnCoinsAmountChanged(int coins)
+        private void OnCoinsAmountChanged(int coins)
         {
             CoinsAdded?.Invoke(coins);
+        }
+        
+        private void OnGemsAmountChanged(int gems)
+        {
+            GemsAdded?.Invoke(gems);
         }
 
         private void Dispose()

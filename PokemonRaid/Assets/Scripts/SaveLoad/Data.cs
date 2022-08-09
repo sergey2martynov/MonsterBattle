@@ -14,7 +14,7 @@ namespace SaveLoad
         public List<List<bool>> MeleePokemonAvailabilities { get; }
         public List<List<bool>> RangePokemonAvailabilities { get; }
 
-        public (int PlayerLevel, int CoinsAmount, int LevelCount, int MeleeBuyCounter, int RangedBuyCounter) playerData;
+        public (int PlayerLevel, int CoinsAmount, int LevelCount, int MeleeBuyCounter, int RangedBuyCounter, int Gems) playerData;
 
         // public int PlayerLevel { get; }
         // public int CoinsAmount { get; }
@@ -24,7 +24,7 @@ namespace SaveLoad
 
         public Data(IEnumerable<List<PokemonDataBase>> pokemonData, int playerLevel, int coinsAmount,
             IEnumerable<List<bool>> meleePokemonAvailabilities, IEnumerable<List<bool>> rangePokemonAvailabilities,
-            int levelCount, int meleeBuyCounter, int rangedBuyCounter)
+            int levelCount, int meleeBuyCounter, int rangedBuyCounter, int gems)
         {
             // PokemonData = pokemonData.ToList();
             tuplesData = new List<(Type type, int level, int[] indexes)>(20);
@@ -45,7 +45,7 @@ namespace SaveLoad
             // LevelCount = levelCount;
             RangePokemonAvailabilities = rangePokemonAvailabilities.ToList();
             MeleePokemonAvailabilities = meleePokemonAvailabilities.ToList();
-            playerData = (playerLevel, coinsAmount, levelCount, meleeBuyCounter, rangedBuyCounter);
+            playerData = (playerLevel, coinsAmount, levelCount, meleeBuyCounter, rangedBuyCounter, gems);
         }
     }
 }

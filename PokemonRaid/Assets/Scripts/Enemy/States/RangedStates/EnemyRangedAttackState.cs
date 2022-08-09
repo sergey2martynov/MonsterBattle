@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Enemy.GroundEnemy.RangedEnemy;
+using Helpers;
 using Pokemon;
 using Pokemon.Animations;
 using Pool;
@@ -75,7 +76,9 @@ namespace Enemy.States.RangedStates
                 
                 if (_targets[0] != null)
                 {
-                    _logic.RotateAt((_view.Transform.position - _targets[0].transform.position).normalized);
+                    RotationHandler.Rotate(_view.Transform,
+                        (_view.Transform.position - _targets[0].transform.position).normalized);
+                    //_logic.RotateAt((_view.Transform.position - _targets[0].transform.position).normalized);
                 }
                 
                 await Task.Yield();
