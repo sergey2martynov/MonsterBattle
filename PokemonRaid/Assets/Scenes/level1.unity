@@ -214,6 +214,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 444820855, guid: 69c5c1bef56579743862d2202a84dce4, type: 3}
   m_PrefabInstance: {fileID: 4767501040843960065}
   m_PrefabAsset: {fileID: 0}
+--- !u!198 &475908551 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1704270445273470133, guid: e299570ba5285e448902f8dfd90cdc71, type: 3}
+  m_PrefabInstance: {fileID: 1513398142}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &531376816 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5877497375846443622, guid: 96996a3b2b7182343b4c31a7c889e67e, type: 3}
@@ -1077,7 +1082,7 @@ MonoBehaviour:
   _vector3: {x: 0, y: 11.5, z: 17}
   _offsetForArena: {x: 8.28, y: 13.92, z: 5}
   _arenaMenuView: {fileID: 683097996085945922}
-  _particleSystem: {fileID: 0}
+  _particleSystem: {fileID: 475908551}
 --- !u!20 &1687258584
 Camera:
   m_ObjectHideFlags: 0

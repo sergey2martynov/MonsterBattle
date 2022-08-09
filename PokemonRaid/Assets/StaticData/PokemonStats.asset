@@ -16,24 +16,24 @@ MonoBehaviour:
   - _viewPrefab: {fileID: 5825225041619624878, guid: f766764cd5ea99f41b9a964ace79f385, type: 3}
     _statsByLevels:
     - _moveSpeed: 5
-      _attackSpeed: 1
-      _maxHealth: 10
-      _damage: 3
+      _attackSpeed: 1.5
+      _maxHealth: 30
+      _damage: 5
       _level: 1
       _maxLevel: 5
       _maxTargetsAmount: 1
-      _attackRange: 3
+      _attackRange: 4
     - _moveSpeed: 5
       _attackSpeed: 1
-      _maxHealth: 20
-      _damage: 7
+      _maxHealth: 60
+      _damage: 10
       _level: 2
       _maxLevel: 5
       _maxTargetsAmount: 1
-      _attackRange: 3
+      _attackRange: 4
     - _moveSpeed: 5
       _attackSpeed: 1
-      _maxHealth: 43
+      _maxHealth: 100
       _damage: 15
       _level: 3
       _maxLevel: 5
@@ -41,16 +41,16 @@ MonoBehaviour:
       _attackRange: 5
     - _moveSpeed: 5
       _attackSpeed: 1
-      _maxHealth: 72
-      _damage: 33
+      _maxHealth: 200
+      _damage: 15
       _level: 4
       _maxLevel: 5
       _maxTargetsAmount: 3
       _attackRange: 6
     - _moveSpeed: 5
-      _attackSpeed: 1
-      _maxHealth: 130
-      _damage: 56
+      _attackSpeed: 0.8
+      _maxHealth: 300
+      _damage: 15
       _level: 5
       _maxLevel: 5
       _maxTargetsAmount: 5
@@ -59,46 +59,46 @@ MonoBehaviour:
   - _viewPrefab: {fileID: 891051601361968121, guid: 956a5ceebb5fb6945af62c65aa0e22d4, type: 3}
     _statsByLevels:
     - _moveSpeed: 5
-      _attackSpeed: 1
-      _maxHealth: 10
+      _attackSpeed: 2
+      _maxHealth: 50
       _damage: 3
       _level: 1
       _maxLevel: 5
-      _maxTargetsAmount: 1
-      _attackRange: 3
+      _maxTargetsAmount: 2
+      _attackRange: 4
     - _moveSpeed: 5
-      _attackSpeed: 1
-      _maxHealth: 20
-      _damage: 7
+      _attackSpeed: 1.8
+      _maxHealth: 100
+      _damage: 5
       _level: 2
-      _maxLevel: 5
-      _maxTargetsAmount: 1
-      _attackRange: 3
+      _maxLevel: 4
+      _maxTargetsAmount: 2
+      _attackRange: 4
     - _moveSpeed: 5
-      _attackSpeed: 1
-      _maxHealth: 43
-      _damage: 15
+      _attackSpeed: 1.6
+      _maxHealth: 200
+      _damage: 10
       _level: 3
       _maxLevel: 5
       _maxTargetsAmount: 3
       _attackRange: 5
     - _moveSpeed: 5
-      _attackSpeed: 1
-      _maxHealth: 72
-      _damage: 33
+      _attackSpeed: 1.5
+      _maxHealth: 300
+      _damage: 15
       _level: 4
       _maxLevel: 5
       _maxTargetsAmount: 3
       _attackRange: 6
     - _moveSpeed: 5
       _attackSpeed: 1
-      _maxHealth: 130
-      _damage: 56
+      _maxHealth: 500
+      _damage: 17
       _level: 5
       _maxLevel: 5
       _maxTargetsAmount: 5
       _attackRange: 6
-    _name: MR CRABS
+    _name: MR. CRAB
   - _viewPrefab: {fileID: 9071255890789025983, guid: 935158d05bd9a8947980cd7f8eb8b08d, type: 3}
     _statsByLevels:
     - _moveSpeed: 5
@@ -232,86 +232,86 @@ MonoBehaviour:
     _statsByLevels:
     - _moveSpeed: 5
       _attackSpeed: 1
-      _maxHealth: 7
-      _damage: 1
+      _maxHealth: 10
+      _damage: 5
       _level: 1
       _maxLevel: 5
       _maxTargetsAmount: 1
       _attackRange: 10
     - _moveSpeed: 5
       _attackSpeed: 1
-      _maxHealth: 15
-      _damage: 3
+      _maxHealth: 20
+      _damage: 10
       _level: 2
       _maxLevel: 5
-      _maxTargetsAmount: 2
+      _maxTargetsAmount: 1
       _attackRange: 10
     - _moveSpeed: 5
-      _attackSpeed: 0.5
-      _maxHealth: 30
-      _damage: 6
+      _attackSpeed: 1
+      _maxHealth: 50
+      _damage: 12
       _level: 3
       _maxLevel: 5
-      _maxTargetsAmount: 2
+      _maxTargetsAmount: 1
       _attackRange: 11
     - _moveSpeed: 5
-      _attackSpeed: 0.5
-      _maxHealth: 60
-      _damage: 7
+      _attackSpeed: 1
+      _maxHealth: 55
+      _damage: 15
       _level: 4
       _maxLevel: 5
-      _maxTargetsAmount: 3
+      _maxTargetsAmount: 2
       _attackRange: 12
     - _moveSpeed: 5
-      _attackSpeed: 0.4
-      _maxHealth: 100
-      _damage: 10
+      _attackSpeed: 1
+      _maxHealth: 60
+      _damage: 30
       _level: 5
       _maxLevel: 5
-      _maxTargetsAmount: 3
+      _maxTargetsAmount: 2
       _attackRange: 12
     _name: DRAGON
   - _viewPrefab: {fileID: 2711931426556632022, guid: 23143f931dd95c44aa59a2198406bee7, type: 3}
     _statsByLevels:
     - _moveSpeed: 5
-      _attackSpeed: 1
-      _maxHealth: 7
-      _damage: 1
+      _attackSpeed: 0.8
+      _maxHealth: 5
+      _damage: 3
       _level: 1
       _maxLevel: 5
       _maxTargetsAmount: 1
       _attackRange: 10
     - _moveSpeed: 5
-      _attackSpeed: 1
-      _maxHealth: 15
-      _damage: 3
+      _attackSpeed: 0.7
+      _maxHealth: 10
+      _damage: 5
       _level: 2
       _maxLevel: 5
-      _maxTargetsAmount: 2
+      _maxTargetsAmount: 1
       _attackRange: 10
     - _moveSpeed: 5
       _attackSpeed: 0.5
-      _maxHealth: 30
-      _damage: 6
+      _maxHealth: 20
+      _damage: 7
       _level: 3
       _maxLevel: 5
-      _maxTargetsAmount: 2
+      _maxTargetsAmount: 1
       _attackRange: 11
     - _moveSpeed: 5
-      _attackSpeed: 0.5
-      _maxHealth: 60
+      _attackSpeed: 0.4
+      _maxHealth: 40
       _damage: 7
       _level: 4
       _maxLevel: 5
-      _maxTargetsAmount: 3
+      _maxTargetsAmount: 1
       _attackRange: 12
     - _moveSpeed: 5
-      _attackSpeed: 0.4
-      _maxHealth: 100
+      _attackSpeed: 0.3
+      _maxHealth: 50
       _damage: 10
       _level: 5
       _maxLevel: 5
-      _maxTargetsAmount: 3
+      _maxTargetsAmount: 2
       _attackRange: 12
     _name: FLOWER
   - _viewPrefab: {fileID: 5486772169272369730, guid: 2dbb11ba0f721b14290d67960e3008c8, type: 3}
