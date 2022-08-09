@@ -31,6 +31,7 @@ namespace Shop
         private bool _isMergeTutorialActivated;
 
 
+        public event Action LevelStarted;
         public event Action StartButtonPressed;
         public event Action MergeTutorialCompleted;
         public event Action PurchaseTutorialScaled;
@@ -148,6 +149,7 @@ namespace Shop
 
         private void OnStartButtonPressed()
         {
+            StartButtonPressed?.Invoke();
             _shopView.DisableLevelCounter(false);
             DOTween.Sequence().AppendInterval(2).OnComplete(() =>
             {
@@ -155,7 +157,7 @@ namespace Shop
                     _gameCanvasView.MoveTutorialView.gameObject.SetActive(true);
 
                 EventSender.SendLevelStart(_playerData.Level, _playerData.LevelCount);
-                StartButtonPressed?.Invoke();
+                LevelStarted?.Invoke();
             });
 
             DOTween.Sequence().AppendInterval(8).OnComplete(() =>

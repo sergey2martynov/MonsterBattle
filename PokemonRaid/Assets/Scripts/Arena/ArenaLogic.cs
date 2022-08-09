@@ -45,6 +45,8 @@ namespace Arena
         public void Initialize()
         {
             _arenaMenuView.FightButtonPressed += Fight;
+            
+            
         }
 
         private void Fight()
@@ -105,7 +107,7 @@ namespace Arena
                 }
             }
 
-            SelectPokemon();
+            //SelectPokemon();
         }
 
         private void SelectPokemon()
@@ -124,7 +126,7 @@ namespace Arena
                 {
                     var pokemonData = pokemonsData[pokemonsData.Count - i];
                     pokemonData.OnAttackSubStateRequired(false);
-                    pokemonData.AttackRange = 10;
+                    pokemonData.AttackRange = 15;
                     pokemonData.ThisPokemonDied += RemovePokemon;
                     _strongPokemonData.Add(pokemonsData[pokemonsData.Count - i]);
                 }
@@ -136,7 +138,7 @@ namespace Arena
 
         private void Dispose()
         {
-            _arenaView.PlayerTriggered -= SpawnEnemy;
+            _arenaView.PlayerTriggered -= SelectPokemon;
             _arenaMenuView.FightButtonPressed -= Fight;
             _arenaView.Destroed -= Dispose;
         }
@@ -144,8 +146,10 @@ namespace Arena
         public void SetArenaView(ArenaView arenaView)
         {
             _arenaView = arenaView;
-            _arenaView.PlayerTriggered += SpawnEnemy;
+            _arenaView.PlayerTriggered += SelectPokemon;
             _arenaView.Destroed += Dispose;
+            
+            SpawnEnemy();
         }
     }
 }

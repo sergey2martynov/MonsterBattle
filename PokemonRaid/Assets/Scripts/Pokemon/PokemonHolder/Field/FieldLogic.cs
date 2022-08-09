@@ -31,7 +31,7 @@ namespace Pokemon.PokemonHolder.Field
         {
             _isFieldFillRequired = isFieldFillRequired;
             _fieldView.FieldCreated += CreateCellDates;
-            _shopLogic.StartButtonPressed += DisableView;
+            _shopLogic.LevelStarted += DisableView;
         }
 
         private void CreateCellDates(List<CellView> cells)

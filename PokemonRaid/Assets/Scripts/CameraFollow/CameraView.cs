@@ -54,11 +54,10 @@ namespace CameraFollow
         public void MoveCameraToArena()
         {
             _isCanAddOffset = false;
+            _particleSystem.gameObject.SetActive(false);
 
             transform.DORotate(new Vector3(41, 308, 0), 4);
-
             var pos = _arenaView.transform.position + _offsetForArena;
-
             transform.DOMove(pos, 4).OnComplete(() =>
             {
                 _arenaMenuView.Show();
@@ -67,7 +66,6 @@ namespace CameraFollow
 
         public void PlaySpeedParticle()
         {
-            _particleSystem.gameObject.SetActive(true);
             _particleSystem.Play();
         }
 

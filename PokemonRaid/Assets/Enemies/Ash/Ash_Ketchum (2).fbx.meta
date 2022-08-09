@@ -3,7 +3,27 @@ guid: f8e0e14c5012e844fba7be554e2a2e5b
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mat
+    second: {fileID: 2100000, guid: 4311518db7f90814fbaaf56cc4993e3e, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Ash_arms_hat_hair
+    second: {fileID: 2800000, guid: 90c5e180997b75a48aab0fdc446e6c0e, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: PokeTra_Ash_face
+    second: {fileID: 2800000, guid: 363991419b5c70e44ad33e6a3f3066e4, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: trAsh_00_body_col
+    second: {fileID: 2800000, guid: 13db4ee337fee6f4d87b588921818683, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0

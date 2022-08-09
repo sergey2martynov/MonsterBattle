@@ -29,7 +29,7 @@ namespace InputPlayer
         public void SetShopLogic(ShopLogic shopLogic)
         {
             _shopLogic = shopLogic;
-            _shopLogic.StartButtonPressed += OnStart;
+            _shopLogic.LevelStarted += OnStart;
         }
 
         private void OnDirectionReceived(Vector3 direction)
