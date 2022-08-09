@@ -146,6 +146,7 @@ namespace Shop
 
         private void OnStartButtonPressed()
         {
+            _shopView.DisableLevelCounter(false);
             DOTween.Sequence().AppendInterval(2).OnComplete(() =>
             {
                 if (_playerData.Level == 1)

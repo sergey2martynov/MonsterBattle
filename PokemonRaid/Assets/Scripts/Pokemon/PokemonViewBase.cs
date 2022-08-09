@@ -16,7 +16,6 @@ namespace Pokemon
         [SerializeField] private Collider _collider;
         [SerializeField] private ParticleSystem _mergeParticle;
         [SerializeField] private ParticleSystem _spawnParticle;
-        [SerializeField] private ParticleSystem _moveParticle;
         [SerializeField] private PokemonType _pokemonType;
 
         protected int _level;
@@ -35,7 +34,6 @@ namespace Pokemon
         public HealthBarView HealthBarView => _healthBar;
         public ParticleSystem MergeParticle => _mergeParticle;
         public ParticleSystem SpawnParticle => _spawnParticle;
-        public ParticleSystem MoveParticle => _moveParticle;
         public PokemonType PokemonType => _pokemonType;
 
         public event Action<int> DamageTaken;

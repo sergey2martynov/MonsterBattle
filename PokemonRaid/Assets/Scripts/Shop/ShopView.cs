@@ -1,4 +1,5 @@
 using System;
+using LevelCounter;
 using Menu;
 using StaticData;
 using TMPro;
@@ -25,6 +26,7 @@ namespace Shop
         [SerializeField] private Image _meleeCoins;
         [SerializeField] private Image _rangeCoins;
         [SerializeField] private CardSpritesHolder _cardSpritesHolder;
+        [SerializeField] private LevelCounterView _levelCounterView;
         private static readonly int Property = Shader.PropertyToID("_EffectAmount");
 
         private const int CenterPositionY = 489;
@@ -163,6 +165,11 @@ namespace Shop
 
             // _purchaseMeleeButton.GetComponent<RectTransform>().anchoredPosition = new Vector2(CenterPositionY,
             //     _purchaseMeleeButton.GetComponent<RectTransform>().anchoredPosition.y);
+        }
+
+        public void DisableLevelCounter(bool isActive)
+        {
+            _levelCounterView.gameObject.SetActive(isActive);
         }
 
         private void OnPurchaseRangedButtonClicked()
