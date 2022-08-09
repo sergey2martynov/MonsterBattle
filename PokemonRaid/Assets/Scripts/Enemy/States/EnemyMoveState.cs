@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Helpers;
+using UnityEngine;
 
 namespace Enemy.States
 {
@@ -20,7 +21,8 @@ namespace Enemy.States
         public override void Update()
         {
             base.Update();
-            _logic.RotateAt(Vector3.forward);
+            //_logic.RotateAt(Vector3.forward);
+            RotationHandler.Rotate(_view.Transform, Vector3.forward);
             _view.transform.position += -Vector3.forward * _data.MoveSpeed * Time.deltaTime;
         }
 

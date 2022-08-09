@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
-using System.Threading.Tasks;
 using DG.Tweening;
 using Enemy;
 using Helpers;
-using Pokemon.Animations;
 using Pokemon.PokemonHolder;
 using Pokemon.States;
 using Pokemon.States.SubStates;
@@ -56,7 +54,7 @@ namespace Pokemon
             _data.AttackStateRequired += ChangeSubStateToAttack;
             _data.MoveAnimationRequested += ActivateMoveAnimation;
             _model.EnemyDataHolder.AllEnemiesDefeated += OnEnemyDefeated;
-            CreateStatesDictionaries();
+            CreateStateDictionaries();
             SetInitialStates();
             _data.LookDirection = Vector3.forward;
         }
@@ -68,7 +66,7 @@ namespace Pokemon
             attackSubState?.SetMaxTargetsAmount(amount);
         }
 
-        protected virtual void CreateStatesDictionaries()
+        protected virtual void CreateStateDictionaries()
         {
             _statesToType = new Dictionary<Type, BaseState<TView, TEnemyView>>
             {
@@ -182,6 +180,7 @@ namespace Pokemon
         protected void OnPokemonDied()
         {
             SwitchState<DieState<TView, TEnemyView>>();
+            SwitchSubState<IdleSubState<TView, TEnemyView>>();
             _view.SetViewActive(false);
             Dispose();
         }

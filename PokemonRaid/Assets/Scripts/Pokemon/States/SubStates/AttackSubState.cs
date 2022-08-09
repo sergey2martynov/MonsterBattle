@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Enemy;
 using Helpers;
 using Pokemon.Animations;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 namespace Pokemon.States.SubStates
@@ -16,6 +17,7 @@ namespace Pokemon.States.SubStates
         protected readonly int _attack = Animator.StringToHash("Attack");
         protected readonly BaseAnimation _attackAnimation;
         protected Collider[] _collidersInRange;
+        protected CancellationTokenSource _source;
         
         public AttackSubState(TView view, PokemonLogicBase<TView, TEnemyView> logic, PokemonDataBase data) : base(view,
             logic, data)
@@ -27,6 +29,24 @@ namespace Pokemon.States.SubStates
         {
             base.Update();
             CheckForEnemies();
+        }
+
+        public override void OnExit()
+        {
+            base.OnExit();
+            _source?.Cancel();
+            _source?.Dispose();
+            _source = null;
+
+            if (_view == null)
+            {
+                return;
+            }
+            
+            _view.Animator.SetBool(_attack, false);
+            _data.AttackTime = Time.time + _data.AttackSpeed;
+            Array.Clear(_collidersInRange, 0, _collidersInRange.Length);
+            _logic.ShouldAttack = false;
         }
 
         protected override void SetNextState()
@@ -48,7 +68,7 @@ namespace Pokemon.States.SubStates
                 return;
             }
 
-            var token = _logic.Source?.Token ?? _logic.CreateCancellationTokenSource().Token;
+            var token = _source?.Token ?? CreateCancellationTokenSource().Token;
             await Attack(_collidersInRange, token);
             //TODO: try to clear colliders in range when colliders amount == 0
         }
@@ -75,7 +95,6 @@ namespace Pokemon.States.SubStates
                 {
                     RotationHandler.Rotate(_view.Transform,
                         (_collidersInRange[0].transform.position - _view.Transform.position).normalized);
-                    // _logic.RotateAt((_collidersInRange[0].transform.position - _view.Transform.position).normalized);
                 }
 
                 await Task.Yield();
@@ -96,6 +115,11 @@ namespace Pokemon.States.SubStates
             _data.AttackTime = Time.time + _data.AttackSpeed;
             Array.Clear(_collidersInRange, 0, _collidersInRange.Length);
             _logic.ShouldAttack = false;
+        }
+
+        protected CancellationTokenSource CreateCancellationTokenSource()
+        {
+            return _source = new CancellationTokenSource();
         }
     }
 }

@@ -8,9 +8,9 @@ namespace Pokemon.RangedPokemon
         where TView : RangedPokemonView
         where TEnemyView : BaseEnemyView
     {
-        protected override void CreateStatesDictionaries()
+        protected override void CreateStateDictionaries()
         {
-            base.CreateStatesDictionaries();
+            base.CreateStateDictionaries();
             _subStatesToType.Remove(typeof(AttackSubState<TView, TEnemyView>));
             _subStatesToType.Add(typeof(AttackSubState<TView, TEnemyView>),
                 new RangedAttackSubState<TView, TEnemyView>(_view, this, _data));

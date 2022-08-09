@@ -126,7 +126,12 @@ namespace Enemy
             _view.HealthBarView.gameObject.SetActive(false);
             SwitchState<EnemyDieState<TView>>();
             var token = _data.Source?.Token ?? _data.CreateCancellationTokenSource().Token;
-            await MoveUnderground(token);
+
+            if (_view != null)
+            {
+                await MoveUnderground(token);
+            }
+            
             Dispose();
         }
 

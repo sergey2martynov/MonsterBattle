@@ -1,5 +1,6 @@
 ﻿using System;
 using Enemy.States;
+using Helpers;
 using Pokemon;
 using Pokemon.Animations;
 using UnityEngine;
@@ -37,7 +38,9 @@ namespace Enemy.Bosses.BossStates
 
             if (_targets[0] != null)
             {
-                _logic.RotateAt((_view.Transform.position - _targets[0].transform.position).normalized);
+                RotationHandler.Rotate(_view.Transform,
+                    (_view.Transform.position - _targets[0].transform.position).normalized);
+                //_logic.RotateAt((_view.Transform.position - _targets[0].transform.position).normalized);
             }
 
             if (Time.time < _attackTime && !_attacked)
