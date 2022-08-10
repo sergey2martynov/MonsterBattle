@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CameraFollow;
 using DG.Tweening;
 using Enemy;
 using Factories;
@@ -23,7 +24,9 @@ namespace Arena
         private readonly EnemyFactory _enemyFactory;
         private readonly PlayerData _playerData;
         private readonly EnemyStats _enemyStats;
+        private readonly PlayerLogic _playerLogic;
         private  ArenaView _arenaView;
+        private CameraView _cameraView;
 
         private List<PokemonDataBase> _strongPokemonData = new List<PokemonDataBase>(3);
         private List<BaseEnemyView> _enemiesViews = new List<BaseEnemyView>();
@@ -34,7 +37,7 @@ namespace Arena
 
         public ArenaLogic(PokemonHolderModel pokemonHolderModel, EnemyFactory enemyFactory,
             PlayerData playerData, ArenaPrefabHolder arenaPrefabHolder, EnemyStats enemyStats,
-            ArenaMenuView arenaMenuView)
+            ArenaMenuView arenaMenuView, CameraView cameraView, PlayerLogic playerLogic)
         {
             _pokemonHolderModel = pokemonHolderModel;
             _enemyFactory = enemyFactory;
@@ -42,6 +45,8 @@ namespace Arena
             _arenaPrefabHolder = arenaPrefabHolder;
             _enemyStats = enemyStats;
             _arenaMenuView = arenaMenuView;
+            _cameraView = cameraView;
+            _playerLogic = playerLogic;
             Initialize();
         }
 
@@ -70,6 +75,7 @@ namespace Arena
 
             if (_enemiesData.Count == 0)
             {
+                _playerLogic.PlayVictory();
                 DOTween.Sequence().AppendInterval(2).OnComplete(() =>
                 {
                     ArenaDefeated?.Invoke();

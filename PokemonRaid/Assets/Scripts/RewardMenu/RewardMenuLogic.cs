@@ -1,9 +1,12 @@
 using Arena;
+using CameraFollow;
 using CardsCollection;
 using Enemy.EnemyModel;
+using InputPlayer;
 using Player;
 using SaveLoad;
 using StaticData;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace RewardMenu
@@ -19,13 +22,15 @@ namespace RewardMenu
         private readonly PokemonAvailabilityLogic _availabilityLogic;
         private readonly CardSpritesHolder _cardSpritesHolder;
         private readonly ArenaLogic _arenaLogic;
+        private readonly CameraView _cameraView;
+        private readonly InputView _inputView;
 
         private bool _isCanShowGemsReward;
 
         public RewardMenuLogic(PlayerLogic playerLogic, RewardMenuView rewardMenuView, UpgradeLevels upgradeLevels,
             PlayerData playerData, LevelDataHolder levelDataHolder, SaveLoadSystem saveLoadSystem,
             PokemonAvailabilityLogic availabilityLogic, CardSpritesHolder cardSpritesHolder,
-            EnemyDataHolder enemyDataHolder, ArenaLogic arenaLogic)
+            EnemyDataHolder enemyDataHolder, ArenaLogic arenaLogic, CameraView cameraView, InputView inputView)
         {
             _playerLogic = playerLogic;
             _rewardMenuView = rewardMenuView;
@@ -36,6 +41,8 @@ namespace RewardMenu
             _availabilityLogic = availabilityLogic;
             _cardSpritesHolder = cardSpritesHolder;
             _arenaLogic = arenaLogic;
+            _cameraView = cameraView;
+            _inputView = inputView;
         }
 
         public void Initialize()
@@ -53,6 +60,18 @@ namespace RewardMenu
             _rewardMenuView.SetCoinsAmount(levelData.TotalCoinsReward);
             _playerData.Coins += levelData.TotalCoinsReward;
             _playerData.Gems += levelData.TotalGemsReward;
+            
+            _inputView.gameObject.SetActive(false);
+
+            if ((_playerData.Level - 1) % 5 == 3)
+            {
+                _cameraView.ChangeCameraPosition(true);
+                
+            }
+            else
+            {
+                _cameraView.ChangeCameraPosition(false);
+            }
 
             if ((_playerData.Level - 1) % 5 == 0)
             {

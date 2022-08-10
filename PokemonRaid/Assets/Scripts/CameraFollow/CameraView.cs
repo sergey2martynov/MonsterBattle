@@ -14,6 +14,9 @@ namespace CameraFollow
         [SerializeField] private Vector3 _offsetForArena;
         [SerializeField] private ArenaMenuView _arenaMenuView;
         [SerializeField] private ParticleSystem _particleSystem;
+        [SerializeField] private ParticleSystem _confettiBlast;
+        [SerializeField] private ParticleSystem _confettiConst;
+        [SerializeField] private Camera _camera;
         private ArenaView _arenaView;
 
         private bool _isCanAddOffset = true;
@@ -50,7 +53,7 @@ namespace CameraFollow
                 _isCanAddOffset = true;
             });
         }
-        
+
         public void MoveCameraToArena()
         {
             _isCanAddOffset = false;
@@ -58,15 +61,38 @@ namespace CameraFollow
 
             transform.DORotate(new Vector3(41, 308, 0), 4);
             var pos = _arenaView.transform.position + _offsetForArena;
-            transform.DOMove(pos, 4).OnComplete(() =>
-            {
-                _arenaMenuView.Show();
-            });
+            transform.DOMove(pos, 4).OnComplete(() => { _arenaMenuView.Show(); });
         }
 
         public void PlaySpeedParticle()
         {
             _particleSystem.Play();
+        }
+
+        public void ChangeCameraPositionWithConfetti()
+        {
+            _isCanAddOffset = false;
+            transform.position = new Vector3(-100, -100, -100);
+            _particleSystem.gameObject.SetActive(false);
+            _camera.orthographic = true;
+            _arenaMenuView.gameObject.SetActive(false);
+            // _confettiBlast.Play();
+            // _confettiConst.Play();
+        }
+        
+        public void ChangeCameraPosition(bool isActiveConfetti)
+        {
+            _isCanAddOffset = false;
+            transform.position = new Vector3(-100, -100, -100);
+            _particleSystem.gameObject.SetActive(false); 
+            _arenaMenuView.gameObject.SetActive(false);
+            _camera.orthographic = true;
+
+            if (isActiveConfetti)
+            {
+                _confettiBlast.Play();
+                _confettiConst.Play();
+            }
         }
 
         public void SetRefArenaView(ArenaView arenaView)

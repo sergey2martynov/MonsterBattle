@@ -33,6 +33,7 @@ namespace Player
         private static readonly int Blend = Animator.StringToHash("Blend");
         private static readonly int ThrowBall = Animator.StringToHash("ThrowBall");
         private readonly int _move = Animator.StringToHash("Move");
+        private static readonly int Victory = Animator.StringToHash("Victory");
 
 
         public event Action<int> CoinsAdded;
@@ -205,6 +206,11 @@ namespace Player
         {
             _view.transform.DOMove(newPosition, 3);
             ActivateMoveAnimation(3);
+        }
+
+        public void PlayVictory()
+        {
+            _view.Animator.SetTrigger(Victory);
         }
 
         private void OnCoinsAmountChanged(int coins)

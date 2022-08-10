@@ -35,10 +35,11 @@ namespace LevelBuilder
         private readonly ArenaLogic _arenaLogic;
         private EnemyFactory _enemyFactory;
         private CameraView _cameraView;
+        private ArenaPositionsHolder _arenaPositionsHolder;
 
         public LevelBuilderBehaviour(LevelDataHolder levelDataHolder, PlayerData playerData,
             UpdateHandler updateHandler, Transform enemyParentObject, EnemyStats enemyStats,
-            EnemyDataHolder enemyDataHolder, Transform camera, CameraView cameraView, ArenaLogic arenaLogic)
+            EnemyDataHolder enemyDataHolder, Transform camera, CameraView cameraView, ArenaLogic arenaLogic, ArenaPositionsHolder arenaPositionsHolder)
         {
             _levelDataHolder = levelDataHolder;
             _playerData = playerData;
@@ -49,6 +50,7 @@ namespace LevelBuilder
             _camera = camera;
             _cameraView = cameraView;
             _arenaLogic = arenaLogic;
+            _arenaPositionsHolder = arenaPositionsHolder;
         }
 
         public void Initialize(ShopLogic shopLogic)
@@ -82,7 +84,21 @@ namespace LevelBuilder
 
             if (level % 5 == 3)
             {
-                var arena = Object.Instantiate(_levelDataHolder.ArenaView, new Vector3(0, 0, 70), Quaternion.identity);
+                Vector3 position;
+                
+                if (level < 5)
+                {
+                    position = _arenaPositionsHolder.ArenaPositions[0];
+                }
+                else if (level > 5 && level < 10)
+                {
+                    position = _arenaPositionsHolder.ArenaPositions[1];
+                }
+                else
+                {
+                    position = _arenaPositionsHolder.ArenaPositions[2];
+                }
+                var arena = Object.Instantiate(_levelDataHolder.ArenaView, position, Quaternion.identity);
                 _cameraView.SetRefArenaView(arena);
                 _arenaLogic.SetArenaView(arena);
             }

@@ -186,6 +186,11 @@ namespace Shop
                 _shopView.DisableRangePurchaseButton(false);
                 StartButtonDisable(false);
             }
+
+            if (_playerData.Level > 29)
+            {
+                _shopView.DisableBillet();
+            }
         }
 
         private void DisableTutorials(PokemonType pokemonType)

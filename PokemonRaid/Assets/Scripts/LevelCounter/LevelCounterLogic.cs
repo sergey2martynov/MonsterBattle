@@ -44,6 +44,11 @@ namespace LevelCounter
                     _view.Images[i].gameObject.SetActive(true);
                     _view.Images[i].sprite = _levelSpritesHolder.Sprites[0];
                 }
+                else if (i == levelCount && _playerData.Level % 5 == 3)
+                {
+                    _view.Images[i].gameObject.SetActive(true);
+                    _view.Images[i].sprite = _levelSpritesHolder.Sprites[2];
+                }
                 else if (i == levelCount)
                 {
                     _view.Images[i].gameObject.SetActive(true);

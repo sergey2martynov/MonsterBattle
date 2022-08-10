@@ -26,6 +26,7 @@ namespace Shop
         [SerializeField] private Image _purchaseTutorial;
         [SerializeField] private Image _meleeCoins;
         [SerializeField] private Image _rangeCoins;
+        [SerializeField] private Image _billet;
         [SerializeField] private CardSpritesHolder _cardSpritesHolder;
         [SerializeField] private LevelCounterView _levelCounterView;
         private static readonly int Property = Shader.PropertyToID("_EffectAmount");
@@ -107,6 +108,11 @@ namespace Shop
         private void OnPurchaseMeleeButtonClicked()
         {
             PurchaseButtonPressed?.Invoke(PokemonType.Melee);
+        }
+
+        public void DisableBillet()
+        {
+            _billet.gameObject.SetActive(false);
         }
 
         public void SetCost(int cost)

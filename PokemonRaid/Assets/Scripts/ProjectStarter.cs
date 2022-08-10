@@ -73,6 +73,7 @@ public class ProjectStarter : MonoBehaviour
 
     [Header("Arena")] [SerializeField] private ArenaPrefabHolder _arenaPrefabHolder;
     [SerializeField] private ArenaMenuView _arenaMenuView;
+    [SerializeField] private ArenaPositionsHolder _arenaPositionsHolder;
 
     private PokemonSpawner _pokemonSpawner;
     private SaveLoadSystem _saveLoadSystem;
@@ -100,7 +101,7 @@ public class ProjectStarter : MonoBehaviour
         var playerData = new PlayerData();
         var playerLogic = new PlayerLogic();
         var arenaLogic = new ArenaLogic(pokemonHolderModel, new EnemyFactory(_updateHandler, _camera),
-            playerData, _arenaPrefabHolder, _enemyStats, _arenaMenuView);
+            playerData, _arenaPrefabHolder, _enemyStats, _arenaMenuView, _cameraView, playerLogic);
         playerLogic.Initialize(_playerView, playerData, _updateHandler, pokemonHolderModel, enemyDataHolder,
             _upgradeLevels, pokemonAvailabilityLogic, arenaLogic, _cameraView);
         _healthPlayerBarView.SetCameraRef(_camera);
@@ -156,7 +157,7 @@ public class ProjectStarter : MonoBehaviour
         shopData.Initialize(_shopStats, playerData.MeleeBuyCounter, playerData.RangedBuyCounter);
 
         var levelBuilderBehaviour = new LevelBuilderBehaviour(_levelDataHolder, playerData, _updateHandler,
-            _enemyParentObject, _enemyStats, enemyDataHolder, _camera, _cameraView, arenaLogic);
+            _enemyParentObject, _enemyStats, enemyDataHolder, _camera, _cameraView, arenaLogic, _arenaPositionsHolder);
         levelBuilderBehaviour.Initialize(shopLogic);
 
         directionTranslator.SetShopLogic(shopLogic);
@@ -170,7 +171,7 @@ public class ProjectStarter : MonoBehaviour
 
         var rewardMenuLogic = new RewardMenuLogic(playerLogic, _rewardMenuView, _upgradeLevels, playerData,
             _levelDataHolder, _saveLoadSystem, pokemonAvailabilityLogic, _cardSpritesHolder, enemyDataHolder,
-            arenaLogic);
+            arenaLogic, _cameraView, _inputView);
         rewardMenuLogic.Initialize();
         _newPokemonCanvasView.Initialize();
         _cardsPanelView.Initialize();
