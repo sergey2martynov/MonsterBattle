@@ -7,11 +7,11 @@
     <package>com.android.support:support-v4:25.3.1</package>
     <package>com.appsflyer:af-android-sdk:6.6.0</package>
     <package>com.appsflyer:unity-wrapper:6.6.0</package>
-    <package>com.facebook.android:facebook-applinks:[14.0, 15)</package>
-    <package>com.facebook.android:facebook-core:[14.0, 15)</package>
-    <package>com.facebook.android:facebook-gamingservices:[14.0, 15)</package>
-    <package>com.facebook.android:facebook-login:[14.0, 15)</package>
-    <package>com.facebook.android:facebook-share:[14.0, 15)</package>
+    <package>com.facebook.android:facebook-applinks:[14.1, 15)</package>
+    <package>com.facebook.android:facebook-core:[14.1, 15)</package>
+    <package>com.facebook.android:facebook-gamingservices:[14.1, 15)</package>
+    <package>com.facebook.android:facebook-login:[14.1, 15)</package>
+    <package>com.facebook.android:facebook-share:[14.1, 15)</package>
     <package>com.parse.bolts:bolts-android:1.4.0</package>
     <package>com.yandex.android:mobmetricalib:5.0.0</package>
   </packages>
@@ -87,7 +87,7 @@
     <file>Assets/Plugins/Android/org.jetbrains.kotlin.kotlin-stdlib-jdk8-1.6.10.jar</file>
   </files>
   <settings>
-    <setting name="androidAbis" value="armeabi-v7a" />
+    <setting name="androidAbis" value="arm64-v8a,armeabi-v7a" />
     <setting name="bundleId" value="com.TarragonEntertainment.MonsterGo" />
     <setting name="explodeAars" value="True" />
     <setting name="gradleBuildEnabled" value="True" />

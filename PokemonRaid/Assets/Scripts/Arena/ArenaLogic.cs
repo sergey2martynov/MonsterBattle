@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using CameraFollow;
 using DG.Tweening;
 using Enemy;
@@ -10,9 +9,7 @@ using Helpers;
 using Player;
 using Pokemon;
 using Pokemon.PokemonHolder;
-using RewardMenu;
 using StaticData;
-using UnityEditor.Timeline.Actions;
 
 namespace Arena
 {
@@ -81,11 +78,6 @@ namespace Arena
                     ArenaDefeated?.Invoke();
                     ArenaCompleted?.Invoke();
                 });
-                // Task.Delay(2000).ContinueWith(_ =>
-                // {
-                //     ArenaDefeated?.Invoke();
-                //     ArenaCompleted?.Invoke();
-                // }, TaskScheduler.FromCurrentSynchronizationContext());
             }
         }
 

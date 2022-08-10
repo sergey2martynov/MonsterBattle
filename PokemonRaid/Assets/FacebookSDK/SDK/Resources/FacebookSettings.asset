@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -2115301841, guid: 6abda14e0211045ac9a37fef71208602, type: 3}
+  m_Script: {fileID: -2115301841, guid: c49f2b3ca212b47fc9cd8ce655177c89, type: 3}
   m_Name: FacebookSettings
   m_EditorClassIdentifier: 
   selectedAppIndex: 0
@@ -18,7 +18,7 @@ MonoBehaviour:
   appIds:
   - 5553099494754845
   appLabels:
-  - Monster GO!
+  - Monster GO
   cookie: 1
   logging: 1
   status: 1

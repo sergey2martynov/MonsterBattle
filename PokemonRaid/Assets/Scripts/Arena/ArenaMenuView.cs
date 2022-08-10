@@ -1,5 +1,4 @@
 using System;
-using Facebook.Unity.Example;
 using Menu;
 using UnityEngine;
 using UnityEngine.UI;
