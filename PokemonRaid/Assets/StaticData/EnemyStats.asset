@@ -15,7 +15,7 @@ MonoBehaviour:
   _statsByType:
   - _viewPrefab: {fileID: 1627224506922606195, guid: c552290d3b9bc064da407a0974d5b5c5, type: 3}
     _statsByLevel:
-    - _moveSpeed: 2
+    - _moveSpeed: 0.5
       _attackSpeed: 1
       _maxHealth: 5
       _damage: 1
@@ -23,7 +23,7 @@ MonoBehaviour:
       _maxLevel: 3
       _maxTargetsAmount: 1
       _attackRange: 3
-    - _moveSpeed: 2
+    - _moveSpeed: 0.5
       _attackSpeed: 1
       _maxHealth: 15
       _damage: 3
@@ -31,7 +31,7 @@ MonoBehaviour:
       _maxLevel: 3
       _maxTargetsAmount: 1
       _attackRange: 3
-    - _moveSpeed: 2
+    - _moveSpeed: 0.5
       _attackSpeed: 1
       _maxHealth: 30
       _damage: 5
@@ -39,7 +39,7 @@ MonoBehaviour:
       _maxLevel: 3
       _maxTargetsAmount: 1
       _attackRange: 3
-    - _moveSpeed: 1
+    - _moveSpeed: 0.5
       _attackSpeed: 3
       _maxHealth: 70
       _damage: 15
@@ -47,7 +47,7 @@ MonoBehaviour:
       _maxLevel: 5
       _maxTargetsAmount: 2
       _attackRange: 4
-    - _moveSpeed: 1
+    - _moveSpeed: 0.5
       _attackSpeed: 3
       _maxHealth: 120
       _damage: 20
@@ -57,7 +57,7 @@ MonoBehaviour:
       _attackRange: 4
   - _viewPrefab: {fileID: 8971474976718796664, guid: d2131430a64dde74693b08fe0159aa02, type: 3}
     _statsByLevel:
-    - _moveSpeed: 2
+    - _moveSpeed: 0.5
       _attackSpeed: 1
       _maxHealth: 5
       _damage: 1
@@ -65,7 +65,7 @@ MonoBehaviour:
       _maxLevel: 3
       _maxTargetsAmount: 1
       _attackRange: 9
-    - _moveSpeed: 2
+    - _moveSpeed: 0.5
       _attackSpeed: 1
       _maxHealth: 35
       _damage: 3
@@ -73,7 +73,7 @@ MonoBehaviour:
       _maxLevel: 3
       _maxTargetsAmount: 1
       _attackRange: 9
-    - _moveSpeed: 2
+    - _moveSpeed: 0.5
       _attackSpeed: 1
       _maxHealth: 50
       _damage: 5
@@ -83,7 +83,7 @@ MonoBehaviour:
       _attackRange: 10
   - _viewPrefab: {fileID: 5903531611337837524, guid: 2f4194055749011409dfec46a2b7f2f6, type: 3}
     _statsByLevel:
-    - _moveSpeed: 2
+    - _moveSpeed: 0.5
       _attackSpeed: 1
       _maxHealth: 5
       _damage: 1
@@ -91,7 +91,7 @@ MonoBehaviour:
       _maxLevel: 3
       _maxTargetsAmount: 1
       _attackRange: 3
-    - _moveSpeed: 3
+    - _moveSpeed: 0.5
       _attackSpeed: 1
       _maxHealth: 35
       _damage: 3
@@ -99,7 +99,7 @@ MonoBehaviour:
       _maxLevel: 3
       _maxTargetsAmount: 1
       _attackRange: 6
-    - _moveSpeed: 4
+    - _moveSpeed: 0.5
       _attackSpeed: 1
       _maxHealth: 50
       _damage: 5
@@ -141,3 +141,81 @@ MonoBehaviour:
       _maxLevel: 4
       _maxTargetsAmount: 2
       _attackRange: 18
+  - _viewPrefab: {fileID: 4461565212581149055, guid: 5c4e313841100674a94c6e4e71f7b2de, type: 3}
+    _statsByLevel:
+    - _moveSpeed: 1
+      _attackSpeed: 1
+      _maxHealth: 5
+      _damage: 1
+      _level: 1
+      _maxLevel: 3
+      _maxTargetsAmount: 1
+      _attackRange: 3
+    - _moveSpeed: 1
+      _attackSpeed: 1
+      _maxHealth: 15
+      _damage: 3
+      _level: 2
+      _maxLevel: 3
+      _maxTargetsAmount: 1
+      _attackRange: 3
+    - _moveSpeed: 1
+      _attackSpeed: 1
+      _maxHealth: 30
+      _damage: 5
+      _level: 3
+      _maxLevel: 3
+      _maxTargetsAmount: 1
+      _attackRange: 3
+  - _viewPrefab: {fileID: 5046674657534164660, guid: 5691dfdb58928bb44bc2393834c56e12, type: 3}
+    _statsByLevel:
+    - _moveSpeed: 1
+      _attackSpeed: 1
+      _maxHealth: 5
+      _damage: 1
+      _level: 1
+      _maxLevel: 3
+      _maxTargetsAmount: 1
+      _attackRange: 9
+    - _moveSpeed: 1
+      _attackSpeed: 1
+      _maxHealth: 35
+      _damage: 3
+      _level: 2
+      _maxLevel: 3
+      _maxTargetsAmount: 1
+      _attackRange: 9
+    - _moveSpeed: 1
+      _attackSpeed: 1
+      _maxHealth: 50
+      _damage: 5
+      _level: 3
+      _maxLevel: 3
+      _maxTargetsAmount: 2
+      _attackRange: 10
+  - _viewPrefab: {fileID: 2032618782830215093, guid: 9e47b89b535fe954a859dff022f83461, type: 3}
+    _statsByLevel:
+    - _moveSpeed: 1
+      _attackSpeed: 3
+      _maxHealth: 5
+      _damage: 1
+      _level: 1
+      _maxLevel: 3
+      _maxTargetsAmount: 1
+      _attackRange: 3
+    - _moveSpeed: 1
+      _attackSpeed: 1
+      _maxHealth: 35
+      _damage: 3
+      _level: 2
+      _maxLevel: 3
+      _maxTargetsAmount: 1
+      _attackRange: 6
+    - _moveSpeed: 1
+      _attackSpeed: 1
+      _maxHealth: 50
+      _damage: 5
+      _level: 3
+      _maxLevel: 3
+      _maxTargetsAmount: 1
+      _attackRange: 6

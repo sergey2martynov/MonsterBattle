@@ -10057,6 +10057,7 @@ MonoBehaviour:
   _openParticle: {fileID: 705701844799701182}
   _egg: {fileID: 3833310934569717976}
   _chest: {fileID: 7745954201587659137}
+  _delayTime: 2
 --- !u!65 &4904762374773512220
 BoxCollider:
   m_ObjectHideFlags: 0

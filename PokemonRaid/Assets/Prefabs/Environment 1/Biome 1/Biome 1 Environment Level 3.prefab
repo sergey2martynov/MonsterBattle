@@ -2680,6 +2680,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: fee95b80be342714b9a96337b233218a, type: 2}
+    - target: {fileID: 8443168716290909945, guid: e6805b9eb7875e64396624b9c7cac001, type: 3}
+      propertyPath: _delayTime
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8443168716290909951, guid: e6805b9eb7875e64396624b9c7cac001, type: 3}
       propertyPath: m_IsActive
       value: 0

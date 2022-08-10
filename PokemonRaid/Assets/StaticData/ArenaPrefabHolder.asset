@@ -16,21 +16,21 @@ MonoBehaviour:
   - _level: 3
     _levelsEnemy: 010000000100000001000000
     _enemies:
-    - {fileID: 5903531611337837524, guid: b0d1990e61dfe644c999b1ccbbf11b79, type: 3}
-    - {fileID: 5903531611337837524, guid: 2f4194055749011409dfec46a2b7f2f6, type: 3}
-    - {fileID: 8393676187952632429, guid: 374eff02736577f4fb35c38c83abf581, type: 3}
+    - {fileID: 7933569051815768243, guid: 2ce6b0107a344c64eab756bbc92b5808, type: 3}
+    - {fileID: 5844931015246128827, guid: b8ae19424ddf2db4fb22c90dbb33f1f7, type: 3}
+    - {fileID: 4461565212581149055, guid: 5c4e313841100674a94c6e4e71f7b2de, type: 3}
   - _level: 8
-    _levelsEnemy: 010000000100000001000000
+    _levelsEnemy: 020000000200000002000000
     _enemies:
-    - {fileID: 8971474976718796664, guid: d2131430a64dde74693b08fe0159aa02, type: 3}
-    - {fileID: 1627224506922606195, guid: c552290d3b9bc064da407a0974d5b5c5, type: 3}
-    - {fileID: 8393676187952632429, guid: 374eff02736577f4fb35c38c83abf581, type: 3}
+    - {fileID: 9212740530332073215, guid: c43deee00924990499b40e0c1070159b, type: 3}
+    - {fileID: 3477033843275936486, guid: 5dacc6eab09c17844b3f915d77267d8e, type: 3}
+    - {fileID: 4263024449153530091, guid: eb060eab0ad93f74f9f6b9b4d61bc8f2, type: 3}
   - _level: 13
-    _levelsEnemy: 020000000100000001000000
+    _levelsEnemy: 030000000300000003000000
     _enemies:
-    - {fileID: 4254136415593880790, guid: 356bd95dfa740e34aa7b368ea4ee121b, type: 3}
-    - {fileID: 1627224506922606195, guid: c552290d3b9bc064da407a0974d5b5c5, type: 3}
-    - {fileID: 5903531611337837524, guid: 2f4194055749011409dfec46a2b7f2f6, type: 3}
+    - {fileID: 2032618782830215093, guid: 9e47b89b535fe954a859dff022f83461, type: 3}
+    - {fileID: 3602364770529016092, guid: 7fc42cf36e8b56147b8e6ba67c8809c3, type: 3}
+    - {fileID: 5046674657534164660, guid: 5691dfdb58928bb44bc2393834c56e12, type: 3}
   - _level: 18
     _levelsEnemy: 020000000100000001000000
     _enemies:

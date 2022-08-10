@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using DG.Tweening;
 using Enemy;
 using Factories;
 using Helpers;
@@ -9,6 +11,7 @@ using Pokemon;
 using Pokemon.PokemonHolder;
 using RewardMenu;
 using StaticData;
+using UnityEditor.Timeline.Actions;
 
 namespace Arena
 {
@@ -45,8 +48,6 @@ namespace Arena
         public void Initialize()
         {
             _arenaMenuView.FightButtonPressed += Fight;
-            
-            
         }
 
         private void Fight()
@@ -69,8 +70,16 @@ namespace Arena
 
             if (_enemiesData.Count == 0)
             {
-                ArenaDefeated?.Invoke();
-                ArenaCompleted?.Invoke();
+                DOTween.Sequence().AppendInterval(2).OnComplete(() =>
+                {
+                    ArenaDefeated?.Invoke();
+                    ArenaCompleted?.Invoke();
+                });
+                // Task.Delay(2000).ContinueWith(_ =>
+                // {
+                //     ArenaDefeated?.Invoke();
+                //     ArenaCompleted?.Invoke();
+                // }, TaskScheduler.FromCurrentSynchronizationContext());
             }
         }
 

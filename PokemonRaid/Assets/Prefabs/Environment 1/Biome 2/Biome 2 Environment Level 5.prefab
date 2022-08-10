@@ -4389,6 +4389,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2756326356295789675, guid: cf0b501ac4214b9449ee6fa77bf33b41, type: 3}
+      propertyPath: _delayTime
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2756326356528503991, guid: cf0b501ac4214b9449ee6fa77bf33b41, type: 3}
       propertyPath: m_IsActive
       value: 0

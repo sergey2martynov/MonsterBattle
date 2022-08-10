@@ -58,6 +58,7 @@ namespace Shop
 
         public void Initialize()
         {
+            _shopView.ViewDestroyed += Dispose;
             _shopView.PurchaseButtonPressed += TryPurchasePokemon;
             _shopView.PurchaseButtonPressed += DisableTutorials;
             _shopView.StartButtonPressed += OnStartButtonPressed;
@@ -271,11 +272,6 @@ namespace Shop
             _playerData.Coins += coinsAmount;
         }
 
-        private void OnPokemonCostChanged(int cost)
-        {
-            _shopView.SetCost(cost);
-        }
-
         private void OnMeleePokemonCostChanged(int cost)
         {
             _shopView.SetMeleePokemonCost(cost);
@@ -288,11 +284,11 @@ namespace Shop
 
         public void Dispose()
         {
+            _shopView.ViewDestroyed -= Dispose;
             _shopView.PurchaseButtonPressed -= TryPurchasePokemon;
             _shopView.StartButtonPressed -= OnStartButtonPressed;
             _shopView.StartButtonPressed -= _playerData.SetMaxHealth;
             _playerLogic.CoinsAdded -= _shopView.SetTextCoins;
-            //_shopData.PokemonCostChanged -= OnPokemonCostChanged;
             _shopData.MeleePokemonCostChanged -= OnMeleePokemonCostChanged;
             _shopData.RangedPokemonCostChanged -= OnRangedPokemonCostChanged;
             _playerData.FirstLevelFinished -= ActivePurchaseButton;

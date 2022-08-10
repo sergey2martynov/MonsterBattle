@@ -78,7 +78,6 @@ namespace Enemy.States.RangedStates
                 {
                     RotationHandler.Rotate(_view.Transform,
                         (_view.Transform.position - _targets[0].transform.position).normalized);
-                    //_logic.RotateAt((_view.Transform.position - _targets[0].transform.position).normalized);
                 }
                 
                 await Task.Yield();

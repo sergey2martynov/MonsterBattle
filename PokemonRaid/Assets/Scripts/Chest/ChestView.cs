@@ -10,12 +10,11 @@ namespace Chest
         [SerializeField] private ParticleSystem _openParticle;
         [SerializeField] private GameObject _egg;
         [SerializeField] private GameObject _chest;
+        [SerializeField] private float _delayTime = 2f;
         
         private bool _isOpened;
         private static readonly int Open = Animator.StringToHash("Open");
         
-        
-
         public GameObject Egg => _egg;
         public GameObject Chest => _chest;
         
@@ -39,7 +38,7 @@ namespace Chest
         {
             _openParticle.Play();
             _animator.SetBool(Open, true);
-            var delay = (int) (1.5 * 1000f);
+            var delay = (int) (_delayTime * 1000f);
             await Task.Delay(delay);
             playerView.LevelFinish();
         }

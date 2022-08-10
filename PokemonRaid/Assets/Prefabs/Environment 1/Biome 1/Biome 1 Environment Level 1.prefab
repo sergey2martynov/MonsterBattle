@@ -1766,6 +1766,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chest Place
       objectReference: {fileID: 0}
+    - target: {fileID: 8443168716290909945, guid: e6805b9eb7875e64396624b9c7cac001, type: 3}
+      propertyPath: _delayTime
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6805b9eb7875e64396624b9c7cac001, type: 3}
 --- !u!4 &5245282444898561313 stripped

@@ -2123,6 +2123,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2667785713799392064}
     m_Modifications:
+    - target: {fileID: 1891238276076694739, guid: 8ac7bace33008124180a674274d9993c, type: 3}
+      propertyPath: _delayTime
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5685799917624060371, guid: 8ac7bace33008124180a674274d9993c, type: 3}
       propertyPath: m_IsActive
       value: 0

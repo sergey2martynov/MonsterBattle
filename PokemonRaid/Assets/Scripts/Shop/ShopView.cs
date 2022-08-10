@@ -39,6 +39,7 @@ namespace Shop
         public event Action<PokemonType> PurchaseButtonPressed;
         public event Action StartButtonPressed;
         public event Action CardsButtonPressed;
+        public event Action ViewDestroyed;
 
         private void Start()
         {
@@ -54,6 +55,7 @@ namespace Shop
             _purchaseRangedButton.onClick.RemoveListener(OnPurchaseRangedButtonClicked);
             _startButton.onClick.RemoveListener(OnStartButtonClicked);
             _cardsButton.onClick.RemoveListener(OnCardsButtonClicked);
+            ViewDestroyed?.Invoke();
         }
 
         public void SetGrayColorForButton(PokemonType pokemonType)
