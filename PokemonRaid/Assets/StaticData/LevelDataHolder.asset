@@ -975,7 +975,7 @@ MonoBehaviour:
       _positions: []
     _totalCoinsReward: 2755
     _totalGemsReward: 0
-    _environment: {fileID: 8749536805340578723, guid: 0d24e1a8295dd5043a508225f2392046, type: 3}
+    _environment: {fileID: 0}
   - _level: 0
     _spawnPositions:
     - _enemyPrefabs:

@@ -10,8 +10,8 @@ namespace StaticData
     public class LevelDataHolder : ScriptableObject
     {
         //[NamedList(new []{"Level 1", "Level 2", "Level 3"})]
-        [NamedProperty("Level")]
-        [SerializeField] private List<LevelData> _levelData;
+        [NamedProperty("Level")] [SerializeField]
+        private List<LevelData> _levelData;
 
         [SerializeField] private ArenaView _arenaView;
 
@@ -19,7 +19,12 @@ namespace StaticData
 
         public LevelData GetLevelData(int level)
         {
-            return _levelData[level - 1];
+            if (level <= _levelData.Count)
+            {
+                return _levelData[level - 1];
+            }
+
+            return null;
         }
     }
 }

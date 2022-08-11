@@ -12,6 +12,8 @@ namespace HealthBar
 
         private Transform _camera;
 
+        private bool _isArena;
+
         public void SetHealth(float health)
         {
             _healthImage.fillAmount = health;
@@ -25,7 +27,7 @@ namespace HealthBar
 
         private void LateUpdate()
         {
-            transform.LookAt(new Vector3(transform.position.x, _camera.transform.position.y, _camera.transform.position.z));
+            transform.LookAt(transform.position + _camera.forward);
         }
     }
 }

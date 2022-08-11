@@ -111,10 +111,24 @@ namespace Arena
                         data.AttackRange = 7;
                         data.OnIdleStateRequired(true);
                     }
+                    
+                    return;
                 }
             }
+            
+            _enemiesViews = _arenaPrefabHolder.ListEnemies[98].Enemies;
+                
+            for (int j = 0; j < _enemiesViews.Count; j++)
+            {
+                var data = _enemyFactory.CreateInstance(_enemiesViews[j], _arenaView.SpawnEnemyPositions[j].position,
+                    _enemyStats, _arenaView.transform, _arenaPrefabHolder.ListEnemies[98].LevelsEnemy[j],
+                    out var baseView);
 
-            //SelectPokemon();
+                _enemiesData.Add(data);
+                data.EnemyDied += RemoveEnemy;
+                data.AttackRange = 7;
+                data.OnIdleStateRequired(true);
+            }
         }
 
         private void SelectPokemon()

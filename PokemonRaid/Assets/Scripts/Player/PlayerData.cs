@@ -80,7 +80,7 @@ namespace Player
                 {
                     _health = 0;
                     
-                    EventSender.SendLevelFinish();
+                    
 
                     IncreaseLevelCount();
                     
@@ -195,7 +195,7 @@ namespace Player
         {
             MoveSpeed = stats.MoveSpeed;
             Level = stats.Level;
-            Health = _pokemonHolderModel.GetAllHealth();
+            //Health = _pokemonHolderModel.GetAllHealth();
             _coins = stats.Coins;
         }
 

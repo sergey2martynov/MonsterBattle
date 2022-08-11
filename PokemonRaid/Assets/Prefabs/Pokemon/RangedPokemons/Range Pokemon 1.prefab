@@ -76,7 +76,6 @@ MonoBehaviour:
   _collider: {fileID: 5094698463171868497}
   _mergeParticle: {fileID: 4249431612175773595}
   _spawnParticle: {fileID: 6560375627422792556}
-  _moveParticle: {fileID: 7229739555263110618}
   _pokemonType: 0
   _projectilePrefab: {fileID: 3376967517250490170, guid: 6136d3c7cd1e7a64fa1478f8855c5d0e, type: 3}
   _firePoints:
@@ -279,6 +278,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HealthCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 4023971716909451714, guid: 2451bd4d9b1ca9d46b50bb90d55a5482, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6998758701421329507, guid: 2451bd4d9b1ca9d46b50bb90d55a5482, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -349,7 +352,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6998758701421329507, guid: 2451bd4d9b1ca9d46b50bb90d55a5482, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 2
+      value: 2.644
       objectReference: {fileID: 0}
     - target: {fileID: 6998758701421329507, guid: 2451bd4d9b1ca9d46b50bb90d55a5482, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -948,11 +951,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e299570ba5285e448902f8dfd90cdc71, type: 3}
---- !u!198 &7229739555263110618 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 1704270445273470133, guid: e299570ba5285e448902f8dfd90cdc71, type: 3}
-  m_PrefabInstance: {fileID: 8355295660839569775}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5066894498755577650 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3864863162880855645, guid: e299570ba5285e448902f8dfd90cdc71, type: 3}

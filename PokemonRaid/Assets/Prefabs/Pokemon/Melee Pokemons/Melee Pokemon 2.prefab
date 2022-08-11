@@ -76,7 +76,6 @@ MonoBehaviour:
   _collider: {fileID: 6011794515999729441}
   _mergeParticle: {fileID: 417435579678923435}
   _spawnParticle: {fileID: 6281355759629608207}
-  _moveParticle: {fileID: 966745848330732408}
   _pokemonType: 1
 --- !u!65 &6011794515999729441
 BoxCollider:
@@ -238,11 +237,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3864863162880855645, guid: e299570ba5285e448902f8dfd90cdc71, type: 3}
   m_PrefabInstance: {fileID: 1931018166657259469}
   m_PrefabAsset: {fileID: 0}
---- !u!198 &966745848330732408 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 1704270445273470133, guid: e299570ba5285e448902f8dfd90cdc71, type: 3}
-  m_PrefabInstance: {fileID: 1931018166657259469}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3659232476531142593
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -344,6 +338,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HealthCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 4023971716909451714, guid: 2451bd4d9b1ca9d46b50bb90d55a5482, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6998758701421329507, guid: 2451bd4d9b1ca9d46b50bb90d55a5482, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -414,7 +412,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6998758701421329507, guid: 2451bd4d9b1ca9d46b50bb90d55a5482, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 2
+      value: 3.14
       objectReference: {fileID: 0}
     - target: {fileID: 6998758701421329507, guid: 2451bd4d9b1ca9d46b50bb90d55a5482, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -927,9 +925,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 89a2f96b111dcda4f86f9d5938024209, type: 3}
---- !u!4 &1398105780765593119 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8004338820632129435, guid: 89a2f96b111dcda4f86f9d5938024209, type: 3}
+--- !u!95 &2334681475317500219 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6635062419933472959, guid: 89a2f96b111dcda4f86f9d5938024209, type: 3}
   m_PrefabInstance: {fileID: 8967245697100390788}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &7065040561283976891 stripped
@@ -943,8 +941,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20a7f15a739940469a55864c03a8f293, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!95 &2334681475317500219 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 6635062419933472959, guid: 89a2f96b111dcda4f86f9d5938024209, type: 3}
+--- !u!4 &1398105780765593119 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8004338820632129435, guid: 89a2f96b111dcda4f86f9d5938024209, type: 3}
   m_PrefabInstance: {fileID: 8967245697100390788}
   m_PrefabAsset: {fileID: 0}

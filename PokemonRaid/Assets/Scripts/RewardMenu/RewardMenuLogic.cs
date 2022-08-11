@@ -56,7 +56,12 @@ namespace RewardMenu
         {
             _rewardMenuView.Show();
             var levelData = _levelDataHolder.GetLevelData(_playerData.Level - 1);
-            _rewardMenuView.SetGems(_levelDataHolder.GetLevelData(_playerData.Level - 1).TotalGemsReward);
+
+            if (levelData == null)
+            {
+                levelData = _levelDataHolder.GetLevelData(18);
+            }
+            _rewardMenuView.SetGems(levelData.TotalGemsReward);
             _rewardMenuView.SetCoinsAmount(levelData.TotalCoinsReward);
             _playerData.Coins += levelData.TotalCoinsReward;
             _playerData.Gems += levelData.TotalGemsReward;

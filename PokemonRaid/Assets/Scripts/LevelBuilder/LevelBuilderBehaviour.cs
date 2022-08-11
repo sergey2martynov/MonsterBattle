@@ -65,7 +65,7 @@ namespace LevelBuilder
             var level = _playerData.Level;
             var levelData = _levelDataHolder.GetLevelData(level);
 
-            if (levelData.Environment == null)
+            if (levelData == null || levelData.Environment == null)
             {
                 level = level % 5 == 0 ? 10 : 5 + level % 5;
                 var environment = _levelDataHolder.GetLevelData(level).Environment;

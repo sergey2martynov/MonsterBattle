@@ -33,9 +33,16 @@ namespace LevelCounter
 
                 levelCount++;
             }
+
+            if (biomeCount > 10)
+            {
+                biomeCount = 10;
+            }
             
             _view.Images[0].sprite = _levelSpritesHolder.BiomSprites[biomeCount ];
             _view.Images[5].sprite = _levelSpritesHolder.BossSprites[biomeCount];
+            
+            
             
             for (int i = 1; i <= 4; i ++)
             {

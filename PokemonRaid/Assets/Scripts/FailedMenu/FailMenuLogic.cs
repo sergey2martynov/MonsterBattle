@@ -1,4 +1,5 @@
 using System.Globalization;
+using Analitycs;
 using Enemy.EnemyModel;
 using Player;
 using SaveLoad;
@@ -34,6 +35,7 @@ namespace FailedMenu
             _failMenuView.CoinsText.text =
                 SetCoins((int) (_enemyDataHolder.CoinsRewardPerEnemy * _enemyDataHolder.CountKilledEnemy));
             _playerData.Coins += (int) (_enemyDataHolder.CoinsRewardPerEnemy * _enemyDataHolder.CountKilledEnemy);
+            EventSender.SendLevelFinish();
         }
 
         private void Restart()
